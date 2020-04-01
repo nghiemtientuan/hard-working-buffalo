@@ -1,0 +1,21 @@
+{
+  "name": "hard-working-buffalo",
+  "description": "test english online",
+  "main": "",
+  "authors": [
+    "Nghiem Tien Tuan <nghiem.tien.tuan@sun-asterisk.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/tuannt-0910/hard-working-buffalo",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "assets": "https://github.com/nghiemtientuan/hard-working-buffalo-assets"
+  }
+}
