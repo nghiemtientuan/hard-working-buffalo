@@ -18,6 +18,7 @@ class CreateQuestionCommentsTable extends Migration
             $table->integer('question_id')->nullable();
             $table->integer('user_id')->nullable();
             $table->string('content')->nullable();
+            $table->string('type')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
