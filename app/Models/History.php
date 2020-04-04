@@ -11,13 +11,20 @@ class History extends Model
 
     protected $table = 'histories';
 
+    const TEST_ID_FIELD = 'test_id';
+    const STUDENT_ID_FIELD = 'student_id';
+    const DURATION_FIELD = 'duration';
+    const RANDOM_SEED_FIELD = 'random_seed';
+    const SCORE_FIELD = 'score';
+    const USER_ANSWER_FIELD = 'user_answer';
+
     protected $fillable = [
-        'test_id',
-        'student_id',
-        'duration',
-        'random_seed',
-        'score',
-        'user_answer',
+        History::TEST_ID_FIELD,
+        History::STUDENT_ID_FIELD,
+        History::DURATION_FIELD,
+        History::RANDOM_SEED_FIELD,
+        History::SCORE_FIELD,
+        History::USER_ANSWER_FIELD,
         'created_at',
         'updated_at',
         'deleted_at',

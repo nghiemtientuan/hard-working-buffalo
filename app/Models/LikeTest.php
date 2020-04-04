@@ -15,10 +15,12 @@ class LikeTest extends Model
     protected $table = 'like_test';
 
     const TYPE_FIELD = 'type';
+    const TEST_ID_FIELD = 'test_id';
+    const USER_ID_FIELD = 'user_id';
 
     protected $fillable = [
-        'test_id',
-        'user_id',
+        LikeTest::TEST_ID_FIELD,
+        LikeTest::USER_ID_FIELD,
         LikeTest::TYPE_FIELD,
         'created_at',
         'updated_at',

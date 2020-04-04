@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -12,24 +11,37 @@ class User extends Authenticatable
 
     protected $table = 'users';
 
+    const ROLE_ID_FIELD = 'role_id';
+    const FILE_ID_FIELD = 'file_id';
+    const USERNAME_FIELD = 'username';
+    const FIRSTNAME_FIELD = 'firstname';
+    const LASTNAME_FIELD = 'lastname';
+    const BIRTHDAY_FIELD = 'birthday';
+    const ADDRESS_FIELD = 'address';
+    const PHONE_FIELD = 'phone';
+    const ACTIVE_FIELD = 'active';
+    const DESCRIPTION_FIELD = 'description';
+    const EMAIL_FIELD = 'email';
+    const PASSWORD_FIELD = 'password';
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'role_id',
-        'file_id',
-        'username',
-        'firstname',
-        'lastname',
-        'birthday',
-        'address',
-        'phone',
-        'active',
-        'description',
-        'email',
-        'password',
+        User::ROLE_ID_FIELD,
+        User::FILE_ID_FIELD,
+        User::USERNAME_FIELD,
+        User::FIRSTNAME_FIELD,
+        User::LASTNAME_FIELD,
+        User::BIRTHDAY_FIELD,
+        User::ADDRESS_FIELD,
+        User::PHONE_FIELD,
+        User::ACTIVE_FIELD,
+        User::DESCRIPTION_FIELD,
+        User::EMAIL_FIELD,
+        User::PASSWORD_FIELD,
         'created_at',
         'updated_at',
         'deleted_at',

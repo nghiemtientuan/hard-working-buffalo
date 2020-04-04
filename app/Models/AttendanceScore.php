@@ -11,9 +11,12 @@ class AttendanceScore extends Model
 
     protected $table = 'attendance_scores';
 
+    const NUMBER_FIELD = 'number';
+    const DIAMOND_FIELD = 'diamond';
+
     protected $fillable = [
-        'number',
-        'diamond',
+        AttendanceScore::NUMBER_FIELD,
+        AttendanceScore::DIAMOND_FIELD,
         'created_at',
         'updated_at',
     ];

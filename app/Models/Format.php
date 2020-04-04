@@ -11,9 +11,12 @@ class Format extends Model
 
     protected $table = 'formats';
 
+    const NAME_FIELD = 'name';
+    const DESCRIPTION_FIELD = 'description';
+
     protected $fillable = [
-        'name',
-        'description',
+        Format::NAME_FIELD,
+        Format::DESCRIPTION_FIELD,
         'created_at',
         'updated_at',
     ];

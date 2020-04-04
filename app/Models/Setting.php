@@ -11,9 +11,12 @@ class Setting extends Model
 
     protected $table = 'settings';
 
+    const KEY_FIELD = 'key';
+    const VALUE_FIELD = 'value';
+
     protected $fillable = [
-        'key',
-        'value',
+        Setting::KEY_FIELD,
+        Setting::VALUE_FIELD,
         'created_at',
         'updated_at',
     ];

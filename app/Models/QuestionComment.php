@@ -15,12 +15,14 @@ class QuestionComment extends Model
     protected $table = 'question_comments';
 
     const TYPE_FIELD = 'type';
-    const USER_ID_FIELD = 'type';
+    const USER_ID_FIELD = 'user_id';
+    const QUESTION_ID_FIELD = 'question_id';
+    const CONTENT_FIELD = 'content';
 
     protected $fillable = [
-        'question_id',
+        QuestionComment::QUESTION_ID_FIELD,
         QuestionComment::USER_ID_FIELD,
-        'content',
+        QuestionComment::CONTENT_FIELD,
         QuestionComment::TYPE_FIELD,
         'created_at',
         'updated_at',

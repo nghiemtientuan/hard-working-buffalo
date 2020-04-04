@@ -19,11 +19,14 @@ class File extends Model
     protected $table = 'files';
 
     const TYPE_FIELD = 'type';
+    const NAME_FIELD = 'name';
+    const EXTENSION_FIELD = 'extension';
+    const BASE_FOLDER_FIELD = 'base_folder';
 
     protected $fillable = [
-        'name',
-        'extension',
-        'base_folder',
+        File::NAME_FIELD,
+        File::EXTENSION_FIELD,
+        File::BASE_FOLDER_FIELD,
         File::TYPE_FIELD,
         'created_at',
         'updated_at',

@@ -12,12 +12,15 @@ class Category extends Model
     protected $table = 'categories';
 
     const PARENT_ID_FIELD = 'parent_id';
+    const FILE_ID_FIELD = 'file_id';
+    const NAME_FIELD = 'name';
+    const GUIDE_FIELD = 'guide';
 
     protected $fillable = [
         Category::PARENT_ID_FIELD,
-        'file_id',
-        'name',
-        'guide',
+        Category::FILE_ID_FIELD,
+        Category::NAME_FIELD,
+        Category::GUIDE_FIELD,
         'created_at',
         'updated_at',
     ];

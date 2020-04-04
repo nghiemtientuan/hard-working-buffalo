@@ -11,22 +11,38 @@ class Student extends Model
 
     protected $table = 'students';
 
+    const FILE_ID_FIELD = 'file_id';
+    const USERNAME_FIELD = 'username';
+    const FIRSTNAME_FIELD = 'firstname';
+    const LASTNAME_FIELD = 'lastname';
+    const BIRTHDAY_FIELD = 'birthday';
+    const ADDRESS_FIELD = 'address';
+    const PHONE_FIELD = 'phone';
+    const LEVEL_ID_FIELD = 'level_id';
+    const LEVEL_SCORE_FIELD = 'level_score';
+    const STUDENT_TYPE_ID_FIELD = 'student_type_id';
+    const DIAMOND_FIELD = 'diamond';
+    const ACTIVE_FIELD = 'active';
+    const DESCRIPTION_FIELD = 'description';
+    const EMAIL_FIELD = 'email';
+    const PASSWORD_FIELD = 'password';
+
     protected $fillable = [
-        'file_id',
-        'username',
-        'firstname',
-        'lastname',
-        'birthday',
-        'address',
-        'phone',
-        'level_id',
-        'level_score',
-        'student_type_id',
-        'diamond',
-        'active',
-        'description',
-        'email',
-        'password',
+        Student::FILE_ID_FIELD,
+        Student::USERNAME_FIELD,
+        Student::FIRSTNAME_FIELD,
+        Student::LASTNAME_FIELD,
+        Student::BIRTHDAY_FIELD,
+        Student::ADDRESS_FIELD,
+        Student::PHONE_FIELD,
+        Student::LEVEL_ID_FIELD,
+        Student::LEVEL_SCORE_FIELD,
+        Student::STUDENT_TYPE_ID_FIELD,
+        Student::DIAMOND_FIELD,
+        Student::ACTIVE_FIELD,
+        Student::DESCRIPTION_FIELD,
+        Student::EMAIL_FIELD,
+        Student::PASSWORD_FIELD,
         'created_at',
         'updated_at',
         'deleted_at',

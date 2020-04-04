@@ -11,11 +11,16 @@ class QuestionInPart extends Model
 
     protected $table = 'question_in_part';
 
+    const PART_ID_FIELD = 'part_id';
+    const NUMBER_FIELD = 'number';
+    const TYPE_FIELD = 'type';
+    const CHILD_QUESTIONS_FIELD = 'child_questions';
+
     protected $fillable = [
-        'part_id',
-        'number',
-        'type',
-        'child_questions',
+        QuestionInPart::PART_ID_FIELD,
+        QuestionInPart::NUMBER_FIELD,
+        QuestionInPart::TYPE_FIELD,
+        QuestionInPart::CHILD_QUESTIONS_FIELD,
         'created_at',
         'updated_at',
     ];

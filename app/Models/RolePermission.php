@@ -11,9 +11,12 @@ class RolePermission extends Model
 
     protected $table = 'role_permission';
 
+    const ROLE_ID_FIELD = 'role_id';
+    const PERMISSION_ID_FIELD = 'permission_id';
+
     protected $fillable = [
-        'role_id',
-        'permission_id',
+        RolePermission::ROLE_ID_FIELD,
+        RolePermission::PERMISSION_ID_FIELD,
         'created_at',
         'updated_at',
     ];

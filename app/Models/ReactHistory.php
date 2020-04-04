@@ -15,12 +15,15 @@ class ReactHistory extends Model
     protected $table = 'react_history';
 
     const TYPE_FIELD = 'type';
+    const HISTORY_ID_FIELD = 'history_id';
+    const REACT_ID_FIELD = 'react_id';
+    const USER_ID_FIELD = 'user_id';
 
     protected $fillable = [
-        'history_id',
-        'react_id',
-        'user_id',
-        'type',
+        ReactHistory::HISTORY_ID_FIELD,
+        ReactHistory::REACT_ID_FIELD,
+        ReactHistory::USER_ID_FIELD,
+        ReactHistory::TYPE_FIELD,
         'created_at',
         'updated_at',
     ];
