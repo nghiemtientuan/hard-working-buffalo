@@ -11,10 +11,14 @@ class StudentLevel extends Model
 
     protected $table = 'student_levels';
 
+    const NAME_FIELD = 'name';
+    const SCORE_FIELD = 'score';
+    const FILE_ID_FIELD = 'file_id';
+
     protected $fillable = [
-        'name',
-        'score',
-        'file_id',
+        StudentLevel::NAME_FIELD,
+        StudentLevel::SCORE_FIELD,
+        StudentLevel::FILE_ID_FIELD,
         'created_at',
         'updated_at',
     ];

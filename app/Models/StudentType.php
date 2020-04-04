@@ -11,8 +11,10 @@ class StudentType extends Model
 
     protected $table = 'student_types';
 
+    const NAME_FIELD = 'name';
+
     protected $fillable = [
-        'name',
+        StudentType::NAME_FIELD,
         'created_at',
         'updated_at',
     ];

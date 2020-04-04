@@ -11,9 +11,12 @@ class FormatPart extends Model
 
     protected $table = 'format_part';
 
+    const PART_ID_FIELD = 'part_id';
+    const FORMAT_ID_FIELD = 'format_id';
+
     protected $fillable = [
-        'part_id',
-        'format_id',
+        FormatPart::PART_ID_FIELD,
+        FormatPart::FORMAT_ID_FIELD,
         'created_at',
         'updated_at',
     ];

@@ -11,9 +11,12 @@ class CategoryTest extends Model
 
     protected $table = 'category_test';
 
+    const CATEGORY_ID_FIELD = 'category_id';
+    const TEST_ID_FIELD = 'test_id';
+
     protected $fillable = [
-        'category_id',
-        'test_id',
+        CategoryTest::CATEGORY_ID_FIELD,
+        CategoryTest::TEST_ID_FIELD,
         'created_at',
         'updated_at',
     ];

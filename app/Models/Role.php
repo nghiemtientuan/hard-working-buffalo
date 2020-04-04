@@ -11,9 +11,12 @@ class Role extends Model
 
     protected $table = 'roles';
 
+    const NAME_FIELD = 'name';
+    const SLUG_FIELD = 'slug';
+
     protected $fillable = [
-        'name',
-        'slug',
+        Role::NAME_FIELD,
+        Role::SLUG_FIELD,
         'created_at',
         'updated_at',
     ];

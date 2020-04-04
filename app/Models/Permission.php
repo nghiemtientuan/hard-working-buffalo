@@ -11,9 +11,12 @@ class Permission extends Model
 
     protected $table = 'permissions';
 
+    const NAME_FIELD = 'name';
+    const SLUG_FIELD = 'slug';
+
     protected $fillable = [
-        'name',
-        'slug',
+        Permission::NAME_FIELD,
+        Permission::SLUG_FIELD,
         'created_at',
         'updated_at',
     ];

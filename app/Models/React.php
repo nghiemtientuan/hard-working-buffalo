@@ -11,9 +11,12 @@ class React extends Model
 
     protected $table = 'reacts';
 
+    const FILE_ID_FIELD = 'file_id';
+    const TITLE_FIELD = 'title';
+
     protected $fillable = [
-        'file_id',
-        'title',
+        React::FILE_ID_FIELD,
+        React::TITLE_FIELD,
         'created_at',
         'updated_at',
     ];

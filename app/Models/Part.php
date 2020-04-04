@@ -11,9 +11,12 @@ class Part extends Model
 
     protected $table = 'parts';
 
+    const NAME_FIELD = 'name';
+    const DESCRIPTION_FIELD = 'description';
+
     protected $fillable = [
-        'name',
-        'description',
+        Part::NAME_FIELD,
+        Part::DESCRIPTION_FIELD,
         'created_at',
         'updated_at',
     ];
