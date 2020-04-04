@@ -5,4 +5,6 @@ Route::group([
     'namespace' => 'Admin',
 ], function () {
     Route::get('/', 'HomeController@index')->name('admin.home');
+
+    Route::resource('categories', 'CategoryController');
 });

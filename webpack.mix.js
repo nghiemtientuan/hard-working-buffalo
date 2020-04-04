@@ -43,6 +43,7 @@ mix.styles([
     'public/bower_components/assets/Admin/js/pages/extra_trees.js',
     'resources/js/Admin/app.js',
 ], 'public/js/admin.js')
+.copy('resources/js/Admin/list_category.js', 'public/js/Admin/list_category.js')
 .options({
     processCssUrls: false
 }).version();
