@@ -19,55 +19,43 @@
         <div class="sidebar-category sidebar-category-visible">
             <div class="category-content no-padding">
                 <ul class="navigation navigation-main navigation-accordion">
-                    <li class="navigation-header"><span>{{ trans('sidebar.Main') }}</span> <i class="icon-menu"></i></li>
+                    <li class="navigation-header"><span>{{ trans('backend.sidebar.main') }}</span> <i class="icon-menu"></i></li>
+
                     <li class="{{ request()->is('admin') ? 'active' : '' }}">
-                        <a href="#"><i class="icon-home4"></i> <span>{{ trans('sidebar.Dashboard') }}</span></a>
+                        <a href="#"><i class="icon-home4"></i> <span>{{ trans('backend.sidebar.list.dashboard') }}</span></a>
                     </li>
-                        <li class="{{ request()->is('admin/users') || request()->is('admin/users/*') ? 'active' : '' }}">
-                            <a href="#"><i class="icon-stack2"></i> <span>{{ trans('page.users.list.users') }}</span></a>
-                            <ul>
-                                <li class="{{ request()->is('admin/users') ? 'active' : '' }}">
-                                    <a href="#">{{ trans('page.list_users') }}</a>
-                                </li>
-                                    <li class="{{ request()->is('admin/users/edit') ? 'active' : '' }}">
-                                        <a href="#">{{ trans('page.add_user') }}</a>
-                                    </li>
-                            </ul>
-                        </li>
-                        <li class="{{ request()->is('admin/categories') || request()->is('admin/categories/*') ? 'active' : '' }}">
-                            <a href="#"><i class="icon-copy"></i> <span>{{ trans('page.category.list_categories') }}</span></a>
-                        </li>
-                        <li class="{{ request()->is('admin/tests') || request()->is('admin/tests/*') ? 'active' : '' }}">
-                            <a href="#"><i class="icon-droplet2"></i> <span>{{ trans('page.test.list_tests') }}</span></a>
-                            <ul>
-                                <li class="{{ request()->is('admin/tests') ? 'active' : '' }}">
-                                    <a href="#">{{ trans('page.list_tests') }}</a>
-                                </li>
-                                    <li class="{{ request()->is('admin/tests/create') ? 'active' : '' }}">
-                                        <a href="#">{{ trans('page.add_test') }}</a>
-                                    </li>
-                            </ul>
-                        </li>
-                        <li class="{{ request()->is('admin/questions') || request()->is('admin/questions/*') ? 'active' : '' }}">
-                            <a href="#"><i class="icon-droplet2"></i> <span>{{ trans('page.question.questions') }}</span></a>
-                            <ul>
-                                <li class="{{ request()->is('admin/questions') ? 'active' : '' }}">
-                                    <a href="#">{{ trans('page.question.list_questions') }}</a>
-                                </li>
-                                    <li class="{{ request()->is('admin/questions/create') ? 'active' : '' }}">
-                                        <a href="#">{{ trans('page.question.add_question') }}</a>
-                                    </li>
-                                    <li class="{{ request()->is('admin/questions/import') ? 'active' : '' }}">
-                                        <a href="#">{{ trans('page.question.add_question_by_file') }}</a>
-                                    </li>
-                            </ul>
-                        </li>
-                        <li class="{{ request()->is('admin/comments') ? 'active' : '' }}">
-                            <a href="#"><i class="icon-droplet2"></i> <span>{{ trans('page.comment.comments') }}</span></a>
-                        </li>
-                        <li class="{{ request()->is('admin/backups') ? 'active' : '' }}">
-                            <a href="#"><i class="icon-droplet2"></i> <span>{{ trans('page.backup.list_backup') }}</span></a>
-                        </li>
+
+                    <li class="{{ request()->is('admin/categories') || request()->is('admin/categories/*') ? 'active' : '' }}">
+                        <a href="#"><i class="icon-copy"></i> <span>{{ trans('backend.sidebar.list.categories') }}</span></a>
+                    </li>
+
+                    <li class="{{ request()->is('admin/users') || request()->is('admin/users/*') ? 'active' : '' }}">
+                        <a href="#"><i class="icon-stack2"></i> <span>{{ trans('backend.sidebar.list.accounts') }}</span></a>
+                        <ul>
+                            <li class="{{ request()->is('admin/users') ? 'active' : '' }}">
+                                <a href="#">{{ trans('backend.sidebar.list.students') }}</a>
+                            </li>
+                            <li class="{{ request()->is('admin/users/edit') ? 'active' : '' }}">
+                                <a href="#">{{ trans('backend.sidebar.list.users') }}</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="{{ request()->is('admin/categories') || request()->is('admin/categories/*') ? 'active' : '' }}">
+                        <a href="#"><i class="icon-copy"></i> <span>{{ trans('backend.sidebar.list.tests') }}</span></a>
+                    </li>
+
+                    <li class="{{ request()->is('admin/categories') || request()->is('admin/categories/*') ? 'active' : '' }}">
+                        <a href="#"><i class="icon-copy"></i> <span>{{ trans('backend.sidebar.list.questions') }}</span></a>
+                    </li>
+
+                    <li class="{{ request()->is('admin/comments') ? 'active' : '' }}">
+                        <a href="#"><i class="icon-droplet2"></i> <span>{{ trans('backend.sidebar.list.question_comments') }}</span></a>
+                    </li>
+
+                    <li class="{{ request()->is('admin/backups') ? 'active' : '' }}">
+                        <a href="#"><i class="icon-droplet2"></i> <span>{{ trans('backend.sidebar.list.backups') }}</span></a>
+                    </li>
                 </ul>
             </div>
         </div>

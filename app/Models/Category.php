@@ -25,9 +25,15 @@ class Category extends Model
         'updated_at',
     ];
 
+    protected $with = [
+        'file',
+        'childCates',
+    ];
+
     public function file()
     {
-        return $this->hasOne(File::class)->where(File::TYPE_FIELD, File::TYPE_CATEGORY);
+        return $this->hasOne(File::class, 'id', Category::FILE_ID_FIELD)
+            ->where(File::TYPE_FIELD, File::TYPE_CATEGORY);
     }
 
     public function childCates()
