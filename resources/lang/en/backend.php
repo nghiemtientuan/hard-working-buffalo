@@ -38,13 +38,21 @@ return [
         'remove' => 'Remove',
         'reset' => 'Reset',
         'submit' => 'Submit',
+        'close' => 'Close',
         'categories' => [
             'list_categories' => 'List categories',
             'name' => 'Name',
+            'image' => 'Image',
+            'newImage' => 'New image',
             'guide' => 'Guide',
             'number_of_tests' => 'Number of tests',
             'last_edit' => 'Last Edit',
             'actions' => 'Actions',
+            'add_category' => 'Add Category',
+            'edit_category' => 'Edit Category',
         ],
+    ],
+    'actions' => [
+        'success' => 'Action success',
     ],
 ];

@@ -20,6 +20,7 @@ mix.styles([
     'public/bower_components/assets/Admin/css/colors.css',
     'public/bower_components/assets/Admin/css/icheck/icheck-material.min.css',
     'public/bower_components/assets/Admin/css/toastr/toastr.min.css',
+    'resources/sass/app.css',
     'resources/sass/Admin/app.css',
 ], 'public/css/admin.css')
 .js([
@@ -44,6 +45,7 @@ mix.styles([
     'resources/js/Admin/app.js',
 ], 'public/js/admin.js')
 .copy('resources/js/Admin/list_category.js', 'public/js/Admin/list_category.js')
+.copy('resources/js/common/helper.js', 'public/js/common/helper.js')
 .options({
     processCssUrls: false
 }).version();

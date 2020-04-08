@@ -1,0 +1,9 @@
+.category-image {
+    width: 200px;
+}
+
+.cate-image-maxHeight {
+    max-height: 35px!important;
+    margin-right: 10px;
+    border-radius: 50%;
+}

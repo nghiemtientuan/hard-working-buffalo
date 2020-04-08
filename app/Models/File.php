@@ -15,6 +15,11 @@ class File extends Model
     const TYPE_USER = 'App/Models/User';
     const TYPE_STUDENT = 'App/Models/Student';
     const TYPE_QUESTION = 'App/Models/Question';
+    const TEST_FOLDER = '/images/tests';
+    const CATEGORY_FOLDER = '/images/categories';
+    const REACT_FOLDER = '/images/reacts';
+    const USER_FOLDER = '/images/users';
+    const STUDENT_FOLDER = '/images/students';
 
     protected $table = 'files';
 
@@ -60,5 +65,16 @@ class File extends Model
     public function question()
     {
         return $this->hasOne(Question::class)->where(File::TYPE_FIELD, File::TYPE_QUESTION);
+    }
+
+    public static function deleteWithFile($id)
+    {
+        $file = File::find($id);
+        $file_path = public_path() . '/' . $file->base_folder;
+        if (file_exists($file_path)) {
+            unlink($file_path);
+        }
+
+        return File::destroy($id);
     }
 }
