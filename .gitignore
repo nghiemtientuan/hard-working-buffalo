@@ -4,7 +4,12 @@
 /public/bower_components
 /public/css
 /public/js
+/public/images/categories
+/public/images/tests
+/public/images/users
+/public/images/students
 /storage/*.key
+.idea
 /vendor
 .env
 .env.backup
