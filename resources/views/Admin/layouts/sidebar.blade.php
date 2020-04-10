@@ -33,10 +33,10 @@
                         <a href="#"><i class="icon-stack2"></i> <span>{{ trans('backend.sidebar.list.accounts') }}</span></a>
                         <ul>
                             <li class="{{ request()->is('admin/users') ? 'active' : '' }}">
-                                <a href="#">{{ trans('backend.sidebar.list.students') }}</a>
+                                <a href="{{ route('admin.students.index') }}">{{ trans('backend.sidebar.list.students') }}</a>
                             </li>
                             <li class="{{ request()->is('admin/users/edit') ? 'active' : '' }}">
-                                <a href="#">{{ trans('backend.sidebar.list.users') }}</a>
+                                <a href="{{ route('admin.users.index') }}">{{ trans('backend.sidebar.list.users') }}</a>
                             </li>
                         </ul>
                     </li>

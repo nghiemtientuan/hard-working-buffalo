@@ -48,6 +48,12 @@ class Student extends Model
         'deleted_at',
     ];
 
+    protected $with = [
+        'file',
+        'studentLevel',
+        'studentType',
+    ];
+
     protected $hidden = [
         'password',
         'remember_token',
@@ -55,7 +61,7 @@ class Student extends Model
 
     public function file()
     {
-        return $this->hasOne(File::class)->where(File::TYPE_FIELD, File::TYPE_STUDENT);
+        return $this->hasOne(File::class, 'id', Student::FILE_ID_FIELD);
     }
 
     public function attendances()
