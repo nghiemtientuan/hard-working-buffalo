@@ -3,7 +3,17 @@
 }
 
 .cate-image-maxHeight {
-    max-height: 35px!important;
+    max-height: 35px !important;
     margin-right: 10px;
+    border-radius: 50%;
+}
+
+.user-image-list {
+    width: 90px;
+    border-radius: 50%;
+}
+
+.user-image-detail {
+    width: 200px;
     border-radius: 50%;
 }

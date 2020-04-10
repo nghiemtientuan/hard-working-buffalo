@@ -1,3 +1,11 @@
 .error {
     color: red;
 }
+
+.p-0 {
+    padding: 0px;
+}
+
+.pr-10 {
+    padding-right: 10px;
+}
