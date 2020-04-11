@@ -9,7 +9,8 @@ Route::group([
 
     Route::resource('categories', 'CategoryController')->except('create', 'show', 'edit');
 
-    Route::resource('users', 'UserController');
+    Route::get('users/getData', 'UserController@getData')->name('users.getData');
+    Route::resource('users', 'UserController')->except('create', 'show', 'edit');
 
     Route::get('students/getData', 'StudentController@getData')->name('students.getData');
     Route::resource('students', 'StudentController')->except('create', 'show', 'edit');

@@ -99,7 +99,6 @@
                 <form class="form-horizontal" method="POST" enctype="multipart/form-data">
                     @method('PUT')
                     @csrf
-                    <input id="parentId" type="hidden" name="parentId">
                     <div class="modal-header bg-info">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h5 class="modal-title">{{ trans('backend.pages.students.edit_student') }}</h5>
