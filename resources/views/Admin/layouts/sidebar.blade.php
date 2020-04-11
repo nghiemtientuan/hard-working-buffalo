@@ -26,16 +26,23 @@
                     </li>
 
                     <li class="{{ request()->is('admin/categories') || request()->is('admin/categories/*') ? 'active' : '' }}">
-                        <a href="#"><i class="icon-copy"></i> <span>{{ trans('backend.sidebar.list.categories') }}</span></a>
+                        <a href="{{ route('admin.categories.index') }}"><i class="icon-copy"></i> <span>{{ trans('backend.sidebar.list.categories') }}</span></a>
                     </li>
 
-                    <li class="{{ request()->is('admin/users') || request()->is('admin/users/*') ? 'active' : '' }}">
+                    <li
+                        class="{{
+                            request()->is('admin/users')
+                            || request()->is('admin/users/*')
+                            || request()->is('admin/students')
+                            || request()->is('admin/students/*')
+                            ? 'active' : '' }}"
+                    >
                         <a href="#"><i class="icon-stack2"></i> <span>{{ trans('backend.sidebar.list.accounts') }}</span></a>
                         <ul>
-                            <li class="{{ request()->is('admin/users') ? 'active' : '' }}">
+                            <li class="{{ request()->is('admin/students') ? 'active' : '' }}">
                                 <a href="{{ route('admin.students.index') }}">{{ trans('backend.sidebar.list.students') }}</a>
                             </li>
-                            <li class="{{ request()->is('admin/users/edit') ? 'active' : '' }}">
+                            <li class="{{ request()->is('admin/users') ? 'active' : '' }}">
                                 <a href="{{ route('admin.users.index') }}">{{ trans('backend.sidebar.list.users') }}</a>
                             </li>
                         </ul>

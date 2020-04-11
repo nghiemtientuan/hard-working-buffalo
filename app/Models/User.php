@@ -47,6 +47,11 @@ class User extends Authenticatable
         'deleted_at',
     ];
 
+    protected $with = [
+        'file',
+        'role',
+    ];
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -68,7 +73,7 @@ class User extends Authenticatable
 
     public function file()
     {
-        return $this->hasOne(File::class)->where(File::TYPE_FIELD, File::TYPE_USER);
+        return $this->hasOne(File::class, 'id', User::FILE_ID_FIELD);
     }
 
     public function role()
