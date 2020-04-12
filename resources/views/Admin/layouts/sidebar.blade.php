@@ -48,12 +48,12 @@
                         </ul>
                     </li>
 
-                    <li class="{{ request()->is('admin/categories') || request()->is('admin/categories/*') ? 'active' : '' }}">
-                        <a href="#"><i class="icon-copy"></i> <span>{{ trans('backend.sidebar.list.tests') }}</span></a>
+                    <li class="{{ request()->is('admin/tests') || request()->is('admin/tests/*') ? 'active' : '' }}">
+                        <a href="{{ route('admin.tests.index') }}"><i class="icon-copy"></i> <span>{{ trans('backend.sidebar.list.tests') }}</span></a>
                     </li>
 
-                    <li class="{{ request()->is('admin/categories') || request()->is('admin/categories/*') ? 'active' : '' }}">
-                        <a href="#"><i class="icon-copy"></i> <span>{{ trans('backend.sidebar.list.questions') }}</span></a>
+                    <li class="{{ request()->is('admin/questions') || request()->is('admin/questions/*') ? 'active' : '' }}">
+                        <a href="{{ route('admin.questions.index') }}"><i class="icon-copy"></i> <span>{{ trans('backend.sidebar.list.questions') }}</span></a>
                     </li>
 
                     <li class="{{ request()->is('admin/comments') ? 'active' : '' }}">

@@ -47,7 +47,8 @@ mix.styles([
 .copy('resources/js/Admin/list_category.js', 'public/js/Admin/list_category.js')
 .copy('resources/js/Admin/list_student.js', 'public/js/Admin/list_student.js')
 .copy('resources/js/Admin/list_user.js', 'public/js/Admin/list_user.js')
-    .copy('resources/js/Admin/list_test.js', 'public/js/Admin/list_test.js')
+.copy('resources/js/Admin/list_question.js', 'public/js/Admin/list_question.js')
+.copy('resources/js/Admin/list_test.js', 'public/js/Admin/list_test.js')
 .copy('resources/js/common/helper.js', 'public/js/common/helper.js')
 .options({
     processCssUrls: false

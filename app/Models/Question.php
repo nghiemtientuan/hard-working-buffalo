@@ -21,6 +21,11 @@ class Question extends Model
     const CODE_FIELD = 'code';
     const LEVEL_FIELD = 'level';
 
+    const CONTENT_TYPE = 1;
+    const IMAGE_TYPE = 2;
+    const AUDIO_ONE_TYPE = 3;
+    const AUDIO_MANY_TYPE = 4;
+
     protected $fillable = [
         Question::FILE_ID_FIELD,
         Question::PARENT_ID_FIELD,
@@ -36,9 +41,13 @@ class Question extends Model
         'deleted_at',
     ];
 
+    protected $with = [
+        'file',
+    ];
+
     public function file()
     {
-        return $this->hasOne(File::class)->where(File::TYPE_FIELD, File::TYPE_QUESTION);
+        return $this->hasOne(File::class, 'id', Question::FILE_ID_FIELD);
     }
 
     public function test()
