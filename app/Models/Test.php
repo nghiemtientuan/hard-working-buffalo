@@ -40,6 +40,16 @@ class Test extends Model
         'deleted_at',
     ];
 
+    protected $with = [
+        'format',
+        'created_user',
+    ];
+
+    public function created_user()
+    {
+        return $this->belongsTo(User::class, Test::CREATED_USER_ID_FIELD, 'id');
+    }
+
     public function format()
     {
         return $this->belongsTo(Format::class);
