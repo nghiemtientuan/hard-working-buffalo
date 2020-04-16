@@ -26,6 +26,7 @@ return [
             'tests' => 'Tests',
             'questions' => 'Questions',
             'question_comments' => 'Question comments',
+            'formats' => 'Formats',
             'backups' => 'Backups',
         ],
     ],
@@ -130,8 +131,19 @@ return [
             'content' => 'Content',
             'created_at' => 'Created at',
         ],
+        'format' => [
+            'list_formats' => 'List formats',
+            'edit_format' => 'Edit format',
+            'name' => 'Name',
+            'description' => 'Description',
+            'apply_test_number' => 'Apply test number',
+            'created_at' => 'Created at',
+        ],
     ],
     'actions' => [
+        'are_you_sure' => 'Are you sure?',
+        'you_will_delete_this' => 'You will delete this!',
+        'yes' => 'Yes',
         'success' => 'Action success',
     ],
 ];

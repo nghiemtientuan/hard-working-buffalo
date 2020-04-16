@@ -8,5 +8,8 @@
 
 <script type="text/javascript" src="{{ asset(mix('js/common/helper.js')) }}"></script>
 <script type="text/javascript" src="{{ asset(mix('js/admin.js')) }}"></script>
+<script type='text/javascript'>
+    window.translations = {!! $translations !!}
+</script>
 
 @yield('script')

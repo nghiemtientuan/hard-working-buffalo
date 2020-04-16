@@ -4,21 +4,21 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Repositories\Contracts\TestRepositoryInterface as TestRepository;
+use App\Repositories\Contracts\FormatRepositoryInterface as FormatRepository;
 use Illuminate\Support\Facades\DB;
 use Yajra\Datatables\Datatables;
 
-class TestController extends Controller
+class FormatController extends Controller
 {
-    protected $testRepository;
+    protected $formatRepository;
 
     /**
-     * TestController constructor.
-     * @param $testRepository
+     * FormatController constructor.
+     * @param $formatRepository
      */
-    public function __construct(TestRepository $testRepository)
+    public function __construct(FormatRepository $formatRepository)
     {
-        $this->testRepository = $testRepository;
+        $this->formatRepository = $formatRepository;
     }
 
     /**
@@ -28,16 +28,19 @@ class TestController extends Controller
      */
     public function index()
     {
-        return view('Admin.test.index');
+        return view('Admin.format.index');
     }
 
     public function getData()
     {
-        $tests = $this->testRepository->getAll();
+        $formats = $this->formatRepository->getAll();
 
-        return Datatables::of($tests)
-            ->addColumn('action', function ($test) {
-                return view('Admin.test.actionListTest', compact('test'));
+        return Datatables::of($formats)
+            ->addColumn('applyTestsNumber', function ($format) {
+                return count($format->tests);
+            })
+            ->addColumn('action', function ($format) {
+                return view('Admin.format.actionFormat', compact('format'));
             })
             ->rawColumns(['action'])
             ->make(true);
@@ -97,22 +100,16 @@ class TestController extends Controller
     {
         $data = $request->only([
             'name',
-            'execute_time',
-            'total_question',
-            'price',
-            'score',
-            'level',
-            'publish',
-            'guide',
+            'description',
         ]);
-        $test = $this->testRepository->find($id);
-        if ($test) {
+        $format = $this->formatRepository->find($id);
+        if ($format) {
             DB::beginTransaction();
             try {
-                $this->testRepository->update($id, $data);
+                $this->formatRepository->update($id, $data);
                 DB::commit();
 
-                return redirect()->route('admin.tests.index')
+                return redirect()->route('admin.formats.index')
                     ->with('sucess', trans('backend.actions.success'));
             } catch (\Exception $exception) {
                 DB::rollBack();
@@ -121,7 +118,7 @@ class TestController extends Controller
             }
         }
 
-        return redirect()->route('admin.tests.index');
+        return redirect()->route('admin.formats.index');
     }
 
     /**
@@ -132,12 +129,12 @@ class TestController extends Controller
      */
     public function destroy($id)
     {
-        $test = $this->testRepository->find($id);
-        if ($test && $this->testRepository->delete($id)) {
-            return redirect()->route('admin.tests.index')
+        $format = $this->formatRepository->find($id);
+        if ($format && $this->formatRepository->delete($id)) {
+            return redirect()->route('admin.formats.index')
                 ->with('sucess', trans('backend.actions.success'));
         }
 
-        return redirect()->route('admin.tests.index');
+        return redirect()->route('admin.formats.index');
     }
 }
