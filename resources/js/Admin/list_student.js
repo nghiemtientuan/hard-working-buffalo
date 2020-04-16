@@ -78,13 +78,13 @@ $(document).ready(function () {
     $('#list_student_table').on('click', '.deleteStudentBtn', function (e) {
         e.preventDefault();
         Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
+            title: trans('backend.actions.are_you_sure'),
+            text: trans('backend.actions.you_will_delete_this'),
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
+            confirmButtonText: trans('backend.actions.yes')
         }).then((result) => {
             if (result.value) {
                 $(this).parent('form').submit();

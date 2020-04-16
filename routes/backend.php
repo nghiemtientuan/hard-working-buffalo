@@ -28,4 +28,12 @@ Route::group([
         Route::resource('comments', 'QuestionCommentController')->except('create', 'store', 'show', 'edit', 'update');
     });
     Route::resource('questions', 'QuestionController')->except('create', 'show', 'edit');
+
+    Route::group([
+        'prefix' => 'formats',
+        'as' => 'formats.',
+    ], function () {
+        Route::get('getData', 'FormatController@getData')->name('getData');
+    });
+    Route::resource('formats', 'FormatController')->except('create', 'show', 'edit');
 });
