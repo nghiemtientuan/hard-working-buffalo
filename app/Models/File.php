@@ -9,17 +9,17 @@ class File extends Model
 {
     use Notifiable;
 
-    const TYPE_ANSWER = 'App/Models/Answer';
-    const TYPE_CATEGORY = 'App/Models/Category';
-    const TYPE_REACT = 'App/Models/React';
-    const TYPE_USER = 'App/Models/User';
-    const TYPE_STUDENT = 'App/Models/Student';
-    const TYPE_QUESTION = 'App/Models/Question';
-    const TEST_FOLDER = '/images/tests';
-    const CATEGORY_FOLDER = '/images/categories';
-    const REACT_FOLDER = '/images/reacts';
-    const USER_FOLDER = '/images/users';
-    const STUDENT_FOLDER = '/images/students';
+    const TYPE_ANSWER = 'App\Models\Answer';
+    const TYPE_CATEGORY = 'App\Models\Category';
+    const TYPE_REACT = 'App\Models\React';
+    const TYPE_USER = 'App\Models\User';
+    const TYPE_STUDENT = 'App\Models\Student';
+    const TYPE_QUESTION = 'App\Models\Question';
+    const TEST_FOLDER = '\images\tests';
+    const CATEGORY_FOLDER = '\images\categories';
+    const REACT_FOLDER = '\images\reacts';
+    const USER_FOLDER = '\images\users';
+    const STUDENT_FOLDER = '\images\students';
 
     protected $table = 'files';
 

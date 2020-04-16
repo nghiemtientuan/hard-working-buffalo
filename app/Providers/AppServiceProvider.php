@@ -34,6 +34,7 @@ class AppServiceProvider extends ServiceProvider
             'UserRepositoryInterface' => 'UserRepository',
             'TestRepositoryInterface' => 'TestRepository',
             'QuestionRepositoryInterface' => 'QuestionRepository',
+            'CommentQuestionRepositoryInterface' => 'CommentQuestionRepository',
         ];
         foreach ($repositories as $key => $val) {
             $this->app->singleton("App\\Repositories\\Contracts\\$key", "App\\Repositories\\Eloquents\\$val");

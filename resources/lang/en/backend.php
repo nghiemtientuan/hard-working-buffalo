@@ -122,6 +122,14 @@ return [
             'audio' => 'Audio',
             'created_at' => 'Created at',
         ],
+        'questionComment' => [
+            'list_comments' => 'List comments',
+            'edit_comment' => 'Edit comment',
+            'user_name' => 'User',
+            'question_code' => 'Question code',
+            'content' => 'Content',
+            'created_at' => 'Created at',
+        ],
     ],
     'actions' => [
         'success' => 'Action success',
