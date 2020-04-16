@@ -4,13 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class QuestionComment extends Model
 {
-    use Notifiable;
+    use Notifiable, SoftDeletes;
 
-    const TYPE_USER = 'App/Models/User';
-    const TYPE_STUDENT = 'App/Models/Student';
+    const TYPE_USER = 'App\Models\User';
+    const TYPE_STUDENT = 'App\Models\Student';
 
     protected $table = 'question_comments';
 
@@ -29,6 +30,10 @@ class QuestionComment extends Model
         'deleted_at',
     ];
 
+    protected $with = [
+        'user',
+    ];
+
     public function question()
     {
         return $this->belongsTo(Question::class);
@@ -36,13 +41,6 @@ class QuestionComment extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, QuestionComment::USER_ID_FIELD, 'id')
-            ->where(QuestionComment::USER_ID_FIELD, QuestionComment::TYPE_USER);
-    }
-
-    public function student()
-    {
-        return $this->belongsTo(Student::class, QuestionComment::USER_ID_FIELD, 'id')
-            ->where(QuestionComment::USER_ID_FIELD, QuestionComment::TYPE_STUDENT);
+        return $this->morphTo('user', QuestionComment::TYPE_FIELD, QuestionComment::USER_ID_FIELD);
     }
 }

@@ -9,8 +9,8 @@ class ReactHistory extends Model
 {
     use Notifiable;
 
-    const TYPE_USER = 'App/Models/User';
-    const TYPE_STUDENT = 'App/Models/Student';
+    const TYPE_USER = 'App\Models\User';
+    const TYPE_STUDENT = 'App\Models\Student';
 
     protected $table = 'react_history';
 

@@ -87,8 +87,13 @@ class Student extends Model
 
     public function questionComments()
     {
-        return $this->hasMany(QuestionComment::class, QuestionComment::USER_ID_FIELD, 'id')
-            ->where(QuestionComment::TYPE_FIELD, QuestionComment::TYPE_STUDENT);
+        return $this->morphMany(
+            QuestionComment::class,
+            'user',
+            QuestionComment::TYPE_FIELD,
+            QuestionComment::USER_ID_FIELD,
+            'id'
+        );
     }
 
     public function likeTests()
