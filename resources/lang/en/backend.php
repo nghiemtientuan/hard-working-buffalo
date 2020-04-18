@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'local' => 'Local',
     'navbar' => [
         'online' => 'Online',
         'view_client' => 'View Client',

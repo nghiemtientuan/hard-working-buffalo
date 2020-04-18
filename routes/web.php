@@ -11,6 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('login', 'Auth\LoginController@getLogin')->name('client.login');
+Route::post('login', 'Auth\LoginController@postLogin')->name('client.postLogin');
+Route::post('logout', 'Auth\LoginController@logout')->name('client.logout');
+
+Route::group([
+    'namespace' => 'Client',
+    'as' => 'client.',
+], function () {
+    Route::get('/', 'HomeController@index')->name('home');
 });

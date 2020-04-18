@@ -4,12 +4,12 @@
             <div class="category-content">
                 <div class="media">
                     <a href="#" class="media-left">
-                        <img src="#" class="img-circle img-sm">
+                        <img src="{{ userDefaultImage(Auth::user()->file) }}" class="img-circle img-sm">
                     </a>
                     <div class="media-body">
-                        <span class="media-heading text-semibold"></span>
+                        <span class="media-heading text-semibold">{{ Auth::user()->username }}</span>
                         <div class="text-size-mini text-muted">
-                            <i class="icon-pin text-size-small"></i> &nbsp;
+                            <i class="icon-pin text-size-small"></i> &nbsp;{{ locationCityCountry(Request::ip()) }}
                         </div>
                     </div>
                 </div>

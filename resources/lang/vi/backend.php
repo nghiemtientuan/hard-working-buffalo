@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'local' => 'Local',
     'navbar' => [
         'online' => 'Hoạt động',
         'view_client' => 'Xem trang khách',
