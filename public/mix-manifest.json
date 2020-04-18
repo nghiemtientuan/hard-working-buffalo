@@ -1,12 +1,13 @@
 {
     "/js/admin.js": "/js/admin.js?id=d105f7948154a552e3b8",
-    "/css/admin.css": "/css/admin.css?id=17ce618543c902f5dcdb",
-    "/js/Admin/list_category.js": "/js/Admin/list_category.js?id=c802b44d89c3147978e0",
-    "/js/Admin/list_student.js": "/js/Admin/list_student.js?id=6243389be2ced2ee2a12",
-    "/js/Admin/list_user.js": "/js/Admin/list_user.js?id=2c7168cb63e89518dae7",
-    "/js/Admin/list_question.js": "/js/Admin/list_question.js?id=58456de3e5e34fb6e024",
-    "/js/Admin/list_test.js": "/js/Admin/list_test.js?id=a7dcec15dc58e9f4a023",
-    "/js/Admin/list_format.js": "/js/Admin/list_format.js?id=d41d8cd98f00b204e980",
-    "/js/Admin/list_question_comment.js": "/js/Admin/list_question_comment.js?id=f578e5a67e83528dd7a3",
-    "/js/common/helper.js": "/js/common/helper.js?id=cd3909dbf3168af82e3c"
+    "/css/admin.css": "/css/admin.css?id=2badf6e771d405db9bae",
+    "/js/Admin/list_category.js": "/js/Admin/list_category.js?id=22001f9e5d4c3a1bcc84",
+    "/js/Admin/list_student.js": "/js/Admin/list_student.js?id=fc20f9fb7faa1c3cc0b1",
+    "/js/Admin/list_user.js": "/js/Admin/list_user.js?id=70c0e7a94325c7466425",
+    "/js/Admin/list_question.js": "/js/Admin/list_question.js?id=2ba9e28fd8dea39bbae0",
+    "/js/Admin/list_test.js": "/js/Admin/list_test.js?id=13cc01213f1ddd11955c",
+    "/js/Admin/list_format.js": "/js/Admin/list_format.js?id=6c46fa0934dec738640a",
+    "/js/Admin/list_question_comment.js": "/js/Admin/list_question_comment.js?id=910ebcda3ad3041921ea",
+    "/js/common/helper.js": "/js/common/helper.js?id=5738ac5fae531ac6b95a",
+    "/css/client.css": "/css/client.css?id=cbb07f53dd5dd0c54c4b"
 }

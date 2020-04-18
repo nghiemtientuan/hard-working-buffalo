@@ -1,6 +1,6 @@
 <div class="navbar navbar-default header-highlight">
     <div class="navbar-header">
-        <a class="navbar-brand" href="#"><img src="#"></a>
+        <a class="navbar-brand pt-5 pb-5" href="#"><img id="logoNavbar" src="{{ config('constant.default_images.url_logo') }}" alt=""></a>
 
         <ul class="nav navbar-nav visible-xs-block">
             <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
@@ -49,7 +49,7 @@
             </li>
             <li class="dropdown dropdown-user">
                 <a class="dropdown-toggle" data-toggle="dropdown">
-                    <img src="#">
+                    <img src="{{ userDefaultImage(Auth::user()->file) }}">
                     <span></span>
                     <i class="caret"></i>
                 </a>
@@ -57,7 +57,14 @@
                 <ul class="dropdown-menu dropdown-menu-right">
                     <li><a href="#"><i class="icon-user-plus"></i> {{ trans('backend.navbar.my_profile') }}</a></li>
                     <li><a href="#"><i class="icon-cog5"></i> {{ trans('backend.navbar.account_settings') }}</a></li>
-                    <li><a href="#"><i class="icon-switch2"></i> {{ trans('backend.navbar.logout') }}</a></li>
+                    <li>
+                        <form action="{{ route('client.logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-link">
+                                <i class="icon-switch2"></i> {{ trans('backend.navbar.logout') }}
+                            </button>
+                        </form>
+                    </li>
                 </ul>
             </li>
         </ul>

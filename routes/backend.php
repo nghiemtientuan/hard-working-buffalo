@@ -4,6 +4,7 @@ Route::group([
     'prefix' => 'admin',
     'namespace' => 'Admin',
     'as' => 'admin.',
+    'middleware' => ['auth']
 ], function () {
     Route::get('/', 'HomeController@index')->name('home');
 

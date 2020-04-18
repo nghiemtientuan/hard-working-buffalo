@@ -21,3 +21,7 @@
 .question-image-list {
     width: 90px;
 }
+
+.navbar-header #logoNavbar{
+    height: 100%;
+}
