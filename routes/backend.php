@@ -37,4 +37,7 @@ Route::group([
         Route::get('getData', 'FormatController@getData')->name('getData');
     });
     Route::resource('formats', 'FormatController')->except('create', 'show', 'edit');
+
+    Route::get('profile', 'ProfileController@index')->name('profile');
+    Route::put('profile', 'ProfileController@update')->name('profile.update');
 });

@@ -1,6 +1,6 @@
 {
     "/js/admin.js": "/js/admin.js?id=d105f7948154a552e3b8",
-    "/css/admin.css": "/css/admin.css?id=2badf6e771d405db9bae",
+    "/css/admin.css": "/css/admin.css?id=0f4390453bb34c560de5",
     "/js/Admin/list_category.js": "/js/Admin/list_category.js?id=22001f9e5d4c3a1bcc84",
     "/js/Admin/list_student.js": "/js/Admin/list_student.js?id=fc20f9fb7faa1c3cc0b1",
     "/js/Admin/list_user.js": "/js/Admin/list_user.js?id=70c0e7a94325c7466425",
@@ -8,6 +8,7 @@
     "/js/Admin/list_test.js": "/js/Admin/list_test.js?id=13cc01213f1ddd11955c",
     "/js/Admin/list_format.js": "/js/Admin/list_format.js?id=6c46fa0934dec738640a",
     "/js/Admin/list_question_comment.js": "/js/Admin/list_question_comment.js?id=910ebcda3ad3041921ea",
+    "/js/Admin/profile.js": "/js/Admin/profile.js?id=d41d8cd98f00b204e980",
     "/js/common/helper.js": "/js/common/helper.js?id=5738ac5fae531ac6b95a",
-    "/css/client.css": "/css/client.css?id=cbb07f53dd5dd0c54c4b"
+    "/css/client.css": "/css/client.css?id=c69e3275b11d981dd411"
 }

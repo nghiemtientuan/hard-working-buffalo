@@ -1,6 +1,6 @@
 <div class="navbar navbar-default header-highlight">
     <div class="navbar-header">
-        <a class="navbar-brand pt-5 pb-5" href="#"><img id="logoNavbar" src="{{ config('constant.default_images.url_logo') }}" alt=""></a>
+        <a class="navbar-brand pt-5 pb-5" href="{{ route('admin.home') }}"><img id="logoNavbar" src="{{ config('constant.default_images.url_logo') }}" alt=""></a>
 
         <ul class="nav navbar-nav visible-xs-block">
             <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
@@ -16,19 +16,19 @@
         <p class="navbar-text"><span class="label bg-success">{{ trans('backend.navbar.online') }}</span></p>
 
         <p class="navbar-text">
-            <a class="text-success" href="#"><i class="icon-backward"></i> {{ trans('backend.navbar.view_client') }}</a>
+            <a class="text-success" href="{{ route('client.home') }}"><i class="icon-backward"></i> {{ trans('backend.navbar.view_client') }}</a>
         </p>
 
         <ul class="nav navbar-nav navbar-right">
             <li class="dropdown language-switch">
                 <a class="dropdown-toggle" data-toggle="dropdown">
-                    <img src="#" class="position-left">
+                    <img src="/bower_components/assets/Common/images/flags/england.png" class="position-left">
                     {{ trans('backend.navbar.english') }}
                     <span class="caret"></span>
                 </a>
 
                 <ul class="dropdown-menu">
-                    <li><a class="vietnam"><img src="#"> {{ trans('backend.navbar.vietnam') }}</a></li>
+                    <li><a class="vietnam"><img src="/bower_components/assets/Common/images/flags/vn.png"> {{ trans('backend.navbar.vietnam') }}</a></li>
                 </ul>
             </li>
 
@@ -55,7 +55,7 @@
                 </a>
 
                 <ul class="dropdown-menu dropdown-menu-right">
-                    <li><a href="#"><i class="icon-user-plus"></i> {{ trans('backend.navbar.my_profile') }}</a></li>
+                    <li><a href="{{ route('admin.profile') }}"><i class="icon-user-plus"></i> {{ trans('backend.navbar.my_profile') }}</a></li>
                     <li><a href="#"><i class="icon-cog5"></i> {{ trans('backend.navbar.account_settings') }}</a></li>
                     <li>
                         <form action="{{ route('client.logout') }}" method="POST">
