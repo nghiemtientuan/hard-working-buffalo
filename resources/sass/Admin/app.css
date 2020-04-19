@@ -25,3 +25,7 @@
 .navbar-header #logoNavbar{
     height: 100%;
 }
+
+.thumbnail #image-profile {
+    width: 200px;
+}
