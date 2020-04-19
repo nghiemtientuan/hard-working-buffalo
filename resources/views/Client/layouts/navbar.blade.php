@@ -6,9 +6,11 @@
         <li class="has-children">
             <a href="#" class="nav-link text-left">{{ trans('client.navbar.list.categories') }}</a>
             <ul class="dropdown">
-                <li>
-                    <a href="#"></a>
-                </li>
+                @foreach($parentCateComposer as $parentCate)
+                    <li>
+                        <a href="#">{{ $parentCate->name }}</a>
+                    </li>
+                @endforeach
             </ul>
         </li>
         <li>

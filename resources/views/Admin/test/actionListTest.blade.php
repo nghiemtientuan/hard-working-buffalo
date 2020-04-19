@@ -25,6 +25,16 @@
     </li>
     <li>
         <a
+            class="pr-10"
+            href="{{ route('admin.tests.questions.index', $test->id) }}"
+            data-popup="tooltip"
+            title="{{ trans('backend.pages.show') }}"
+        >
+            <em class="icon-copy"></em>
+        </a>
+    </li>
+    <li>
+        <a
             class="pr-10 editTestBtn"
             href="#"
             data-toggle="modal"

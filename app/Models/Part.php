@@ -14,6 +14,8 @@ class Part extends Model
     const NAME_FIELD = 'name';
     const DESCRIPTION_FIELD = 'description';
 
+    const FREE_NAME_VALUE = 'free-part';
+
     protected $fillable = [
         Part::NAME_FIELD,
         Part::DESCRIPTION_FIELD,

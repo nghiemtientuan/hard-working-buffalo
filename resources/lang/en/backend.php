@@ -155,6 +155,17 @@ return [
             'address' => 'Adress',
             'phone' => 'Phone',
         ],
+        'questionInTest' => [
+            'category' => 'Category',
+            'free' => 'Free',
+            'publish' => 'Publish',
+            'number_questions' => 'Number question',
+            'execute_time' => 'Time',
+            'create_question' => 'Create question',
+            'import_question' => 'Import question',
+            'question' => 'Question',
+            'bigQuestion' => 'Big question',
+        ],
     ],
     'actions' => [
         'are_you_sure' => 'Are you sure?',
