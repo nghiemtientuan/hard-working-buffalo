@@ -22,5 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call(QuestionSeed::class);
         $this->call(QuestionCommentSeed::class);
         $this->call(FormatSeeder::class);
+        $this->call(PartSeeder::class);
+        $this->call(FormatPartSeeder::class);
     }
 }

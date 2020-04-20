@@ -7,4 +7,6 @@ interface CategoryRepositoryInterface
     public function getAllTreeCates();
 
     public function deleteCates($id);
+
+    public function getParentCates();
 }

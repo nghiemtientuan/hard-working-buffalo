@@ -4,5 +4,5 @@ namespace App\Repositories\Contracts;
 
 interface QuestionRepositoryInterface
 {
-
+    public function getQuestionsByFormatTestId($test_id);
 }

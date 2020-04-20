@@ -29,3 +29,15 @@
 .thumbnail #image-profile {
     width: 200px;
 }
+
+.image_question {
+    width: 100px;
+}
+
+.pl-40 {
+    padding-left: 40px;
+}
+
+.pr-10 {
+    padding-right: 10px;
+}

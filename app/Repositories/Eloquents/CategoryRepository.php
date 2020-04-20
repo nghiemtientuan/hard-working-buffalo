@@ -45,4 +45,9 @@ class CategoryRepository extends EloquentRepository implements CategoryRepositor
 
         return false;
     }
+
+    public function getParentCates()
+    {
+        return $this->_model->where('parent_id', null)->get();
+    }
 }

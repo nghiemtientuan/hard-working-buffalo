@@ -5,20 +5,26 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Contracts\TestRepositoryInterface as TestRepository;
+use App\Repositories\Contracts\QuestionRepositoryInterface as QuestionRepository;
 use Illuminate\Support\Facades\DB;
 use Yajra\Datatables\Datatables;
 
 class TestController extends Controller
 {
     protected $testRepository;
+    protected $questionRepository;
 
     /**
      * TestController constructor.
-     * @param $testRepository
+     * @param TestRepository $testRepository
+     * @param QuestionRepository $questionRepository
      */
-    public function __construct(TestRepository $testRepository)
-    {
+    public function __construct(
+        TestRepository $testRepository,
+        QuestionRepository $questionRepository
+    ) {
         $this->testRepository = $testRepository;
+        $this->questionRepository = $questionRepository;
     }
 
     /**
@@ -139,5 +145,13 @@ class TestController extends Controller
         }
 
         return redirect()->route('admin.tests.index');
+    }
+
+    public function getQuestions($test_id)
+    {
+        $test = $this->testRepository->find($test_id);
+        $parts = $this->questionRepository->getQuestionsByFormatTestId($test_id);
+
+        return view('Admin.test.questions', compact('test', 'parts'));
     }
 }

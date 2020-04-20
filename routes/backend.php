@@ -16,7 +16,14 @@ Route::group([
     Route::get('students/getData', 'StudentController@getData')->name('students.getData');
     Route::resource('students', 'StudentController')->except('create', 'show', 'edit');
 
-    Route::get('tests/getData', 'TestController@getData')->name('tests.getData');
+    Route::group([
+        'prefix' => 'tests',
+        'as' => 'tests.',
+    ], function () {
+        Route::get('getData', 'TestController@getData')->name('getData');
+
+        Route::get('{test_id}/questions', 'TestController@getQuestions')->name('questions.index');
+    });
     Route::resource('tests', 'TestController')->except('create', 'show', 'edit');
 
     Route::group([

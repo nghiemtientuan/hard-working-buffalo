@@ -27,5 +27,9 @@ class ComposerServiceProvider extends ServiceProvider
             'Admin.layouts.scripts',
             'App\Http\ViewComposers\TranslationComposer'
         );
+        view()->composer(
+            'Client.layouts.navbar',
+            'App\Http\ViewComposers\ParentCategoryComposer'
+        );
     }
 }
