@@ -23,8 +23,8 @@ class QuestionRepository extends EloquentRepository implements QuestionRepositor
         $test = Test::find($test_id)->load([
             'format',
             'format.parts',
-            'format.parts.questions' => function ($query) {
-                $query->where('parent_id', null);
+            'format.parts.questions' => function ($query) use ($test_id) {
+                $query->where(Question::TEST_ID_FIELD, $test_id)->where(Question::PARENT_ID_FIELD, null);
             },
             'format.parts.questions.childQuestions',
         ]);
@@ -37,14 +37,16 @@ class QuestionRepository extends EloquentRepository implements QuestionRepositor
 
         $freePart = new Part([Part::NAME_FIELD => Part::FREE_NAME_VALUE]);
         $freePart->questions = $this->_model->where(Question::TEST_ID_FIELD, $test_id)
+            ->where('parent_id', null)
             ->with([
                 'childQuestions',
                 'part',
             ])
-            ->where('parent_id', null)
-            ->doesntHave('part')
-            ->orWhereHas('part', function ($query) use ($partIds) {
-                $query->whereNotIn('parts.id', $partIds);
+            ->where(function ($query) use ($partIds) {
+                $query->doesntHave('part')
+                    ->orWhereHas('part', function ($query) use ($partIds) {
+                        $query->whereNotIn('parts.id', $partIds);
+                    });
             })->get();
         $parts[] = $freePart;
 
