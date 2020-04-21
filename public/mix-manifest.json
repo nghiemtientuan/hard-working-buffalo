@@ -1,6 +1,6 @@
 {
     "/js/admin.js": "/js/admin.js?id=d105f7948154a552e3b8",
-    "/css/admin.css": "/css/admin.css?id=3cbf88e212d7d2a65c0a",
+    "/css/admin.css": "/css/admin.css?id=25bb164c757a779dea62",
     "/js/Admin/list_category.js": "/js/Admin/list_category.js?id=22001f9e5d4c3a1bcc84",
     "/js/Admin/list_student.js": "/js/Admin/list_student.js?id=fc20f9fb7faa1c3cc0b1",
     "/js/Admin/list_user.js": "/js/Admin/list_user.js?id=70c0e7a94325c7466425",
@@ -9,6 +9,7 @@
     "/js/Admin/list_format.js": "/js/Admin/list_format.js?id=6c46fa0934dec738640a",
     "/js/Admin/list_question_comment.js": "/js/Admin/list_question_comment.js?id=910ebcda3ad3041921ea",
     "/js/Admin/profile.js": "/js/Admin/profile.js?id=2f82722d6c4c47450c6a",
+    "/js/Admin/editQuestion.js": "/js/Admin/editQuestion.js?id=96781befb08a2e1acad1",
     "/js/common/helper.js": "/js/common/helper.js?id=5738ac5fae531ac6b95a",
     "/css/client.css": "/css/client.css?id=c69e3275b11d981dd411"
 }

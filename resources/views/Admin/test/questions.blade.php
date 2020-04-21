@@ -41,7 +41,7 @@
                         @if (count($question->childQuestions))
                             <div class="form-group">
                                 <div class="alert alert-info mb-10 pb-5 pl-10">
-                                    <a href="#" type="button" class="close"><i class="icon-pencil7"></i></a>
+                                    <a href="{{ route('admin.questions.edit', $question->id) }}" type="button" class="close"><i class="icon-pencil7"></i></a>
                                     <label class="text-semibold">{{ trans('backend.pages.questionInTest.bigQuestion') }} - {{ $question->code }}: {{ $question->content }}</label>
                                     @switch($question->type)
                                         @case(\App\Models\Question::IMAGE_TYPE)
@@ -61,7 +61,7 @@
                                         @php $keyQuestion++ @endphp
                                         <div class="form-group">
                                             <div class="alert alert-success mb-10 pb-5 pl-10">
-                                                <a href="#" type="button" class="close"><i class="icon-pencil7"></i></a>
+                                                <a href="{{ route('admin.questions.edit', $childQuestion->id) }}" type="button" class="close"><i class="icon-pencil7"></i></a>
                                                 <label class="text-semibold">{{ trans('backend.pages.questionInTest.question') }} {{ $keyQuestion }} - {{ $childQuestion->code }}: {{ $childQuestion->content }}</label>
                                                 @switch($childQuestion->type)
                                                     @case(\App\Models\Question::IMAGE_TYPE)
@@ -83,7 +83,7 @@
                             @php $keyQuestion++ @endphp
                             <div class="form-group">
                                 <div class="alert alert-info mb-10 pb-5 pl-10">
-                                    <a href="#" type="button" class="close"><i class="icon-pencil7"></i></a>
+                                    <a href="{{ route('admin.questions.edit', $question->id) }}" type="button" class="close"><i class="icon-pencil7"></i></a>
                                     <label class="text-semibold">{{ trans('backend.pages.questionInTest.question') }} {{ $keyQuestion }} - {{ $question->code }}: {{ $question->content }}</label>
                                     @switch($question->type)
                                         @case(\App\Models\Question::IMAGE_TYPE)

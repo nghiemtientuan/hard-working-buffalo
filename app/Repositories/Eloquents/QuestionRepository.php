@@ -52,4 +52,15 @@ class QuestionRepository extends EloquentRepository implements QuestionRepositor
 
         return $parts;
     }
+
+    public function getQuestion($id)
+    {
+        return $this->_model->find($id)
+            ->load([
+                'childQuestions',
+                'comments',
+                'answers',
+                'test',
+            ]);
+    }
 }
