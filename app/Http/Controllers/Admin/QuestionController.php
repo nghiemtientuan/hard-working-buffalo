@@ -105,7 +105,9 @@ class QuestionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $question = $this->questionRepository->getQuestion($id);
+
+        return view('Admin.question.editQuestion', compact('question'));
     }
 
     /**
@@ -117,7 +119,7 @@ class QuestionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        dd($request->all());
     }
 
     /**

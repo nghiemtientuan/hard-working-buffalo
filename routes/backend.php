@@ -35,7 +35,7 @@ Route::group([
         Route::get('comments/getData', 'QuestionCommentController@getData')->name('comments.getData');
         Route::resource('comments', 'QuestionCommentController')->except('create', 'store', 'show', 'edit', 'update');
     });
-    Route::resource('questions', 'QuestionController')->except('create', 'show', 'edit');
+    Route::resource('questions', 'QuestionController')->except('create', 'show');
 
     Route::group([
         'prefix' => 'formats',
