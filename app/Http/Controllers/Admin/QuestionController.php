@@ -5,20 +5,26 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Question;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Repositories\Contracts\TestRepositoryInterface as TestRepository;
 use App\Repositories\Contracts\QuestionRepositoryInterface as QuestionRepository;
 use Illuminate\Support\Facades\DB;
 use Yajra\Datatables\Datatables;
 
 class QuestionController extends Controller
 {
+    protected $testRepository;
     protected $questionRepository;
 
     /**
-     * QuestionController constructor.
-     * @param $questionRepository
+     * TestController constructor.
+     * @param TestRepository $testRepository
+     * @param QuestionRepository $questionRepository
      */
-    public function __construct(QuestionRepository $questionRepository)
-    {
+    public function __construct(
+        TestRepository $testRepository,
+        QuestionRepository $questionRepository
+    ) {
+        $this->testRepository = $testRepository;
         $this->questionRepository = $questionRepository;
     }
 
@@ -70,9 +76,11 @@ class QuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($test_id)
     {
-        //
+        $test = $this->testRepository->find($test_id);
+
+        return view('Admin.question.addQuestion', compact('test'));
     }
 
     /**
@@ -83,7 +91,7 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**

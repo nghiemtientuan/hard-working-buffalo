@@ -9,7 +9,8 @@
     "/js/Admin/list_format.js": "/js/Admin/list_format.js?id=6c46fa0934dec738640a",
     "/js/Admin/list_question_comment.js": "/js/Admin/list_question_comment.js?id=910ebcda3ad3041921ea",
     "/js/Admin/profile.js": "/js/Admin/profile.js?id=2f82722d6c4c47450c6a",
-    "/js/Admin/editQuestion.js": "/js/Admin/editQuestion.js?id=1fc311adc28953d1ffb8",
-    "/js/common/helper.js": "/js/common/helper.js?id=5738ac5fae531ac6b95a",
+    "/js/Admin/editQuestion.js": "/js/Admin/editQuestion.js?id=27da00fc7fbbc400a948",
+    "/js/Admin/addQuestion.js": "/js/Admin/addQuestion.js?id=d41d8cd98f00b204e980",
+    "/js/common/helper.js": "/js/common/helper.js?id=a56c6afa6b6a6d787657",
     "/css/client.css": "/css/client.css?id=c69e3275b11d981dd411"
 }
