@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Contracts\TestRepositoryInterface as TestRepository;
 use App\Repositories\Contracts\QuestionRepositoryInterface as QuestionRepository;
+use App\Repositories\Contracts\PartRepositoryInterface as PartRepository;
 use Illuminate\Support\Facades\DB;
 use Yajra\Datatables\Datatables;
 
@@ -14,18 +15,22 @@ class QuestionController extends Controller
 {
     protected $testRepository;
     protected $questionRepository;
+    protected $partRepository;
 
     /**
      * TestController constructor.
      * @param TestRepository $testRepository
      * @param QuestionRepository $questionRepository
+     * @param PartRepository $partRepository
      */
     public function __construct(
         TestRepository $testRepository,
-        QuestionRepository $questionRepository
+        QuestionRepository $questionRepository,
+        PartRepository $partRepository
     ) {
         $this->testRepository = $testRepository;
         $this->questionRepository = $questionRepository;
+        $this->partRepository = $partRepository;
     }
 
     /**
@@ -78,9 +83,10 @@ class QuestionController extends Controller
      */
     public function create($test_id)
     {
+        $parts = $this->partRepository->getAll();
         $test = $this->testRepository->find($test_id);
 
-        return view('Admin.question.addQuestion', compact('test'));
+        return view('Admin.question.addQuestion', compact('test', 'parts'));
     }
 
     /**
@@ -113,9 +119,10 @@ class QuestionController extends Controller
      */
     public function edit($id)
     {
+        $parts = $this->partRepository->getAll();
         $question = $this->questionRepository->getQuestion($id);
 
-        return view('Admin.question.editQuestion', compact('question'));
+        return view('Admin.question.editQuestion', compact('question', 'parts'));
     }
 
     /**

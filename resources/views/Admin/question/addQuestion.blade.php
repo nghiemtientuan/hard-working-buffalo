@@ -42,6 +42,17 @@
                             </div>
 
                             <div class="form-group">
+                                <label class="control-label col-lg-1">{{ trans('backend.pages.addQuestion.part') }}</label>
+                                <div class="col-lg-11">
+                                    <select name="part_id" class="form-control">
+                                        @foreach ($parts as $part)
+                                            <option value="{{ $part->id }}">{{ $part->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
                                 <label class="control-label col-lg-1">{{ trans('backend.pages.addQuestion.question_type') }}</label>
                                 <div class="col-lg-11">
                                     <select name="type" class="form-control">
