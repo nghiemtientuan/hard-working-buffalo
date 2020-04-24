@@ -63,3 +63,7 @@ function renderInputFile (element) {
         fileActionSettings: fileActionSettings
     });
 }
+
+function randomString() {
+    return Math.random().toString(36).substr(2, 10).toUpperCase();
+}

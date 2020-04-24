@@ -22,8 +22,11 @@
                         <div id="singleQuestion" class="alert alert-info mb-10 pb-5 pl-10">
                             <div class="form-group">
                                 <label class="control-label col-lg-1">{{ trans('backend.pages.addQuestion.code') }}</label>
-                                <div class="col-lg-11">
+                                <div class="col-lg-9">
                                     <input name="code" type="text" class="form-control">
+                                </div>
+                                <div class="col-lg-2">
+                                    <button id="randomCode" class="btn btn-success">{{ trans('backend.pages.addQuestion.random_code') }}</button>
                                 </div>
                             </div>
 
@@ -87,10 +90,12 @@
                                 </div>
                             </div>
 
-                            <div class="checkbox checkbox-switchery">
-                                <label>
-                                    <input id="question_check_kind" type="checkbox" class="switchery">{{ trans('backend.pages.addQuestion.big_question') }}
+                            <div class="form-group">
+                                <label class="control-label col-lg-1">{{ trans('backend.pages.addQuestion.big_question') }}</label>
+                                <label class="col-lg-1">
+                                    <input id="question_check_kind" type="checkbox" class="switchery">
                                 </label>
+                                <label id="childQuestionNumberLabel" class="col-lg-10 hidden">- {{ trans('backend.pages.addQuestion.childQuestionNumber') }} : <span id="showChildQuestionNumber">1</span></label>
                             </div>
 
                             <div id="answerParentQuestion" class="row">
@@ -131,8 +136,11 @@
 
                                         <div class="form-group">
                                             <label class="control-label col-lg-1">{{ trans('backend.pages.editQuestion.code') }}</label>
-                                            <div class="col-lg-11">
+                                            <div class="col-lg-9">
                                                 <input name="childQuestionAdd[1][code]" type="text" class="form-control childQuestion_code">
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <button class="btn btn-success randomCode" data-childQuestionId="childQuestion_1">{{ trans('backend.pages.addQuestion.random_code') }}</button>
                                             </div>
                                         </div>
 

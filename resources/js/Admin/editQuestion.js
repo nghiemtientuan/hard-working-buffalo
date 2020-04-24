@@ -2,6 +2,12 @@ let childQuestionIdElement = 'childQuestion_';
 let addChildQuestionElement = 'add_';
 let LIMIT_CHILD_QUESTION = 10;
 
+$('#list-childQuestion').on('click', '.randomCodeBtn', function (e) {
+    e.preventDefault();
+    let childQuestionId = $(this).attr('data-childQuestionId');
+    $('#' + childQuestionId + ' .childQuestion_code').val(randomString());
+});
+
 $('#parentQuestion select[name=type]').change(function () {
     let type = $(this).val();
     switch (parseInt(type)) {
@@ -58,6 +64,8 @@ $('#add_childQuestion').on('click', function (e) {
         childQuestionAdd.find('.childQuestion_delete').attr('data-oldQuestionDeleteId', null);
         childQuestionAdd.find('.fileOldQuestion').remove();
         childQuestionAdd.find('.childQuestion_code').attr('name', addChildQuestionName + '[' + childQuestionAddNumber + '][code]');
+        childQuestionAdd.find('.randomCodeBtn').removeClass('hidden');
+        childQuestionAdd.find('.randomCodeBtn').attr('data-childQuestionId', childQuestionIdElement + addChildQuestionElement + childQuestionAddNumber)
         childQuestionAdd.find('.childQuestion_suggest').attr('name', addChildQuestionName + '[' + childQuestionAddNumber + '][suggest]');
         childQuestionAdd.find('.childQuestion_content').attr('name', addChildQuestionName + '[' + childQuestionAddNumber + '][content]');
         childQuestionAdd.find('.childQuestion_type').attr('name', addChildQuestionName + '[' + childQuestionAddNumber + '][type]');
@@ -96,7 +104,8 @@ $('#add_childQuestion').on('click', function (e) {
         }
 
         $('#list-childQuestion').append(childQuestionAdd);
-        $('#childQuestionsNumber').val(currentChildQuestion)
+        $('#childQuestionsNumber').val(currentChildQuestion);
+        $('#childQuestionNumberDiv #showChildQuestionNumber').html(currentChildQuestion);
     } else {
         $('#addChildQuestionBtnDiv').addClass('hidden');
     }
@@ -116,6 +125,7 @@ $('#list-childQuestion').on('click', '.childQuestion_delete', function () {
         }).then((result) => {
             if (result.value) {
                 $('#childQuestionsNumber').val(currentChildQuestion - 1);
+                $('#childQuestionNumberDiv #showChildQuestionNumber').html(currentChildQuestion - 1);
                 $('#addChildQuestionBtnDiv').removeClass('hidden');
                 let oldQuestionDeleteId = $(this).attr('data-oldQuestionDeleteId');
                 if (oldQuestionDeleteId) {

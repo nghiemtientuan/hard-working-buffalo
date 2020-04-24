@@ -24,8 +24,8 @@
                             <div id="parentQuestion" class="alert alert-info mb-10 pb-5 pl-10">
                                 <div class="form-group">
                                     <label class="control-label col-lg-1">{{ trans('backend.pages.editQuestion.code') }}</label>
-                                    <div class="col-lg-11">
-                                        <input name="code" type="text" class="form-control" value="{{ $question->code }}">
+                                    <div class="col-lg-9">
+                                        <input type="text" class="form-control" value="{{ $question->code }}" disabled>
                                     </div>
                                 </div>
 
@@ -126,6 +126,10 @@
                                         <input name="audio" type="file" />
                                     </div>
                                 </div>
+
+                                <div id="childQuestionNumberDiv" class="form-group">
+                                    <label class="col-lg-10">{{ trans('backend.pages.editQuestion.childQuestionNumber') }} : <span id="showChildQuestionNumber">{{ count($question->childQuestions) }}</span></label>
+                                </div>
                             </div>
 
                             <span id="childQuestionDeleteSpan"></span>
@@ -143,8 +147,11 @@
 
                                                 <div class="form-group">
                                                     <label class="control-label col-lg-1">{{ trans('backend.pages.editQuestion.code') }}</label>
-                                                    <div class="col-lg-11">
-                                                        <input name="childQuestion[{{ $childQuestion->id }}][code]" type="text" class="form-control childQuestion_code" value="{{ $childQuestion->code }}">
+                                                    <div class="col-lg-9">
+                                                        <input type="text" class="form-control childQuestion_code" value="{{ $childQuestion->code }}" disabled>
+                                                    </div>
+                                                    <div class="col-lg-2">
+                                                        <button class="btn btn-success randomCodeBtn hidden" data-childQuestionId="childQuestion_{{ $childQuestion->id }}">{{ trans('backend.pages.addQuestion.random_code') }}</button>
                                                     </div>
                                                 </div>
 
@@ -282,7 +289,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-lg-1">{{ trans('backend.pages.editQuestion.code') }}</label>
                                     <div class="col-lg-11">
-                                        <input name="code" type="text" class="form-control" value="{{ $question->code }}">
+                                        <input type="text" class="form-control" value="{{ $question->code }}" disabled>
                                     </div>
                                 </div>
 
