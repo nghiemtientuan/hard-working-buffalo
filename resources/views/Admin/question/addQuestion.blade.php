@@ -93,7 +93,7 @@
                             <div class="form-group">
                                 <label class="control-label col-lg-1">{{ trans('backend.pages.addQuestion.big_question') }}</label>
                                 <label class="col-lg-1">
-                                    <input id="question_check_kind" type="checkbox" class="switchery">
+                                    <input id="question_check_kind" name="bigQuestionKind" type="checkbox" class="switchery">
                                 </label>
                                 <label id="childQuestionNumberLabel" class="col-lg-10 hidden">- {{ trans('backend.pages.addQuestion.childQuestionNumber') }} : <span id="showChildQuestionNumber">1</span></label>
                             </div>

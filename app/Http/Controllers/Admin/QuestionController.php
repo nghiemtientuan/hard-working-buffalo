@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\File;
 use App\Models\Question;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Contracts\TestRepositoryInterface as TestRepository;
 use App\Repositories\Contracts\QuestionRepositoryInterface as QuestionRepository;
 use App\Repositories\Contracts\PartRepositoryInterface as PartRepository;
+use App\Services\QuestionService;
 use Illuminate\Support\Facades\DB;
 use Yajra\Datatables\Datatables;
 
@@ -16,21 +18,25 @@ class QuestionController extends Controller
     protected $testRepository;
     protected $questionRepository;
     protected $partRepository;
+    protected $questionService;
 
     /**
      * TestController constructor.
      * @param TestRepository $testRepository
      * @param QuestionRepository $questionRepository
      * @param PartRepository $partRepository
+     * @param QuestionService $questionService
      */
     public function __construct(
         TestRepository $testRepository,
         QuestionRepository $questionRepository,
-        PartRepository $partRepository
+        PartRepository $partRepository,
+        QuestionService $questionService
     ) {
         $this->testRepository = $testRepository;
         $this->questionRepository = $questionRepository;
         $this->partRepository = $partRepository;
+        $this->questionService = $questionService;
     }
 
     /**
@@ -95,9 +101,30 @@ class QuestionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $test_id)
     {
-        dd($request->all());
+        $questionSingleData = $request->only([
+            'code',
+            'suggest',
+            'content',
+            'part_id',
+            'type',
+            'answers',
+            'correct_answer',
+            'image',
+            'audio',
+        ]);
+        $singleQuestion = $this->questionService->addSingleQuestion($questionSingleData, $test_id, $request->has('bigQuestionKind'));
+
+        if ($request->has('bigQuestionKind')) {
+            foreach ($request->childQuestionAdd as $childQuestion) {
+                $childQuestion[Question::PARENT_ID_FIELD] = $singleQuestion->id;
+                $this->questionService->addSingleQuestion($childQuestion, $test_id);
+            }
+        }
+
+        return redirect()->route('admin.tests.questions.index', $test_id)
+            ->with('success', trans('backend.actions.success'));
     }
 
     /**
@@ -148,7 +175,7 @@ class QuestionController extends Controller
         $question = $this->questionRepository->find($id);
         if ($question && $this->questionRepository->delete($id)) {
             return redirect()->route('admin.questions.index')
-                ->with('sucess', trans('backend.actions.success'));
+                ->with('success', trans('backend.actions.success'));
         }
 
         return redirect()->route('admin.questions.index');

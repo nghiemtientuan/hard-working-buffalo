@@ -21,12 +21,12 @@ class FileRepository extends EloquentRepository implements FileRepositoryInterfa
     public function saveSingleImage($photo, $folder, $type)
     {
         $imageName = $photo->getClientOriginalName();
-        $this->checkFolderExit($folder);
+        $this->checkFolderExit(public_path() . $folder);
         $imageRaw = Image::make($photo);
 
         // xử lý lưu ảnh gốc vào server
         $imageName = time() . '_' . $imageName;
-        $imageRaw->save(public_path() . '/' . $folder . '/' . $imageName, 90);
+        $imageRaw->save(public_path() . $folder . '/' . $imageName, 90);
         $arrData = [
             File::NAME_FIELD => $imageName,
             File::EXTENSION_FIELD => $photo->getClientOriginalExtension(),
@@ -59,9 +59,9 @@ class FileRepository extends EloquentRepository implements FileRepositoryInterfa
     public function saveSingleAudio($audio, $folder, $type)
     {
         $audioName = $audio->getClientOriginalName();
-        $this->checkFolderExit($folder);
+        $this->checkFolderExit(public_path() . $folder);
         $audioName = time() . '_' . $audioName;
-        $audio->move(public_path() . '/' . $folder, $audioName);
+        $audio->move(public_path() . $folder, $audioName);
         $arrData = [
             File::NAME_FIELD => $audioName,
             File::EXTENSION_FIELD => $audio->getClientOriginalExtension(),
