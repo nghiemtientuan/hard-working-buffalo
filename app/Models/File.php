@@ -15,11 +15,11 @@ class File extends Model
     const TYPE_USER = 'App\Models\User';
     const TYPE_STUDENT = 'App\Models\Student';
     const TYPE_QUESTION = 'App\Models\Question';
-    const TEST_FOLDER = '\images\tests';
-    const CATEGORY_FOLDER = '\images\categories';
-    const REACT_FOLDER = '\images\reacts';
-    const USER_FOLDER = '\images\users';
-    const STUDENT_FOLDER = '\images\students';
+    const TEST_FOLDER = '/images/tests';
+    const CATEGORY_FOLDER = '/images/categories';
+    const REACT_FOLDER = '/images/reacts';
+    const USER_FOLDER = '/images/users';
+    const STUDENT_FOLDER = '/images/students';
 
     protected $table = 'files';
 

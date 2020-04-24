@@ -2,6 +2,17 @@ let childQuestionIdElement = 'childQuestion_';
 let addChildQuestionElement = 'add_';
 let LIMIT_CHILD_QUESTION = 10;
 
+$('#singleQuestion #randomCode').click(function (e) {
+    e.preventDefault();
+    $('#singleQuestion input[name=code]').val(randomString());
+});
+
+$('#list-childQuestion').on('click', '.randomCode', function (e) {
+    e.preventDefault();
+    let childQuestionId = $(this).attr('data-childQuestionId');
+    $('#' + childQuestionId + ' .childQuestion_code').val(randomString());
+});
+
 $('#question_check_kind').change(function () {
     let kind = $(this).is(":checked")
 
@@ -9,10 +20,12 @@ $('#question_check_kind').change(function () {
         $('#answerParentQuestion').addClass('hidden');
         $('#list-childQuestion').removeClass('hidden');
         $('#addChildQuestionBtnDiv').removeClass('hidden');
+        $('#childQuestionNumberLabel').removeClass('hidden');
     } else {
         $('#answerParentQuestion').removeClass('hidden');
         $('#list-childQuestion').addClass('hidden');
         $('#addChildQuestionBtnDiv').addClass('hidden');
+        $('#childQuestionNumberLabel').addClass('hidden');
     }
 });
 
@@ -69,6 +82,7 @@ $('#add_childQuestion').on('click', function (e) {
         //rename
         childQuestionAdd.attr('id', childQuestionIdElement + addChildQuestionElement + childQuestionAddNumber);
         childQuestionAdd.find('.childQuestion_delete').attr('data-childQuestionId', childQuestionIdElement + addChildQuestionElement + childQuestionAddNumber);
+        childQuestionAdd.find('.randomCode').attr('data-childQuestionId', childQuestionIdElement + addChildQuestionElement + childQuestionAddNumber);
         childQuestionAdd.find('.childQuestion_code').attr('name', addChildQuestionName + '[' + childQuestionAddNumber + '][code]');
         childQuestionAdd.find('.childQuestion_suggest').attr('name', addChildQuestionName + '[' + childQuestionAddNumber + '][suggest]');
         childQuestionAdd.find('.childQuestion_content').attr('name', addChildQuestionName + '[' + childQuestionAddNumber + '][content]');
@@ -108,7 +122,8 @@ $('#add_childQuestion').on('click', function (e) {
         }
 
         $('#list-childQuestion').append(childQuestionAdd);
-        $('#childQuestionsNumber').val(currentChildQuestion)
+        $('#childQuestionsNumber').val(currentChildQuestion);
+        $('#showChildQuestionNumber').html(currentChildQuestion);
     } else {
         $('#addChildQuestionBtnDiv').addClass('hidden');
     }
@@ -128,6 +143,7 @@ $('#list-childQuestion').on('click', '.childQuestion_delete', function () {
         }).then((result) => {
             if (result.value) {
                 $('#childQuestionsNumber').val(currentChildQuestion - 1);
+                $('#showChildQuestionNumber').html(currentChildQuestion - 1);
                 $('#addChildQuestionBtnDiv').removeClass('hidden');
 
                 let childQuestionDivId = $(this).attr('data-childQuestionId');
