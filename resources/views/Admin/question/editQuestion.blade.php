@@ -12,7 +12,7 @@
 @section('content')
     <div class="panel panel-flat">
         <div class="panel-body">
-            <form class="form-horizontal" method="POST" action="{{ route('admin.questions.update', $question->id) }}">
+            <form class="form-horizontal" method="POST" action="{{ route('admin.questions.update', $question->id) }}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
@@ -40,6 +40,22 @@
                                     <label class="control-label col-lg-1">{{ trans('backend.pages.editQuestion.content') }}</label>
                                     <div class="col-lg-11">
                                         <input name="content" type="text" class="form-control" value="{{ $question->content }}">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-lg-1">{{ trans('backend.pages.addQuestion.part') }}</label>
+                                    <div class="col-lg-11">
+                                        <select name="part_id" class="form-control">
+                                            @foreach ($parts as $part)
+                                                <option
+                                                    value="{{ $part->id }}"
+                                                    @if ($question->part_id == $part->id)
+                                                        selected
+                                                    @endif
+                                                >{{ $part->name }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
 
@@ -96,7 +112,7 @@
                                     </div>
                                 @endif
 
-                                <div id="imageDiv" class="form-group @if ($question->type != \App\Models\Question::IMAGE_TYPE) hidden @endif">
+                                <div class="form-group imageDiv @if ($question->type != \App\Models\Question::IMAGE_TYPE) hidden @endif">
                                     <label class="control-label col-lg-1">{{ trans('backend.pages.editQuestion.image') }}</label>
                                     <div class="col-lg-4">
                                         <input name="image" type="file" class="file-input" data-show-caption="false" data-show-upload="false"
@@ -104,7 +120,7 @@
                                     </div>
                                 </div>
 
-                                <div id="audioDiv" class="form-group @if ($question->type != \App\Models\Question::AUDIO_ONE_TYPE && $question->type != \App\Models\Question::AUDIO_MANY_TYPE) hidden @endif">
+                                <div class="form-group audioDiv @if ($question->type != \App\Models\Question::AUDIO_ONE_TYPE && $question->type != \App\Models\Question::AUDIO_MANY_TYPE) hidden @endif">
                                     <label class="control-label col-lg-1">{{ trans('backend.pages.editQuestion.audio') }}</label>
                                     <div class="col-lg-4">
                                         <input name="audio" type="file" />
@@ -112,6 +128,7 @@
                                 </div>
                             </div>
 
+                            <span id="childQuestionDeleteSpan"></span>
                             <input type="hidden" id="childQuestionsNumber" value="{{ count($question->childQuestions) }}">
                             <div id="list-childQuestion">
                                 @foreach ($question->childQuestions as $childQuestion)
@@ -119,7 +136,7 @@
                                         <div class="form-group">
                                             <div class="alert alert-success mb-10 pb-5 pl-10">
                                                 <div class="form-group">
-                                                    <button type="button" data-childQuestionId="childQuestion_{{ $childQuestion->id }}" class="close btn btn-link childQuestion_delete"><span>&times;</span></button>
+                                                    <button type="button" data-oldQuestionDeleteId="{{ $childQuestion->id }}" data-childQuestionId="childQuestion_{{ $childQuestion->id }}" class="close btn btn-link childQuestion_delete"><span>&times;</span></button>
                                                 </div>
 
                                                 <input type="hidden" name="childQuestion[{{ $childQuestion->id }}][id]" value="{{ $childQuestion->id }}">
@@ -148,7 +165,7 @@
                                                 <div class="form-group">
                                                     <label class="control-label col-lg-1">{{ trans('backend.pages.editQuestion.question_type') }}</label>
                                                     <div class="col-lg-11">
-                                                        <select name="childQuestion[{{ $childQuestion->id }}][type]" data-childQuestionId="{{ $childQuestion->id }}" class="form-control childQuestion_type">
+                                                        <select name="childQuestion[{{ $childQuestion->id }}][type]" data-childQuestionId="childQuestion_{{ $childQuestion->id }}" class="form-control childQuestion_type">
                                                             <option
                                                                 value="{{ \App\Models\Question::CONTENT_TYPE }}"
                                                                 @if ($childQuestion->type == \App\Models\Question::CONTENT_TYPE)
@@ -186,7 +203,7 @@
                                                 </div>
 
                                                 @if ($childQuestion->type != \App\Models\Question::CONTENT_TYPE)
-                                                    <div class="form-group">
+                                                    <div class="form-group fileOldQuestion">
                                                         <label class="control-label col-lg-1">{{ trans('backend.pages.editQuestion.file') }}</label>
                                                         <div class="col-lg-11">
                                                             @if ($childQuestion->type == \App\Models\Question::IMAGE_TYPE)
@@ -213,10 +230,10 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="row">
+                                                <div class="row answers">
                                                     <div class="col-md-6">
                                                         @for($i = 1; $i <= 4; $i++)
-                                                            <div class="col-md-12 mt-20">
+                                                            <div class="col-md-12 mt-20 answerDiv_{{ $i }}">
                                                                 <div class="col-md-1">
                                                                     <div class="icheck-material-red pl-10">
                                                                         <input
@@ -261,7 +278,7 @@
                         </div>
                     @else
                         <div class="form-group">
-                            <div class="alert alert-info mb-10 pb-5 pl-10">
+                            <div id="singleQuestion" class="alert alert-info mb-10 pb-5 pl-10">
                                 <div class="form-group">
                                     <label class="control-label col-lg-1">{{ trans('backend.pages.editQuestion.code') }}</label>
                                     <div class="col-lg-11">
@@ -284,17 +301,75 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label col-lg-1">{{ trans('backend.pages.editQuestion.question_type') }}</label>
+                                    <label class="control-label col-lg-1">{{ trans('backend.pages.addQuestion.part') }}</label>
                                     <div class="col-lg-11">
-                                        <select id="type" name="question_type" class="form-control">
-                                            <option value="{{ \App\Models\Question::CONTENT_TYPE }}">{{ trans('backend.pages.editQuestion.text') }}</option>
-                                            <option value="{{ \App\Models\Question::AUDIO_ONE_TYPE }}">{{ trans('backend.pages.editQuestion.image') }}</option>
-                                            <option value="{{ \App\Models\Question::AUDIO_MANY_TYPE }}">{{ trans('backend.pages.editQuestion.audio') }}</option>
+                                        <select name="part_id" class="form-control">
+                                            @foreach ($parts as $part)
+                                                <option
+                                                    value="{{ $part->id }}"
+                                                    @if ($question->part_id == $part->id)
+                                                    selected
+                                                    @endif
+                                                >{{ $part->name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
 
-                                <div id="div_image" class="form-group">
+                                <div class="form-group">
+                                    <label class="control-label col-lg-1">{{ trans('backend.pages.editQuestion.question_type') }}</label>
+                                    <div class="col-lg-11">
+                                        <select id="type" name="type" class="form-control">
+                                            <option
+                                                value="{{ \App\Models\Question::CONTENT_TYPE }}"
+                                                @if ($question->type == \App\Models\Question::CONTENT_TYPE)
+                                                    selected
+                                                @endif
+                                            >
+                                                {{ trans('backend.pages.editQuestion.text') }}
+                                            </option>
+                                            <option
+                                                value="{{ \App\Models\Question::IMAGE_TYPE }}"
+                                                @if ($question->type == \App\Models\Question::IMAGE_TYPE)
+                                                    selected
+                                                @endif
+                                            >
+                                                {{ trans('backend.pages.editQuestion.image') }}
+                                            </option>
+                                            <option
+                                                value="{{ \App\Models\Question::AUDIO_ONE_TYPE }}"
+                                                @if ($question->type == \App\Models\Question::AUDIO_ONE_TYPE)
+                                                    selected
+                                                @endif
+                                            >
+                                                {{ trans('backend.pages.editQuestion.audio_one_time') }}
+                                            </option>
+                                            <option
+                                                value="{{ \App\Models\Question::AUDIO_MANY_TYPE }}"
+                                                @if ($question->type == \App\Models\Question::AUDIO_MANY_TYPE)
+                                                    selected
+                                                @endif
+                                            >
+                                                {{ trans('backend.pages.editQuestion.audio_many_time') }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                @if ($question->type != \App\Models\Question::CONTENT_TYPE)
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-1">{{ trans('backend.pages.editQuestion.file') }}</label>
+                                        <div class="col-lg-11">
+                                            @if ($question->type == \App\Models\Question::IMAGE_TYPE)
+                                                <img class="image_question" src="{{ $question->file->base_folder }}" alt="">
+                                            @else
+                                                <audio src="{{ $question->file->base_folder }}" controls></audio>
+                                            @endif
+                                        </div>
+                                    </div>
+                                @endif
+
+                                <div class="form-group imageDiv @if ($question->type != \App\Models\Question::IMAGE_TYPE) hidden @endif">
                                     <label class="control-label col-lg-1">{{ trans('backend.pages.editQuestion.image') }}</label>
                                     <div class="col-lg-4">
                                         <input name="image" type="file" class="file-input" data-show-caption="false" data-show-upload="false"
@@ -302,7 +377,7 @@
                                     </div>
                                 </div>
 
-                                <div id="div_audio" class="form-group">
+                                <div class="form-group audioDiv @if ($question->type != \App\Models\Question::AUDIO_ONE_TYPE && $question->type != \App\Models\Question::AUDIO_MANY_TYPE) hidden @endif">
                                     <label class="control-label col-lg-1">{{ trans('backend.pages.editQuestion.audio') }}</label>
                                     <div class="col-lg-4">
                                         <input name="audio" type="file" />
@@ -315,14 +390,14 @@
                                             <div class="col-md-12 mt-20">
                                                 <div class="col-md-1">
                                                     <div class="icheck-material-red pl-10">
-                                                        <input type="radio" id="answer_{{ $i }}" name="key" value="{{ $i }}"/>
-                                                        <label for="answer_{{ $i }}"></label>
+                                                        <input type="radio" id="question_answer_{{ $i }}" name="correct_answer" value="{{ $i }}"/>
+                                                        <label for="question_answer_{{ $i }}"></label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-11">
-                                                    <input name="answer_content_{{ $i }}" type="text" class="form-control"
+                                                    <input name="answers[{{ $i }}][content]" type="text" class="form-control"
                                                            value="">
-                                                    <input name="answer_file_{{ $i }}" type="file" class="file-input" data-show-caption="false" data-show-upload="false"
+                                                    <input name="answers[{{ $i }}][file]" type="file" class="file-input" data-show-caption="false" data-show-upload="false"
                                                            data-browse-class="btn btn-primary btn-sm" data-remove-class="btn btn-default btn-sm" accept="image/*" />
                                                 </div>
                                             </div>

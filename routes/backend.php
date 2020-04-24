@@ -31,11 +31,13 @@ Route::group([
         'as' => 'questions.',
     ], function () {
         Route::get('getData', 'QuestionController@getData')->name('getData');
+        Route::get('{test_id}/create', 'QuestionController@create')->name('create');
+        Route::post('{test_id}/store', 'QuestionController@store')->name('store');
 
         Route::get('comments/getData', 'QuestionCommentController@getData')->name('comments.getData');
         Route::resource('comments', 'QuestionCommentController')->except('create', 'store', 'show', 'edit', 'update');
     });
-    Route::resource('questions', 'QuestionController')->except('create', 'show');
+    Route::resource('questions', 'QuestionController')->except('create', 'store', 'show');
 
     Route::group([
         'prefix' => 'formats',

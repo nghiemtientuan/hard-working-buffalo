@@ -2,21 +2,35 @@ let childQuestionIdElement = 'childQuestion_';
 let addChildQuestionElement = 'add_';
 let LIMIT_CHILD_QUESTION = 10;
 
-$('#parentQuestion select[name=type]').change(function () {
+$('#question_check_kind').change(function () {
+    let kind = $(this).is(":checked")
+
+    if (kind) {
+        $('#answerParentQuestion').addClass('hidden');
+        $('#list-childQuestion').removeClass('hidden');
+        $('#addChildQuestionBtnDiv').removeClass('hidden');
+    } else {
+        $('#answerParentQuestion').removeClass('hidden');
+        $('#list-childQuestion').addClass('hidden');
+        $('#addChildQuestionBtnDiv').addClass('hidden');
+    }
+});
+
+$('#singleQuestion select[name=type]').change(function () {
     let type = $(this).val();
     switch (parseInt(type)) {
         case 1:
-            $('#parentQuestion .imageDiv').addClass('hidden');
-            $('#parentQuestion .audioDiv').addClass('hidden');
+            $('#singleQuestion .imageDiv').addClass('hidden');
+            $('#singleQuestion .audioDiv').addClass('hidden');
             break;
         case 2:
-            $('#parentQuestion .imageDiv').removeClass('hidden');
-            $('#parentQuestion .audioDiv').addClass('hidden');
+            $('#singleQuestion .imageDiv').removeClass('hidden');
+            $('#singleQuestion .audioDiv').addClass('hidden');
             break;
         case 3:
         case 4:
-            $('#parentQuestion .imageDiv').addClass('hidden');
-            $('#parentQuestion .audioDiv').removeClass('hidden');
+            $('#singleQuestion .imageDiv').addClass('hidden');
+            $('#singleQuestion .audioDiv').removeClass('hidden');
             break;
     }
 });
@@ -42,7 +56,7 @@ $('#list-childQuestion').on('change', 'select', function () {
     }
 });
 
-let childQuestionAddNumber = 0;
+let childQuestionAddNumber = 1;
 let addChildQuestionName = 'childQuestionAdd';
 $('#add_childQuestion').on('click', function (e) {
     e.preventDefault();
@@ -55,8 +69,6 @@ $('#add_childQuestion').on('click', function (e) {
         //rename
         childQuestionAdd.attr('id', childQuestionIdElement + addChildQuestionElement + childQuestionAddNumber);
         childQuestionAdd.find('.childQuestion_delete').attr('data-childQuestionId', childQuestionIdElement + addChildQuestionElement + childQuestionAddNumber);
-        childQuestionAdd.find('.childQuestion_delete').attr('data-oldQuestionDeleteId', null);
-        childQuestionAdd.find('.fileOldQuestion').remove();
         childQuestionAdd.find('.childQuestion_code').attr('name', addChildQuestionName + '[' + childQuestionAddNumber + '][code]');
         childQuestionAdd.find('.childQuestion_suggest').attr('name', addChildQuestionName + '[' + childQuestionAddNumber + '][suggest]');
         childQuestionAdd.find('.childQuestion_content').attr('name', addChildQuestionName + '[' + childQuestionAddNumber + '][content]');
@@ -117,34 +129,10 @@ $('#list-childQuestion').on('click', '.childQuestion_delete', function () {
             if (result.value) {
                 $('#childQuestionsNumber').val(currentChildQuestion - 1);
                 $('#addChildQuestionBtnDiv').removeClass('hidden');
-                let oldQuestionDeleteId = $(this).attr('data-oldQuestionDeleteId');
-                if (oldQuestionDeleteId) {
-                    let deleteInput = '<input type="hidden" name="childQuestionDelete[]" value="' + oldQuestionDeleteId + '">';
-                    $('#childQuestionDeleteSpan').append(deleteInput);
-                }
 
                 let childQuestionDivId = $(this).attr('data-childQuestionId');
                 $('#list-childQuestion #' + childQuestionDivId).remove();
             }
         });
-    }
-});
-
-$('#singleQuestion select[name=type]').change(function () {
-    let type = $(this).val();
-    switch (parseInt(type)) {
-        case 1:
-            $('#singleQuestion .imageDiv').addClass('hidden');
-            $('#singleQuestion .audioDiv').addClass('hidden');
-            break;
-        case 2:
-            $('#singleQuestion .imageDiv').removeClass('hidden');
-            $('#singleQuestion .audioDiv').addClass('hidden');
-            break;
-        case 3:
-        case 4:
-            $('#singleQuestion .imageDiv').addClass('hidden');
-            $('#singleQuestion .audioDiv').removeClass('hidden');
-            break;
     }
 });

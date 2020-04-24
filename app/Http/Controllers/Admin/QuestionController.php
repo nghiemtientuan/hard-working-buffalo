@@ -5,21 +5,32 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Question;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Repositories\Contracts\TestRepositoryInterface as TestRepository;
 use App\Repositories\Contracts\QuestionRepositoryInterface as QuestionRepository;
+use App\Repositories\Contracts\PartRepositoryInterface as PartRepository;
 use Illuminate\Support\Facades\DB;
 use Yajra\Datatables\Datatables;
 
 class QuestionController extends Controller
 {
+    protected $testRepository;
     protected $questionRepository;
+    protected $partRepository;
 
     /**
-     * QuestionController constructor.
-     * @param $questionRepository
+     * TestController constructor.
+     * @param TestRepository $testRepository
+     * @param QuestionRepository $questionRepository
+     * @param PartRepository $partRepository
      */
-    public function __construct(QuestionRepository $questionRepository)
-    {
+    public function __construct(
+        TestRepository $testRepository,
+        QuestionRepository $questionRepository,
+        PartRepository $partRepository
+    ) {
+        $this->testRepository = $testRepository;
         $this->questionRepository = $questionRepository;
+        $this->partRepository = $partRepository;
     }
 
     /**
@@ -70,9 +81,12 @@ class QuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($test_id)
     {
-        //
+        $parts = $this->partRepository->getAll();
+        $test = $this->testRepository->find($test_id);
+
+        return view('Admin.question.addQuestion', compact('test', 'parts'));
     }
 
     /**
@@ -83,7 +97,7 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**
@@ -105,9 +119,10 @@ class QuestionController extends Controller
      */
     public function edit($id)
     {
+        $parts = $this->partRepository->getAll();
         $question = $this->questionRepository->getQuestion($id);
 
-        return view('Admin.question.editQuestion', compact('question'));
+        return view('Admin.question.editQuestion', compact('question', 'parts'));
     }
 
     /**
