@@ -11,4 +11,6 @@ interface FileRepositoryInterface
     public function saveSingleAudio($audio, $folder, $type);
 
     public function updateSingleAudio($oldId, $photo, $folder, $type);
+
+    public function deleteWithFile($id);
 }

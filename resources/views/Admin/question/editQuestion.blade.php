@@ -22,6 +22,9 @@
                     @if (count($question->childQuestions))
                         <div class="form-group">
                             <div id="parentQuestion" class="alert alert-info mb-10 pb-5 pl-10">
+                                <input type="hidden" name="id" value="{{ $question->id }}">
+                                <input type="hidden" name="bigQuestionKind" value="yes">
+
                                 <div class="form-group">
                                     <label class="control-label col-lg-1">{{ trans('backend.pages.editQuestion.code') }}</label>
                                     <div class="col-lg-9">
@@ -143,7 +146,7 @@
                                                     <button type="button" data-oldQuestionDeleteId="{{ $childQuestion->id }}" data-childQuestionId="childQuestion_{{ $childQuestion->id }}" class="close btn btn-link childQuestion_delete"><span>&times;</span></button>
                                                 </div>
 
-                                                <input type="hidden" name="childQuestion[{{ $childQuestion->id }}][id]" value="{{ $childQuestion->id }}">
+                                                <input type="hidden" class="childQuestionIdSubmit" name="childQuestion[{{ $childQuestion->id }}][id]" value="{{ $childQuestion->id }}">
 
                                                 <div class="form-group">
                                                     <label class="control-label col-lg-1">{{ trans('backend.pages.editQuestion.code') }}</label>
@@ -239,8 +242,11 @@
 
                                                 <div class="row answers">
                                                     <div class="col-md-6">
-                                                        @for($i = 1; $i <= 4; $i++)
+                                                        @for($i = 0; $i < 4; $i++)
                                                             <div class="col-md-12 mt-20 answerDiv_{{ $i }}">
+                                                                @if (array_key_exists($i, $childQuestion->answers->toArray()))
+                                                                    <input type="hidden" class="answer_id" name="childQuestion[{{ $childQuestion->id }}][answers][{{ $i }}][id]" value="{{ $childQuestion->answers[$i]->id }} ">
+                                                                @endif
                                                                 <div class="col-md-1">
                                                                     <div class="icheck-material-red pl-10">
                                                                         <input
@@ -248,19 +254,25 @@
                                                                             class="answer_{{ $i }}"
                                                                             type="radio"
                                                                             name="childQuestion[{{ $childQuestion->id }}][correct_answer]" value="{{ $i }}"
+                                                                            @if (array_key_exists($i, $childQuestion->answers->toArray()) && $childQuestion->answers[$i]->correct_answer)
+                                                                                checked
+                                                                            @endif
                                                                         />
                                                                         <label for="childQuestion_{{ $childQuestion->id }}_answer_{{ $i }}" class="label_{{ $i }}"></label>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-11">
                                                                     <input name="childQuestion[{{ $childQuestion->id }}][answers][{{ $i }}][content]" type="text" class="form-control answer_content_{{ $i }}"
-                                                                           value="">
+                                                                           @if (array_key_exists($i, $childQuestion->answers->toArray())) value="{{ $childQuestion->answers[$i]->content }}" @endif>
+                                                                    @if (array_key_exists($i, $childQuestion->answers->toArray()) && $childQuestion->answers[$i]->file)
+                                                                        <img class="image_question answer_image" src="{{ $childQuestion->answers[$i]->file->base_folder }}" alt="">
+                                                                    @endif
                                                                     <input name="childQuestion[{{ $childQuestion->id }}][answers][{{ $i }}][file]" type="file" class="file-input answer_file_{{ $i }}" data-show-caption="false" data-show-upload="false"
                                                                            data-browse-class="btn btn-primary btn-sm" data-remove-class="btn btn-default btn-sm" accept="image/*" />
                                                                 </div>
                                                             </div>
 
-                                                            @if($i == 2)
+                                                            @if($i == 1)
                                                                 </div>
                                                                 <div class="col-md-6">
                                                             @endif
@@ -393,23 +405,37 @@
 
                                 <div class="row">
                                     <div class="col-md-6">
-                                        @for($i = 1; $i <= 4; $i++)
+                                        @for($i = 0; $i < 4; $i++)
                                             <div class="col-md-12 mt-20">
+                                                @if (array_key_exists($i, $question->answers->toArray()))
+                                                    <input type="hidden" class="answer_id" name="answers[{{ $i }}][id]" value="{{ $question->answers[$i]->id }} ">
+                                                @endif
                                                 <div class="col-md-1">
                                                     <div class="icheck-material-red pl-10">
-                                                        <input type="radio" id="question_answer_{{ $i }}" name="correct_answer" value="{{ $i }}"/>
+                                                        <input
+                                                            type="radio"
+                                                            id="question_answer_{{ $i }}"
+                                                            name="correct_answer"
+                                                            value="{{ $i }}"
+                                                            @if (array_key_exists($i, $question->answers->toArray()) && $question->answers[$i]->correct_answer)
+                                                                checked
+                                                            @endif
+                                                        />
                                                         <label for="question_answer_{{ $i }}"></label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-11">
                                                     <input name="answers[{{ $i }}][content]" type="text" class="form-control"
-                                                           value="">
+                                                           @if (array_key_exists($i, $question->answers->toArray())) value="{{ $question->answers[$i]->content }}" @endif>
+                                                    @if (array_key_exists($i, $question->answers->toArray()) && $question->answers[$i]->file)
+                                                        <img class="image_question answer_image" src="{{ $question->answers[$i]->file->base_folder }}" alt="">
+                                                    @endif
                                                     <input name="answers[{{ $i }}][file]" type="file" class="file-input" data-show-caption="false" data-show-upload="false"
                                                            data-browse-class="btn btn-primary btn-sm" data-remove-class="btn btn-default btn-sm" accept="image/*" />
                                                 </div>
                                             </div>
 
-                                            @if($i == 2)
+                                            @if($i == 1)
                                                 </div>
                                                 <div class="col-md-6">
                                             @endif

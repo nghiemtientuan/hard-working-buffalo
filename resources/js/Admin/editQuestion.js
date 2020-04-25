@@ -59,6 +59,7 @@ $('#add_childQuestion').on('click', function (e) {
         let childQuestionAdd = $('#list-childQuestion').children(":first").clone();
 
         //rename
+        childQuestionAdd.find('.childQuestionIdSubmit').remove();
         childQuestionAdd.attr('id', childQuestionIdElement + addChildQuestionElement + childQuestionAddNumber);
         childQuestionAdd.find('.childQuestion_delete').attr('data-childQuestionId', childQuestionIdElement + addChildQuestionElement + childQuestionAddNumber);
         childQuestionAdd.find('.childQuestion_delete').attr('data-oldQuestionDeleteId', null);
@@ -73,6 +74,8 @@ $('#add_childQuestion').on('click', function (e) {
         childQuestionAdd.find('.childQuestion_audio').attr('name', addChildQuestionName + '[' + childQuestionAddNumber + '][audio]');
         childQuestionAdd.find('.div_image').addClass('hidden');
         childQuestionAdd.find('.div_audio').addClass('hidden');
+        childQuestionAdd.find('.answer_id').remove();
+        childQuestionAdd.find('.answer_image').remove();
 
         //clear old data
         childQuestionAdd.find('input').val('');

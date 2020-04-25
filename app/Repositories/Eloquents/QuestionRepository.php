@@ -58,8 +58,11 @@ class QuestionRepository extends EloquentRepository implements QuestionRepositor
         return $this->_model->find($id)
             ->load([
                 'childQuestions',
+                'childQuestions.answers',
+                'childQuestions.answers.file',
                 'comments',
                 'answers',
+                'answers.file',
                 'test',
             ]);
     }
