@@ -82,6 +82,8 @@ class QuestionService
                 foreach ($data['answers'] as $keyAnwer => $answer) {
                     if ($data['correct_answer'] == $keyAnwer) {
                         $answer[Answer::CORRECT_ANSWER_FIELD] = Answer::CORRECT_ANSWER_VALUE;
+                    } else {
+                        $answer[Answer::CORRECT_ANSWER_FIELD] = Answer::FALSE_ANSWER_VALUE;
                     }
                     $this->updateSingleAnswer($fileFolder, $answer);
                 }

@@ -17,6 +17,7 @@ class Answer extends Model
     const CORRECT_ANSWER_FIELD = 'correct_answer';
 
     const CORRECT_ANSWER_VALUE = 1;
+    const FALSE_ANSWER_VALUE = 0;
 
     protected $fillable = [
         Answer::QUESTION_ID_FIELD,

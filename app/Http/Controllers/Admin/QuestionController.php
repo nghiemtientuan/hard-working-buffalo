@@ -190,7 +190,7 @@ class QuestionController extends Controller
             }
         }
 
-        if ($request->has('bigQuestionKind')) {
+        if ($request->has('bigQuestionKind') && $request->childQuestionAdd && count($request->childQuestionAdd)) {
             foreach ($request->childQuestionAdd as $childQuestion) {
                 $childQuestion[Question::PARENT_ID_FIELD] = $singleQuestion->id;
                 $this->questionService->addSingleQuestion($childQuestion, $singleQuestion->test->id);
