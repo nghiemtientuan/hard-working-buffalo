@@ -216,11 +216,11 @@ class QuestionController extends Controller
     public function destroy($id)
     {
         $question = $this->questionRepository->find($id);
-        if ($question && $this->questionRepository->delete($id)) {
-            return redirect()->route('admin.questions.index')
-                ->with('success', trans('backend.actions.success'));
+        if ($question) {
+            $this->questionService->deleteQuestion($id);
+            return redirect()->back()->with('success', trans('backend.actions.success'));
         }
 
-        return redirect()->route('admin.questions.index');
+        return redirect()->back();
     }
 }
