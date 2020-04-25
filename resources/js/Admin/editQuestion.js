@@ -63,6 +63,7 @@ $('#add_childQuestion').on('click', function (e) {
         childQuestionAdd.attr('id', childQuestionIdElement + addChildQuestionElement + childQuestionAddNumber);
         childQuestionAdd.find('.childQuestion_delete').attr('data-childQuestionId', childQuestionIdElement + addChildQuestionElement + childQuestionAddNumber);
         childQuestionAdd.find('.childQuestion_delete').attr('data-oldQuestionDeleteId', null);
+        childQuestionAdd.find('.childQuestion_code').attr('disabled', false);
         childQuestionAdd.find('.fileOldQuestion').remove();
         childQuestionAdd.find('.childQuestion_code').attr('name', addChildQuestionName + '[' + childQuestionAddNumber + '][code]');
         childQuestionAdd.find('.randomCodeBtn').removeClass('hidden');
