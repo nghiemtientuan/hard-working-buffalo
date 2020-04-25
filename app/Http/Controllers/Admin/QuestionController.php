@@ -114,7 +114,11 @@ class QuestionController extends Controller
             'image',
             'audio',
         ]);
-        $singleQuestion = $this->questionService->addSingleQuestion($questionSingleData, $test_id, $request->has('bigQuestionKind'));
+        $singleQuestion = $this->questionService->addSingleQuestion(
+            $questionSingleData,
+            $test_id,
+            $request->has('bigQuestionKind')
+        );
 
         if ($request->has('bigQuestionKind')) {
             foreach ($request->childQuestionAdd as $childQuestion) {
@@ -161,7 +165,46 @@ class QuestionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd($request->all());
+        $questionSingleData = $request->only([
+            'suggest',
+            'content',
+            'part_id',
+            'type',
+            'answers',
+            'correct_answer',
+            'image',
+            'audio',
+        ]);
+        $singleQuestion = $this->questionService->updateSingleQuestion(
+            $id,
+            $questionSingleData,
+            $request->has('bigQuestionKind')
+        );
+
+        if ($request->has('childQuestion')) {
+            foreach ($request->childQuestion as $childQuestion) {
+                $this->questionService->updateSingleQuestion(
+                    $childQuestion['id'],
+                    $childQuestion
+                );
+            }
+        }
+
+        if ($request->has('bigQuestionKind') && $request->childQuestionAdd && count($request->childQuestionAdd)) {
+            foreach ($request->childQuestionAdd as $childQuestion) {
+                $childQuestion[Question::PARENT_ID_FIELD] = $singleQuestion->id;
+                $this->questionService->addSingleQuestion($childQuestion, $singleQuestion->test->id);
+            }
+        }
+
+        if ($request->has('childQuestionDelete')) {
+            foreach ($request->childQuestionDelete as $deleteId) {
+                $this->questionService->deleteQuestion($deleteId);
+            }
+        }
+
+        return redirect()->route('admin.tests.questions.index', $singleQuestion->test->id)
+            ->with('success', trans('backend.actions.success'));
     }
 
     /**

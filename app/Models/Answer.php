@@ -11,19 +11,18 @@ class Answer extends Model
 
     protected $table = 'answers';
 
-    const TYPE_FIELD = 'type';
     const QUESTION_ID_FIELD = 'question_id';
     const FILE_ID_FIELD = 'file_id';
     const CONTENT_FIELD = 'content';
     const CORRECT_ANSWER_FIELD = 'correct_answer';
 
     const CORRECT_ANSWER_VALUE = 1;
+    const FALSE_ANSWER_VALUE = 0;
 
     protected $fillable = [
         Answer::QUESTION_ID_FIELD,
         Answer::FILE_ID_FIELD,
         Answer::CONTENT_FIELD,
-        Answer::TYPE_FIELD,
         Answer::CORRECT_ANSWER_FIELD,
         'created_at',
         'updated_at',
@@ -32,7 +31,7 @@ class Answer extends Model
 
     public function file()
     {
-        return $this->hasOne(File::class)->where(File::TYPE_FIELD, File::TYPE_ANSWER);
+        return $this->hasOne(File::class, 'id', Answer::FILE_ID_FIELD);
     }
 
     public function question()

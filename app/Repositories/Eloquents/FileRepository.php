@@ -50,6 +50,10 @@ class FileRepository extends EloquentRepository implements FileRepositoryInterfa
     public function updateSingleImage($oldId, $photo, $folder, $type)
     {
         if ($oldId) {
+            $file = $this->find($oldId);
+            if ($file && file_exists(public_path() . $file->base_folder)) {
+                unlink(public_path() . $file->base_folder);
+            }
             $this->delete($oldId);
         }
 
@@ -84,6 +88,10 @@ class FileRepository extends EloquentRepository implements FileRepositoryInterfa
     public function updateSingleAudio($oldId, $photo, $folder, $type)
     {
         if ($oldId) {
+            $file = $this->find($oldId);
+            if ($file && file_exists(public_path() . $file->base_folder)) {
+                unlink(public_path() . $file->base_folder);
+            }
             $this->delete($oldId);
         }
 
@@ -95,5 +103,15 @@ class FileRepository extends EloquentRepository implements FileRepositoryInterfa
         if (!file_exists($folder)) {
             mkdir($folder, 755, true);
         }
+    }
+
+    public function deleteWithFile($id)
+    {
+        $file = $this->find($id);
+        if ($file && file_exists(public_path() . $file->base_folder)) {
+            unlink(public_path() . $file->base_folder);
+        }
+
+        return parent::delete($id);
     }
 }

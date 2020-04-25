@@ -18,7 +18,6 @@ class CreateAnswersTable extends Migration
             $table->integer('question_id')->nullable();
             $table->integer('file_id')->nullable();
             $table->string('content')->nullable();
-            $table->integer('type')->nullable();
             $table->integer('correct_answer')->nullable();
             $table->timestamps();
             $table->softDeletes();
