@@ -103,6 +103,7 @@ class QuestionController extends Controller
      */
     public function store(Request $request, $test_id)
     {
+        dd($request->all());
         $questionSingleData = $request->only([
             'code',
             'suggest',
