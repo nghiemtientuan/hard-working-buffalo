@@ -2,10 +2,26 @@ let childQuestionIdElement = 'childQuestion_';
 let addChildQuestionElement = 'add_';
 let LIMIT_CHILD_QUESTION = 10;
 
+//random child question add
 $('#list-childQuestion').on('click', '.randomCodeBtn', function (e) {
     e.preventDefault();
     let childQuestionId = $(this).attr('data-childQuestionId');
     $('#' + childQuestionId + ' .childQuestion_code').val(randomString());
+});
+
+//required answer parent question
+$('#singleQuestion input[name=correct_answer]').on('click', function () {
+    let answerIndex = $(this).attr('data-answerId');
+    $('#singleQuestion .answer_content').removeAttr('required');
+    $('#singleQuestion .answer_content_' + answerIndex).attr('required', true);
+});
+
+//required answer child question
+$('#list-childQuestion').on('click', '.answer_radio', function () {
+    let childQuestionId = $(this).attr('data-childQuestionId');
+    let answerIndex = $(this).attr('data-answerId');
+    $('#list-childQuestion #' + childQuestionId +' .answer_content').removeAttr('required');
+    $('#list-childQuestion #' + childQuestionId +' .answer_content_' + answerIndex).attr('required', true);
 });
 
 $('#parentQuestion select[name=type]').change(function () {
@@ -63,6 +79,7 @@ $('#add_childQuestion').on('click', function (e) {
         childQuestionAdd.attr('id', childQuestionIdElement + addChildQuestionElement + childQuestionAddNumber);
         childQuestionAdd.find('.childQuestion_delete').attr('data-childQuestionId', childQuestionIdElement + addChildQuestionElement + childQuestionAddNumber);
         childQuestionAdd.find('.childQuestion_delete').attr('data-oldQuestionDeleteId', null);
+        childQuestionAdd.find('.childQuestion_code').attr('disabled', false);
         childQuestionAdd.find('.fileOldQuestion').remove();
         childQuestionAdd.find('.childQuestion_code').attr('name', addChildQuestionName + '[' + childQuestionAddNumber + '][code]');
         childQuestionAdd.find('.randomCodeBtn').removeClass('hidden');
@@ -91,19 +108,13 @@ $('#add_childQuestion').on('click', function (e) {
 
         //answers
         for (let i = 0; i < 4; i++) {
+            childQuestionAdd.find('.answer_' + i).attr('data-childQuestionId', childQuestionIdElement + addChildQuestionElement + childQuestionAddNumber);
             childQuestionAdd.find('.answer_' + i).attr('id', addChildQuestionName + childQuestionAddNumber + '_answer_' + i);
             childQuestionAdd.find('.answer_' + i).attr('name', addChildQuestionName + '[' + childQuestionAddNumber + '][correct_answer]');
             childQuestionAdd.find('.label_' + i).attr('for', addChildQuestionName + childQuestionAddNumber + '_answer_' + i);
 
             childQuestionAdd.find('.answer_content_' + i).attr('name', addChildQuestionName + '[' + childQuestionAddNumber + '][answers][' + i + '][content]');
             childQuestionAdd.find('.answer_file_' + i).attr('name', addChildQuestionName + '[' + childQuestionAddNumber + '][answers][' + i + '][file]');
-
-            //remove file select
-            let answer_image_input = childQuestionAdd.find('.answer_file_' + i);
-            childQuestionAdd.find('.answerDiv_' + i).find('.col-md-11').find('.file-input').remove();
-            answer_image_input.attr('name', addChildQuestionName + '[' + childQuestionAddNumber + '][answers][' + i + '][file]');
-            childQuestionAdd.find('.answerDiv_' + i).find('.col-md-11').append(answer_image_input);
-            renderInputFile(childQuestionAdd.find('.answerDiv_' + i).find('.col-md-11').find('input[type=file]'));
         }
 
         $('#list-childQuestion').append(childQuestionAdd);

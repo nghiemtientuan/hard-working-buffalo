@@ -50,6 +50,7 @@ mix.styles([
 .copy('resources/js/Admin/profile.js', 'public/js/Admin/profile.js')
 .copy('resources/js/Admin/editQuestion.js', 'public/js/Admin/editQuestion.js')
 .copy('resources/js/Admin/addQuestion.js', 'public/js/Admin/addQuestion.js')
+.copy('resources/js/Admin/list_question_in_test.js', 'public/js/Admin/list_question_in_test.js')
 .copy('resources/js/common/helper.js', 'public/js/common/helper.js')
 .options({
     processCssUrls: false

@@ -23,7 +23,7 @@
                             <div class="form-group">
                                 <label class="control-label col-lg-1">{{ trans('backend.pages.addQuestion.code') }}</label>
                                 <div class="col-lg-9">
-                                    <input name="code" type="text" class="form-control">
+                                    <input name="code" type="text" class="form-control" required>
                                 </div>
                                 <div class="col-lg-2">
                                     <button id="randomCode" class="btn btn-success">{{ trans('backend.pages.addQuestion.random_code') }}</button>
@@ -104,15 +104,13 @@
                                         <div class="col-md-12 mt-20">
                                             <div class="col-md-1">
                                                 <div class="icheck-material-red pl-10">
-                                                    <input type="radio" id="question_answer_{{ $i }}" name="correct_answer" value="{{ $i }}"/>
+                                                    <input type="radio" id="question_answer_{{ $i }}" data-answerIndex="{{ $i }}" required name="correct_answer" value="{{ $i }}"/>
                                                     <label for="question_answer_{{ $i }}"></label>
                                                 </div>
                                             </div>
                                             <div class="col-md-11">
-                                                <input name="answers[{{ $i }}][content]" type="text" class="form-control"
+                                                <input name="answers[{{ $i }}][content]" type="text" class="form-control answer_content answer_content_{{ $i }}"
                                                        value="">
-                                                <input name="answers[{{ $i }}][file]" type="file" class="file-input" data-show-caption="false" data-show-upload="false"
-                                                       data-browse-class="btn btn-primary btn-sm" data-remove-class="btn btn-default btn-sm" accept="image/*" />
                                             </div>
                                         </div>
 
@@ -137,7 +135,7 @@
                                         <div class="form-group">
                                             <label class="control-label col-lg-1">{{ trans('backend.pages.editQuestion.code') }}</label>
                                             <div class="col-lg-9">
-                                                <input name="childQuestionAdd[1][code]" type="text" class="form-control childQuestion_code">
+                                                <input name="childQuestionAdd[1][code]" type="text" required disabled class="form-control childQuestion_code">
                                             </div>
                                             <div class="col-lg-2">
                                                 <button class="btn btn-success randomCode" data-childQuestionId="childQuestion_1">{{ trans('backend.pages.addQuestion.random_code') }}</button>
@@ -147,21 +145,26 @@
                                         <div class="form-group">
                                             <label class="control-label col-lg-1">{{ trans('backend.pages.editQuestion.suggest') }}</label>
                                             <div class="col-lg-11">
-                                                <input name="childQuestionAdd[1][suggest]" type="text" class="form-control childQuestion_suggest">
+                                                <input name="childQuestionAdd[1][suggest]" type="text" disabled class="form-control childQuestion_suggest">
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="control-label col-lg-1">{{ trans('backend.pages.editQuestion.content') }}</label>
                                             <div class="col-lg-11">
-                                                <input name="childQuestionAdd[1][content]" type="text" class="form-control childQuestion_content">
+                                                <input name="childQuestionAdd[1][content]" type="text" disabled class="form-control childQuestion_content">
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="control-label col-lg-1">{{ trans('backend.pages.editQuestion.question_type') }}</label>
                                             <div class="col-lg-11">
-                                                <select name="childQuestionAdd[1][type]" class="form-control childQuestion_type">
+                                                <select
+                                                    name="childQuestionAdd[1][type]"
+                                                    disabled
+                                                    class="form-control childQuestion_type"
+                                                    data-childQuestionId="childQuestion_1"
+                                                >
                                                     <option value="{{ \App\Models\Question::CONTENT_TYPE }}">
                                                         {{ trans('backend.pages.editQuestion.text') }}
                                                     </option>
@@ -189,7 +192,7 @@
                                         <div class="form-group div_audio hidden">
                                             <label class="control-label col-lg-1">{{ trans('backend.pages.editQuestion.audio') }}</label>
                                             <div class="col-lg-4">
-                                                <input name="childQuestionAdd[1][audio]" class="childQuestion_audio" type="file" />
+                                                <input name="childQuestionAdd[1][audio]" disabled class="childQuestion_audio" type="file" />
                                             </div>
                                         </div>
 
@@ -201,18 +204,21 @@
                                                             <div class="icheck-material-red pl-10">
                                                                 <input
                                                                     id="childQuestion_1_answer_{{ $i }}"
-                                                                    class="answer_{{ $i }}"
+                                                                    class="answer_radio answer_{{ $i }}"
                                                                     type="radio"
-                                                                    name="childQuestionAdd[1][correct_answer]" value="{{ $i }}"
+                                                                    name="childQuestionAdd[1][correct_answer]"
+                                                                    value="{{ $i }}"
+                                                                    data-childQuestionId="childQuestion_1"
+                                                                    data-answerIndex="{{ $i }}"
+                                                                    required
+                                                                    disabled
                                                                 />
                                                                 <label for="childQuestion_1_answer_{{ $i }}" class="label_{{ $i }}"></label>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-11">
-                                                            <input name="childQuestionAdd[1][answers][{{ $i }}][content]" type="text" class="form-control answer_content_{{ $i }}"
-                                                                   value="">
-                                                            <input name="childQuestionAdd[1][answers][{{ $i }}][file]" type="file" class="file-input answer_file_{{ $i }}" data-show-caption="false" data-show-upload="false"
-                                                                   data-browse-class="btn btn-primary btn-sm" data-remove-class="btn btn-default btn-sm" accept="image/*" />
+                                                            <input name="childQuestionAdd[1][answers][{{ $i }}][content]" type="text" class="form-control answer_content answer_content_{{ $i }}"
+                                                                   value="" disabled>
                                                         </div>
                                                     </div>
 

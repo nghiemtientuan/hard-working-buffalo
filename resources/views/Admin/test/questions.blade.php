@@ -41,7 +41,18 @@
                         @if (count($question->childQuestions))
                             <div class="form-group">
                                 <div class="alert alert-info mb-10 pb-5 pl-10">
-                                    <a href="{{ route('admin.questions.edit', $question->id) }}" type="button" class="close"><i class="icon-pencil7"></i></a>
+                                    <div class="close d-flex">
+                                        <a href="{{ route('admin.questions.edit', $question->id) }}" class="mr-5" type="button" data-popup="tooltip" title="{{ trans('backend.pages.edit') }}">
+                                            <em class="icon-pencil7"></em>
+                                        </a>
+                                        <form method="POST" action="{{ route('admin.questions.destroy', $question->id) }}">
+                                            @method('DELETE')
+                                            @csrf
+                                            <button class="btn btn-link p-0 b-none deleteQuestionBtn" data-popup="tooltip" title="{{ trans('backend.pages.remove') }}">
+                                                <em class="icon-trash"></em>
+                                            </button>
+                                        </form>
+                                    </div>
                                     <label class="text-semibold">{{ trans('backend.pages.questionInTest.bigQuestion') }} - {{ $question->code }}: {{ $question->content }}</label>
                                     @switch($question->type)
                                         @case(\App\Models\Question::IMAGE_TYPE)
@@ -61,7 +72,18 @@
                                         @php $keyQuestion++ @endphp
                                         <div class="form-group">
                                             <div class="alert alert-success mb-10 pb-5 pl-10">
-                                                <a href="{{ route('admin.questions.edit', $childQuestion->id) }}" type="button" class="close"><i class="icon-pencil7"></i></a>
+                                                <div class="close d-flex">
+                                                    <a href="{{ route('admin.questions.edit', $childQuestion->id) }}" class="mr-5" type="button" data-popup="tooltip" title="{{ trans('backend.pages.edit') }}">
+                                                        <em class="icon-pencil7"></em>
+                                                    </a>
+                                                    <form method="POST" action="{{ route('admin.questions.destroy', $childQuestion->id) }}">
+                                                        @method('DELETE')
+                                                        @csrf
+                                                        <button class="btn btn-link p-0 b-none deleteQuestionBtn" data-popup="tooltip" title="{{ trans('backend.pages.remove') }}">
+                                                            <em class="icon-trash"></em>
+                                                        </button>
+                                                    </form>
+                                                </div>
                                                 <label class="text-semibold">{{ trans('backend.pages.questionInTest.question') }} {{ $keyQuestion }} - {{ $childQuestion->code }}: {{ $childQuestion->content }}</label>
                                                 @switch($childQuestion->type)
                                                     @case(\App\Models\Question::IMAGE_TYPE)
@@ -83,7 +105,18 @@
                             @php $keyQuestion++ @endphp
                             <div class="form-group">
                                 <div class="alert alert-info mb-10 pb-5 pl-10">
-                                    <a href="{{ route('admin.questions.edit', $question->id) }}" type="button" class="close"><i class="icon-pencil7"></i></a>
+                                    <div class="close d-flex">
+                                        <a href="{{ route('admin.questions.edit', $question->id) }}" class="mr-5" type="button" data-popup="tooltip" title="{{ trans('backend.pages.edit') }}">
+                                            <em class="icon-pencil7"></em>
+                                        </a>
+                                        <form method="POST" action="{{ route('admin.questions.destroy', $question->id) }}">
+                                            @method('DELETE')
+                                            @csrf
+                                            <button class="btn btn-link p-0 b-none deleteQuestionBtn" data-popup="tooltip" title="{{ trans('backend.pages.remove') }}">
+                                                <em class="icon-trash"></em>
+                                            </button>
+                                        </form>
+                                    </div>
                                     <label class="text-semibold">{{ trans('backend.pages.questionInTest.question') }} {{ $keyQuestion }} - {{ $question->code }}: {{ $question->content }}</label>
                                     @switch($question->type)
                                         @case(\App\Models\Question::IMAGE_TYPE)
@@ -104,4 +137,8 @@
             </fieldset>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script src="{{ asset(mix('js/Admin/list_question_in_test.js')) }}"></script>
 @endsection

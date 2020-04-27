@@ -13,6 +13,22 @@ $('#list-childQuestion').on('click', '.randomCode', function (e) {
     $('#' + childQuestionId + ' .childQuestion_code').val(randomString());
 });
 
+//require answer parent content
+$('#answerParentQuestion input[name=correct_answer]').on('click', function () {
+    let answerIndex = $(this).attr('data-answerIndex');
+    $('#answerParentQuestion .answer_content').removeAttr('required');
+    $('#answerParentQuestion .answer_content_' + answerIndex).attr('required', true);
+});
+
+//require answer child content
+$('#list-childQuestion').on('click', '.answer_radio', function () {
+    let childQuestionId = $(this).attr('data-childQuestionId');
+    let answerIndex = $(this).attr('data-answerIndex');
+    $('#' + childQuestionId + ' .answer_content').removeAttr('required');
+    $('#' + childQuestionId + ' .answer_content_' + answerIndex).attr('required', true);
+});
+
+//kind question
 $('#question_check_kind').change(function () {
     let kind = $(this).is(":checked")
 
@@ -21,11 +37,23 @@ $('#question_check_kind').change(function () {
         $('#list-childQuestion').removeClass('hidden');
         $('#addChildQuestionBtnDiv').removeClass('hidden');
         $('#childQuestionNumberLabel').removeClass('hidden');
+        //disable answer parent
+        $('#answerParentQuestion input').attr('disabled', true);
+
+        //enable childquestion
+        $('#list-childQuestion input').attr('disabled', false);
+        $('#list-childQuestion select').attr('disabled', false);
     } else {
         $('#answerParentQuestion').removeClass('hidden');
         $('#list-childQuestion').addClass('hidden');
         $('#addChildQuestionBtnDiv').addClass('hidden');
         $('#childQuestionNumberLabel').addClass('hidden');
+        //enable answer parent
+        $('#answerParentQuestion input').attr('disabled', false);
+
+        //diable childquestion
+        $('#list-childQuestion input').attr('disabled', true);
+        $('#list-childQuestion select').attr('disabled', true);
     }
 });
 
@@ -106,20 +134,13 @@ $('#add_childQuestion').on('click', function (e) {
 
         //answers
         for (let i = 1; i <= 4; i++) {
+            childQuestionAdd.find('.answer_' + i).attr('data-childQuestionId', childQuestionIdElement + addChildQuestionElement + childQuestionAddNumber);
             childQuestionAdd.find('.answer_' + i).attr('id', addChildQuestionName + childQuestionAddNumber + '_answer_' + i);
             childQuestionAdd.find('.answer_' + i).attr('name', addChildQuestionName + '[' + childQuestionAddNumber + '][correct_answer]');
             childQuestionAdd.find('.answer_' + i).attr('value', i);
             childQuestionAdd.find('.label_' + i).attr('for', addChildQuestionName + childQuestionAddNumber + '_answer_' + i);
 
             childQuestionAdd.find('.answer_content_' + i).attr('name', addChildQuestionName + '[' + childQuestionAddNumber + '][answers][' + i + '][content]');
-            childQuestionAdd.find('.answer_file_' + i).attr('name', addChildQuestionName + '[' + childQuestionAddNumber + '][answers][' + i + '][file]');
-
-            //remove file select
-            let answer_image_input = childQuestionAdd.find('.answer_file_' + i);
-            childQuestionAdd.find('.answerDiv_' + i).find('.col-md-11').find('.file-input').remove();
-            answer_image_input.attr('name', addChildQuestionName + '[' + childQuestionAddNumber + '][answers][' + i + '][file]');
-            childQuestionAdd.find('.answerDiv_' + i).find('.col-md-11').append(answer_image_input);
-            renderInputFile(childQuestionAdd.find('.answerDiv_' + i).find('.col-md-11').find('input[type=file]'));
         }
 
         $('#list-childQuestion').append(childQuestionAdd);

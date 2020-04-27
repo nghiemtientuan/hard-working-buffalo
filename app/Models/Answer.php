@@ -12,7 +12,6 @@ class Answer extends Model
     protected $table = 'answers';
 
     const QUESTION_ID_FIELD = 'question_id';
-    const FILE_ID_FIELD = 'file_id';
     const CONTENT_FIELD = 'content';
     const CORRECT_ANSWER_FIELD = 'correct_answer';
 
@@ -21,18 +20,12 @@ class Answer extends Model
 
     protected $fillable = [
         Answer::QUESTION_ID_FIELD,
-        Answer::FILE_ID_FIELD,
         Answer::CONTENT_FIELD,
         Answer::CORRECT_ANSWER_FIELD,
         'created_at',
         'updated_at',
         'deleted_at',
     ];
-
-    public function file()
-    {
-        return $this->hasOne(File::class, 'id', Answer::FILE_ID_FIELD);
-    }
 
     public function question()
     {

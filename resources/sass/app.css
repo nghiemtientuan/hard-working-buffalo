@@ -24,3 +24,19 @@
 .mb-10 {
     margin-bottom: 10px;
 }
+
+.d-flex {
+    display: flex;
+}
+
+.mr-5 {
+    margin-right: 5px;
+}
+
+.mr-10 {
+    margin-right: 10px;
+}
+
+.b-none {
+    border: none;
+}
