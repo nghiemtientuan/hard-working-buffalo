@@ -16,26 +16,8 @@ $('#list-childQuestion').on('click', '.randomCode', function (e) {
 //require answer parent content
 $('#answerParentQuestion input[name=correct_answer]').on('click', function () {
     let answerIndex = $(this).attr('data-answerIndex');
-    if (!$('#answerParentQuestion .answer_file_' + answerIndex).val()) {
-        $('#answerParentQuestion .answer_content').removeAttr('required');
-        $('#answerParentQuestion .answer_content_' + answerIndex).attr('required', true);
-    }
-});
-
-$('#answerParentQuestion input[type=file]').on('change', function () {
-    let answerIndex = $(this).attr('data-answerIndex');
-    if ($(this).val()) {
-        $('#answerParentQuestion .answer_content_' + answerIndex).removeAttr('required');
-    } else if ($('#answerParentQuestion #question_answer_' + answerIndex).is(':checked')) {
-        $('#answerParentQuestion .answer_content_' + answerIndex).attr('required', true);
-    }
-});
-
-$('#answerParentQuestion input[type=file]').on('fileclear', function(event) {
-    let answerIndex = $(this).attr('data-answerIndex');
-    if ($('#answerParentQuestion #question_answer_' + answerIndex).is(':checked')) {
-        $('#answerParentQuestion .answer_content_' + answerIndex).attr('required', true);
-    }
+    $('#answerParentQuestion .answer_content').removeAttr('required');
+    $('#answerParentQuestion .answer_content_' + answerIndex).attr('required', true);
 });
 
 //require answer child content
@@ -44,24 +26,6 @@ $('#list-childQuestion').on('click', '.answer_radio', function () {
     let answerIndex = $(this).attr('data-answerIndex');
     $('#' + childQuestionId + ' .answer_content').removeAttr('required');
     $('#' + childQuestionId + ' .answer_content_' + answerIndex).attr('required', true);
-});
-
-$('#list-childQuestion').on('change', '.answer_file', function () {
-    let childQuestionId = $(this).attr('data-childQuestionId');
-    let answerIndex = $(this).attr('data-answerIndex');
-    if ($(this).val()) {
-        $('#' + childQuestionId + ' .answer_content_' + answerIndex).removeAttr('required');
-    } else if ($('#list-childQuestion #' + childQuestionId + ' #' + childQuestionId + '_answer_' + answerIndex).is(':checked')) {
-        $('#' + childQuestionId + ' .answer_content_' + answerIndex).attr('required', true);
-    }
-});
-
-$('#list-childQuestion').on('fileclear', '.answer_file', function () {
-    let childQuestionId = $(this).attr('data-childQuestionId');
-    let answerIndex = $(this).attr('data-answerIndex');
-    if ($('#list-childQuestion #' + childQuestionId + ' #' + childQuestionId + '_answer_' + answerIndex).is(':checked')) {
-        $('#' + childQuestionId + ' .answer_content_' + answerIndex).attr('required', true);
-    }
 });
 
 //kind question
@@ -170,20 +134,13 @@ $('#add_childQuestion').on('click', function (e) {
 
         //answers
         for (let i = 1; i <= 4; i++) {
+            childQuestionAdd.find('.answer_' + i).attr('data-childQuestionId', childQuestionIdElement + addChildQuestionElement + childQuestionAddNumber);
             childQuestionAdd.find('.answer_' + i).attr('id', addChildQuestionName + childQuestionAddNumber + '_answer_' + i);
             childQuestionAdd.find('.answer_' + i).attr('name', addChildQuestionName + '[' + childQuestionAddNumber + '][correct_answer]');
             childQuestionAdd.find('.answer_' + i).attr('value', i);
             childQuestionAdd.find('.label_' + i).attr('for', addChildQuestionName + childQuestionAddNumber + '_answer_' + i);
 
             childQuestionAdd.find('.answer_content_' + i).attr('name', addChildQuestionName + '[' + childQuestionAddNumber + '][answers][' + i + '][content]');
-            childQuestionAdd.find('.answer_file_' + i).attr('name', addChildQuestionName + '[' + childQuestionAddNumber + '][answers][' + i + '][file]');
-
-            //remove file select
-            let answer_image_input = childQuestionAdd.find('.answer_file_' + i);
-            childQuestionAdd.find('.answerDiv_' + i).find('.col-md-11').find('.file-input').remove();
-            answer_image_input.attr('name', addChildQuestionName + '[' + childQuestionAddNumber + '][answers][' + i + '][file]');
-            childQuestionAdd.find('.answerDiv_' + i).find('.col-md-11').append(answer_image_input);
-            renderInputFile(childQuestionAdd.find('.answerDiv_' + i).find('.col-md-11').find('input[type=file]'));
         }
 
         $('#list-childQuestion').append(childQuestionAdd);

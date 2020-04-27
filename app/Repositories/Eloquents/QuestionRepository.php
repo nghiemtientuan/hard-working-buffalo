@@ -59,10 +59,9 @@ class QuestionRepository extends EloquentRepository implements QuestionRepositor
             ->load([
                 'childQuestions',
                 'childQuestions.answers',
-                'childQuestions.answers.file',
+                'childQuestions.answers',
                 'comments',
                 'answers',
-                'answers.file',
                 'test',
             ]);
     }

@@ -111,14 +111,6 @@
                                             <div class="col-md-11">
                                                 <input name="answers[{{ $i }}][content]" type="text" class="form-control answer_content answer_content_{{ $i }}"
                                                        value="">
-                                                <input
-                                                    name="answers[{{ $i }}][file]"
-                                                    type="file" data-answerIndex="{{ $i }}"
-                                                    class="file-input answer_file_{{ $i }}"
-                                                    data-show-caption="false" data-show-upload="false"
-                                                    data-browse-class="btn btn-primary btn-sm"
-                                                    data-remove-class="btn btn-default btn-sm"
-                                                    accept="image/*" />
                                             </div>
                                         </div>
 
@@ -227,17 +219,6 @@
                                                         <div class="col-md-11">
                                                             <input name="childQuestionAdd[1][answers][{{ $i }}][content]" type="text" class="form-control answer_content answer_content_{{ $i }}"
                                                                    value="" disabled>
-                                                            <input name="childQuestionAdd[1][answers][{{ $i }}][file]"
-                                                                   type="file"
-                                                                   class="file-input answer_file answer_file_{{ $i }}"
-                                                                   data-show-caption="false"
-                                                                   data-show-upload="false"
-                                                                   data-browse-class="btn btn-primary btn-sm"
-                                                                   data-remove-class="btn btn-default btn-sm"
-                                                                   accept="image/*"
-                                                                   data-childQuestionId="childQuestion_1"
-                                                                   data-answerIndex="{{ $i }}"
-                                                            />
                                                         </div>
                                                     </div>
 

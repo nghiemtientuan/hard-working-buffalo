@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\File;
 use App\Models\Question;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -103,7 +102,6 @@ class QuestionController extends Controller
      */
     public function store(Request $request, $test_id)
     {
-        dd($request->all());
         $questionSingleData = $request->only([
             'code',
             'suggest',
