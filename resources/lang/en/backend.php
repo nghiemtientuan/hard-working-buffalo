@@ -37,11 +37,13 @@ return [
     'pages' => [
         'no_data' => 'No data',
         'edit' => 'Edit',
+        'add' => 'Add',
         'remove' => 'Remove',
         'reset' => 'Reset',
         'submit' => 'Submit',
         'close' => 'Close',
         'show' => 'Show',
+        'enterHere' => 'Enter here',
         'actions' => 'Actions',
         'categories' => [
             'list_categories' => 'List categories',
@@ -199,6 +201,22 @@ return [
             'audio_many_time' => 'Audio Many Time',
             'text' => 'Text',
             'big_question' => 'Big question',
+        ],
+        'show_format' => [
+            'number' => 'Number of questions',
+            'questions' => 'Questions',
+            'edit_format' => 'Edit format',
+            'number_child_question' => 'Number of child question',
+        ],
+        'edit_format' => [
+            'edit' => 'Edit',
+            'number' => 'Number of questions',
+            'questions' => 'Questions',
+            'edit_format' => 'Edit format',
+            'number_child_question' => 'Number of child question',
+            'namePart' => 'Name Part',
+            'description' => 'Description',
+            'add_part' => 'Add Part',
         ],
     ],
     'actions' => [

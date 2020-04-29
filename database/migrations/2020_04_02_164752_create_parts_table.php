@@ -17,6 +17,7 @@ class CreatePartsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name')->nullable();
             $table->string('description')->nullable();
+            $table->integer('format_id')->nullable();
             $table->timestamps();
         });
     }

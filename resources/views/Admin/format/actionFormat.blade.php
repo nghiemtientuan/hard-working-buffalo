@@ -14,6 +14,16 @@
         </a>
     </li>
     <li>
+        <a
+            class="pr-10"
+            href="{{ route('admin.formats.show', $format->id) }}"
+            data-popup="tooltip"
+            title="{{ trans('backend.pages.show') }}"
+        >
+            <em class="icon-copy"></em>
+        </a>
+    </li>
+    <li>
         <form method="POST" action="{{ route('admin.formats.destroy', $format->id) }}">
             @method('DELETE')
             @csrf

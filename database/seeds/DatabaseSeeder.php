@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
         $this->call(QuestionCommentSeed::class);
         $this->call(FormatSeeder::class);
         $this->call(PartSeeder::class);
-        $this->call(FormatPartSeeder::class);
         $this->call(AnswerSeeder::class);
+        $this->call(QuestionInPartSeed::class);
     }
 }

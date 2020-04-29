@@ -44,8 +44,10 @@ Route::group([
         'as' => 'formats.',
     ], function () {
         Route::get('getData', 'FormatController@getData')->name('getData');
+
+        Route::put('{format_id}/updateFormat', 'FormatController@updateFormat')->name('updateFormat');
     });
-    Route::resource('formats', 'FormatController')->except('create', 'show', 'edit');
+    Route::resource('formats', 'FormatController')->except('create');
 
     Route::get('profile', 'ProfileController@index')->name('profile');
     Route::put('profile', 'ProfileController@update')->name('profile.update');

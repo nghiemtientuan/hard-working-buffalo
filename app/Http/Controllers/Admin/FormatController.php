@@ -75,7 +75,9 @@ class FormatController extends Controller
      */
     public function show($id)
     {
-        //
+        $format = $this->formatRepository->getAllInfo($id);
+
+        return view('Admin.format.format', compact('format'));
     }
 
     /**
@@ -86,7 +88,9 @@ class FormatController extends Controller
      */
     public function edit($id)
     {
-        //
+        $format = $this->formatRepository->getAllInfo($id);
+
+        return view('Admin.format.editFormat', compact('format'));
     }
 
     /**
@@ -119,6 +123,11 @@ class FormatController extends Controller
         }
 
         return redirect()->route('admin.formats.index');
+    }
+
+    public function updateFormat(Request $request, $format_id)
+    {
+        dd($request->all(), $format_id);
     }
 
     /**

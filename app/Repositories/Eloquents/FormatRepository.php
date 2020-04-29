@@ -16,4 +16,11 @@ class FormatRepository extends EloquentRepository implements FormatRepositoryInt
         return Format::class;
     }
 
+    public function getAllInfo($id)
+    {
+        return $this->find($id)->load([
+            'parts',
+            'parts.questionFormats',
+        ]);
+    }
 }
