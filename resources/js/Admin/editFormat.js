@@ -68,6 +68,7 @@ $('#listParts').on('click', '.addQuestion', function (e) {
         //remove data
         $(numberQuestionInput).val('');
         $(numberChildQuestionInput).val('');
+        checkTotalQuestion();
     }
 });
 
@@ -85,7 +86,7 @@ $('#listParts').on('click', '.editQuestion', function (e) {
     $('#listParts #' + partElementId + ' #' + questionElementId + ' .resetQuestion').removeClass('hidden');
 });
 
-//edit question
+//reset question
 $('#listParts').on('click', '.resetQuestion', function (e) {
     e.preventDefault();
     let partElementId = $(this).attr('data-partElementId');
@@ -95,6 +96,7 @@ $('#listParts').on('click', '.resetQuestion', function (e) {
 
     $('#listParts #' + partElementId + ' #' + questionElementId + ' .numberQuestionEditInput').val(number);
     $('#listParts #' + partElementId + ' #' + questionElementId + ' .numberChildQuestionEditInput').val(numberChildQuestion);
+    checkTotalQuestion();
 });
 
 //remove part
@@ -118,6 +120,7 @@ $('#listParts').on('click', '.deletePart', function (e) {
 
             let partElementId = $(this).attr('data-partElementId');
             $('#listParts #' + partElementId).remove();
+            checkTotalQuestion();
         }
     });
 });
@@ -145,6 +148,35 @@ $('#listParts').on('click', '.deleteQuestion', function (e) {
             }
 
             $('#listParts #' + partElementId + ' #' + questionElementId).remove();
+            checkTotalQuestion();
         }
     });
 });
+
+checkTotalQuestion();
+$('#listParts').on(
+    'input click change',
+    '.numberQuestionEditInput, .numberChildQuestionEditInput',
+    checkTotalQuestion
+);
+
+function checkTotalQuestion() {
+    let totalQuestionPart = parseInt($('#totalQuestion').val());
+    let currentQuestion = 0;
+    $('#listParts .question').map(function() {
+        let number = parseInt($(this).find('.numberQuestionEditInput').val()) || 0;
+        let numberChildQuestion = parseInt($(this).find('.numberChildQuestionEditInput').val()) || 0;
+
+        if (numberChildQuestion == 0) {
+            currentQuestion += number;
+        } else {
+            currentQuestion += number * numberChildQuestion;
+        }
+    });
+
+    if (currentQuestion == totalQuestionPart) {
+        $('#submitBtn').attr('disabled', false);
+    } else {
+        $('#submitBtn').attr('disabled', true);
+    }
+}

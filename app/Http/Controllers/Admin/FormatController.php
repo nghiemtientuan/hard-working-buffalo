@@ -5,20 +5,26 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Contracts\FormatRepositoryInterface as FormatRepository;
+use App\Services\FormatService;
 use Illuminate\Support\Facades\DB;
 use Yajra\Datatables\Datatables;
 
 class FormatController extends Controller
 {
     protected $formatRepository;
+    protected $formatService;
 
     /**
      * FormatController constructor.
-     * @param $formatRepository
+     * @param FormatRepository $formatRepository
+     * @param FormatService $formatService
      */
-    public function __construct(FormatRepository $formatRepository)
-    {
+    public function __construct(
+        FormatRepository $formatRepository,
+        FormatService $formatService
+    ) {
         $this->formatRepository = $formatRepository;
+        $this->formatService = $formatService;
     }
 
     /**
@@ -125,9 +131,28 @@ class FormatController extends Controller
         return redirect()->route('admin.formats.index');
     }
 
-    public function updateFormat(Request $request, $format_id)
+    public function updateFormat(Request $request, $formatId)
     {
-        dd($request->all(), $format_id);
+        if ($request->has('part')) {
+            foreach ($request->part as $editPart) {
+                $this->formatService->editSinglePart($editPart['id'], $editPart);
+            }
+        }
+
+        if ($request->has('addPart')) {
+            foreach ($request->addPart as $addPart) {
+                $this->formatService->addSinglePart($formatId, $addPart);
+            }
+        }
+
+        if ($request->has('deletePart')) {
+            foreach ($request->deletePart as $deletePart) {
+                $this->formatService->deleteSinglePart($deletePart);
+            }
+        }
+
+        return redirect()->route('admin.formats.show', $formatId)
+            ->with('sucess', trans('backend.actions.success'));
     }
 
     /**

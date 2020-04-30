@@ -38,6 +38,7 @@ class AppServiceProvider extends ServiceProvider
             'FormatRepositoryInterface' => 'FormatRepository',
             'PartRepositoryInterface' => 'PartRepository',
             'AnswerRepositoryInterface' => 'AnswerRepository',
+            'QuestionInPartRepositoryInterface' => 'QuestionInPartRepository',
         ];
         foreach ($repositories as $key => $val) {
             $this->app->singleton("App\\Repositories\\Contracts\\$key", "App\\Repositories\\Eloquents\\$val");
