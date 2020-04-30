@@ -73,6 +73,15 @@
                                                 </a>
                                             </li>
                                             <li>
+                                                <a
+                                                    class="pr-10 resetQuestion hidden"
+                                                    href="#"
+                                                    title="{{ trans('backend.pages.reset') }}"
+                                                >
+                                                    <em class="icon-undo"></em>
+                                                </a>
+                                            </li>
+                                            <li>
                                                 <button class="btn btn-link p-0 deleteQuestion" data-popup="tooltip" title="{{ trans('backend.pages.remove') }}">
                                                     <em class="icon-trash"></em>
                                                 </button>
@@ -107,7 +116,7 @@
                             <div class="alert alert-success mb-0 mt-20">
                                 <button type="button" class="close deletePart" data-oldPartId="{{ $part->id }}" data-partElementId="part_{{ $part->id }}"><span>×</span></button>
 
-                                <span class="namePart">{{ $part->name }}</span>
+                                <span class="namePart">{{ $part->name }} ({{ $part->description }})</span>
                             </div>
                             <table class="table table-bordered">
                                 <thead>
@@ -150,6 +159,17 @@
                                                             data-questionElementId="question_{{ $question->id }}"
                                                         >
                                                             <em class="icon-pencil7"></em>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a
+                                                            class="pr-10 resetQuestion hidden"
+                                                            href="#"
+                                                            title="{{ trans('backend.pages.reset') }}"
+                                                            data-partElementId="part_{{ $part->id }}"
+                                                            data-questionElementId="question_{{ $question->id }}"
+                                                        >
+                                                            <em class="icon-undo"></em>
                                                         </a>
                                                     </li>
                                                     <li>

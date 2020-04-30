@@ -14,7 +14,7 @@ $('#addPartDiv #addPartBtn').on('click', function () {
         partElement.removeClass('hidden');
         partElement.attr('id', partFirstElementAddId + partAddIndex);
         partElement.find('.deletePart').attr('data-partElementId', partFirstElementAddId + partAddIndex);
-        partElement.find('.namePart').html(namePart);
+        partElement.find('.namePart').html(namePart + ' (' + descriptionPart + ')');
         partElement.find('.addQuestion').attr('data-partElementId', partFirstElementAddId + partAddIndex);
         partElement.find('.addQuestion').attr('data-partId', partAddIndex);
         partElement.find('.addQuestion').attr('data-checkPartAdd', true);
@@ -81,6 +81,20 @@ $('#listParts').on('click', '.editQuestion', function (e) {
     $('#listParts #' + partElementId + ' #' + questionElementId + ' .numberQuestionEditInput').removeClass('hidden');
     $('#listParts #' + partElementId + ' #' + questionElementId + ' .numberChildQuestionSpan').addClass('hidden');
     $('#listParts #' + partElementId + ' #' + questionElementId + ' .numberChildQuestionEditInput').removeClass('hidden');
+    $(this).addClass('hidden');
+    $('#listParts #' + partElementId + ' #' + questionElementId + ' .resetQuestion').removeClass('hidden');
+});
+
+//edit question
+$('#listParts').on('click', '.resetQuestion', function (e) {
+    e.preventDefault();
+    let partElementId = $(this).attr('data-partElementId');
+    let questionElementId = $(this).attr('data-questionElementId');
+    let number = $('#listParts #' + partElementId + ' #' + questionElementId + ' .numberQuestionSpan').html();
+    let numberChildQuestion = $('#listParts #' + partElementId + ' #' + questionElementId + ' .numberChildQuestionSpan').html();
+
+    $('#listParts #' + partElementId + ' #' + questionElementId + ' .numberQuestionEditInput').val(number);
+    $('#listParts #' + partElementId + ' #' + questionElementId + ' .numberChildQuestionEditInput').val(numberChildQuestion);
 });
 
 //remove part
