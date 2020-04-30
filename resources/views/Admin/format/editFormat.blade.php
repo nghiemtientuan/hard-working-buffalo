@@ -24,12 +24,13 @@
                     <span class="display-block">
                         <span class="display-block">{{ $format->description }}</span>
                         <label class="label label-success">{{ $format->total_question . ' ' . trans('backend.pages.edit_format.questions') }}</label>
+                        <input id="totalQuestion" type="hidden" data-totalQuestion="{{ $format->total_question }}">
                     </span>
                 </div>
 
                 <div id="listParts">
                     <span id="deletePartSpan"></span>
-                    <div id="partExample" class="mt-10 hidden">
+                    <div id="partExample" class="mt-10 hidden part">
                         <div class="alert alert-success mb-0 mt-20">
                             <button type="button" class="close deletePart" data-partElementId=""><span>×</span></button>
 
@@ -111,7 +112,7 @@
                     </div>
 
                     @foreach ($format->parts as $key => $part)
-                        <div id="part_{{ $part->id }}" class="@if($key != 0) mt-10 @endif">
+                        <div id="part_{{ $part->id }}" class="@if($key != 0) mt-10 @endif part">
                             <span class="deleteQuestionSpan"></span>
                             <div class="alert alert-success mb-0 mt-20">
                                 <button type="button" class="close deletePart" data-oldPartId="{{ $part->id }}" data-partElementId="part_{{ $part->id }}"><span>×</span></button>
@@ -237,7 +238,7 @@
                 </div>
 
                 <div class="text-right">
-                    <button type="submit" class="btn btn-primary">{{ trans('backend.pages.submit') }} <i class="icon-arrow-right14 position-right"></i></button>
+                    <button id="submitBtn" type="submit" class="btn btn-primary">{{ trans('backend.pages.submit') }} <i class="icon-arrow-right14 position-right"></i></button>
                 </div>
             </form>
         </div>

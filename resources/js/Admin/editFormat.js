@@ -148,3 +148,20 @@ $('#listParts').on('click', '.deleteQuestion', function (e) {
         }
     });
 });
+
+$('#listParts').on('input', '.numberQuestionEditInput, .numberChildQuestionEditInput', function () {
+    let totalQuestionPart = $('#totalQuestion').val();
+    let currentQuestion = 0;
+    $('#listParts .part .question').map(function() {
+        let number = $(this).find('.numberQuestionEditInput').val();
+        let numberChildQuestion = $(this).find('.numberChildQuestionEditInput').val();
+
+        currentQuestion += number * numberChildQuestion;
+    });
+
+    if (currentQuestion == totalQuestionPart) {
+        $('#submitBtn').attr('disabled', false);
+    } else {
+        $('#submitBtn').attr('disabled', true);
+    }
+});
