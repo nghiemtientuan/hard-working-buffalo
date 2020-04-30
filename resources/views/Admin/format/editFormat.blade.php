@@ -28,10 +28,11 @@
                 </div>
 
                 <div id="listParts">
+                    <span id="deletePartSpan"></span>
                     <div id="partExample" class="mt-10 hidden">
                         <div class="alert alert-success mb-0 mt-20">
-                            <button type="button" class="close"><span>×</span></button>
-                            
+                            <button type="button" class="close deletePart" data-partElementId=""><span>×</span></button>
+
                             <span class="namePart"></span>
                         </div>
                         <table class="table table-bordered">
@@ -72,7 +73,7 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <button class="btn btn-link p-0" data-popup="tooltip" title="{{ trans('backend.pages.remove') }}">
+                                                <button class="btn btn-link p-0 deleteQuestion" data-popup="tooltip" title="{{ trans('backend.pages.remove') }}">
                                                     <em class="icon-trash"></em>
                                                 </button>
                                             </li>
@@ -102,8 +103,9 @@
 
                     @foreach ($format->parts as $key => $part)
                         <div id="part_{{ $part->id }}" class="@if($key != 0) mt-10 @endif">
+                            <span class="deleteQuestionSpan"></span>
                             <div class="alert alert-success mb-0 mt-20">
-                                <button type="button" class="close"><span>×</span></button>
+                                <button type="button" class="close deletePart" data-oldPartId="{{ $part->id }}" data-partElementId="part_{{ $part->id }}"><span>×</span></button>
 
                                 <span class="namePart">{{ $part->name }}</span>
                             </div>
@@ -149,7 +151,14 @@
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <button class="btn btn-link p-0" data-popup="tooltip" title="{{ trans('backend.pages.remove') }}">
+                                                        <button
+                                                            class="btn btn-link p-0 deleteQuestion"
+                                                            data-oldPartId="{{ $part->id }}"
+                                                            data-oldQuestionId="{{ $question->id }}"
+                                                            data-questionElementId="question_{{ $question->id }}"
+                                                            data-partElementId="part_{{ $part->id }}"
+                                                            data-popup="tooltip"
+                                                            title="{{ trans('backend.pages.remove') }}">
                                                             <em class="icon-trash"></em>
                                                         </button>
                                                     </li>
