@@ -24,7 +24,7 @@
                     <span class="display-block">
                         <span class="display-block">{{ $format->description }}</span>
                         <label class="label label-success">{{ $format->total_question . ' ' . trans('backend.pages.edit_format.questions') }}</label>
-                        <input id="totalQuestion" type="hidden" data-totalQuestion="{{ $format->total_question }}">
+                        <input id="totalQuestion" type="hidden" value="{{ $format->total_question }}">
                     </span>
                 </div>
 
@@ -114,6 +114,7 @@
                     @foreach ($format->parts as $key => $part)
                         <div id="part_{{ $part->id }}" class="@if($key != 0) mt-10 @endif part">
                             <span class="deleteQuestionSpan"></span>
+                            <input type="hidden" name="part[{{ $part->id }}][id]" value="{{ $part->id }}">
                             <div class="alert alert-success mb-0 mt-20">
                                 <button type="button" class="close deletePart" data-oldPartId="{{ $part->id }}" data-partElementId="part_{{ $part->id }}"><span>×</span></button>
 
