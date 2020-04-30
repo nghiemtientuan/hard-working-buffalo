@@ -34,6 +34,7 @@ $('#addPartDiv #addPartBtn').on('click', function () {
 $('#listParts').on('click', '.addQuestion', function (e) {
     e.preventDefault();
     let partIdElement = $(this).attr('data-partElementId');
+    let questionElementId = questionFirstElementAddId + questionAddIndex;
     let partId = $(this).attr('data-partId');
     let checkPartAdd = $(this).attr('data-checkPartAdd');
     let questionElement = $('#listParts #partExample tbody .question').clone();
@@ -44,13 +45,15 @@ $('#listParts').on('click', '.addQuestion', function (e) {
 
     if (number) {
         questionElement.removeClass('hidden');
-        questionElement.attr('id', questionFirstElementAddId + questionAddIndex);
+        questionElement.attr('id', questionElementId);
         questionElement.find('.numberQuestionSpan').html(number);
         questionElement.find('.numberQuestionEditInput').val(number);
         questionElement.find('.numberChildQuestionSpan').html(numberChildQuestion);
         questionElement.find('.numberChildQuestionEditInput').val(numberChildQuestion);
+        questionElement.find('.editQuestion').attr('data-partElementId', partIdElement);
+        questionElement.find('.editQuestion').attr('data-questionElementId', questionElementId);
         questionElement.find('.deleteQuestion').attr('data-partElementId', partIdElement);
-        questionElement.find('.deleteQuestion').attr('data-questionElementId', questionFirstElementAddId + questionAddIndex);
+        questionElement.find('.deleteQuestion').attr('data-questionElementId', questionElementId);
         if (checkPartAdd) {
             questionElement.find('.numberQuestionEditInput').attr('name', addPartName + '[' + partId + '][addQuestion][' + questionAddIndex + '][number]');
             questionElement.find('.numberChildQuestionEditInput').attr('name', addPartName + '[' + partId + '][addQuestion][' + questionAddIndex + '][childQuestions]');
@@ -66,6 +69,18 @@ $('#listParts').on('click', '.addQuestion', function (e) {
         $(numberQuestionInput).val('');
         $(numberChildQuestionInput).val('');
     }
+});
+
+//edit question
+$('#listParts').on('click', '.editQuestion', function (e) {
+    e.preventDefault();
+    let partElementId = $(this).attr('data-partElementId');
+    let questionElementId = $(this).attr('data-questionElementId');
+
+    $('#listParts #' + partElementId + ' #' + questionElementId + ' .numberQuestionSpan').addClass('hidden');
+    $('#listParts #' + partElementId + ' #' + questionElementId + ' .numberQuestionEditInput').removeClass('hidden');
+    $('#listParts #' + partElementId + ' #' + questionElementId + ' .numberChildQuestionSpan').addClass('hidden');
+    $('#listParts #' + partElementId + ' #' + questionElementId + ' .numberChildQuestionEditInput').removeClass('hidden');
 });
 
 //remove part

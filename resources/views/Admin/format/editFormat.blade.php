@@ -65,7 +65,7 @@
                                         <ul class="icons-list">
                                             <li>
                                                 <a
-                                                    class="pr-10"
+                                                    class="pr-10 editQuestion"
                                                     href="#"
                                                     title="{{ trans('backend.pages.show') }}"
                                                 >
@@ -121,7 +121,7 @@
                                     @foreach ($part->questionFormats as $question)
                                         <tr id="question_{{ $question->id }}" class="question">
                                             <td>
-                                                <span class="numberQuestion">{{ $question->number }}</span>
+                                                <span class="numberQuestionSpan">{{ $question->number }}</span>
                                                 <input type="hidden" class="questionIdInput" name="part[{{ $part->id }}][editQuestion][{{ $question->id }}][id]" value="{{ $question->id }}">
                                                 <input
                                                     name="part[{{ $part->id }}][editQuestion][{{ $question->id }}][number]"
@@ -131,7 +131,7 @@
                                                 >
                                             </td>
                                             <td>
-                                                <span class="numberChildQuestion">{{ $question->child_questions }}</span>
+                                                <span class="numberChildQuestionSpan">{{ $question->child_questions }}</span>
                                                 <input
                                                     name="part[{{ $part->id }}][editQuestion][{{ $question->id }}][childQuestions]"
                                                     value="{{ $question->child_questions }}" type="number"
@@ -143,9 +143,11 @@
                                                 <ul class="icons-list">
                                                     <li>
                                                         <a
-                                                            class="pr-10"
+                                                            class="pr-10 editQuestion"
                                                             href="#"
                                                             title="{{ trans('backend.pages.show') }}"
+                                                            data-partElementId="part_{{ $part->id }}"
+                                                            data-questionElementId="question_{{ $question->id }}"
                                                         >
                                                             <em class="icon-pencil7"></em>
                                                         </a>
