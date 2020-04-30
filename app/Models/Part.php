@@ -13,12 +13,14 @@ class Part extends Model
 
     const NAME_FIELD = 'name';
     const DESCRIPTION_FIELD = 'description';
+    const FORMAT_ID_FIELD = 'format_id';
 
     const FREE_NAME_VALUE = 'free-part';
 
     protected $fillable = [
         Part::NAME_FIELD,
         Part::DESCRIPTION_FIELD,
+        Part::FORMAT_ID_FIELD,
         'created_at',
         'updated_at',
     ];

@@ -13,10 +13,12 @@ class Format extends Model
 
     const NAME_FIELD = 'name';
     const DESCRIPTION_FIELD = 'description';
+    const TOTAL_QUESTION_FIELD = 'total_question';
 
     protected $fillable = [
         Format::NAME_FIELD,
         Format::DESCRIPTION_FIELD,
+        Format::TOTAL_QUESTION_FIELD,
         'created_at',
         'updated_at',
     ];
@@ -28,6 +30,6 @@ class Format extends Model
 
     public function parts()
     {
-        return $this->belongsToMany(Part::class);
+        return $this->hasMany(Part::class, Part::FORMAT_ID_FIELD, 'id');
     }
 }

@@ -17,6 +17,7 @@ class CreateFormatsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name')->nullable();
             $table->string('description')->nullable();
+            $table->integer('total_question')->nullable();
             $table->timestamps();
         });
     }

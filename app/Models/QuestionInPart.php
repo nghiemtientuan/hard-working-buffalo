@@ -13,13 +13,11 @@ class QuestionInPart extends Model
 
     const PART_ID_FIELD = 'part_id';
     const NUMBER_FIELD = 'number';
-    const TYPE_FIELD = 'type';
     const CHILD_QUESTIONS_FIELD = 'child_questions';
 
     protected $fillable = [
         QuestionInPart::PART_ID_FIELD,
         QuestionInPart::NUMBER_FIELD,
-        QuestionInPart::TYPE_FIELD,
         QuestionInPart::CHILD_QUESTIONS_FIELD,
         'created_at',
         'updated_at',

@@ -18,14 +18,17 @@ class FormatSeeder extends Seeder
             [
                 Format::NAME_FIELD => 'old toeic',
                 Format::DESCRIPTION_FIELD => 'old toeic',
+                Format::TOTAL_QUESTION_FIELD => 100,
             ],
             [
                 Format::NAME_FIELD => 'new toeic',
                 Format::DESCRIPTION_FIELD => 'new toeic',
+                Format::TOTAL_QUESTION_FIELD => 100,
             ],
             [
                 Format::NAME_FIELD => 'custom',
                 Format::DESCRIPTION_FIELD => 'custom',
+                Format::TOTAL_QUESTION_FIELD => 100,
             ],
         ];
         foreach ($data as $item) {
