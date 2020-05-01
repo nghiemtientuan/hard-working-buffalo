@@ -11,9 +11,19 @@
     <div class="panel panel-flat">
         <div class="panel-body">
             <fieldset class="content-group">
-                <legend class="text-bold">{{ trans('backend.pages.user.list_users') }}</legend>
-                @include('Admin.layouts.errorOrSuccess')
+                <legend class="text-bold mb-0">{{ trans('backend.pages.user.list_users') }}</legend>
             </fieldset>
+
+            <div class="form-group text-right mb-10">
+                <button
+                    type="button"
+                    class="btn btn-primary addUserBtn"
+                    data-toggle="modal"
+                    data-target="#addUser"
+                >{{ trans('backend.pages.add') }}</button>
+            </div>
+
+            @include('Admin.layouts.errorOrSuccess')
 
             <table class="table table-bordered" id="list_users_table">
                 <thead>
@@ -117,6 +127,68 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label col-lg-3">{{ trans('backend.pages.user.phone') }}<span class="text-danger">*</span></label>
+                            <div class="col-lg-9">
+                                <input name="phone" type="text" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-link" data-dismiss="modal">{{ trans('backend.pages.close') }}</button>
+                        <button type="submit" class="btn btn-primary">{{ trans('backend.pages.submit') }}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="addUser" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form class="form-horizontal" method="POST" action="{{ route('admin.users.store') }}">
+                    @csrf
+                    <div class="modal-header bg-info">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h5 class="modal-title">{{ trans('backend.pages.user.edit_user') }}</h5>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="control-label col-lg-3">{{ trans('backend.pages.user.email') }}<span class="text-danger">*</span></label>
+                            <div class="col-lg-9">
+                                <input name="email" type="email" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-lg-3">{{ trans('backend.pages.user.role') }}<span class="text-danger">*</span></label>
+                            <div class="col-lg-9">
+                                <select name="role_id" class="form-control">
+                                    @foreach ($roles as $role)
+                                        <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-lg-3">{{ trans('backend.pages.user.firstname') }}</label>
+                            <div class="col-lg-9">
+                                <input name="firstname" type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-lg-3">{{ trans('backend.pages.user.lastname') }}</label>
+                            <div class="col-lg-9">
+                                <input name="lastname" type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-lg-3">{{ trans('backend.pages.user.address') }}</label>
+                            <div class="col-lg-9">
+                                <input name="address" type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-lg-3">{{ trans('backend.pages.user.phone') }}</label>
                             <div class="col-lg-9">
                                 <input name="phone" type="text" class="form-control">
                             </div>

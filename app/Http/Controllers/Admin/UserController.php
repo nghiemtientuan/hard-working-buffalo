@@ -5,20 +5,26 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Contracts\UserRepositoryInterface as UserRepository;
+use App\Repositories\Contracts\RoleRepositoryInterface as RoleRepository;
 use Illuminate\Support\Facades\DB;
 use Yajra\Datatables\Datatables;
 
 class UserController extends Controller
 {
     protected $userRepository;
+    protected $roleRepository;
 
     /**
      * UserController constructor.
-     * @param $userRepository
+     * @param UserRepository $userRepository
+     * @param RoleRepository $roleRepository
      */
-    public function __construct(UserRepository $userRepository)
-    {
+    public function __construct(
+        UserRepository $userRepository,
+        RoleRepository $roleRepository
+    ) {
         $this->userRepository = $userRepository;
+        $this->roleRepository = $roleRepository;
     }
 
 
@@ -29,7 +35,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('Admin.user.users');
+        $roles = $this->roleRepository->getAll();
+
+        return view('Admin.user.users', compact('roles'));
     }
 
     public function getData()
@@ -68,7 +76,18 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->only([
+            'email',
+            'firstname',
+            'lastname',
+            'address',
+            'phone',
+            'role_id',
+        ]);
+        $user = $this->userRepository->create($data);
+
+        return redirect()->route('admin.users.index')
+            ->with('sucess', trans('backend.actions.success'));
     }
 
     /**
