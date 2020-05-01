@@ -87,7 +87,7 @@ class UserController extends Controller
         $user = $this->userRepository->create($data);
 
         return redirect()->route('admin.users.index')
-            ->with('sucess', trans('backend.actions.success'));
+            ->with('success', trans('backend.actions.success'));
     }
 
     /**

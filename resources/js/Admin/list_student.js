@@ -37,19 +37,54 @@ $(document).ready(function () {
         }
     };
 
-    let validatorUpdateUser = $("#editStudent form").validate(studentValidates);
-    $('#editStudent form input[name=firstname]').on('keyup', function () {
-        validateDisabled($('#editStudent form'), $('#editStudent button[type="submit"]'));
+    let studentAddValidates = {
+        rules: {
+            email: {
+                required: true,
+                minlength: 5,
+                maxlength: 50,
+                email: true,
+            },
+            firstname: {
+                minlength: 2,
+                maxlength: 20,
+            },
+            lastname: {
+                minlength: 2,
+                maxlength: 20,
+            },
+            address: {
+                minlength: 2,
+                maxlength: 20,
+            },
+            phone: {
+                minlength: 10,
+                maxlength: 10,
+            },
+        }
+    };
+
+    let validatorUpdateStudent = $("#editStudent form").validate(studentValidates);
+    let validatorAddStudent = $("#addStudent form").validate(studentAddValidates);
+    $('#addStudentBtn').on('click', function () {
+        validatorAddStudent.resetForm();
     });
-    $('#editStudent form input[name=lastname]').on('keyup', function () {
-        validateDisabled($('#editStudent form'), $('#editStudent button[type="submit"]'));
-    });
-    $('#editStudent form input[name=address]').on('keyup', function () {
-        validateDisabled($('#editStudent form'), $('#editStudent button[type="submit"]'));
-    });
-    $('#editStudent form input[name=phone]').on('keyup', function () {
-        validateDisabled($('#editStudent form'), $('#editStudent button[type="submit"]'));
-    });
+
+    $('#editStudent form').on(
+        'keyup',
+        'input[name=firstname], input[name=lastname], input[name=address], input[name=phone]',
+        function () {
+            validateDisabled($('#editStudent form'), $('#editStudent button[type="submit"]'));
+        }
+    );
+
+    $('#addStudent form').on(
+        'keyup',
+        'input[name=email], input[name=firstname], input[name=lastname], input[name=address], input[name=phone]',
+        function () {
+            validateDisabled($('#addStudent form'), $('#addStudent button[type="submit"]'));
+        }
+    );
 
     $('#list_student_table').on('click', '.showStudentBtn', function () {
         $('#showStudent img').attr('src', $(this).attr('data-urlImage'));
@@ -67,7 +102,7 @@ $(document).ready(function () {
     });
 
     $('#list_student_table').on('click', '.editStudentBtn', function () {
-        validatorUpdateUser.resetForm();
+        validatorUpdateStudent.resetForm();
         $('#editStudent form').attr('action', route('admin.students.update', $(this).attr('data-studentId')));
         $('#editStudent input[name=firstname]').val($(this).attr('data-firstname'));
         $('#editStudent input[name=lastname]').val($(this).attr('data-lastname'));
