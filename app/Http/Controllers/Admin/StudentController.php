@@ -71,7 +71,17 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->only([
+            'email',
+            'firstname',
+            'lastname',
+            'address',
+            'phone',
+        ]);
+        $student = $this->studentRepository->create($data);
+
+        return redirect()->route('admin.students.index')
+            ->with('success', trans('backend.actions.success'));
     }
 
     /**

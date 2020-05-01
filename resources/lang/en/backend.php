@@ -96,13 +96,15 @@ return [
         'test' => [
             'list_tests' => 'List tests',
             'edit_test' => 'Edit test',
+            'add_test' => 'Add test',
             'info' => 'Info',
             'author' => 'Author',
             'format' => 'Format',
             'name' => 'Name',
             'code' => 'Code',
+            'random_code' => 'Random',
             'guide' => 'Guide',
-            'execute_time' => 'Time',
+            'execute_time' => 'Execute time',
             'total_question' => 'Question of Test',
             'number_questions' => 'All questions',
             'price' => 'Price',
@@ -137,6 +139,8 @@ return [
         'format' => [
             'list_formats' => 'List formats',
             'edit_format' => 'Edit format',
+            'add_format' => 'Add format',
+            'total_question' => 'Total question',
             'name' => 'Name',
             'description' => 'Description',
             'apply_test_number' => 'Apply test number',
@@ -224,5 +228,6 @@ return [
         'you_will_delete_this' => 'You will delete this!',
         'yes' => 'Yes',
         'success' => 'Action success',
+        'error' => 'Error',
     ],
 ];

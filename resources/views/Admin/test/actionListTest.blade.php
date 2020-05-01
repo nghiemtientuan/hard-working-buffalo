@@ -40,6 +40,7 @@
             data-toggle="modal"
             data-target="#editTest"
             data-popup="tooltip"
+            data-formatId="{{ $test->format ? $test->format->id : 0 }}"
             data-testId="{{ $test->id }}"
             data-name="{{ $test->name }}"
             data-guide="{{ $test->guide }}"

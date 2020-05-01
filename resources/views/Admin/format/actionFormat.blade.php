@@ -8,6 +8,7 @@
             data-popup="tooltip"
             data-formatId="{{ $format->id }}"
             data-name="{{ $format->name }}"
+            data-total_question="{{ $format->total_question }}"
             data-description="{{ $format->description }}"
         >
             <em class="icon-pencil7"></em>

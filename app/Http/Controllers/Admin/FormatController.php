@@ -70,7 +70,19 @@ class FormatController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->only([
+            'name',
+            'total_question',
+            'description',
+        ]);
+
+        $format = $this->formatRepository->create($data);
+        if ($format) {
+            return redirect()->route('admin.formats.show', $format->id)
+                ->with('sucess', trans('backend.actions.success'));
+        }
+
+        return redirect()->back()->withErrors(trans('backend.actions.error'));
     }
 
     /**
@@ -110,6 +122,7 @@ class FormatController extends Controller
     {
         $data = $request->only([
             'name',
+            'total_question',
             'description',
         ]);
         $format = $this->formatRepository->find($id);

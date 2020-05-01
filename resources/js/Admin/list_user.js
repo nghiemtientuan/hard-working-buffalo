@@ -18,19 +18,45 @@ $(document).ready(function () {
     let userValidates = {
         rules: {
             firstname: {
-                required: true,
                 minlength: 2,
+                maxlength: 20,
             },
             lastname: {
-                required: true,
                 minlength: 2,
+                maxlength: 20,
             },
             address: {
-                required: true,
                 minlength: 2,
+                maxlength: 20,
             },
             phone: {
+                minlength: 10,
+                maxlength: 10,
+            },
+        }
+    };
+
+    let userAddValidates = {
+        rules: {
+            email: {
                 required: true,
+                minlength: 5,
+                maxlength: 50,
+                email: true,
+            },
+            firstname: {
+                minlength: 2,
+                maxlength: 20,
+            },
+            lastname: {
+                minlength: 2,
+                maxlength: 20,
+            },
+            address: {
+                minlength: 2,
+                maxlength: 20,
+            },
+            phone: {
                 minlength: 10,
                 maxlength: 10,
             },
@@ -38,18 +64,26 @@ $(document).ready(function () {
     };
 
     let validatorUpdateUser = $("#editUser form").validate(userValidates);
-    $('#editUser form input[name=firstname]').on('keyup', function () {
-        validateDisabled($('#editUser form'), $('#editUser button[type="submit"]'));
+    let validatorAddUser = $("#addUser form").validate(userAddValidates);
+    $('#addUserBtn').on('click', function () {
+        validatorAddUser.resetForm();
     });
-    $('#editUser form input[name=lastname]').on('keyup', function () {
-        validateDisabled($('#editUser form'), $('#editUser button[type="submit"]'));
-    });
-    $('#editUser form input[name=address]').on('keyup', function () {
-        validateDisabled($('#editUser form'), $('#editUser button[type="submit"]'));
-    });
-    $('#editUser form input[name=phone]').on('keyup', function () {
-        validateDisabled($('#editUser form'), $('#editUser button[type="submit"]'));
-    });
+
+    $('#editUser form').on(
+        'keyup',
+        'input[name=firstname], input[name=lastname], input[name=address], input[name=phone]',
+        function () {
+            validateDisabled($('#editUser form'), $('#editUser button[type="submit"]'));
+        }
+    );
+
+    $('#addUser form').on(
+        'keyup',
+        'input[name=email], input[name=firstname], input[name=lastname], input[name=address], input[name=phone]',
+        function () {
+            validateDisabled($('#addUser form'), $('#addUser button[type="submit"]'));
+        }
+    );
 
     $('#list_users_table').on('click', '.showUserBtn', function () {
         $('#showUser img').attr('src', $(this).attr('data-urlImage'));
