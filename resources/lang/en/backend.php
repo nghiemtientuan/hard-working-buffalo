@@ -137,6 +137,8 @@ return [
         'format' => [
             'list_formats' => 'List formats',
             'edit_format' => 'Edit format',
+            'add_format' => 'Add format',
+            'total_question' => 'Total question',
             'name' => 'Name',
             'description' => 'Description',
             'apply_test_number' => 'Apply test number',
@@ -224,5 +226,6 @@ return [
         'you_will_delete_this' => 'You will delete this!',
         'yes' => 'Yes',
         'success' => 'Action success',
+        'error' => 'Error',
     ],
 ];
