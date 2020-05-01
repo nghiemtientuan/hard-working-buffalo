@@ -23,6 +23,8 @@ class Test extends Model
     const LEVEL_FIELD = 'level';
     const PUBLISH_FIELD = 'publish';
 
+    const PRICE_FREE_VALUE = 0;
+
     protected $fillable = [
         Test::CREATED_USER_ID_FIELD,
         Test::FORMAT_ID_FIELD,

@@ -84,7 +84,7 @@
     <div id="addFormat" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form class="form-horizontal" action="{{ route('admin.formats.store') }}" method="POST" enctype="multipart/form-data">
+                <form class="form-horizontal" action="{{ route('admin.formats.store') }}" method="POST">
                     @csrf
                     <div class="modal-header bg-info">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>

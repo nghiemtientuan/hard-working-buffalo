@@ -18,6 +18,10 @@ $(function () {
 $(document).ready(function () {
     let testValidates = {
         rules: {
+            code: {
+                minlength: 2,
+                maxlength: 10,
+            },
             name: {
                 required: true,
                 minlength: 2,
@@ -25,7 +29,7 @@ $(document).ready(function () {
             execute_time: {
                 required: true,
                 min: 1,
-                max: 240,
+                max: 120,
             },
             total_question: {
                 required: true,
@@ -34,7 +38,7 @@ $(document).ready(function () {
             },
             price: {
                 required: true,
-                min: 1,
+                min: 0,
                 max: 10000,
             },
             score: {
@@ -43,17 +47,10 @@ $(document).ready(function () {
                 max: 100,
             },
             level: {
-                required: true,
                 min: 1,
                 max: 10,
             },
-            publish: {
-                required: true,
-                min: 0,
-                max: 1,
-            },
             guide: {
-                required: true,
                 minlength: 2,
                 maxlength: 500
             },
@@ -61,31 +58,23 @@ $(document).ready(function () {
     };
 
     let validatorUpdateTest = $("#editTest form").validate(testValidates);
+    let validatorAddTest = $("#addTest form").validate(testValidates);
 
-    $('#editTest form input[name=name]').on('keyup', function () {
-        validateDisabled($('#editTest form'), $('#editTest button[type="submit"]'));
-    });
-    $('#editTest form input[name=execute_time]').on('keyup', function () {
-        validateDisabled($('#editTest form'), $('#editTest button[type="submit"]'));
-    });
-    $('#editTest form input[name=total_question]').on('keyup', function () {
-        validateDisabled($('#editTest form'), $('#editTest button[type="submit"]'));
-    });
-    $('#editTest form input[name=price]').on('keyup', function () {
-        validateDisabled($('#editTest form'), $('#editTest button[type="submit"]'));
-    });
-    $('#editTest form input[name=score]').on('keyup', function () {
-        validateDisabled($('#editTest form'), $('#editTest button[type="submit"]'));
-    });
-    $('#editTest form input[name=level]').on('keyup', function () {
-        validateDisabled($('#editTest form'), $('#editTest button[type="submit"]'));
-    });
-    $('#editTest form input[name=publish]').on('keyup', function () {
-        validateDisabled($('#editTest form'), $('#editTest button[type="submit"]'));
-    });
-    $('#editTest form textarea[name=guide]').on('keyup', function () {
-        validateDisabled($('#editTest form'), $('#editTest button[type="submit"]'));
-    });
+    $('#editTest form').on(
+        'keyup',
+        'input[name=name], input[name=execute_time], input[name=total_question], input[name=price], input[name=score], input[name=level], input[name=publish], textarea[name=guide]',
+        function () {
+            validateDisabled($('#editTest form'), $('#editTest button[type="submit"]'));
+        }
+    );
+
+    $('#addTest form').on(
+        'keyup',
+        'input[name=name], input[name=execute_time], input[name=total_question], input[name=price], input[name=score], input[name=level], input[name=publish], textarea[name=guide]',
+        function () {
+            validateDisabled($('#addTest form'), $('#addTest button[type="submit"]'));
+        }
+    );
 
     $('#list_test_table').on('click', '.showTestBtn', function () {
         $('#showTest #author').html($(this).attr('data-author'));
@@ -102,6 +91,10 @@ $(document).ready(function () {
         $('#showTest #publish').html($(this).attr('data-publish'));
     });
 
+    $('#addTestBtn').on('click', function () {
+        validatorAddTest.resetForm();
+    });
+
     $('#list_test_table').on('click', '.editTestBtn', function () {
         validatorUpdateTest.resetForm();
         $('#editTest form').attr('action', route('admin.tests.update', $(this).attr('data-testId')));
@@ -111,7 +104,16 @@ $(document).ready(function () {
         $('#editTest input[name=price]').val($(this).attr('data-price'));
         $('#editTest input[name=score]').val($(this).attr('data-score'));
         $('#editTest input[name=level]').val($(this).attr('data-level'));
-        $('#editTest input[name=publish]').val($(this).attr('data-publish'));
+        if ($(this).attr('data-publish') == 1) {
+            if (!$('#editTest input[name=publish]').is(':checked')) {
+                $('#editTest input[name=publish]').click();
+            }
+        } else {
+            if ($('#editTest input[name=publish]').is(':checked')) {
+                $('#editTest input[name=publish]').click();
+            }
+        }
+        $('#editTest select[name=format_id]').val($(this).attr('data-formatId'));
         $('#editTest textarea[name=guide]').val($(this).attr('data-guide'));
     });
 
@@ -131,4 +133,9 @@ $(document).ready(function () {
             }
         });
     });
+});
+
+$('#addTest #randomCode').on('click', function (e) {
+    e.preventDefault();
+    $('#addTest input[name=code]').val(randomString());
 });

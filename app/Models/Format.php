@@ -15,6 +15,9 @@ class Format extends Model
     const DESCRIPTION_FIELD = 'description';
     const TOTAL_QUESTION_FIELD = 'total_question';
 
+    const NAME_NONE_OPTION = '-- None --';
+    const VALUE_NONE_FORMAT = 0;
+
     protected $fillable = [
         Format::NAME_FIELD,
         Format::DESCRIPTION_FIELD,
