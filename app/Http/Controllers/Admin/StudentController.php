@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Jobs\SendMailCreateAccount;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Contracts\StudentRepositoryInterface as StudentRepository;
@@ -78,7 +79,11 @@ class StudentController extends Controller
             'address',
             'phone',
         ]);
-        $student = $this->studentRepository->create($data);
+        $password = str_random(config('constant.password.length_random_password'));
+        $data['password'] = bcrypt($password);
+        $this->studentRepository->create($data);
+
+        $this->dispatch(new SendMailCreateAccount($data, $password));
 
         return redirect()->route('admin.students.index')
             ->with('success', trans('backend.actions.success'));

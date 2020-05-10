@@ -8,6 +8,7 @@ use App\Repositories\Contracts\UserRepositoryInterface as UserRepository;
 use App\Repositories\Contracts\RoleRepositoryInterface as RoleRepository;
 use Illuminate\Support\Facades\DB;
 use Yajra\Datatables\Datatables;
+use App\Jobs\SendMailCreateAccount;
 
 class UserController extends Controller
 {
@@ -84,7 +85,11 @@ class UserController extends Controller
             'phone',
             'role_id',
         ]);
-        $user = $this->userRepository->create($data);
+        $password = str_random(config('constant.password.length_random_password'));
+        $data['password'] = bcrypt($password);
+        $this->userRepository->create($data);
+
+        $this->dispatch(new SendMailCreateAccount($data, $password));
 
         return redirect()->route('admin.users.index')
             ->with('success', trans('backend.actions.success'));
