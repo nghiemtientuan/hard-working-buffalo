@@ -133,4 +133,6 @@ return [
 
     'log_channel' => env('MAIL_LOG_CHANNEL'),
 
+    'mail_form_address' => env('MAIL_FROM_ADDRESS'),
+    'mail_form_name' => env('MAIL_FROM_NAME'),
 ];
