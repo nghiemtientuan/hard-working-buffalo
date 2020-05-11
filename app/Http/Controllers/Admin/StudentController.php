@@ -3,24 +3,35 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Jobs\SendMailCreateAccount;
+use App\Models\Student;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Contracts\StudentRepositoryInterface as StudentRepository;
+use App\Repositories\Contracts\StudentLevelRepositoryInterface as LevelRepository;
+use App\Repositories\Contracts\StudentTypeRepositoryInterface as TypeRepository;
 use Illuminate\Support\Facades\DB;
 use Yajra\Datatables\Datatables;
 
 class StudentController extends Controller
 {
     protected $studentRepository;
+    protected $levelRepository;
+    protected $typeRepository;
 
     /**
      * CategoryController constructor.
      * @param StudentRepository $studentRepository
+     * @param LevelRepository $levelRepository
+     * @param TypeRepository $typeRepository
      */
     public function __construct(
-        StudentRepository $studentRepository
+        StudentRepository $studentRepository,
+        LevelRepository $levelRepository,
+        TypeRepository $typeRepository
     ) {
         $this->studentRepository = $studentRepository;
+        $this->levelRepository = $levelRepository;
+        $this->typeRepository = $typeRepository;
     }
 
     /**
@@ -30,7 +41,10 @@ class StudentController extends Controller
      */
     public function index()
     {
-        return view('Admin.user.students');
+        $levels = $this->levelRepository->getAll();
+        $types = $this->typeRepository->getAll();
+
+        return view('Admin.user.students', compact('levels', 'types'));
     }
 
     public function getData()
@@ -78,9 +92,12 @@ class StudentController extends Controller
             'lastname',
             'address',
             'phone',
+            'level_id',
+            'type_id',
         ]);
         $password = str_random(config('constant.password.length_random_password'));
         $data['password'] = bcrypt($password);
+        $data[Student::STUDENT_TYPE_ID_FIELD] = $data['type_id'];
         $this->studentRepository->create($data);
 
         $this->dispatch(new SendMailCreateAccount($data, $password));
