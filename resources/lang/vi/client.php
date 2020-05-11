@@ -22,5 +22,8 @@ return [
     'progress_bar' => [
     ],
     'pages' => [
+        'home' => [
+            'buffalo' => 'Buffalo',
+        ],
     ],
 ];

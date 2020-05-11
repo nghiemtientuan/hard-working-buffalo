@@ -71,6 +71,7 @@ return [
             'address' => 'Adress',
             'phone' => 'Phone',
             'level' => 'Level',
+            'type' => 'Type',
             'account_type' => 'Type',
             'diamond' => 'Diamond',
             'active' => 'Active',

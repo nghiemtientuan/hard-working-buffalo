@@ -16,4 +16,13 @@ class TestRepository extends EloquentRepository implements TestRepositoryInterfa
         return Test::class;
     }
 
+    public function getTestFree()
+    {
+        return $this->_model->where(Test::PRICE_FIELD, Test::PRICE_FREE_VALUE)->get();
+    }
+
+    public function getNewTest()
+    {
+        return $this->_model->orderBy('created_at', 'DESC')->limit(config('constant.limit.newTest'))->get();
+    }
 }

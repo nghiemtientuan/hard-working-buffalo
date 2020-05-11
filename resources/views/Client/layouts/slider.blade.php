@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-12 mx-auto text-center" data-aos="fade-up">
-                    <h1>{{ trans('client.home.academics_university') }}</h1>
+                    <h1>abc</h1>
                 </div>
             </div>
         </div>
@@ -13,7 +13,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-12 mx-auto text-center" data-aos="fade-up">
-                    <h1>{{ trans('client.home.you_can_learn_anything') }}</h1>
+                    <h1>def</h1>
                 </div>
             </div>
         </div>
