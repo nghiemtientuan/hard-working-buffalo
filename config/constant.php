@@ -15,5 +15,8 @@ return [
     ],
     'password' => [
         'length_random_password' => 10,
-    ]
+    ],
+    'limit' => [
+        'newTest' => 5,
+    ],
 ];

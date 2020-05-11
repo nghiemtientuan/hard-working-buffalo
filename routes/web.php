@@ -20,4 +20,6 @@ Route::group([
     'as' => 'client.',
 ], function () {
     Route::get('/', 'HomeController@index')->name('home');
+
+    Route::get('categories', 'CategoryController@index')->name('categories');
 });

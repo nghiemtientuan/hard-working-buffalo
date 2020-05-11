@@ -20,7 +20,7 @@ class CategoryRepository extends EloquentRepository implements CategoryRepositor
 
     public function getAllTreeCates()
     {
-        return $this->_model->where(Category::PARENT_ID_FIELD, null)->with('tests')->get();
+        return $this->_model->where(Category::PARENT_ID_FIELD, null)->with('tests', 'childCates')->get();
     }
 
     public function deleteCates($id)
@@ -48,6 +48,6 @@ class CategoryRepository extends EloquentRepository implements CategoryRepositor
 
     public function getParentCates()
     {
-        return $this->_model->where('parent_id', null)->get();
+        return $this->_model->where(Category::PARENT_ID_FIELD, null)->get();
     }
 }
