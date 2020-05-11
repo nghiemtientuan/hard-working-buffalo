@@ -1,6 +1,6 @@
 @extends('Client.master')
 
-@section('title', trans('client.pages.categories.buffalo_categories'))
+@section('title', trans('client.pages.categories.buffalo_categories') . $category->name)
 
 @section('content')
     <div class="site-section pb-0"></div>

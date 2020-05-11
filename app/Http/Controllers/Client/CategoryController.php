@@ -12,7 +12,7 @@ class CategoryController extends Controller
 
     /**
      * CategoryController constructor.
-     * @param $categoryRepository
+     * @param CategoryRepository $categoryRepository
      */
     public function __construct(CategoryRepository $categoryRepository)
     {
@@ -21,11 +21,17 @@ class CategoryController extends Controller
 
     public function show($categoryId)
     {
-        $category = $this->categoryRepository->getInfoParentCate($categoryId);
+        $category = $this->categoryRepository->find($categoryId);
         if ($category) {
-            $childCates = $this->categoryRepository->getChildCatesByParentId($categoryId);
+            if ($category->parent_id) {
+                $tests = $this->categoryRepository->getTestsInCate($categoryId);
 
-            return view('Client.category', compact('category', 'childCates'));
+                return view('Client.listTests', compact('category', 'tests'));
+            } else {
+                $childCates = $this->categoryRepository->getChildCatesByParentId($categoryId);
+
+                return view('Client.listChildCategories', compact('category', 'childCates'));
+            }
         }
 
         return redirect()->route('client.notFound');

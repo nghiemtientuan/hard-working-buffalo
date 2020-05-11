@@ -58,9 +58,15 @@ return [
             'send' => 'Send',
         ],
         'categories' => [
-            'buffalo_categories' => 'Buffalo Categories',
+            'buffalo_categories' => 'Buffalo Categories in ',
             'categories' => 'Categories',
             'name' => 'Name',
+        ],
+        'tests' => [
+            'buffalo_tests' => 'Buffalo tests in ',
+            'test_code' => 'Test code',
+            'name_test' => 'Name',
+            'execute_time' => 'Execute time',
         ],
     ],
     'actions' => [
