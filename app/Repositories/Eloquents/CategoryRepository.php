@@ -50,4 +50,15 @@ class CategoryRepository extends EloquentRepository implements CategoryRepositor
     {
         return $this->_model->where(Category::PARENT_ID_FIELD, null)->get();
     }
+
+    public function getChildCatesByParentId($categoryId)
+    {
+        return $this->_model->where(Category::PARENT_ID_FIELD, $categoryId)->get();
+    }
+
+    public function getInfoParentCate($categoryId)
+    {
+        return $this->_model->where(Category::PARENT_ID_FIELD, null)
+            ->where('id', $categoryId)->first();
+    }
 }

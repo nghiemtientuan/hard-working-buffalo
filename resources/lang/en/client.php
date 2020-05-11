@@ -57,6 +57,11 @@ return [
             'enter_mail' => 'Enter mail',
             'send' => 'Send',
         ],
+        'categories' => [
+            'buffalo_categories' => 'Buffalo Categories',
+            'categories' => 'Categories',
+            'name' => 'Name',
+        ],
     ],
     'actions' => [
         'close' => 'Close',

@@ -9,4 +9,8 @@ interface CategoryRepositoryInterface
     public function deleteCates($id);
 
     public function getParentCates();
+
+    public function getChildCatesByParentId($categoryId);
+
+    public function getInfoParentCate($categoryId);
 }
