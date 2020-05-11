@@ -12,5 +12,5 @@ interface CategoryRepositoryInterface
 
     public function getChildCatesByParentId($categoryId);
 
-    public function getInfoParentCate($categoryId);
+    public function getTestsInCate($categoryId);
 }

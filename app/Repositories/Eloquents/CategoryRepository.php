@@ -3,6 +3,7 @@
 namespace App\Repositories\Eloquents;
 
 use App\Models\File;
+use App\Models\Test;
 use App\Repositories\Contracts\CategoryRepositoryInterface;
 use App\Models\Category;
 use Illuminate\Support\Facades\DB;
@@ -56,9 +57,11 @@ class CategoryRepository extends EloquentRepository implements CategoryRepositor
         return $this->_model->where(Category::PARENT_ID_FIELD, $categoryId)->get();
     }
 
-    public function getInfoParentCate($categoryId)
+    public function getTestsInCate($categoryId)
     {
-        return $this->_model->where(Category::PARENT_ID_FIELD, null)
-            ->where('id', $categoryId)->first();
+        return Test::with('categories')
+            ->whereHas('categories', function ($query) use ($categoryId) {
+                $query->where('categories.id', $categoryId);
+            })->get();
     }
 }
