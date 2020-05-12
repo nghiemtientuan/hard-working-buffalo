@@ -23,5 +23,7 @@ Route::group([
 
     Route::get('categories/{categoryId}', 'CategoryController@show')->name('categories.show');
 
+    Route::get('test/{testId}', 'TestController@test')->name('tests.test');
+
     Route::get('not_found', 'NotFoundController@index')->name('notFound');
 });

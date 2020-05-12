@@ -22,8 +22,11 @@ class Test extends Model
     const SCORE_FIELD = 'score';
     const LEVEL_FIELD = 'level';
     const PUBLISH_FIELD = 'publish';
+    const IS_RANDOM_FIELD = 'is_random';
 
     const PRICE_FREE_VALUE = 0;
+    const IS_RANDOM_FALSE = 0;
+    const IS_RANDOM_TRUE = 1;
 
     protected $fillable = [
         Test::CREATED_USER_ID_FIELD,
@@ -37,6 +40,7 @@ class Test extends Model
         Test::SCORE_FIELD,
         Test::LEVEL_FIELD,
         Test::PUBLISH_FIELD,
+        Test::IS_RANDOM_FIELD,
         'created_at',
         'updated_at',
         'deleted_at',
