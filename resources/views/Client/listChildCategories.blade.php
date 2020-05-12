@@ -31,7 +31,7 @@
                                     @foreach($childCates as $category)
                                         <tr>
                                             <td>
-                                                <a href="#"
+                                                <a href="{{ route('client.categories.show', $category->id) }}"
                                                    data-popup="tooltip" title="{{ $category->name }}">
                                                     {{ $category->name }}
                                                 </a>

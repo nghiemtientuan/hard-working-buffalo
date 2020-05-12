@@ -21,7 +21,7 @@ Route::group([
 ], function () {
     Route::get('/', 'HomeController@index')->name('home');
 
-    Route::get('categories/{categoryId}', 'CategoryController@show')->name('categories');
+    Route::get('categories/{categoryId}', 'CategoryController@show')->name('categories.show');
 
     Route::get('not_found', 'NotFoundController@index')->name('notFound');
 });

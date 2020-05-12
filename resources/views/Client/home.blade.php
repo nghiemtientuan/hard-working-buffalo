@@ -25,7 +25,7 @@
                                 <h2>{{ $category->name }}</h2>
                                 <p>{{ $category->guide }}</p>
                                 <p>
-                                    <a href="{{ route('client.categories', $category->id) }}"
+                                    <a href="{{ route('client.categories.show', $category->id) }}"
                                        class="btn btn-primary px-4 rounded-0">{{ trans('client.pages.home.learn_more') }}</a>
                                 </p>
                             </div>
