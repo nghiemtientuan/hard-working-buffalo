@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use App\Models\Test;
 
 class CreateTestsTable extends Migration
 {
@@ -26,6 +27,7 @@ class CreateTestsTable extends Migration
             $table->integer('score')->nullable();
             $table->integer('level')->nullable();
             $table->integer('publish')->nullable();
+            $table->integer('is_random')->default(Test::IS_RANDOM_TRUE);
             $table->timestamps();
             $table->softDeletes();
         });

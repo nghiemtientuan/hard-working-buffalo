@@ -18,13 +18,13 @@ class QuestionRepository extends EloquentRepository implements QuestionRepositor
         return Question::class;
     }
 
-    public function getQuestionsByFormatTestId($test_id)
+    public function getQuestionsByFormatTestId($testId)
     {
-        $test = Test::find($test_id)->load([
+        $test = Test::find($testId)->load([
             'format',
             'format.parts',
-            'format.parts.questions' => function ($query) use ($test_id) {
-                $query->where(Question::TEST_ID_FIELD, $test_id)->where(Question::PARENT_ID_FIELD, null);
+            'format.parts.questions' => function ($query) use ($testId) {
+                $query->where(Question::TEST_ID_FIELD, $testId)->where(Question::PARENT_ID_FIELD, null);
             },
             'format.parts.questions.childQuestions',
         ]);
@@ -36,7 +36,7 @@ class QuestionRepository extends EloquentRepository implements QuestionRepositor
         }
 
         $freePart = new Part([Part::NAME_FIELD => Part::FREE_NAME_VALUE]);
-        $freePart->questions = $this->_model->where(Question::TEST_ID_FIELD, $test_id)
+        $freePart->questions = $this->_model->where(Question::TEST_ID_FIELD, $testId)
             ->where('parent_id', null)
             ->with([
                 'childQuestions',
@@ -51,6 +51,33 @@ class QuestionRepository extends EloquentRepository implements QuestionRepositor
         $parts[] = $freePart;
 
         return $parts;
+    }
+
+    public function getAnswerQuestionPartInTest($testId)
+    {
+        $test = Test::find($testId)->load([
+            'format',
+            'format.parts',
+            'format.parts.questions' => function ($query) use ($testId) {
+                $query->where(Question::TEST_ID_FIELD, $testId)->where(Question::PARENT_ID_FIELD, null);
+            },
+            'format.parts.questions.childQuestions',
+        ]);
+        $parts = $test->format->parts;
+        if ($parts && count($parts)) {
+            return $parts;
+        } else {
+            $freePart = new Part([Part::NAME_FIELD => Part::FREE_NAME_VALUE]);
+
+            $freePart->questions = $this->_model->where(Question::TEST_ID_FIELD, $testId)
+                ->where('parent_id', null)
+                ->with([
+                    'childQuestions',
+                ])->get();
+            $parts[] = $freePart;
+
+            return $parts;
+        }
     }
 
     public function getQuestion($id)

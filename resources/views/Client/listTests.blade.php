@@ -33,13 +33,13 @@
                                     @foreach($tests as $test)
                                         <tr>
                                             <td>
-                                                <a href="#"
+                                                <a href="{{ route('client.tests.test', $test->id) }}"
                                                    data-popup="tooltip" title="{{ $test->name }}">
                                                     {{ $test->code }}
                                                 </a>
                                             </td>
                                             <td>
-                                                <a href="#"
+                                                <a href="{{ route('client.tests.test', $test->id) }}"
                                                    data-popup="tooltip" title="{{ $test->name }}">
                                                     {{ $test->name }}
                                                 </a>

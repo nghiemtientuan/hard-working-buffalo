@@ -8,7 +8,7 @@
             <ul class="dropdown">
                 @foreach($parentCateComposer as $parentCate)
                     <li>
-                        <a href="{{ route('client.categories', $parentCate->id) }}">{{ $parentCate->name }}</a>
+                        <a href="{{ route('client.categories.show', $parentCate->id) }}">{{ $parentCate->name }}</a>
                     </li>
                 @endforeach
             </ul>
