@@ -70,6 +70,10 @@ return [
         ],
         'getTest' => [
             'test' => 'Test - ',
+            'text_part' => 'Part',
+            'text_question' => 'Question',
+            'text_big_question' => 'Big Question',
+            'send' => 'Submit',
         ],
     ],
     'actions' => [

@@ -25,11 +25,82 @@
                             <span class="icon-book text-white"></span>
                         </div>
                         <div class="feature-1-content text-left pl-1 pr-1 pb-0">
+                            @php $indexQuestion = 0 @endphp
+                            @foreach ($parts as $part)
+                                <div class="alert alert-dark p-2">
+                                    <label class="text-semibold">{{ trans('client.pages.getTest.text_part') . ' ' . $part->name }}: {{ $part->description }}</label>
+                                </div>
 
+                                @foreach ($part->questions as $question)
+                                    @if (!count($question->answers) && count($question->childQuestions))
+                                        <div class="form-group">
+                                            <div class="alert alert-success p-2">
+                                                <label class="text-semibold">
+                                                    {{ trans('client.pages.getTest.text_big_question') }}: ({{ $question->code }}) {{ $question->content }}
+                                                </label>
+                                            </div>
+
+                                            <div class="row">
+                                                @foreach ($question->childQuestions as $childQuestion)
+                                                    @php $indexQuestion++ @endphp
+                                                    <div class="form-group col-lg-12">
+                                                        <div class="alert alert-info p-2">
+                                                            <label class="text-semibold">
+                                                                {{ trans('client.pages.getTest.text_question') }} {{ $indexQuestion }}: ({{ $childQuestion->code }}) {{ $childQuestion->content }}
+                                                            </label>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            @foreach ($childQuestion->answers as $answer)
+                                                                <div class="col-md-6">
+                                                                    <div class="icheck-material-red pl-2">
+                                                                        <input type="radio"
+                                                                               id="answer_"
+                                                                        />
+                                                                        <label for="answer_">{{ $answer->content }}</label>
+                                                                    </div>
+                                                                </div>
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+
+                                        <hr />
+                                    @else
+                                        @php $indexQuestion++ @endphp
+                                        <div class="form-group">
+                                            <div class="alert alert-info p-2">
+                                                <label class="text-semibold">
+                                                    {{ trans('client.pages.getTest.text_question') }} {{ $indexQuestion }}: ({{ $question->code }}) {{ $question->content }}
+                                                </label>
+                                            </div>
+
+                                            <div class="row">
+                                                @foreach ($question->answers as $answer)
+                                                    <div class="col-md-6">
+                                                        <div class="icheck-material-red pl-2">
+                                                            <input type="radio"
+                                                                   id="answer_"
+                                                            />
+                                                            <label for="answer_">{{ $answer->content }}</label>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                        <hr />
+                                    @endif
+                                @endforeach
+                            @endforeach
+
+                            <div class="form-group text-center">
+                                <input type="submit" value="{{ trans('client.pages.getTest.send') }}" class="btn btn-primary btn-lg px-5">
+                            </div>
                         </div>
                     </div>
                 </div>
-                <input type="hidden" name="duration" id="duration">
 
                 <div id="myHeader" class="col-lg-2">
                     <div class="feature-1 border position-fixed w-20">
