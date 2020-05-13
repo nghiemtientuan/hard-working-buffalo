@@ -68,6 +68,9 @@ return [
             'name_test' => 'Name',
             'execute_time' => 'Execute time',
         ],
+        'getTest' => [
+            'test' => 'Test - ',
+        ],
     ],
     'actions' => [
         'close' => 'Close',

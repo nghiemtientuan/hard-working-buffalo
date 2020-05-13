@@ -48,3 +48,15 @@
 .b-none {
     border: none;
 }
+
+.pl-10 {
+    padding-left: 10px;
+}
+
+.pb-10 {
+    padding-bottom: 10px;
+}
+
+.pt-20 {
+    padding-top: 20px;
+}

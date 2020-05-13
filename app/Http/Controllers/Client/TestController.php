@@ -30,9 +30,8 @@ class TestController extends Controller
         $test = $this->testRepository->find($testId);
         if ($test) {
             $parts = $this->testService->getAnswerQuestionPartInTest($testId);
-            dd($parts);
 
-            return view('Client.test', compact('parts'));
+            return view('Client.getTest', compact('test', 'parts'));
         }
 
         return redirect()->route('client.notFound');
