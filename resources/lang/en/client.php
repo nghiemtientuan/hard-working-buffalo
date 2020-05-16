@@ -75,6 +75,13 @@ return [
             'text_big_question' => 'Big Question',
             'send' => 'Submit',
         ],
+        'result' => [
+            'testTitle' => 'Test - ',
+            'score' => 'Score',
+            'reading' => 'Reading',
+            'listening' => 'Listening',
+            'duration' => 'Duration',
+        ],
     ],
     'actions' => [
         'close' => 'Close',

@@ -1,25 +1,51 @@
 @extends('Client.master')
 
-@section('title', trans('client.pages.getTest.test') . $test->name)
+@section('title', trans('client.pages.result.testTitle') . $history->test->name)
 
 @section('content')
     <div class="site-section pb-0"></div>
 
     <div class="site-section pb-0 pt-20">
-        <div class="row justify-content-center text-center pl-10 m-0">
-            <div class="col-lg-10 mb-5 pb-10">
-                <h2 class="section-title-underline">
-                    <span>{{ $test->name }}</span>
-                </h2>
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-4 mb-5">
+                    <h2 class="section-title-underline mb-5">
+                        <span>{{ $history->test->name }}</span>
+                    </h2>
+                </div>
             </div>
-            <div class="col-lg-2"></div>
-        </div>
 
-        <form id="form_test" action="{{ route('client.tests.result', $test->id) }}" method="POST">
-            @csrf
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="feature-1 border">
+                        <div class="icon-wrapper bg-primary">
+                            <span class="icon-stars text-white"></span>
+                        </div>
+                        <div class="feature-1-content text-left pl-1 pr-1 pb-0">
+                            <table class="table table-bordered table-framed mb-5">
+                                <tbody>
+                                    <tr>
+                                        <th rowspan="2"></th>
+                                        <th width="15%">{{ trans('client.pages.result.score') }}</th>
+                                        <th width="15%">{{ trans('client.pages.result.reading') }}</th>
+                                        <th width="15%">{{ trans('client.pages.result.listening') }}</th>
+                                        <th width="15%">{{ trans('client.pages.result.duration') }}</th>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ $history->score }}</th>
+                                        <th>{{ $history->reading_number }}</th>
+                                        <th>{{ $history->listening_number }}</th>
+                                        <th>0</th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-            <div class="row pl-10 m-0">
-                <div class="col-lg-10">
+            <div class="row">
+                <div class="col-lg-12">
                     <div class="feature-1 border">
                         <div class="icon-wrapper bg-primary">
                             <span class="icon-book text-white"></span>
@@ -67,12 +93,13 @@
                                                         <div class="row">
                                                             @foreach ($childQuestion->answers as $answer)
                                                                 <div class="col-md-6">
-                                                                    <div class="icheck-material-red pl-2">
+                                                                    <div class="icheck-material-@if($answer->correct_answer == \App\Models\Answer::CORRECT_ANSWER_VALUE){{ 'green' }}@else{{ 'red' }}@endif pl-2">
                                                                         <input
                                                                             type="radio"
                                                                             id="question_{{ $childQuestion->id }}_answerInput_{{ $answer->id }}"
-                                                                            name="answerQuestion_{{ $childQuestion->id }}"
                                                                             value="{{ $answer->id }}"
+                                                                            disabled
+                                                                            @if ($answer->correct_answer == \App\Models\Answer::CORRECT_ANSWER_VALUE || $childQuestion->chooseQuestion == $answer->id) checked @endif
                                                                         />
                                                                         <label for="question_{{ $childQuestion->id }}_answerInput_{{ $answer->id }}">{{ $answer->content }}</label>
                                                                     </div>
@@ -111,12 +138,13 @@
                                             <div class="row">
                                                 @foreach ($question->answers as $answer)
                                                     <div class="col-md-6">
-                                                        <div class="icheck-material-red pl-2">
+                                                        <div class="icheck-material-@if($answer->correct_answer == \App\Models\Answer::CORRECT_ANSWER_VALUE){{ 'green' }}@else{{ 'red' }}@endif pl-2">
                                                             <input
                                                                 type="radio"
                                                                 id="question_{{ $question->id }}_answerInput_{{ $answer->id }}"
-                                                                name="answerQuestion_{{ $question->id }}"
                                                                 value="{{ $answer->id }}"
+                                                                disabled
+                                                                @if ($answer->correct_answer == \App\Models\Answer::CORRECT_ANSWER_VALUE || $question->chooseQuestion == $answer->id) checked @endif
                                                             />
                                                             <label for="question_{{ $question->id }}_answerInput_{{ $answer->id }}">{{ $answer->content }}</label>
                                                         </div>
@@ -128,29 +156,11 @@
                                     @endif
                                 @endforeach
                             @endforeach
-
-                            <div class="form-group text-center">
-                                <input type="submit" value="{{ trans('client.pages.getTest.send') }}" class="btn btn-primary btn-lg px-5">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="myHeader" class="col-lg-2">
-                    <div class="feature-1 border position-fixed w-20">
-                        <div class="icon-wrapper bg-primary">
-                            <span class="icon-timer text-white"></span>
-                        </div>
-                        <div class="feature-1-content text-left pl-1 pr-1 background-primary">
-                            <div id="clockDiv"
-                                 data-execute_time="60"
-                            >
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
 
     <div class="site-section pb-0"></div>

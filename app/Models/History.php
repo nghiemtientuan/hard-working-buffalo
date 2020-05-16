@@ -17,6 +17,8 @@ class History extends Model
     const RANDOM_SEED_FIELD = 'random_seed';
     const SCORE_FIELD = 'score';
     const USER_ANSWER_FIELD = 'user_answer';
+    const READING_NUMBER_FIELD = 'reading_number';
+    const LISTENING_NUMBER_FIELD = 'listening_number';
 
     protected $fillable = [
         History::TEST_ID_FIELD,
@@ -25,6 +27,8 @@ class History extends Model
         History::RANDOM_SEED_FIELD,
         History::SCORE_FIELD,
         History::USER_ANSWER_FIELD,
+        History::READING_NUMBER_FIELD,
+        History::LISTENING_NUMBER_FIELD,
         'created_at',
         'updated_at',
         'deleted_at',

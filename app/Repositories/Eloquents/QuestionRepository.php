@@ -61,7 +61,11 @@ class QuestionRepository extends EloquentRepository implements QuestionRepositor
             'format.parts.questions' => function ($query) use ($testId) {
                 $query->where(Question::TEST_ID_FIELD, $testId)->where(Question::PARENT_ID_FIELD, null);
             },
+            'format.parts.questions.file',
+            'format.parts.questions.answers',
             'format.parts.questions.childQuestions',
+            'format.parts.questions.childQuestions.answers',
+            'format.parts.questions.childQuestions.file',
         ]);
         $parts = $test->format->parts;
         if ($parts && count($parts)) {
@@ -72,7 +76,11 @@ class QuestionRepository extends EloquentRepository implements QuestionRepositor
             $freePart->questions = $this->_model->where(Question::TEST_ID_FIELD, $testId)
                 ->where('parent_id', null)
                 ->with([
+                    'file',
+                    'answers',
                     'childQuestions',
+                    'childQuestions.answers',
+                    'childQuestions.file',
                 ])->get();
             $parts[] = $freePart;
 
@@ -85,7 +93,6 @@ class QuestionRepository extends EloquentRepository implements QuestionRepositor
         return $this->_model->find($id)
             ->load([
                 'childQuestions',
-                'childQuestions.answers',
                 'childQuestions.answers',
                 'comments',
                 'answers',
