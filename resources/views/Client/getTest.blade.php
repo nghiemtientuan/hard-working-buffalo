@@ -6,7 +6,7 @@
     <div class="site-section pb-0"></div>
 
     <div class="site-section pb-0 pt-20">
-        <div class="row justify-content-center text-center pl-10">
+        <div class="row justify-content-center text-center pl-10 m-0">
             <div class="col-lg-10 mb-5 pb-10">
                 <h2 class="section-title-underline">
                     <span>{{ $test->name }}</span>
@@ -15,10 +15,10 @@
             <div class="col-lg-2"></div>
         </div>
 
-        <form id="form_test" action="#" method="POST">
+        <form id="form_test" action="{{ route('client.tests.result', $test->id) }}" method="POST">
             @csrf
 
-            <div class="row pl-10">
+            <div class="row pl-10 m-0">
                 <div class="col-lg-10">
                     <div class="feature-1 border">
                         <div class="icon-wrapper bg-primary">

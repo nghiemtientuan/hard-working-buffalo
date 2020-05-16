@@ -75,6 +75,9 @@ return [
             'text_big_question' => 'Big Question',
             'send' => 'Submit',
         ],
+        'result' => [
+
+        ],
     ],
     'actions' => [
         'close' => 'Close',

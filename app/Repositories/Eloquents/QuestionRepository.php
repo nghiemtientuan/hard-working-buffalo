@@ -62,7 +62,9 @@ class QuestionRepository extends EloquentRepository implements QuestionRepositor
                 $query->where(Question::TEST_ID_FIELD, $testId)->where(Question::PARENT_ID_FIELD, null);
             },
             'format.parts.questions.file',
+            'format.parts.questions.answers',
             'format.parts.questions.childQuestions',
+            'format.parts.questions.childQuestions.answers',
             'format.parts.questions.childQuestions.file',
         ]);
         $parts = $test->format->parts;
@@ -75,7 +77,9 @@ class QuestionRepository extends EloquentRepository implements QuestionRepositor
                 ->where('parent_id', null)
                 ->with([
                     'file',
+                    'answers',
                     'childQuestions',
+                    'childQuestions.answers',
                     'childQuestions.file',
                 ])->get();
             $parts[] = $freePart;
@@ -89,7 +93,6 @@ class QuestionRepository extends EloquentRepository implements QuestionRepositor
         return $this->_model->find($id)
             ->load([
                 'childQuestions',
-                'childQuestions.answers',
                 'childQuestions.answers',
                 'comments',
                 'answers',
