@@ -20,6 +20,8 @@ class CreateHistoriesTable extends Migration
             $table->integer('duration')->nullable();
             $table->string('random_seed')->nullable();
             $table->integer('score')->nullable();
+            $table->integer('reading_number')->nullable();
+            $table->integer('listening_number')->nullable();
             $table->text('user_answer')->nullable();
             $table->timestamps();
             $table->softDeletes();

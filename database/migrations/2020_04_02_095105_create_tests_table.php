@@ -23,6 +23,7 @@ class CreateTestsTable extends Migration
             $table->text('guide')->nullable();
             $table->integer('execute_time')->nullable();
             $table->integer('total_question')->nullable();
+            $table->integer('is_formula_score')->default(0);
             $table->integer('price')->nullable();
             $table->integer('score')->nullable();
             $table->integer('level')->nullable();

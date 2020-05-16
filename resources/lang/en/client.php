@@ -76,7 +76,10 @@ return [
             'send' => 'Submit',
         ],
         'result' => [
-
+            'testTitle' => 'Test - ',
+            'score' => 'Score',
+            'questions' => 'Questions',
+            'duration' => 'Duration',
         ],
     ],
     'actions' => [

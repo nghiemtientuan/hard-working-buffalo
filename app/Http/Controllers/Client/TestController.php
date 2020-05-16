@@ -46,7 +46,7 @@ class TestController extends Controller
             if (Auth::guard('student')->check()) {
                 $studentId = Auth::guard('student')->user()->id;
             }
-            $historyId = $this->testService->getResultTestAnswer($studentId, $testId, $request);
+            $historyId = $this->testService->getResultTestAnswer($studentId, $test, $request);
 
             return redirect()->route('client.histories.show', $historyId);
         }
