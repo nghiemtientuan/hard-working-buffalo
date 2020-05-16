@@ -72,6 +72,7 @@
                                                                             type="radio"
                                                                             id="question_{{ $childQuestion->id }}_answerInput_{{ $answer->id }}"
                                                                             name="answerQuestion_{{ $childQuestion->id }}"
+                                                                            data-indexQuestion="{{ $indexQuestion }}"
                                                                             value="{{ $answer->id }}"
                                                                         />
                                                                         <label for="question_{{ $childQuestion->id }}_answerInput_{{ $answer->id }}">{{ $answer->content }}</label>
@@ -116,6 +117,7 @@
                                                                 type="radio"
                                                                 id="question_{{ $question->id }}_answerInput_{{ $answer->id }}"
                                                                 name="answerQuestion_{{ $question->id }}"
+                                                                data-indexQuestion="{{ $indexQuestion }}"
                                                                 value="{{ $answer->id }}"
                                                             />
                                                             <label for="question_{{ $question->id }}_answerInput_{{ $answer->id }}">{{ $answer->content }}</label>
@@ -129,6 +131,7 @@
                                 @endforeach
                             @endforeach
 
+                            <input id="durationInput" type="hidden" name="duration" />
                             <div class="form-group text-center">
                                 <input type="submit" value="{{ trans('client.pages.getTest.send') }}" class="btn btn-primary btn-lg px-5">
                             </div>
@@ -136,15 +139,23 @@
                     </div>
                 </div>
 
-                <div id="myHeader" class="col-lg-2">
+                <div id="myHeader" class="col-lg-2 p-0">
                     <div class="feature-1 border position-fixed w-20">
                         <div class="icon-wrapper bg-primary">
                             <span class="icon-timer text-white"></span>
                         </div>
-                        <div class="feature-1-content text-left pl-1 pr-1 background-primary">
-                            <div id="clockDiv"
-                                 data-execute_time="60"
-                            >
+                        <div class="feature-1-content text-left pl-1 pr-1 background-primary pt-30 pb-0">
+                            <div id="clockDiv" data-execute_time="{{ $test->execute_time }}"></div>
+                            <div id="hightlightQuestion" class="fs-10">
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        @for ($index = 1; $index < $indexQuestion; $index++)
+                                            @if ($index % 10 == 1)<tr>@endif
+                                                <th id="questionHighlightTh_{{ $index }}" class="p-0" width="10%">{{ $index }}</th>
+                                            @if ($index % 10 == 0)</tr>@endif
+                                        @endfor
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -154,4 +165,8 @@
     </div>
 
     <div class="site-section pb-0"></div>
+@endsection
+
+@section('script')
+    <script src="{{ asset('js/Client/getTest.js') }}"></script>
 @endsection

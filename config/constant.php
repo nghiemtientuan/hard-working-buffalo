@@ -19,4 +19,8 @@ return [
     'limit' => [
         'newTest' => 5,
     ],
+    'scoreTest' => [
+        'total_formula' => 990,
+        'total_not_formula' => 100,
+    ],
 ];

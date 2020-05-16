@@ -1,3 +1,15 @@
 .site-logo {
     width: 200px;
 }
+
+#myHeader .feature-1-content {
+    width: 210px;
+}
+
+.fs-10 {
+    font-size: 10px;
+}
+
+.bgc-Dddddd {
+    background-color: #Dddddd;
+}

@@ -64,3 +64,11 @@
 .m-0 {
     margin: 0 !important;
 }
+
+.pt-30 {
+    padding-top: 30px !important;
+}
+
+.pb-0 {
+    padding-bottom: 0;
+}

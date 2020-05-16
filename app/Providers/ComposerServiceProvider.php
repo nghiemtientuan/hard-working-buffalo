@@ -24,7 +24,10 @@ class ComposerServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer(
-            'Admin.layouts.scripts',
+            [
+                'Admin.layouts.scripts',
+                'Client.layouts.scripts',
+            ],
             'App\Http\ViewComposers\TranslationComposer'
         );
         view()->composer(

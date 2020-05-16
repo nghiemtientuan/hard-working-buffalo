@@ -32,7 +32,12 @@
                                         <th width="15%">{{ trans('client.pages.result.duration') }}</th>
                                     </tr>
                                     <tr>
-                                        <th>{{ $history->score }}</th>
+                                        <th>{{ $history->score }}@if ($history->test->is_formula_score == \App\Models\Test::IS_FORMULA_SCORE_TRUE)
+                                                {{ '/ ' . config('constant.scoreTest.total_formula') }}
+                                            @else
+                                                {{ '/ ' . config('constant.scoreTest.total_not_formula') }}
+                                            @endif
+                                        </th>
                                         <th>{{ $history->reading_number }}</th>
                                         <th>{{ $history->listening_number }}</th>
                                         <th>0</th>

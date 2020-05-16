@@ -1,4 +1,4 @@
-<div class="footer">
+<div class="footer p-0">
     <div class="container">
         <div class="row">
             <div class="col-lg-3">
@@ -31,7 +31,7 @@
 
         <div class="row">
             <div class="col-12">
-                <div class="copyright">
+                <div class="copyright p-0">
                     <p>
                         {{ trans('client.footer.company') }} <i class="icon-heart" aria-hidden="true"></i> {{ trans('client.footer.hard_working_buffalo') }}
                     </p>

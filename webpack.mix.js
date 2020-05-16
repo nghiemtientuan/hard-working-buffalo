@@ -67,6 +67,7 @@ mix.styles([
     'resources/sass/app.css',
     'resources/sass/Client/app.css',
 ], 'public/css/client.css')
+.copy('resources/js/Client', 'public/js/Client')
 .options({
     processCssUrls: false
 }).version();

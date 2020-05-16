@@ -86,5 +86,7 @@ return [
     'actions' => [
         'close' => 'Close',
         'login_false' => 'Login false',
+        'are_you_sure' => 'Are you sure?',
+        'yes_submit' => 'Yes, Submit!',
     ],
 ];
