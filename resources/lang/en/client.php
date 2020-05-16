@@ -78,7 +78,8 @@ return [
         'result' => [
             'testTitle' => 'Test - ',
             'score' => 'Score',
-            'questions' => 'Questions',
+            'reading' => 'Reading',
+            'listening' => 'Listening',
             'duration' => 'Duration',
         ],
     ],
