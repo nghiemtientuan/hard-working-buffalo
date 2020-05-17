@@ -35,6 +35,7 @@ return [
     ],
     'progress_bar' => [
     ],
+    'no_data' => 'No data',
     'pages' => [
         'login' => [
             'login' => 'Login',

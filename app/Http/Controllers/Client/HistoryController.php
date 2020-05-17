@@ -50,12 +50,8 @@ class HistoryController extends Controller
     public function show($historyId)
     {
         $history = $this->historyRepository->find($historyId)->load('test');
-        if ($history) {
-            $parts = $this->testService->getHistory($history);
+        $parts = $this->testService->getHistory($history);
 
-            return view('Client.result', compact('history', 'parts'));
-        }
-
-        return redirect()->route('client.notFound');
+        return view('Client.result', compact('history', 'parts'));
     }
 }
