@@ -5,7 +5,7 @@
 @section('content')
     <div class="site-section pb-0"></div>
 
-    <div class="site-section pb-0 pt-20">
+    <div class="site-section pb-0 pt-25">
         <div class="container">
             <div class="row justify-content-center text-center">
                 <div class="col-lg-4 mb-5">
@@ -40,7 +40,7 @@
                                         </th>
                                         <th>{{ $history->reading_number }}</th>
                                         <th>{{ $history->listening_number }}</th>
-                                        <th>0</th>
+                                        <th>{{ getHourMinuteSecond($history->duration) }}</th>
                                     </tr>
                                 </tbody>
                             </table>

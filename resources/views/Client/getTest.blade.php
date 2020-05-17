@@ -5,7 +5,7 @@
 @section('content')
     <div class="site-section pb-0"></div>
 
-    <div class="site-section pb-0 pt-20">
+    <div class="site-section pb-0 pt-25">
         <div class="row justify-content-center text-center pl-10 m-0">
             <div class="col-lg-10 mb-5 pb-10">
                 <h2 class="section-title-underline">
@@ -139,13 +139,13 @@
                     </div>
                 </div>
 
-                <div id="myHeader" class="col-lg-2 p-0">
+                <div id="myHeader" class="col-lg-2 p-0" data-guide="{{ $test->guide }}">
                     <div class="feature-1 border position-fixed w-20">
                         <div class="icon-wrapper bg-primary">
                             <span class="icon-timer text-white"></span>
                         </div>
                         <div class="feature-1-content text-left pl-1 pr-1 background-primary pt-30 pb-0">
-                            <div id="clockDiv" data-execute_time="{{ $test->execute_time }}"></div>
+                            <div id="clockDiv" data-testId="{{ $test->id }}" data-execute_time="{{ $test->execute_time }}"></div>
                             <div id="hightlightQuestion" class="fs-10">
                                 <table class="table table-bordered">
                                     <tbody>

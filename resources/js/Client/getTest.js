@@ -1,7 +1,35 @@
-let execute_time = $('#clockDiv').data('execute_time');
+let testId = $('#myHeader #clockDiv').attr('data-testId');
+let execute_time = $('#clockDiv').attr('data-execute_time');
 let timeIntervalGlobal;
-let time_in_minutes = execute_time;
-let duration = 0;
+let duration = localStorage.getItem('duration_test_' + testId) || 0;
+let time_in_minutes = execute_time - duration / 60;
+let userAnswerSaveArrays = JSON.parse(localStorage.getItem('userAnswer_' + testId)) || [];
+userAnswerSaveArrays.map(userAnswer => {
+    $('input[name=' + userAnswer.name + '][value=' + userAnswer.value + ']').attr('checked', 'checked');
+    $(userAnswer.hightlightQuestionId).addClass('bgc-Dddddd');
+});
+Swal.fire({
+    title: trans('client.actions.are_you_ready'),
+    icon: 'info',
+    text: $('#myHeader').attr('data-guide'),
+    showCancelButton: false,
+    confirmButtonColor: '#3085d6',
+    confirmButtonText: trans('client.actions.yes_ready'),
+    allowOutsideClick: false,
+    backgroundColor: 'rgba(43, 165, 137, 0.45)',
+    onBeforeOpen: () => {
+        Swal.showLoading();
+        $(window).on('load', function () {
+            Swal.hideLoading();
+        });
+    },
+}).then(() => {
+    let current_time = Date.parse(new Date());
+    let deadline = new Date(current_time + time_in_minutes * 60 * 1000);
+    timeIntervalGlobal = run_clock('clockDiv', deadline);
+});
+
+$('.swal2-container.swal2-shown').css('background-color', '#51be78');
 
 window.onscroll = function () {
     myFunction()
@@ -41,17 +69,12 @@ function run_clock(id, endtime)
         } else {
             duration++;
         }
+        localStorage.setItem('duration_test_' + testId, duration);
     }
 
     update_clock();
     return setInterval(update_clock, 1000);
 }
-
-$(window).on('load', function () {
-    let current_time = Date.parse(new Date());
-    let deadline = new Date(current_time + time_in_minutes * 60 * 1000);
-    timeIntervalGlobal = run_clock('clockDiv', deadline);
-});
 
 function stopRunClock()
 {
@@ -92,14 +115,47 @@ $(document).on('click', 'input[type=submit]', function (e) {
 function submit_form()
 {
     stopRunClock();
+    $('#durationInput').val(duration);
+    localStorage.removeItem('userAnswer_' + testId);
+    localStorage.removeItem('duration_test_' + testId);
     document.getElementById("form_test").submit();
 }
 
 $(document).on('click', 'input[type=radio]', function () {
     let indexQuestion = $(this).attr('data-indexQuestion');
     let hightlightQuestionId = '#myHeader #hightlightQuestion #questionHighlightTh_' + indexQuestion;
+    let name = $(this).attr('name');
+    let value = $(this).val();
+    let userAnswerArrays = JSON.parse(localStorage.getItem('userAnswer_' + testId)) || [];
+    let newUserAnswer = {
+        name,
+        value,
+        hightlightQuestionId
+    }
 
     if (!$(hightlightQuestionId).hasClass('bgc-Dddddd')) {
         $(hightlightQuestionId).addClass('bgc-Dddddd');
     }
+
+    addUserAnswer(newUserAnswer, userAnswerArrays);
 });
+
+function addUserAnswer(newUserAnswer, userAnswerArrays) {
+    if (checkDuplicateUserAnswer(newUserAnswer, userAnswerArrays)) {
+        userAnswerArrays.map((userAnswer, key) => {
+            if (userAnswer.name === newUserAnswer.name) {
+                userAnswerArrays[key].value = newUserAnswer.value;
+            }
+        });
+    } else {
+        userAnswerArrays = userAnswerArrays.concat(newUserAnswer);
+    }
+
+    localStorage.setItem('userAnswer_' + testId, JSON.stringify(userAnswerArrays));
+}
+
+function checkDuplicateUserAnswer(newUserAnswer, userAnswerArray) {
+    let duplicate = userAnswerArray.find(userAnswer => newUserAnswer.name === userAnswer.name);
+
+    return duplicate ? true : false;
+}

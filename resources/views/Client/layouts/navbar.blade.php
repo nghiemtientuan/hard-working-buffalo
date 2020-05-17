@@ -13,9 +13,11 @@
                 @endforeach
             </ul>
         </li>
-        <li>
-            <a href="#" class="nav-link text-left">{{ trans('client.navbar.list.histories') }}</a>
-        </li>
+        @if (Auth::guard('student')->check())
+            <li>
+                <a href="{{ route('client.histories.index') }}" class="nav-link text-left">{{ trans('client.navbar.list.histories') }}</a>
+            </li>
+        @endif
         <li>
             <a href="#" class="nav-link text-left">{{ trans('client.navbar.list.ranking') }}</a>
         </li>
