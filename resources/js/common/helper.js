@@ -67,3 +67,8 @@ function renderInputFile (element) {
 function randomString() {
     return Math.random().toString(36).substr(2, 10).toUpperCase();
 }
+
+let STATUS_CODE = {
+    'code_200': 200,
+    'code_404': 404
+}

@@ -24,4 +24,7 @@ return [
         'total_formula' => 990,
         'total_not_formula' => 100,
     ],
+    'status_code' => [
+        'code_200' => 200,
+    ],
 ];

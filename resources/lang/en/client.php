@@ -77,6 +77,7 @@ return [
             'text_question' => 'Question',
             'text_big_question' => 'Big Question',
             'send' => 'Submit',
+            'comments' => 'Comments',
         ],
         'result' => [
             'testTitle' => 'Test - ',
