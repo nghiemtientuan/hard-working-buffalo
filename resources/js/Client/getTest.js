@@ -8,6 +8,28 @@ userAnswerSaveArrays.map(userAnswer => {
     $('input[name=' + userAnswer.name + '][value=' + userAnswer.value + ']').attr('checked', 'checked');
     $(userAnswer.hightlightQuestionId).addClass('bgc-Dddddd');
 });
+Swal.fire({
+    title: trans('client.actions.are_you_ready'),
+    icon: 'info',
+    text: $('#myHeader').attr('data-guide'),
+    showCancelButton: false,
+    confirmButtonColor: '#3085d6',
+    confirmButtonText: trans('client.actions.yes_ready'),
+    allowOutsideClick: false,
+    backgroundColor: 'rgba(43, 165, 137, 0.45)',
+    onBeforeOpen: () => {
+        Swal.showLoading();
+        $(window).on('load', function () {
+            Swal.hideLoading();
+        });
+    },
+}).then(() => {
+    let current_time = Date.parse(new Date());
+    let deadline = new Date(current_time + time_in_minutes * 60 * 1000);
+    timeIntervalGlobal = run_clock('clockDiv', deadline);
+});
+
+$('.swal2-container.swal2-shown').css('background-color', '#51be78');
 
 window.onscroll = function () {
     myFunction()
@@ -53,12 +75,6 @@ function run_clock(id, endtime)
     update_clock();
     return setInterval(update_clock, 1000);
 }
-
-$(window).on('load', function () {
-    let current_time = Date.parse(new Date());
-    let deadline = new Date(current_time + time_in_minutes * 60 * 1000);
-    timeIntervalGlobal = run_clock('clockDiv', deadline);
-});
 
 function stopRunClock()
 {

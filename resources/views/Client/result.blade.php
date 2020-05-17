@@ -40,7 +40,7 @@
                                         </th>
                                         <th>{{ $history->reading_number }}</th>
                                         <th>{{ $history->listening_number }}</th>
-                                        <th>0</th>
+                                        <th>{{ getHourMinuteSecond($history->duration) }}</th>
                                     </tr>
                                 </tbody>
                             </table>

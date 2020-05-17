@@ -88,5 +88,7 @@ return [
         'login_false' => 'Login false',
         'are_you_sure' => 'Are you sure?',
         'yes_submit' => 'Yes, Submit!',
+        'are_you_ready' => 'Are you ready?',
+        'yes_ready' => 'Start',
     ],
 ];

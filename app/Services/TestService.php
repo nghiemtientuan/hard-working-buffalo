@@ -81,6 +81,7 @@ class TestService
             History::STUDENT_ID_FIELD => $studentId,
             History::TEST_ID_FIELD => $test->id,
             History::READING_NUMBER_FIELD => $readingNumber,
+            History::DURATION_FIELD => $request->duration,
             History::LISTENING_NUMBER_FIELD => $listeningNumber,
             History::SCORE_FIELD => getFormulaScore(
                 $readingNumber,

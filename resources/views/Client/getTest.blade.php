@@ -139,7 +139,7 @@
                     </div>
                 </div>
 
-                <div id="myHeader" class="col-lg-2 p-0">
+                <div id="myHeader" class="col-lg-2 p-0" data-guide="{{ $test->guide }}">
                     <div class="feature-1 border position-fixed w-20">
                         <div class="icon-wrapper bg-primary">
                             <span class="icon-timer text-white"></span>
