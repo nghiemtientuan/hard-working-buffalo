@@ -37,6 +37,8 @@ return [
     ],
     'no_data' => 'No data',
     'pages' => [
+        'edit' => 'Edit',
+        'comments' => 'Comments',
         'login' => [
             'login' => 'Login',
             'loginBtn' => 'Login',

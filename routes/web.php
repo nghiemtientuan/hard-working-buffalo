@@ -33,5 +33,9 @@ Route::group([
             ->name('histories.show');
     });
 
+    Route::group(['prefix' => 'api'], function () {
+        Route::get('questions/{questionId}/comments', 'TestController@getComments')->name('questions.getComments');
+    });
+
     Route::get('not_found', 'NotFoundController@index')->name('notFound');
 });

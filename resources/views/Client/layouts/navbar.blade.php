@@ -13,7 +13,7 @@
                 @endforeach
             </ul>
         </li>
-        @if (Auth::guard('student')->check())
+        @if (Auth::guard('student')->check() || Auth::check())
             <li>
                 <a href="{{ route('client.histories.index') }}" class="nav-link text-left">{{ trans('client.navbar.list.histories') }}</a>
             </li>

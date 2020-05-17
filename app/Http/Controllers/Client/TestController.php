@@ -32,7 +32,11 @@ class TestController extends Controller
         if ($test) {
             $parts = $this->testService->getAnswerQuestionPartInTest($testId);
 
-            return view('Client.getTest', compact('test', 'parts'));
+            if (Auth::check()) {
+                return view('Client.getResultTest', compact('test', 'parts'));
+            } else {
+                return view('Client.getTest', compact('test', 'parts'));
+            }
         }
 
         return redirect()->route('client.notFound');
@@ -52,5 +56,10 @@ class TestController extends Controller
         }
 
         return redirect()->route('client.notFound');
+    }
+
+    public function getComments($questionId)
+    {
+
     }
 }
