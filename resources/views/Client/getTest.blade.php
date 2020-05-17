@@ -145,7 +145,7 @@
                             <span class="icon-timer text-white"></span>
                         </div>
                         <div class="feature-1-content text-left pl-1 pr-1 background-primary pt-30 pb-0">
-                            <div id="clockDiv" data-execute_time="{{ $test->execute_time }}"></div>
+                            <div id="clockDiv" data-testId="{{ $test->id }}" data-execute_time="{{ $test->execute_time }}"></div>
                             <div id="hightlightQuestion" class="fs-10">
                                 <table class="table table-bordered">
                                     <tbody>
