@@ -82,6 +82,18 @@ return [
             'listening' => 'Listening',
             'duration' => 'Duration',
         ],
+        'histories' => [
+            'historiesTitle' => 'Histories',
+            'test' => 'Test',
+            'score' => 'Score',
+            'from' => 'from',
+            'to' => 'to',
+            'test_code' => 'Test code',
+            'name_test' => 'Test Name',
+            'duration' => 'Duration',
+            'created_at' => 'Created at',
+            'allTest' => '--All Test--',
+        ],
     ],
     'actions' => [
         'close' => 'Close',

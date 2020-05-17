@@ -64,4 +64,9 @@ class CategoryRepository extends EloquentRepository implements CategoryRepositor
                 $query->where('categories.id', $categoryId);
             })->get();
     }
+
+    public function getAllChildCateTest()
+    {
+        return $this->_model->where(Category::PARENT_ID_FIELD, '<>', null)->with('tests')->get();
+    }
 }
