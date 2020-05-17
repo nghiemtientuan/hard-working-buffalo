@@ -9,4 +9,6 @@ interface QuestionRepositoryInterface
     public function getQuestion($id);
 
     public function getAnswerQuestionPartInTest($testId);
+
+    public function getComments($questionId);
 }

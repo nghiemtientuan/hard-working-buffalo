@@ -4,6 +4,7 @@ namespace App\Repositories\Eloquents;
 
 use App\Models\Part;
 use App\Models\Question;
+use App\Models\QuestionComment;
 use App\Models\Test;
 use App\Repositories\Contracts\QuestionRepositoryInterface;
 
@@ -98,5 +99,12 @@ class QuestionRepository extends EloquentRepository implements QuestionRepositor
                 'answers',
                 'test',
             ]);
+    }
+
+    public function getComments($questionId)
+    {
+        return QuestionComment::where(QuestionComment::QUESTION_ID_FIELD, $questionId)
+            ->orderBy('created_at', 'DESC')
+            ->get();
     }
 }

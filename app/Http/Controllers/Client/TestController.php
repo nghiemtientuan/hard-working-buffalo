@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Client;
 
 use Illuminate\Http\Request;
 use App\Repositories\Contracts\TestRepositoryInterface as TestRepository;
+use App\Repositories\Contracts\QuestionRepositoryInterface as QuestionRepository;
 use App\Services\TestService;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -12,18 +13,22 @@ class TestController extends Controller
 {
     protected $testRepository;
     protected $testService;
+    protected $questionRepository;
 
     /**
      * TestController constructor.
      * @param TestRepository $testRepository
      * @param TestService $testService
+     * @param QuestionRepository $questionRepository
      */
     public function __construct(
         TestRepository $testRepository,
-        TestService $testService
+        TestService $testService,
+        QuestionRepository $questionRepository
     ) {
         $this->testRepository = $testRepository;
         $this->testService = $testService;
+        $this->questionRepository = $questionRepository;
     }
 
     public function test($testId)
@@ -60,6 +65,11 @@ class TestController extends Controller
 
     public function getComments($questionId)
     {
+        $comments = $this->questionRepository->getComments($questionId);
 
+        return response()->json([
+            'code' => config('constant.status_code.code_200'),
+            'data' => $comments,
+        ]);
     }
 }

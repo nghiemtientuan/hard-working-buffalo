@@ -33,7 +33,7 @@ Route::group([
             ->name('histories.show');
     });
 
-    Route::group(['prefix' => 'api'], function () {
+    Route::group(['prefix' => 'api', 'as' => 'api.'], function () {
         Route::get('questions/{questionId}/comments', 'TestController@getComments')->name('questions.getComments');
     });
 

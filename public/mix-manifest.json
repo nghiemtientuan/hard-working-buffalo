@@ -1,6 +1,6 @@
 {
     "/js/admin.js": "/js/admin.js?id=86a3817a15a4a8846a95",
-    "/css/admin.css": "/css/admin.css?id=6aab3cebd20e9d2dade8",
+    "/css/admin.css": "/css/admin.css?id=2680084d979a3844f899",
     "/js/Admin/list_category.js": "/js/Admin/list_category.js?id=22001f9e5d4c3a1bcc84",
     "/js/Admin/list_student.js": "/js/Admin/list_student.js?id=680d01da9dadb427e974",
     "/js/Admin/list_user.js": "/js/Admin/list_user.js?id=25ed7f71e400be455bbb",
@@ -14,5 +14,5 @@
     "/js/Admin/list_question_in_test.js": "/js/Admin/list_question_in_test.js?id=963d0bc56b7a17cf0941",
     "/js/Admin/editFormat.js": "/js/Admin/editFormat.js?id=79acc1b30d2e07995fc7",
     "/js/common/helper.js": "/js/common/helper.js?id=689c12fe02cb79b56eb0",
-    "/css/client.css": "/css/client.css?id=3e64a4209a1d2aae6bc2"
+    "/css/client.css": "/css/client.css?id=5bc9e62dda4703348af6"
 }
