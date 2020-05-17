@@ -23,11 +23,19 @@ Route::group([
 
     Route::get('categories/{categoryId}', 'CategoryController@show')->name('categories.show');
 
-    Route::get('test/{testId}', 'TestController@test')->name('tests.test');
-    Route::post('test/{testId}', 'TestController@result')->name('tests.result');
+    Route::group(['middleware' => ['checkClientAdminLogin']], function () {
+        Route::get('test/{testId}', 'TestController@test')->name('tests.test');
+        Route::post('test/{testId}', 'TestController@result')->name('tests.result');
 
-    Route::get('histories', 'HistoryController@index')->name('histories.index');
-    Route::get('histories/{historyId}', 'HistoryController@show')->name('histories.show');
+        Route::get('histories', 'HistoryController@index')->name('histories.index');
+        Route::get('histories/{historyId}', 'HistoryController@show')
+            ->middleware('checkOwnerHistory')
+            ->name('histories.show');
+    });
+
+    Route::group(['prefix' => 'api'], function () {
+        Route::get('questions/{questionId}/comments', 'TestController@getComments')->name('questions.getComments');
+    });
 
     Route::get('not_found', 'NotFoundController@index')->name('notFound');
 });

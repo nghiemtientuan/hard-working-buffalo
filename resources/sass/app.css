@@ -30,7 +30,7 @@
 }
 
 .mr-5 {
-    margin-right: 5px;
+    margin-right: 5px !important;
 }
 
 .mr-20 {
