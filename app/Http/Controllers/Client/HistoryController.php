@@ -38,11 +38,15 @@ class HistoryController extends Controller
             'score',
             'from_date',
             'to_date',
+            'student_name',
         ]);
-        $student = Auth::guard('student')->user();
-        $cateTests = $this->categoryRepository->getAllChildCateTest();
+        $studentId = null;
+        if (Auth::guard('student')->check()) {
+            $studentId = Auth::guard('student')->user()->id;
+        }
 
-        $histories = $this->historyRepository->getHistories($student->id, $filter);
+        $histories = $this->historyRepository->getHistories($filter, $studentId);
+        $cateTests = $this->categoryRepository->getAllChildCateTest();
 
         return view('Client.histories', compact('histories', 'filter', 'cateTests'));
     }

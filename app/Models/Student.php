@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Traits\FullTextSearch;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Student extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, SoftDeletes, FullTextSearch;
 
     protected $table = 'students';
 
@@ -46,6 +48,15 @@ class Student extends Authenticatable
         'created_at',
         'updated_at',
         'deleted_at',
+    ];
+
+    /**
+     * The columns of the full text index
+     */
+    protected $searchable = [
+        Student::FIRSTNAME_FIELD,
+        Student::LASTNAME_FIELD,
+        Student::USERNAME_FIELD,
     ];
 
     protected $with = [
