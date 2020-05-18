@@ -16,10 +16,13 @@ class HistoryRepository extends EloquentRepository implements HistoryRepositoryI
         return History::class;
     }
 
-    public function getHistories($studentId, $filter)
+    public function getHistories($filter, $studentId = null)
     {
-        $query = $this->_model->where(History::STUDENT_ID_FIELD, $studentId)
-            ->orderBy('created_at', 'DESC');
+        $query = $this->_model->orderBy('created_at', 'DESC');
+
+        if ($studentId) {
+            $query->where(History::STUDENT_ID_FIELD, $studentId);
+        }
 
         if (array_key_exists('test', $filter) && $filter['test']) {
             $query->with('test')->whereHas('test', function ($qr) use ($filter) {

@@ -90,6 +90,7 @@ return [
             'historiesTitle' => 'Histories',
             'test' => 'Test',
             'score' => 'Score',
+            'student_name' => 'Name',
             'from' => 'from',
             'to' => 'to',
             'test_code' => 'Test code',

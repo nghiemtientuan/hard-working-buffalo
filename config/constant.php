@@ -24,6 +24,9 @@ return [
         'total_formula' => 990,
         'total_not_formula' => 100,
     ],
+    'fulltext' => [
+        'min_strlen_word_search' => 2,
+    ],
     'status_code' => [
         'code_200' => 200,
     ],

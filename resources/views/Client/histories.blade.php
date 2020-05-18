@@ -55,6 +55,19 @@
                                     <button type="submit" class="btn btn-primary mr-2"><i class="icon-search"></i></button>
                                     <a href="{{ route('client.histories.index') }}" class="btn btn-danger"><i class="icon-remove"></i></a>
                                 </div>
+
+                                <div class="col-lg-4 d-flex text-left mt-10">
+                                    <label class="col-lg-3 p-0">{{ trans('client.pages.histories.student_name') }}</label>
+                                    <div class="col-lg-9 p-0">
+                                        <input
+                                            name="student_name"
+                                            type="text"
+                                            class="form-control"
+                                            value="{{ array_key_exists('student_name', $filter) ? $filter['student_name'] : '' }}"
+                                            placeholder="{{ trans('client.pages.histories.student_name') }}"
+                                        >
+                                    </div>
+                                </div>
                             </form>
 
                             <table class="table table-bordered table-framed">
