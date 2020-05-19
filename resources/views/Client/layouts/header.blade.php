@@ -45,11 +45,33 @@
             <div class="mr-auto">
                 @include('Client.layouts.navbar')
             </div>
-            <div class="ml-auto">
-                <div class="social-wrap">
-                    <a href="#"><span class="icon-github"></span></a>
-                </div>
-            </div>
+            <ul class="nav navbar-nav navbar-right">
+                @if (Auth::check() || Auth::guard('student')->check())
+                    <li class="dropdown dropdown-user">
+                        <a class="dropdown-toggle" data-toggle="dropdown">
+                            @if (Auth::guard('student')->check())
+                                {{ Auth::guard('student')->user()->username }}
+                                (<span id="headerCoinNumber">25</span> {{ trans('client.header.coin') }})
+                                <img src="{{ userDefaultImage(Auth::guard('student')->user()->file) }}" class="rounded-circle w-50">
+                            @else
+                                {{ Auth::user()->username }}
+                                <img src="{{ userDefaultImage(Auth::user()->file) }}" class="rounded-circle w-50">
+                            @endif
+                            <i class="caret"></i>
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="{{ route('admin.profile') }}"><i class="icon-user-plus"></i> {{ trans('backend.navbar.my_profile') }}</a></li>
+                            <li><a href="#"><i class="icon-cog5"></i> {{ trans('backend.navbar.account_settings') }}</a></li>
+                            <li>
+                                <button type="submit" class="btn btn-link">
+                                    <i class="icon-switch2"></i> {{ trans('backend.navbar.logout') }}
+                                </button>
+                            </li>
+                        </ul>
+                    </li>
+                @endif
+            </ul>
         </div>
     </div>
 </header>

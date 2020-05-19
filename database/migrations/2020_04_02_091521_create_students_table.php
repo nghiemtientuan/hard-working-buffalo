@@ -25,7 +25,7 @@ class CreateStudentsTable extends Migration
             $table->integer('level_id')->nullable();
             $table->integer('level_score')->nullable();
             $table->integer('student_type_id')->nullable();
-            $table->integer('diamond')->nullable();
+            $table->integer('coin')->nullable();
             $table->integer('active')->nullable();
             $table->text('description')->nullable();
             $table->string('email')->unique();
