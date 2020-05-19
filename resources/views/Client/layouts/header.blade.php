@@ -45,11 +45,15 @@
             <div class="mr-auto">
                 @include('Client.layouts.navbar')
             </div>
-            <div class="ml-auto">
-                <div class="social-wrap">
-                    <a href="#"><span class="icon-github"></span></a>
+            @if (Auth::check() || Auth::guard('student')->check())
+                <div class="ml-auto text-right">
+                    @if (Auth::check())
+                        <img src="{{ userDefaultImage(Auth::user()->file) }}" class="rounded-circle w-50">
+                    @else
+                        <img src="{{ userDefaultImage(Auth::guard('student')->user()->file) }}" class="rounded-circle w-50">
+                    @endif
                 </div>
-            </div>
+            @endif
         </div>
     </div>
 </header>
