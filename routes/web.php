@@ -33,6 +33,8 @@ Route::group([
             ->name('histories.show');
     });
 
+    Route::get('ranking', 'RankingController@index')->name('ranking.index');
+
     Route::group(['prefix' => 'api', 'as' => 'api.'], function () {
         Route::get('questions/{questionId}/comments', 'TestController@getComments')->name('questions.getComments');
     });

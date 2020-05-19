@@ -99,6 +99,14 @@ return [
             'created_at' => 'Created at',
             'allTest' => '--All Test--',
         ],
+        'ranking' => [
+            'rankingTitle' => 'Ranking',
+            'username' => 'Username',
+            'name_test' => 'Test',
+            'score' => 'Score',
+            'created_at' => 'Created at',
+            'in_month' => 'In month',
+        ],
     ],
     'actions' => [
         'close' => 'Close',

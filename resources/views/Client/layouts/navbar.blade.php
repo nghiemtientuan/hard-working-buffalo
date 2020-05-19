@@ -19,7 +19,7 @@
             </li>
         @endif
         <li>
-            <a href="#" class="nav-link text-left">{{ trans('client.navbar.list.ranking') }}</a>
+            <a href="{{ route('client.ranking.index') }}" class="nav-link text-left">{{ trans('client.navbar.list.ranking') }}</a>
         </li>
         <li>
             <a href="#" class="nav-link text-left">{{ trans('client.navbar.list.blog') }}</a>
