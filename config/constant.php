@@ -19,6 +19,7 @@ return [
     'limit' => [
         'newTest' => 5,
         'histories' => 20,
+        'ranking' => 20,
     ],
     'scoreTest' => [
         'total_formula' => 990,

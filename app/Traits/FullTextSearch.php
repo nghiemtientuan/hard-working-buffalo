@@ -40,9 +40,21 @@ trait FullTextSearch
      */
     public function scopeSearch($query, $term)
     {
-        $columns = implode(',', $this->searchable);
+        if (strlen($term) >= config('constant.fulltext.min_strlen_word_search')) {
+            $columns = implode(',', $this->searchable);
+            $query->whereRaw("MATCH ({$columns}) AGAINST (? IN BOOLEAN MODE)", $this->fullTextWildcards($term));
 
-        $query->whereRaw("MATCH ({$columns}) AGAINST (? IN BOOLEAN MODE)", $this->fullTextWildcards($term));
+            return $query;
+        } else {
+            return $this->searchLike($query, $term);
+        }
+    }
+
+    public function searchLike($query, $keyword)
+    {
+        foreach ($this->searchable as $column) {
+            $query->where($column, 'LIKE', '%' . $keyword . '%');
+        }
 
         return $query;
     }

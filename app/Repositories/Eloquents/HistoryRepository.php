@@ -3,6 +3,7 @@
 namespace App\Repositories\Eloquents;
 
 use App\Models\History;
+use App\Models\Student;
 use App\Repositories\Contracts\HistoryRepositoryInterface;
 
 class HistoryRepository extends EloquentRepository implements HistoryRepositoryInterface
@@ -22,6 +23,11 @@ class HistoryRepository extends EloquentRepository implements HistoryRepositoryI
 
         if ($studentId) {
             $query->where(History::STUDENT_ID_FIELD, $studentId);
+        } else {
+            $keyword = array_key_exists('student_name', $filter) ? $filter['student_name'] : '';
+            $studentsSearchIds = Student::search($keyword)->pluck('id')->toArray();
+
+            $query->whereIn(History::STUDENT_ID_FIELD, $studentsSearchIds);
         }
 
         if (array_key_exists('test', $filter) && $filter['test']) {
@@ -31,7 +37,7 @@ class HistoryRepository extends EloquentRepository implements HistoryRepositoryI
         }
 
         if (array_key_exists('score', $filter) && $filter['score']) {
-            $query->where('score', '>=', $filter['score']);
+            $query->where(History::SCORE_FIELD, '>=', $filter['score']);
         }
 
         if (array_key_exists('from_date', $filter) && $filter['from_date']) {
@@ -44,5 +50,24 @@ class HistoryRepository extends EloquentRepository implements HistoryRepositoryI
 
         return $query->orderBy('created_at', 'DESC')
             ->paginate(config('constant.limit.histories'));
+    }
+
+    public function getRanking($filter)
+    {
+        $query = $this->_model->with([
+            'student',
+            'student.file',
+            'test',
+        ]);
+
+        if (array_key_exists('test', $filter) && $filter['test']) {
+            $query->where(History::TEST_ID_FIELD, $filter['test']);
+        }
+
+        $query->selectRaw('MAX(score) as score, student_id, test_id')
+            ->groupBy(['student_id', 'test_id'])
+            ->orderBy('score', 'DESC');
+
+        return $query->paginate(config('constant.limit.ranking'));
     }
 }
