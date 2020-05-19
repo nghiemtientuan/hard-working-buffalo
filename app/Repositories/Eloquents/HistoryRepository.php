@@ -58,7 +58,7 @@ class HistoryRepository extends EloquentRepository implements HistoryRepositoryI
             'student',
             'student.file',
             'test',
-        ]);
+        ])->whereMonth('created_at', now()->month);
 
         if (array_key_exists('test', $filter) && $filter['test']) {
             $query->where(History::TEST_ID_FIELD, $filter['test']);
