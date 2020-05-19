@@ -5,6 +5,7 @@ return [
         'view_backend' => 'View Backend',
         'login' => 'Login',
         'logout' => 'Logout',
+        'coin' => 'coin',
     ],
     'navbar' => [
         'main' => 'Home',
