@@ -4,6 +4,7 @@ return [
     'default_images' => [
         'url_profile' => '/images/common/profile.png',
         'url_logo' => '/images/common/logo.png',
+        'url_cover' => '/images/common/cover.png',
     ],
     'links' => [
         'link_facebook' => 'a',
@@ -20,6 +21,7 @@ return [
         'newTest' => 5,
         'histories' => 20,
         'ranking' => 20,
+        'timelineProfile' => 10,
     ],
     'scoreTest' => [
         'total_formula' => 990,

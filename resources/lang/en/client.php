@@ -108,6 +108,13 @@ return [
             'created_at' => 'Created at',
             'in_month' => 'In month',
         ],
+        'profile' => [
+            'profileTitle' => 'Profile',
+        ],
+    ],
+    'timeline' => [
+        'testTitle' => 'Test',
+        'testBody' => 'You did the (:testName) test',
     ],
     'actions' => [
         'close' => 'Close',

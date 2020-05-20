@@ -35,6 +35,8 @@ Route::group([
 
     Route::get('ranking', 'RankingController@index')->name('ranking.index');
 
+    Route::get('profile', 'StudentController@profile')->middleware('checkStudentRole')->name('profile.index');
+
     Route::group(['prefix' => 'api', 'as' => 'api.'], function () {
         Route::get('questions/{questionId}/comments', 'TestController@getComments')->name('questions.getComments');
     });
