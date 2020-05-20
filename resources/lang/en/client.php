@@ -108,6 +108,9 @@ return [
             'created_at' => 'Created at',
             'in_month' => 'In month',
         ],
+        'profile' => [
+            'profileTitle' => 'Profile',
+        ],
     ],
     'actions' => [
         'close' => 'Close',

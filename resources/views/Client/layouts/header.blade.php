@@ -45,7 +45,7 @@
             <div class="mr-auto">
                 @include('Client.layouts.navbar')
             </div>
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right cursor-pointer">
                 @if (Auth::check() || Auth::guard('student')->check())
                     <li class="dropdown dropdown-user">
                         <a class="dropdown-toggle" data-toggle="dropdown">
@@ -53,22 +53,19 @@
                                 {{ Auth::guard('student')->user()->username }}
                                 (<span id="headerCoinNumber">25</span> {{ trans('client.header.coin') }})
                                 <img src="{{ userDefaultImage(Auth::guard('student')->user()->file) }}" class="rounded-circle w-50">
+                                <i class="caret"></i>
                             @else
                                 {{ Auth::user()->username }}
                                 <img src="{{ userDefaultImage(Auth::user()->file) }}" class="rounded-circle w-50">
                             @endif
-                            <i class="caret"></i>
                         </a>
 
-                        <ul class="dropdown-menu dropdown-menu-right">
-                            <li><a href="{{ route('admin.profile') }}"><i class="icon-user-plus"></i> {{ trans('backend.navbar.my_profile') }}</a></li>
-                            <li><a href="#"><i class="icon-cog5"></i> {{ trans('backend.navbar.account_settings') }}</a></li>
-                            <li>
-                                <button type="submit" class="btn btn-link">
-                                    <i class="icon-switch2"></i> {{ trans('backend.navbar.logout') }}
-                                </button>
-                            </li>
-                        </ul>
+                        @if (Auth::guard('student')->check())
+                            <ul class="dropdown-menu dropdown-menu-right pl-2 mt-20">
+                                <li><a class="color-black" href="{{ route('client.profile.index') }}"><i class="icon-user"></i> {{ trans('backend.navbar.my_profile') }}</a></li>
+                                <li><a class="color-black" href="#"><i class="icon-settings"></i>{{ trans('backend.navbar.account_settings') }}</a></li>
+                            </ul>
+                        @endif
                     </li>
                 @endif
             </ul>
