@@ -30,4 +30,14 @@ class StudentController extends Controller
 
         return view('Client.profile', compact('user', 'timelines'));
     }
+
+    public function getChangePass()
+    {
+        return view('Client.changePassword');
+    }
+
+    public function postChangePass(Request $request)
+    {
+        dd($request->all());
+    }
 }

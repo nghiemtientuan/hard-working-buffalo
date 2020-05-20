@@ -19,7 +19,7 @@ return [
         'vietnam' => 'Việt Nam',
         'messages' => 'Messages',
         'my_profile' => 'My profile',
-        'account_settings' => 'Account settings',
+        'change_password' => 'Change Password',
     ],
     'footer' => [
         'hard_working_buffalo' => 'Hard Working Buffalo',
@@ -110,6 +110,13 @@ return [
         ],
         'profile' => [
             'profileTitle' => 'Profile',
+        ],
+        'changePassword' => [
+            'changePasswordTitle' => 'Change Password',
+            'oldPassword' => 'Old password',
+            'newPassword' => 'New Password',
+            'rePassword' => 'Reply Password',
+            'changeBtn' => 'Change',
         ],
     ],
     'timeline' => [
