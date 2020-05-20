@@ -112,6 +112,10 @@ return [
             'profileTitle' => 'Profile',
         ],
     ],
+    'timeline' => [
+        'testTitle' => 'Test',
+        'testBody' => 'You did the (:testName) test',
+    ],
     'actions' => [
         'close' => 'Close',
         'login_false' => 'Login false',

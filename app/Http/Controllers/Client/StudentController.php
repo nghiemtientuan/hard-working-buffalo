@@ -26,7 +26,8 @@ class StudentController extends Controller
     {
         $userId = Auth::guard('student')->user()->id;
         $user = $this->studentRepository->find($userId);
+        $timelines = $this->studentRepository->getProfileTimeline($userId);
 
-        return view('Client.profile', compact('user'));
+        return view('Client.profile', compact('user', 'timelines'));
     }
 }
