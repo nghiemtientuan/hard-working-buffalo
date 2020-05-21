@@ -131,4 +131,14 @@ return [
         'are_you_ready' => 'Are you ready?',
         'yes_ready' => 'Start',
     ],
+    'validations' => [
+        'changePassword' => [
+            'firstLogin' => 'Change Password is require with account that is first login',
+            'oldPassword' => 'Old password is wrong',
+            'newPassword_required' => 'New password is require',
+            'newPassword_min' => 'Password is min :min characters',
+            'newPassword_max' => 'Password is max :max characters',
+            'newPassword_re' => 'Reply Password is not New Password',
+        ],
+    ],
 ];

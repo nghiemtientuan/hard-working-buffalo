@@ -15,22 +15,22 @@
                         @if(isset($errors) && count($errors))
                             <div class="alert alert-danger alert-styled-left alert-arrow-left alert-bordered">
                                 <button type="button" class="close" data-dismiss="alert"><span>&times;</span><span class="sr-only">{{ trans('client.actions.close') }}</span></button>
-                                <span class="text-semibold">{{ trans('client.actions.login_false') }}</span>
+                                <span class="text-semibold">{{ $errors->first() }}</span>
                             </div>
                         @endif
 
                         <div class="row">
                             <div class="col-md-12 form-group">
                                 <label for="password">{{ trans('client.pages.changePassword.oldPassword') }}</label>
-                                <input name="oldPassword" type="password" id="oldPassword" class="form-control form-control-lg">
+                                <input name="oldPassword" type="password" id="oldPassword" class="form-control form-control-lg" required>
                             </div>
                             <div class="col-md-12 form-group">
                                 <label for="password">{{ trans('client.pages.changePassword.newPassword') }}</label>
-                                <input name="newPassword" type="password" id="newPassword" class="form-control form-control-lg">
+                                <input name="newPassword" type="password" id="newPassword" class="form-control form-control-lg" required>
                             </div>
                             <div class="col-md-12 form-group">
                                 <label for="password">{{ trans('client.pages.changePassword.rePassword') }}</label>
-                                <input name="rePassword" type="password" id="rePassword" class="form-control form-control-lg">
+                                <input name="rePassword" type="password" id="rePassword" class="form-control form-control-lg" required>
                             </div>
                         </div>
                         <div class="row">
