@@ -24,6 +24,9 @@ class User extends Authenticatable
     const EMAIL_FIELD = 'email';
     const PASSWORD_FIELD = 'password';
 
+    const ACTIVE_TRUE = 1;
+    const ACTIVE_FALSE = 0;
+
     /**
      * The attributes that are mass assignable.
      *

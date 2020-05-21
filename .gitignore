@@ -8,6 +8,7 @@
 /public/images/tests
 /public/images/users
 /public/images/students
+/public/mix-manifest.json
 /storage/*.key
 .idea
 /vendor

@@ -29,6 +29,9 @@ class Student extends Authenticatable
     const EMAIL_FIELD = 'email';
     const PASSWORD_FIELD = 'password';
 
+    const ACTIVE_TRUE = 1;
+    const ACTIVE_FALSE = 0;
+
     protected $fillable = [
         Student::FILE_ID_FIELD,
         Student::USERNAME_FIELD,
@@ -62,7 +65,6 @@ class Student extends Authenticatable
     protected $with = [
         'file',
         'studentLevel',
-        'studentType',
     ];
 
     protected $hidden = [
@@ -86,9 +88,9 @@ class Student extends Authenticatable
         return $this->belongsTo(StudentLevel::class, 'level_id', 'id');
     }
 
-    public function studentType()
+    public function test()
     {
-        return $this->belongsTo(StudentType::class, 'student_type_id', 'id');
+        return $this->belongsToMany(Test::class, StudentTest::class);
     }
 
     public function histories()

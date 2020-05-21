@@ -63,6 +63,7 @@ class Kernel extends HttpKernel
         'checkOwnerHistory' => \App\Http\Middleware\Client\CheckOwnerHistory::class,
         'checkClientAdminLogin' => \App\Http\Middleware\Client\CheckClientAdminLogin::class,
         'checkStudentRole' => \App\Http\Middleware\Client\CheckStudentRole::class,
+        'checkStudentFirstLogin' => \App\Http\Middleware\Client\CheckFirstLogin::class,
     ];
 
     /**

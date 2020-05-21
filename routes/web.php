@@ -15,9 +15,17 @@ Route::get('login', 'Auth\LoginController@getLogin')->name('client.login');
 Route::post('login', 'Auth\LoginController@postLogin')->name('client.postLogin');
 Route::post('logout', 'Auth\LoginController@logout')->name('client.logout');
 
+Route::get('change_password', 'Client\StudentController@getChangePass')
+    ->middleware('checkStudentRole')
+    ->name('client.changePass.show');
+Route::post('change_password', 'Client\StudentController@postChangePass')
+    ->middleware('checkStudentRole')
+    ->name('client.changePass.update');
+
 Route::group([
     'namespace' => 'Client',
     'as' => 'client.',
+    'middleware' => ['checkStudentFirstLogin']
 ], function () {
     Route::get('/', 'HomeController@index')->name('home');
 
@@ -36,9 +44,6 @@ Route::group([
     Route::get('ranking', 'RankingController@index')->name('ranking.index');
 
     Route::get('profile', 'StudentController@profile')->middleware('checkStudentRole')->name('profile.index');
-
-    Route::get('change_password', 'StudentController@getChangePass')->name('changePass.show');
-    Route::post('change_password', 'StudentController@postChangePass')->name('changePass.update');
 
     Route::group(['prefix' => 'api', 'as' => 'api.'], function () {
         Route::get('questions/{questionId}/comments', 'TestController@getComments')->name('questions.getComments');
