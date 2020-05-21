@@ -37,6 +37,9 @@ Route::group([
 
     Route::get('profile', 'StudentController@profile')->middleware('checkStudentRole')->name('profile.index');
 
+    Route::get('change_password', 'StudentController@getChangePass')->name('changePass.show');
+    Route::post('change_password', 'StudentController@postChangePass')->name('changePass.update');
+
     Route::group(['prefix' => 'api', 'as' => 'api.'], function () {
         Route::get('questions/{questionId}/comments', 'TestController@getComments')->name('questions.getComments');
     });
