@@ -32,8 +32,10 @@ Route::group([
     Route::get('categories/{categoryId}', 'CategoryController@show')->name('categories.show');
 
     Route::group(['middleware' => ['checkClientAdminLogin']], function () {
-        Route::get('test/{testId}', 'TestController@test')->name('tests.test');
-        Route::post('test/{testId}', 'TestController@result')->name('tests.result');
+        Route::post('tests/buy', 'TestController@buy')->name('tests.buy');
+
+        Route::get('tests/{testId}', 'TestController@test')->name('tests.test');
+        Route::post('tests/{testId}', 'TestController@result')->name('tests.result');
 
         Route::get('histories', 'HistoryController@index')->name('histories.index');
         Route::get('histories/{historyId}', 'HistoryController@show')
@@ -47,6 +49,18 @@ Route::group([
 
     Route::group(['prefix' => 'api', 'as' => 'api.'], function () {
         Route::get('questions/{questionId}/comments', 'TestController@getComments')->name('questions.getComments');
+    });
+
+    Route::group([
+        'as' => 'payments.',
+        'prefix' => 'payments',
+    ], function () {
+        Route::get('/', 'PaymentController@index')->name('index');
+
+        Route::get('exchange', 'PaymentController@exchange')->name('exchange');
+        Route::post('exchange', 'PaymentController@postExchange')->name('postExchange');
+
+        Route::get('vnpay', 'PaymentController@getVnPay')->name('getVnPay');
     });
 
     Route::get('not_found', 'NotFoundController@index')->name('notFound');

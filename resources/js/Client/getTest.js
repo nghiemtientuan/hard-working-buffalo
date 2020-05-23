@@ -12,7 +12,8 @@ Swal.fire({
     title: trans('client.actions.are_you_ready'),
     icon: 'info',
     text: $('#myHeader').attr('data-guide'),
-    showCancelButton: false,
+    showCancelButton: true,
+    cancelButtonText: trans('client.pages.getTest.back_category'),
     confirmButtonColor: '#3085d6',
     confirmButtonText: trans('client.actions.yes_ready'),
     allowOutsideClick: false,
@@ -23,10 +24,15 @@ Swal.fire({
             Swal.hideLoading();
         });
     },
-}).then(() => {
-    let current_time = Date.parse(new Date());
-    let deadline = new Date(current_time + time_in_minutes * 60 * 1000);
-    timeIntervalGlobal = run_clock('clockDiv', deadline);
+}).then((result) => {
+    if (result.value) {
+        let current_time = Date.parse(new Date());
+        let deadline = new Date(current_time + time_in_minutes * 60 * 1000);
+        timeIntervalGlobal = run_clock('clockDiv', deadline);
+    } else {
+        let categoryId = $('#categoryId').val();
+        window.location.replace(route('client.categories.show', categoryId));
+    }
 });
 
 $('.swal2-container.swal2-shown').css('background-color', '#51be78');

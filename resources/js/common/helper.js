@@ -70,5 +70,18 @@ function randomString() {
 
 let STATUS_CODE = {
     'code_200': 200,
+    'code_400': 400,
+    'code_401': 401,
+    'code_402': 402,
     'code_404': 404
+}
+
+//toasts config
+toastr.options.closeButton = true;
+toastr.options.preventDuplicates = true;
+toastr.options.progressBar = true;
+
+//format currency
+function formatCurrency(number) {
+    return number.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 }

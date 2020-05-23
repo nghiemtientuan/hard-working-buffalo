@@ -51,7 +51,7 @@
                         <a class="dropdown-toggle" data-toggle="dropdown">
                             @if (Auth::guard('student')->check())
                                 {{ Auth::guard('student')->user()->username }}
-                                (<span id="headerCoinNumber">25</span> {{ trans('client.header.coin') }})
+                                (<span id="headerCoinNumber">{{ Auth::guard('student')->user()->coin }}</span> <i class="fa fa-gem"></i>)
                                 <img src="{{ userDefaultImage(Auth::guard('student')->user()->file) }}" class="rounded-circle w-50">
                                 <i class="caret"></i>
                             @else
@@ -63,6 +63,7 @@
                         @if (Auth::guard('student')->check())
                             <ul class="dropdown-menu dropdown-menu-right p-2 mt-20">
                                 <li><a class="color-black" href="{{ route('client.profile.index') }}"><i class="icon-user"></i> {{ trans('client.navbar.my_profile') }}</a></li>
+                                <li><a class="color-black" href="{{ route('client.payments.index') }}"><i class="icon-payment"></i> {{ trans('client.navbar.payment') }}</a></li>
                                 <li><a class="color-black" href="{{ route('client.changePass.show') }}"><i class="icon-sync"></i>{{ trans('client.navbar.change_password') }}</a></li>
                             </ul>
                         @endif

@@ -3,6 +3,7 @@
 namespace App\Repositories\Eloquents;
 
 use App\Models\File;
+use App\Models\Student;
 use App\Models\Test;
 use App\Repositories\Contracts\CategoryRepositoryInterface;
 use App\Models\Category;
@@ -57,12 +58,16 @@ class CategoryRepository extends EloquentRepository implements CategoryRepositor
         return $this->_model->where(Category::PARENT_ID_FIELD, $categoryId)->get();
     }
 
-    public function getTestsInCate($categoryId)
+    public function getTestsInCateByStudent($categoryId, $studentId)
     {
-        return Test::with('categories')
-            ->whereHas('categories', function ($query) use ($categoryId) {
-                $query->where('categories.id', $categoryId);
-            })->get();
+        return Test::with([
+            'students' => function ($qr) use ($studentId) {
+                $qr->where('students.id', $studentId);
+            },
+        ])->where(Test::CATEGORY_ID_FIELD, $categoryId)
+            ->orderBy(Test::PRICE_FIELD)
+            ->orderBy('created_at', 'DESC')
+            ->paginate(config('constant.limit.testInCate'));
     }
 
     public function getAllChildCateTest()

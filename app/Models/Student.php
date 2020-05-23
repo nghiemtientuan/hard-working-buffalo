@@ -88,7 +88,7 @@ class Student extends Authenticatable
         return $this->belongsTo(StudentLevel::class, 'level_id', 'id');
     }
 
-    public function test()
+    public function tests()
     {
         return $this->belongsToMany(Test::class, StudentTest::class);
     }

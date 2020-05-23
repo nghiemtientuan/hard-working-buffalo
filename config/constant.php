@@ -5,6 +5,10 @@ return [
         'url_profile' => '/images/common/profile.png',
         'url_logo' => '/images/common/logo.png',
         'url_cover' => '/images/common/cover.png',
+        'url_vnPay' => '/images/common/vnpay.png',
+    ],
+    'pays' => [
+        1 => 'VNPay',
     ],
     'links' => [
         'link_facebook' => 'a',
@@ -18,10 +22,12 @@ return [
         'length_random_password' => 10,
     ],
     'limit' => [
+        'freeTest' => 5,
         'newTest' => 5,
         'histories' => 20,
         'ranking' => 20,
         'timelineProfile' => 10,
+        'testInCate' => 20,
     ],
     'scoreTest' => [
         'total_formula' => 990,
@@ -32,5 +38,9 @@ return [
     ],
     'status_code' => [
         'code_200' => 200,
+        'code_400' => 400,
+        'code_401' => 401,
+        'code_402' => 402,
+        'code_404' => 404,
     ],
 ];

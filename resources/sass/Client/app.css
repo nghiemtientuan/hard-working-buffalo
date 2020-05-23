@@ -1,3 +1,185 @@
+.label {
+    display: inline-block;
+    font-weight: 500;
+    padding: 2px 5px 1px 5px;
+    line-height: 1.5384616;
+    border: 1px solid transparent;
+    text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: 0.1px;
+    border-radius: 2px;
+}
+.btn .label {
+    top: 0;
+}
+.list-group-item.active > .label,
+.nav-pills > .active > a > .label,
+.nav-tabs-solid > .active > a > .label,
+.nav-tabs[class*=bg-] > li > a > .label {
+    color: #333333;
+    background-color: #fff;
+    border-color: #fff;
+}
+@media (min-width: 769px) {
+    .list-group-item > .label {
+        float: right;
+    }
+    .list-group-item > .label + .label {
+        margin-right: 7px;
+    }
+}
+.label > .caret,
+.badge > .caret {
+    margin-top: -2px;
+}
+.open .label.dropdown-toggle,
+.open .badge.dropdown-toggle {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.label[href]:hover,
+.badge[href]:hover,
+.label[href]:focus,
+.badge[href]:focus {
+    opacity: 0.85;
+    filter: alpha(opacity=85);
+}
+.label-default {
+    border-color: #999999;
+}
+.label-default[href]:hover,
+.label-default[href]:focus {
+    background-color: #999999;
+}
+.label-primary {
+    border-color: #2196F3;
+}
+.label-primary[href]:hover,
+.label-primary[href]:focus {
+    background-color: #2196F3;
+}
+.label-success {
+    border-color: #4CAF50;
+    background-color: #4CAF50;
+    color: white;
+}
+.label-success[href]:hover,
+.label-success[href]:focus {
+    background-color: #4CAF50;
+}
+.label-info {
+    border-color: #00BCD4;
+}
+.label-info[href]:hover,
+.label-info[href]:focus {
+    background-color: #00BCD4;
+}
+.label-warning {
+    border-color: #FF5722;
+}
+.label-warning[href]:hover,
+.label-warning[href]:focus {
+    background-color: #FF5722;
+}
+.label-danger {
+    border-color: #F44336;
+}
+.label-danger[href]:hover,
+.label-danger[href]:focus {
+    background-color: #F44336;
+}
+.label-striped {
+    background-color: #f5f5f5;
+    color: #333333;
+    border-left-width: 2px;
+    padding: 5px 10px;
+}
+.label-striped.label-striped-right {
+    border-left-width: 1px;
+    border-right-width: 2px;
+}
+.label-striped,
+.label-striped.label-icon {
+    border-radius: 0;
+}
+.label-striped[href]:hover,
+.label-striped[href]:focus {
+    color: #333333;
+    background-color: #eeeeee;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.label-flat {
+    background-color: transparent;
+    border-width: 2px;
+    border-radius: 0;
+    padding: 1px 4px 0 4px;
+}
+.label-flat[href]:hover,
+.label-flat[href]:focus {
+    background-color: transparent;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.label-icon {
+    padding: 7px;
+    border-radius: 2px;
+    line-height: 1;
+}
+.label-icon > i {
+    top: 0;
+}
+.label-icon.label-flat {
+    padding: 6px;
+}
+.label-icon-xlg {
+    padding: 10px;
+}
+.label-icon-xlg.label-flat {
+    padding: 9px;
+}
+.label-icon-lg {
+    padding: 9px;
+}
+.label-icon-lg.label-flat {
+    padding: 8px;
+}
+.label-icon-sm {
+    padding: 6px;
+}
+.label-icon-sm.label-flat {
+    padding: 5px;
+}
+.label-icon-xs {
+    padding: 5px;
+}
+.label-icon-xs.label-flat {
+    padding: 4px;
+}
+.label-rounded {
+    border-radius: 100px;
+}
+.label-rounded:not(.label-icon) {
+    padding-left: 7px;
+    padding-right: 7px;
+}
+.label-roundless {
+    border-radius: 0;
+}
+.label-block {
+    display: block;
+}
+.form-control + .label-block {
+    margin-top: 7px;
+}
+.label-block.text-left {
+    text-align: left;
+    margin-right: 0;
+}
+.label-block.text-right {
+    text-align: right;
+    margin-left: 0;
+}
 .site-logo {
     width: 200px;
 }

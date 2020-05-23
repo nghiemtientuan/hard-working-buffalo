@@ -164,6 +164,7 @@
         </form>
     </div>
 
+    <input type="hidden" id="categoryId" value="{{ $test->category->id }}">
     <div class="site-section pb-0"></div>
 @endsection
 

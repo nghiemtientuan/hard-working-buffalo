@@ -27,24 +27,49 @@
                                         <th>{{ trans('client.pages.tests.test_code') }}</th>
                                         <th>{{ trans('client.pages.tests.name_test') }}</th>
                                         <th>{{ trans('client.pages.tests.execute_time') }}</th>
+                                        <th width="10%"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($tests as $test)
-                                        <tr>
-                                            <td>
-                                                <a href="{{ route('client.tests.test', $test->id) }}"
-                                                   data-popup="tooltip" title="{{ $test->name }}">
+                                    @foreach ($tests as $test)
+                                        <tr id="testRowTr_{{ $test->id }}">
+                                            <td class="testCodeRowTr">
+                                                <a
+                                                    @if ($test->price == \App\Models\Test::PRICE_FREE_VALUE || count($test->students) > 0)
+                                                        href="{{ route('client.tests.test', $test->id) }}"
+                                                    @endif
+                                                    data-popup="tooltip" title="{{ $test->name }}"
+                                                >
                                                     {{ $test->code }}
                                                 </a>
+
+                                                @if ($test->price == \App\Models\Test::PRICE_FREE_VALUE)
+                                                    <label class="label label-success">{{ trans('client.pages.categories.free') }}</label>
+                                                @endif
+                                                @if ($test->created_at->format('m') == now()->month)
+                                                    <label class="label label-primary">{{ trans('client.pages.categories.new') }}</label>
+                                                @endif
                                             </td>
-                                            <td>
-                                                <a href="{{ route('client.tests.test', $test->id) }}"
-                                                   data-popup="tooltip" title="{{ $test->name }}">
+                                            <td class="testNameRowTr">
+                                                <a
+                                                    @if ($test->price == \App\Models\Test::PRICE_FREE_VALUE || count($test->students) > 0)
+                                                        href="{{ route('client.tests.test', $test->id) }}"
+                                                    @endif
+                                                    data-popup="tooltip" title="{{ $test->name }}"
+                                                >
                                                     {{ $test->name }}
                                                 </a>
                                             </td>
                                             <td>{{ $test->execute_time }}'</td>
+                                            <td>
+                                                @if ($test->price > \App\Models\Test::PRICE_FREE_VALUE && count($test->students) == 0)
+                                                    <button class="btn btn-primary buyTestBtn" type="button" data-testId="{{ $test->id }}">
+                                                        {{ trans('client.pages.categories.buy') }}
+                                                        {{ $test->price }}
+                                                        <i class="fa fa-gem"></i>
+                                                    </button>
+                                                @endif
+                                            </td>
                                         </tr>
                                     @endforeach
 
@@ -53,6 +78,7 @@
                                     @endif
                                 </tbody>
                             </table>
+                            {{ $tests->links() }}
                         </div>
                     </div>
                 </div>
@@ -61,4 +87,8 @@
     </div>
 
     <div class="site-section pb-0"></div>
+@endsection
+
+@section('script')
+    <script src="{{ asset('js/Client/listTests.js') }}"></script>
 @endsection

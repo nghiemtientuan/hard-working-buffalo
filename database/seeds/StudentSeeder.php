@@ -25,7 +25,7 @@ class StudentSeeder extends Seeder
                 Student::PHONE_FIELD => '0123456789',
                 Student::LEVEL_ID_FIELD => 1,
                 Student::LEVEL_SCORE_FIELD => 12,
-                Student::COIN_FIELD => 36,
+                Student::COIN_FIELD => 100,
                 Student::ACTIVE_FIELD => 1,
                 Student::DESCRIPTION_FIELD => 'student role',
                 Student::EMAIL_FIELD => 'student1@gmail.com',

@@ -14,6 +14,11 @@ class Setting extends Model
     const KEY_FIELD = 'key';
     const VALUE_FIELD = 'value';
 
+    const COST_COIN_KEY = 'COST_COIN';
+    const COST_COIN_MAX = 1000;
+    const COST_COIN_MIN = 1;
+    const COST_COIN_DEFAULT = 1000;
+
     protected $fillable = [
         Setting::KEY_FIELD,
         Setting::VALUE_FIELD,

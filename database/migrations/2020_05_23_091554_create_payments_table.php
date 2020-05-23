@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCategoryTestTable extends Migration
+class CreatePaymentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateCategoryTestTable extends Migration
      */
     public function up()
     {
-        Schema::create('category_test', function (Blueprint $table) {
+        Schema::create('payments', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('category_id')->nullable();
-            $table->integer('test_id')->nullable();
+            $table->integer('student_id')->nullable();
+            $table->integer('coin')->nullable();
+            $table->integer('price')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateCategoryTestTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('category_test');
+        Schema::dropIfExists('payments');
     }
 }

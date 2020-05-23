@@ -20,6 +20,7 @@ return [
         'messages' => 'Messages',
         'my_profile' => 'My profile',
         'change_password' => 'Change Password',
+        'payment' => 'Payment',
     ],
     'footer' => [
         'hard_working_buffalo' => 'Hard Working Buffalo',
@@ -65,6 +66,9 @@ return [
             'buffalo_categories' => 'Buffalo Categories in ',
             'categories' => 'Categories',
             'name' => 'Name',
+            'free' => 'Free',
+            'new' => 'New',
+            'buy' => 'Buy',
         ],
         'tests' => [
             'buffalo_tests' => 'Buffalo tests in ',
@@ -78,6 +82,7 @@ return [
             'text_question' => 'Question',
             'text_big_question' => 'Big Question',
             'send' => 'Submit',
+            'back_category' => 'Back Category',
             'comments' => 'Comments',
         ],
         'result' => [
@@ -118,6 +123,14 @@ return [
             'rePassword' => 'Reply Password',
             'changeBtn' => 'Change',
         ],
+        'payments' => [
+            'paymentTitle' => 'Payments',
+            'paymentTypes' => 'Types of payment',
+            'vnPay' => 'VNPay',
+            'pay' => 'Pay',
+            'vnd' => 'VND',
+            'send' => 'Send',
+        ],
     ],
     'timeline' => [
         'testTitle' => 'Test',
@@ -129,6 +142,7 @@ return [
         'are_you_sure' => 'Are you sure?',
         'yes_submit' => 'Yes, Submit!',
         'are_you_ready' => 'Are you ready?',
+        'you_will_buy_this' => 'You will buy this',
         'yes_ready' => 'Start',
     ],
     'validations' => [
@@ -140,5 +154,19 @@ return [
             'newPassword_max' => 'Password is max :max characters',
             'newPassword_re' => 'Reply Password is not New Password',
         ],
+    ],
+    'errors' => [
+        'serverError' => 'Server Error',
+        'testsInCate' => [
+            'testNotFound' => 'Test not found',
+            'notEnoughCoins' => 'Not enough coins',
+            'buyTested' => 'The test has been purchased',
+        ],
+        'payment' => [
+            'coinNumberInvalid' => 'Coin Number Invalid',
+        ],
+    ],
+    'success' => [
+        'buy_success' => 'Buy success',
     ],
 ];
