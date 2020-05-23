@@ -5,6 +5,7 @@ return [
         'url_profile' => '/images/common/profile.png',
         'url_logo' => '/images/common/logo.png',
         'url_cover' => '/images/common/cover.png',
+        'url_vnPay' => '/images/common/vnpay.png',
     ],
     'links' => [
         'link_facebook' => 'a',

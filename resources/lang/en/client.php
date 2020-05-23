@@ -20,6 +20,7 @@ return [
         'messages' => 'Messages',
         'my_profile' => 'My profile',
         'change_password' => 'Change Password',
+        'payment' => 'Payment',
     ],
     'footer' => [
         'hard_working_buffalo' => 'Hard Working Buffalo',
@@ -122,6 +123,14 @@ return [
             'rePassword' => 'Reply Password',
             'changeBtn' => 'Change',
         ],
+        'payments' => [
+            'paymentTitle' => 'Payments',
+            'paymentTypes' => 'Types of payment',
+            'vnPay' => 'VNPay',
+            'pay' => 'Pay',
+            'vnd' => 'VND',
+            'send' => 'Send',
+        ],
     ],
     'timeline' => [
         'testTitle' => 'Test',
@@ -152,6 +161,9 @@ return [
             'testNotFound' => 'Test not found',
             'notEnoughCoins' => 'Not enough coins',
             'buyTested' => 'The test has been purchased',
+        ],
+        'payment' => [
+            'coinNumberInvalid' => 'Coin Number Invalid',
         ],
     ],
     'success' => [

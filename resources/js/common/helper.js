@@ -80,3 +80,8 @@ let STATUS_CODE = {
 toastr.options.closeButton = true;
 toastr.options.preventDuplicates = true;
 toastr.options.progressBar = true;
+
+//format currency
+function formatCurrency(number) {
+    return number.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+}

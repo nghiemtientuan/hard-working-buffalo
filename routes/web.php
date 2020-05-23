@@ -51,5 +51,16 @@ Route::group([
         Route::get('questions/{questionId}/comments', 'TestController@getComments')->name('questions.getComments');
     });
 
+    Route::group([
+        'as' => 'payments.',
+        'prefix' => 'payments',
+    ], function () {
+        Route::get('/', 'PaymentController@index')->name('index');
+
+        Route::get('exchange', 'PaymentController@exchange')->name('exchange');
+
+        Route::get('vnpay', 'PaymentController@getVnPay')->name('getVnPay');
+    });
+
     Route::get('not_found', 'NotFoundController@index')->name('notFound');
 });
