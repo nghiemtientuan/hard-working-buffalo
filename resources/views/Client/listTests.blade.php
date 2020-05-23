@@ -32,12 +32,17 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($tests as $test)
-                                        <tr>
-                                            <td>
-                                                <a href="{{ route('client.tests.test', $test->id) }}"
-                                                   data-popup="tooltip" title="{{ $test->name }}">
+                                        <tr id="testRowTr_{{ $test->id }}">
+                                            <td class="testCodeRowTr">
+                                                <a
+                                                    @if ($test->price == \App\Models\Test::PRICE_FREE_VALUE || count($test->students) > 0)
+                                                        href="{{ route('client.tests.test', $test->id) }}"
+                                                    @endif
+                                                    data-popup="tooltip" title="{{ $test->name }}"
+                                                >
                                                     {{ $test->code }}
                                                 </a>
+
                                                 @if ($test->price == \App\Models\Test::PRICE_FREE_VALUE)
                                                     <label class="label label-success">{{ trans('client.pages.categories.free') }}</label>
                                                 @endif
@@ -45,9 +50,13 @@
                                                     <label class="label label-primary">{{ trans('client.pages.categories.new') }}</label>
                                                 @endif
                                             </td>
-                                            <td>
-                                                <a href="{{ route('client.tests.test', $test->id) }}"
-                                                   data-popup="tooltip" title="{{ $test->name }}">
+                                            <td class="testNameRowTr">
+                                                <a
+                                                    @if ($test->price == \App\Models\Test::PRICE_FREE_VALUE || count($test->students) > 0)
+                                                        href="{{ route('client.tests.test', $test->id) }}"
+                                                    @endif
+                                                    data-popup="tooltip" title="{{ $test->name }}"
+                                                >
                                                     {{ $test->name }}
                                                 </a>
                                             </td>

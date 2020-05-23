@@ -119,6 +119,7 @@ class TestController extends Controller
                         'code' => config('constant.status_code.code_200'),
                         'data' => [
                             'user' => $this->studentRepository->find($student->id),
+                            'test' => $test,
                         ],
                         'message' => trans('client.success.buy_success'),
                     ]);

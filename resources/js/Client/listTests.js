@@ -26,6 +26,10 @@ $('.buyTestBtn').on('click', function () {
                             toastr.success(data.message);
                             $('#headerCoinNumber').html(data.data.user.coin);
                             $('.buyTestBtn[data-testId=' + testId + ']').remove();
+                            $('#testRowTr_' + testId + ' .testCodeRowTr a')
+                                .attr('href', route('client.tests.test', testId));
+                            $('#testRowTr_' + testId + ' .testNameRowTr a')
+                                .attr('href', route('client.tests.test', testId));
                             break;
                         case STATUS_CODE.code_400:
                         case STATUS_CODE.code_401:
