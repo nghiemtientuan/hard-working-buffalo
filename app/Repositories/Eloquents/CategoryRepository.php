@@ -61,13 +61,11 @@ class CategoryRepository extends EloquentRepository implements CategoryRepositor
     public function getTestsInCateByStudent($categoryId, $studentId)
     {
         return Test::with([
-            'categories',
             'students' => function ($qr) use ($studentId) {
                 $qr->where('students.id', $studentId);
             },
-        ])->whereHas('categories', function ($query) use ($categoryId) {
-            $query->where('categories.id', $categoryId);
-        })->orderBy(Test::PRICE_FIELD)
+        ])->where(Test::CATEGORY_ID_FIELD, $categoryId)
+            ->orderBy(Test::PRICE_FIELD)
             ->orderBy('created_at', 'DESC')
             ->paginate(config('constant.limit.testInCate'));
     }

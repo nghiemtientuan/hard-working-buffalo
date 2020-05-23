@@ -47,6 +47,6 @@ class Category extends Model
 
     public function tests()
     {
-        return $this->belongsToMany(Test::class);
+        return $this->hasMany(Test::class, 'id', Test::CATEGORY_ID_FIELD);
     }
 }

@@ -12,6 +12,7 @@ class Test extends Model
     protected $table = 'tests';
 
     const CREATED_USER_ID_FIELD = 'created_user_id';
+    const CATEGORY_ID_FIELD = 'category_id';
     const FORMAT_ID_FIELD = 'format_id';
     const NAME_FIELD = 'name';
     const CODE_FIELD = 'code';
@@ -33,6 +34,7 @@ class Test extends Model
 
     protected $fillable = [
         Test::CREATED_USER_ID_FIELD,
+        Test::CATEGORY_ID_FIELD,
         Test::FORMAT_ID_FIELD,
         Test::NAME_FIELD,
         Test::CODE_FIELD,
@@ -70,9 +72,9 @@ class Test extends Model
         return $this->hasMany(Question::class);
     }
 
-    public function categories()
+    public function category()
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsTo(Category::class, Test::CATEGORY_ID_FIELD, 'id');
     }
 
     public function histories()

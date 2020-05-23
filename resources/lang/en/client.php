@@ -81,6 +81,7 @@ return [
             'text_question' => 'Question',
             'text_big_question' => 'Big Question',
             'send' => 'Submit',
+            'back_category' => 'Back Category',
             'comments' => 'Comments',
         ],
         'result' => [

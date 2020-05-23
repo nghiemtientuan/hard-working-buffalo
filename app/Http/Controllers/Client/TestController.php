@@ -42,7 +42,7 @@ class TestController extends Controller
 
     public function test($testId)
     {
-        $test = $this->testRepository->find($testId);
+        $test = $this->testRepository->find($testId)->load('category');
         if ($test) {
             $parts = $this->testService->getAnswerQuestionPartInTest($testId);
 
