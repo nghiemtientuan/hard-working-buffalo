@@ -80,18 +80,13 @@ class Test extends Model
         return $this->hasMany(History::class);
     }
 
-    public function studentTypes()
-    {
-        return $this->belongsToMany(
-            StudentType::class,
-            StudentTypeTest::class,
-            'test_id',
-            'student_type_id'
-        );
-    }
-
     public function likes()
     {
         return $this->hasMany(LikeTest::class);
+    }
+
+    public function students()
+    {
+        return $this->belongsToMany(Student::class, StudentTest::class);
     }
 }

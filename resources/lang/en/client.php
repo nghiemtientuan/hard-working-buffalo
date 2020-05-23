@@ -65,6 +65,9 @@ return [
             'buffalo_categories' => 'Buffalo Categories in ',
             'categories' => 'Categories',
             'name' => 'Name',
+            'free' => 'Free',
+            'new' => 'New',
+            'buy' => 'Buy',
         ],
         'tests' => [
             'buffalo_tests' => 'Buffalo tests in ',
@@ -129,6 +132,7 @@ return [
         'are_you_sure' => 'Are you sure?',
         'yes_submit' => 'Yes, Submit!',
         'are_you_ready' => 'Are you ready?',
+        'you_will_buy_this' => 'You will buy this',
         'yes_ready' => 'Start',
     ],
     'validations' => [
@@ -140,5 +144,16 @@ return [
             'newPassword_max' => 'Password is max :max characters',
             'newPassword_re' => 'Reply Password is not New Password',
         ],
+    ],
+    'errors' => [
+        'serverError' => 'Server Error',
+        'testsInCate' => [
+            'testNotFound' => 'Test not found',
+            'notEnoughCoins' => 'Not enough coins',
+            'buyTested' => 'The test has been purchased',
+        ],
+    ],
+    'success' => [
+        'buy_success' => 'Buy success',
     ],
 ];

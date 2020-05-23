@@ -70,5 +70,13 @@ function randomString() {
 
 let STATUS_CODE = {
     'code_200': 200,
+    'code_400': 400,
+    'code_401': 401,
+    'code_402': 402,
     'code_404': 404
 }
+
+//toasts config
+toastr.options.closeButton = true;
+toastr.options.preventDuplicates = true;
+toastr.options.progressBar = true;

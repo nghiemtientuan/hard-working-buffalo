@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     @routes
     @include('Client.layouts.styles')
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
     <div class="site-wrap">

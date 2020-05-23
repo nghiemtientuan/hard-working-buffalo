@@ -32,8 +32,10 @@ Route::group([
     Route::get('categories/{categoryId}', 'CategoryController@show')->name('categories.show');
 
     Route::group(['middleware' => ['checkClientAdminLogin']], function () {
-        Route::get('test/{testId}', 'TestController@test')->name('tests.test');
-        Route::post('test/{testId}', 'TestController@result')->name('tests.result');
+        Route::post('tests/buy', 'TestController@buy')->name('tests.buy');
+
+        Route::get('tests/{testId}', 'TestController@test')->name('tests.test');
+        Route::post('tests/{testId}', 'TestController@result')->name('tests.result');
 
         Route::get('histories', 'HistoryController@index')->name('histories.index');
         Route::get('histories/{historyId}', 'HistoryController@show')
