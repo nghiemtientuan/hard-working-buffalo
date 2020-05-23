@@ -47,8 +47,9 @@ class PaymentController extends Controller
         }
     }
 
-    public function getVnPay()
+    public function postExchange(Request $request)
     {
-        return view('Client.payment');
+        dd($request->all());
+        return view('Client.postExchange');
     }
 }

@@ -62,6 +62,7 @@ mix.autoload({
 });
 
 mix.styles([
+    'public/bower_components/assets/Admin/css/icheck/icheck-material.min.css',
     'public/bower_components/assets/Client/css/style.css',
     'resources/sass/app.css',
     'resources/sass/Client/app.css',

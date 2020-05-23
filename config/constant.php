@@ -7,6 +7,9 @@ return [
         'url_cover' => '/images/common/cover.png',
         'url_vnPay' => '/images/common/vnpay.png',
     ],
+    'pays' => [
+        1 => 'VNPay',
+    ],
     'links' => [
         'link_facebook' => 'a',
         'link_youtube' => 'b',

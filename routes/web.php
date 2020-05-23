@@ -58,6 +58,7 @@ Route::group([
         Route::get('/', 'PaymentController@index')->name('index');
 
         Route::get('exchange', 'PaymentController@exchange')->name('exchange');
+        Route::post('exchange', 'PaymentController@postExchange')->name('postExchange');
 
         Route::get('vnpay', 'PaymentController@getVnPay')->name('getVnPay');
     });
