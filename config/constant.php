@@ -8,7 +8,8 @@ return [
         'url_vnPay' => '/images/common/vnpay.png',
     ],
     'pays' => [
-        1 => 'VNPay',
+        \App\Models\Payment::MOMO_KEY_PAY => 'MoMo',
+        \App\Models\Payment::VNPAY_KEY_PAY => 'VNPay',
     ],
     'links' => [
         'link_facebook' => 'a',

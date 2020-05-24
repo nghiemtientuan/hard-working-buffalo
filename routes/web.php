@@ -60,7 +60,7 @@ Route::group([
         Route::get('exchange', 'PaymentController@exchange')->name('exchange');
         Route::post('exchange', 'PaymentController@postExchange')->name('postExchange');
 
-        Route::get('vnpay', 'PaymentController@getVnPay')->name('getVnPay');
+        Route::get('momo/success', 'PaymentController@getSuccessMomo')->name('momo.getSuccess');
     });
 
     Route::get('not_found', 'NotFoundController@index')->name('notFound');

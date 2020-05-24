@@ -164,9 +164,11 @@ return [
         ],
         'payment' => [
             'coinNumberInvalid' => 'Coin Number Invalid',
+            'payment_error' => 'Payment Error',
         ],
     ],
     'success' => [
         'buy_success' => 'Buy success',
+        'payment_sucess' => 'Payment success, :coins Coins',
     ],
 ];

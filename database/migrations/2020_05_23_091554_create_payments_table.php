@@ -16,8 +16,12 @@ class CreatePaymentsTable extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('student_id')->nullable();
+            $table->string('request_id')->nullable();
+            $table->string('order_id')->nullable();
+            $table->integer('cost')->nullable();
             $table->integer('coin')->nullable();
-            $table->integer('price')->nullable();
+            $table->boolean('is_success')->default(false);
+            $table->integer('type');
             $table->timestamps();
         });
     }
