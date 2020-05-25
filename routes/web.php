@@ -22,6 +22,9 @@ Route::post('change_password', 'Client\StudentController@postChangePass')
     ->middleware('checkStudentRole')
     ->name('client.changePass.update');
 
+Route::get('signin', 'Client\StudentController@getSignin')->name('client.getSignin');
+Route::post('signin', 'Client\StudentController@postSignin')->name('client.postSignin');
+
 Route::group([
     'namespace' => 'Client',
     'as' => 'client.',

@@ -6,15 +6,17 @@
                 <p>{{ trans('client.footer.hard_working_buffalo') }}</p>
             </div>
             <div class="col-lg-3">
-                <h3 class="footer-heading"><span>{{ trans('client.footer.categories') }}</span></h3>
+                <h3 class="footer-heading m-3"><span>{{ trans('client.footer.categories') }}</span></h3>
                 <ul class="list-unstyled">
-                    <li><a href="#"></a></li>
-                    <li><a href="#"></a></li>
-                    <li><a href="#"></a></li>
+                    @foreach ($parentCateComposer as $cate)
+                        <li>
+                            <a href="{{ route('client.categories.show', $cate->id) }}">{{ $cate->name }}</a>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
             <div class="col-lg-3">
-                <h3 class="footer-heading"><span>{{ trans('client.footer.page') }}</span></h3>
+                <h3 class="footer-heading m-3"><span>{{ trans('client.footer.page') }}</span></h3>
                 <ul class="list-unstyled">
                     <li><a href="{{ config('constant.links.link_facebook') }}">{{ trans('client.footer.links.facebook') }}</a></li>
                     <li><a href="{{ config('constant.links.link_youtube') }}">{{ trans('client.footer.links.youtube') }}</a></li>
@@ -22,7 +24,7 @@
                 </ul>
             </div>
             <div class="col-lg-3">
-                <h3 class="footer-heading"><span>{{ trans('client.footer.contact') }}</span></h3>
+                <h3 class="footer-heading m-3"><span>{{ trans('client.footer.contact') }}</span></h3>
                 <ul class="list-unstyled">
                         <li><a href="#">{{ trans('client.footer.help_center') }}</a></li>
                 </ul>
