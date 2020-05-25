@@ -95,7 +95,7 @@ class PaymentController extends Controller
         $response = \MoMoAIO::purchase([
             'amount' => $cost,
             'returnUrl' => route('client.payments.momo.getSuccess'),
-            'notifyUrl' => route('client.payments.momo.getSuccess'),
+            'notifyUrl' => route('client.payments.momo.postSuccessMomo'),
             'orderId' => $orderId,
             'requestId' => $requestId,
         ])->send();
@@ -142,21 +142,7 @@ class PaymentController extends Controller
             $response = \MoMoAIO::completePurchase()->send();
 
             if ($response->isSuccessful()) {
-                $payment = $this->paymentRepository->getPaymentFalse($response->requestId, $response->orderId);
-                if ($payment) {
-                    $payment = $this->paymentRepository
-                        ->update($payment->id, [Payment::IS_SUCCESS_FIELD => Payment::IS_SUCCESS]);
-                    $user = Auth::guard('student')->user();
-                    $newCoin = $user->coin + $payment->coin;
-
-                    $this->savePaymentLog($user, $user->coin, $newCoin);
-                    $this->studentRepository->update(
-                        $user->id,
-                        [
-                            Student::COIN_FIELD => $newCoin,
-                        ]
-                    );
-                }
+                $this->updatePaymentByMomo($response);
                 DB::commit();
 
                 return redirect()->route('client.payments.index')
@@ -176,9 +162,49 @@ class PaymentController extends Controller
 
     }
 
-    public function savePaymentLog($student, $oldCoin, $newCoin)
+    public function postSuccessMomo()
+    {
+        $response = \MoMoAIO::notification()->send();
+        Log::info('Momo message response noti payment!!!!!!!!!!!!!!!! requestId: ' . $response->requestId
+            . ', orderId: ' . $response->orderId);
+
+        DB::beginTransaction();
+        try {
+            if ($response->isSuccessful()) {
+                $this->updatePaymentByMomo($response);
+            }
+            DB::commit();
+        } catch (Exception $exception) {
+            DB::rollBack();
+
+            Log::info('Momo message response noti payment save false!!!!!!!!!!!!!!!! requestId: '
+                . $response->requestId . ', orderId: ' . $response->orderId);
+        }
+    }
+
+    public function updatePaymentByMomo($response)
+    {
+        $payment = $this->paymentRepository->getPaymentFalse($response->requestId, $response->orderId);
+        if ($payment) {
+            $payment = $this->paymentRepository
+                ->update($payment->id, [Payment::IS_SUCCESS_FIELD => Payment::IS_SUCCESS]);
+            $user = Auth::guard('student')->user();
+            $newCoin = $user->coin + $payment->coin;
+
+            $this->savePaymentLog($user, $user->coin, $newCoin, Payment::MOMO_KEY_PAY);
+            $this->studentRepository->update(
+                $user->id,
+                [
+                    Student::COIN_FIELD => $newCoin,
+                ]
+            );
+        }
+    }
+
+    public function savePaymentLog($student, $oldCoin, $newCoin, $payTypeNumber)
     {
         Log::info('Student(id: ' . $student->id . ', email: ' . $student->email . '): Payment: ('
+            . config('constant.pays')[$payTypeNumber] . ': '
             . $oldCoin . ' -> ' . $newCoin . ') +' . ($newCoin - $oldCoin) . ' coins');
     }
 }

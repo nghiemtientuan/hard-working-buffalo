@@ -65,3 +65,5 @@ Route::group([
 
     Route::get('not_found', 'NotFoundController@index')->name('notFound');
 });
+
+Route::post('payments/momo/success', 'PaymentController@postSuccessMomo')->name('client.payments.momo.postSuccessMomo');
