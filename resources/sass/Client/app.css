@@ -203,3 +203,25 @@
 .cursor-pointer {
     cursor: pointer;
 }
+.form-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+.form-group .form-group:last-child {
+    margin-bottom: 0;
+}
+@media (max-width: 1024px) {
+    .form-group div[class*="col-md-"]:not(.control-label) + div[class*="col-md-"] {
+        margin-top: 20px;
+    }
+}
+@media (max-width: 1199px) {
+    .form-group div[class*="col-lg-"]:not(.control-label) + div[class*="col-lg-"] {
+        margin-top: 20px;
+    }
+}
+@media (max-width: 768px) {
+    .form-group div[class*="col-sm-"]:not(.control-label) + div[class*="col-sm-"] {
+        margin-top: 20px;
+    }
+}

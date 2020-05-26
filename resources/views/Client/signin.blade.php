@@ -5,12 +5,14 @@
 @section('content')
     <div class="site-section pb-0"></div>
 
-    <div class="site-section pb-0 pt-25">
+    <div class="site-section pb-0 pt-30">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-5">
                     <form action="{{ route('client.postSignin') }}" method="POST">
                         @csrf
+
+                        @include ('Client.layouts.errorOrSuccess')
 
                         <div class="row">
                             <div class="col-md-12 form-group">
