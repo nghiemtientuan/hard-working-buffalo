@@ -20,6 +20,7 @@ return [
         'vietnam' => 'Việt Nam',
         'messages' => 'Messages',
         'my_profile' => 'My profile',
+        'timeline' => 'Timeline',
         'change_password' => 'Change Password',
         'payment' => 'Payment',
     ],
@@ -114,8 +115,17 @@ return [
             'created_at' => 'Created at',
             'in_month' => 'In month',
         ],
+        'timeline' => [
+            'timelineTitle' => 'Timeline',
+        ],
         'profile' => [
             'profileTitle' => 'Profile',
+            'address' => 'Address',
+            'level' => 'Level',
+            'birthday' => 'Birthday',
+            'phone' => 'Phone',
+            'description' => 'Description',
+            'timeline' => 'Timeline',
         ],
         'changePassword' => [
             'changePasswordTitle' => 'Change Password',

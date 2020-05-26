@@ -22,7 +22,6 @@ class Student extends Authenticatable
     const PHONE_FIELD = 'phone';
     const LEVEL_ID_FIELD = 'level_id';
     const LEVEL_SCORE_FIELD = 'level_score';
-    const STUDENT_TYPE_ID_FIELD = 'student_type_id';
     const COIN_FIELD = 'coin';
     const ACTIVE_FIELD = 'active';
     const DESCRIPTION_FIELD = 'description';
@@ -42,7 +41,6 @@ class Student extends Authenticatable
         Student::PHONE_FIELD,
         Student::LEVEL_ID_FIELD,
         Student::LEVEL_SCORE_FIELD,
-        Student::STUDENT_TYPE_ID_FIELD,
         Student::COIN_FIELD,
         Student::ACTIVE_FIELD,
         Student::DESCRIPTION_FIELD,

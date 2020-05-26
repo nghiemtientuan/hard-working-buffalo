@@ -64,8 +64,9 @@
                         </a>
 
                         @if (Auth::guard('student')->check())
-                            <ul class="dropdown-menu dropdown-menu-right p-2 mt-20">
+                            <ul class="dropdown-menu dropdown-menu-right p-2 mt-20 width-250">
                                 <li><a class="color-black" href="{{ route('client.profile.index') }}"><i class="icon-user"></i> {{ trans('client.navbar.my_profile') }}</a></li>
+                                <li><a class="color-black" href="{{ route('client.timeline.index') }}"><i class="icon-user"></i> {{ trans('client.navbar.timeline') }}</a></li>
                                 <li><a class="color-black" href="{{ route('client.payments.index') }}"><i class="icon-payment"></i> {{ trans('client.navbar.payment') }}</a></li>
                                 <li><a class="color-black" href="{{ route('client.changePass.show') }}"><i class="icon-sync"></i>{{ trans('client.navbar.change_password') }}</a></li>
                             </ul>

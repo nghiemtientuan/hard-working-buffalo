@@ -48,6 +48,8 @@ Route::group([
 
     Route::get('ranking', 'RankingController@index')->name('ranking.index');
 
+    Route::get('timeline', 'StudentController@timeline')->middleware('checkStudentRole')->name('timeline.index');
+
     Route::get('profile', 'StudentController@profile')->middleware('checkStudentRole')->name('profile.index');
 
     Route::group(['prefix' => 'api', 'as' => 'api.'], function () {

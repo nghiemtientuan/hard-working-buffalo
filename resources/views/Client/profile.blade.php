@@ -9,7 +9,7 @@
 @section('content')
     <div class="site-section pb-0"></div>
 
-    <div class="site-section pb-0 pt-25">
+    <div class="site-section pb-0 pt-30">
         <div class="container">
             <div class="profile-cover">
                 <div class="profile-cover-img" style="background-image: url({{ config('constant.default_images.url_cover') }})"></div>
@@ -22,40 +22,50 @@
 
                     <div class="media-body">
                         <h1>{{ $user->username }} (<small class="display-block">{{ getFullName($user->firstname, $user->lastname) }}</small>)</h1>
+                        <a
+                            href="
+                                @if ($user->id == Auth::guard('student')->user()->id)
+                                    {{ route('client.timeline.index') }}
+                                @else
+                                    {{ route('client.timeline.index', ['user' => $user->id]) }}
+                                @endif
+                            "
+                            class="btn btn-link color-black"
+                        >{{ trans('client.pages.profile.timeline') }}</a>
                     </div>
                 </div>
             </div>
 
             <div class="content">
                 <div class="row">
-                    <div class="col-lg-12">
-                        <div class="timeline timeline-left content-group mt-20">
-                            @foreach ($timelines as $timeline)
-                                <div class="timeline-container">
-                                    <div class="timeline-row">
-                                        <div class="timeline-icon">
-                                            <img src="{{ userDefaultImage($user->file) }}">
-                                        </div>
-
-                                        <div class="panel panel-flat timeline-content">
-                                            <div class="panel-heading">
-                                                <h6 class="panel-title">{{ trans('client.timeline.testTitle') }}</h6>
-                                                <div class="heading-elements">
-                                                    <span class="heading-text"><i class="icon-history position-left text-success"></i> {{ $timeline->created_at }}</span>
-                                                </div>
-                                            </div>
-
-                                            <div class="panel-body">
-                                                <a href="{{ route('client.histories.show', $timeline->id) }}">{{ trans('client.timeline.testBody', ['testName' => $timeline->test->name]) }}</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
+                    <div class="col-lg-6">
+                        <div class="form-group d-flex">
+                            <label class="control-label col-lg-3">{{ trans('client.pages.profile.address') }}:</label>
+                            <div class="col-lg-9"><label>{{ $user->address }}</label></div>
+                        </div>
+                        <div class="form-group d-flex">
+                            <label class="control-label col-lg-3">{{ trans('client.pages.profile.level') }}:</label>
+                            <div class="col-lg-9"><label>{{ $user->level ? $user->level->name : '' }}</label></div>
                         </div>
                     </div>
-
-                    {{ $timelines->links() }}
+                    @if ($user->id == Auth::guard('student')->user()->id)
+                        <div class="col-lg-6">
+                            <div class="form-group d-flex">
+                                <label class="control-label col-lg-3">{{ trans('client.pages.profile.birthday') }}:</label>
+                                <div class="col-lg-9"><label>{{ $user->birthday }}</label></div>
+                            </div>
+                            <div class="form-group d-flex">
+                                <label class="control-label col-lg-3">{{ trans('client.pages.profile.phone') }}:</label>
+                                <div class="col-lg-9"><label>{{ $user->phone }}</label></div>
+                            </div>
+                        </div>
+                    @endif
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label class="control-label col-lg-12">{{ trans('client.pages.profile.description') }}: </label>
+                            <div class="col-lg-12"><label>{{ $user->description }}</label></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

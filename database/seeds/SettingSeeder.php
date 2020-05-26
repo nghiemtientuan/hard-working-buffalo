@@ -13,7 +13,7 @@ class SettingSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('students')->truncate();
+        DB::table('settings')->truncate();
         $data = [
             [
                 Setting::KEY_FIELD => Setting::COST_COIN_KEY,
