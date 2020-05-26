@@ -22,6 +22,9 @@ Route::post('change_password', 'Client\StudentController@postChangePass')
     ->middleware('checkStudentRole')
     ->name('client.changePass.update');
 
+Route::get('signin', 'Client\StudentController@getSignin')->name('client.getSignin');
+Route::post('signin', 'Client\StudentController@postSignin')->name('client.postSignin');
+
 Route::group([
     'namespace' => 'Client',
     'as' => 'client.',
@@ -60,8 +63,10 @@ Route::group([
         Route::get('exchange', 'PaymentController@exchange')->name('exchange');
         Route::post('exchange', 'PaymentController@postExchange')->name('postExchange');
 
-        Route::get('vnpay', 'PaymentController@getVnPay')->name('getVnPay');
+        Route::get('momo/success', 'PaymentController@getSuccessMomo')->name('momo.getSuccess');
     });
 
     Route::get('not_found', 'NotFoundController@index')->name('notFound');
 });
+
+Route::post('payments/momo/success', 'PaymentController@postSuccessMomo')->name('client.payments.momo.postSuccessMomo');

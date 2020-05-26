@@ -26,6 +26,9 @@
                         </button>
                     </form>
                 @else
+                    <a href="{{ route('client.getSignin') }}" class="small mr-3">
+                        <span class="icon-user-plus"></span> {{ trans('client.header.signIn') }}
+                    </a>
                     <a href="{{ route('client.login') }}" class="small mr-3">
                         <span class="icon-unlock-alt"></span> {{ trans('client.header.login') }}
                     </a>

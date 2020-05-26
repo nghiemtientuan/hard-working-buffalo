@@ -14,6 +14,7 @@
         "intervention/image": "^2.5",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
+        "phpviet/laravel-omnipay": "^1.0",
         "stevebauman/location": "^5.0",
         "tightenco/ziggy": "^0.9.0",
         "yajra/laravel-datatables-oracle": "^9.9"

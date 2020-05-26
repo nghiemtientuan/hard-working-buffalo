@@ -104,7 +104,7 @@
         </div>
     </div>
 
-    <div class="section-bg style-1 background-image-hero1">
+    <div class="section-bg style-1 background-image-hero1 p-2">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4">
@@ -119,7 +119,7 @@
         </div>
     </div>
 
-    <div class="site-section ftco-subscribe-1 background-image-bg_1">
+    <div class="site-section ftco-subscribe-1 background-image-bg_1 p-2">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-7">

@@ -31,7 +31,10 @@ class ComposerServiceProvider extends ServiceProvider
             'App\Http\ViewComposers\TranslationComposer'
         );
         view()->composer(
-            'Client.layouts.navbar',
+            [
+                'Client.layouts.navbar',
+                'Client.layouts.footer',
+            ],
             'App\Http\ViewComposers\ParentCategoryComposer'
         );
     }

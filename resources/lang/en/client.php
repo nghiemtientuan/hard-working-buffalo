@@ -6,6 +6,7 @@ return [
         'login' => 'Login',
         'logout' => 'Logout',
         'coin' => 'coin',
+        'signIn' => 'Sign in',
     ],
     'navbar' => [
         'main' => 'Home',
@@ -131,6 +132,13 @@ return [
             'vnd' => 'VND',
             'send' => 'Send',
         ],
+        'signin' => [
+            'signinTitle' => 'Sign in',
+            'email' => 'Email',
+            'password' => 'Password',
+            'rePassword' => 'Reply Password',
+            'submitBtn' => 'Submit',
+        ],
     ],
     'timeline' => [
         'testTitle' => 'Test',
@@ -154,6 +162,17 @@ return [
             'newPassword_max' => 'Password is max :max characters',
             'newPassword_re' => 'Reply Password is not New Password',
         ],
+        'signin' => [
+            'email_require' => 'Email is require',
+            'email_unique' => 'Email exist!',
+            'email_email' => 'Email wrong!',
+            'email_min' => 'Email is min :min characters',
+            'email_max' => 'Email is max :max characters',
+            'password_required' => 'Password is require',
+            'password_min' => 'Password is min :min characters',
+            'password_max' => 'Password is max :max characters',
+            'password_re' => 'Reply Password is not Password',
+        ],
     ],
     'errors' => [
         'serverError' => 'Server Error',
@@ -164,9 +183,12 @@ return [
         ],
         'payment' => [
             'coinNumberInvalid' => 'Coin Number Invalid',
+            'payment_error' => 'Payment Error',
         ],
     ],
     'success' => [
         'buy_success' => 'Buy success',
+        'payment_sucess' => 'Payment success, :coins Coins',
+        'create_account' => 'Create account success',
     ],
 ];

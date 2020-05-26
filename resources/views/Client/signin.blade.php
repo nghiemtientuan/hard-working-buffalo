@@ -1,6 +1,6 @@
 @extends('Client.master')
 
-@section('title', trans('client.pages.login.login'))
+@section('title', trans('client.pages.signin.signinTitle'))
 
 @section('content')
     <div class="site-section pb-0"></div>
@@ -9,29 +9,26 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-5">
-                    <form action="{{ route('client.postLogin') }}" method="POST">
+                    <form action="{{ route('client.postSignin') }}" method="POST">
                         @csrf
-
-                        @if(isset($errors) && count($errors))
-                            <div class="alert alert-danger alert-styled-left alert-arrow-left alert-bordered">
-                                <button type="button" class="close" data-dismiss="alert"><span>&times;</span><span class="sr-only">{{ trans('client.actions.close') }}</span></button>
-                                <span class="text-semibold">{{ trans('client.actions.login_false') }}</span>
-                            </div>
-                        @endif
 
                         <div class="row">
                             <div class="col-md-12 form-group">
-                                <label for="username">{{ trans('client.pages.login.email') }}</label>
+                                <label for="username">{{ trans('client.pages.signin.email') }}</label>
                                 <input name="email" type="email" id="email" class="form-control form-control-lg" required>
                             </div>
                             <div class="col-md-12 form-group">
-                                <label for="password">{{ trans('client.pages.login.password') }}</label>
+                                <label for="password">{{ trans('client.pages.signin.password') }}</label>
                                 <input name="password" type="password" id="password" class="form-control form-control-lg" required>
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <label for="password">{{ trans('client.pages.signin.rePassword') }}</label>
+                                <input name="rePassword" type="password" id="rePassword" class="form-control form-control-lg" required>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <input type="submit" value="{{ trans('client.pages.login.loginBtn') }}" class="btn btn-primary btn-lg px-5">
+                                <input type="submit" value="{{ trans('client.pages.signin.submitBtn') }}" class="btn btn-primary btn-lg px-5">
                             </div>
                         </div>
                     </form>
