@@ -58,6 +58,9 @@ Route::group([
         Route::get('questions/{questionId}/comments', 'TestController@getComments')->name('questions.getComments');
     });
 
+    Route::get('calendars', 'CalendarController@index')->name('calendars.index');
+    Route::get('calendars/events', 'CalendarController@getEvent')->name('calendars.getEvent');
+
     Route::group([
         'as' => 'payments.',
         'prefix' => 'payments',

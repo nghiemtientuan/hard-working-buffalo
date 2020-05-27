@@ -16,7 +16,8 @@ class CreateAttendancesTable extends Migration
         Schema::create('attendances', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('user_id')->nullable();
-            $table->string('type')->nullable();
+            $table->string('user_type')->nullable();
+            $table->integer('action_type')->nullable();
             $table->timestamps();
         });
     }
