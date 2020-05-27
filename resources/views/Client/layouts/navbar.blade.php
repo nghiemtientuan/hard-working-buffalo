@@ -17,6 +17,9 @@
             <li class="{{ request()->is('histories') ? 'active' : '' }}">
                 <a href="{{ route('client.histories.index') }}" class="nav-link text-left">{{ trans('client.navbar.list.histories') }}</a>
             </li>
+            <li class="{{ request()->is('calendars') ? 'active' : '' }}">
+                <a href="{{ route('client.calendars.index') }}" class="nav-link text-left">{{ trans('client.navbar.list.calendar') }}</a>
+            </li>
         @endif
         <li class="{{ request()->is('ranking') ? 'active' : '' }}">
             <a href="{{ route('client.ranking.index') }}" class="nav-link text-left">{{ trans('client.navbar.list.ranking') }}</a>

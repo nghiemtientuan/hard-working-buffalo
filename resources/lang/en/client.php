@@ -13,6 +13,7 @@ return [
         'list' => [
             'categories' => 'Categories',
             'histories' => 'Histories',
+            'calendar' => 'Calendar',
             'ranking' => 'Ranking',
             'blog' => 'Blog',
         ],
@@ -159,6 +160,9 @@ return [
             'phone' => 'Phone',
             'description' => 'Description',
             'updateBtn' => 'Update',
+        ],
+        'calendar' => [
+            'calendarTitle' => 'Calendar',
         ],
     ],
     'timeline' => [
