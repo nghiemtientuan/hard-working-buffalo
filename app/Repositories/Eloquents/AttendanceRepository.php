@@ -4,6 +4,7 @@ namespace App\Repositories\Eloquents;
 
 use App\Models\Attendance;
 use App\Repositories\Contracts\AttendanceRepositoryInterface;
+use Carbon\Carbon;
 
 class AttendanceRepository extends EloquentRepository implements AttendanceRepositoryInterface
 {
@@ -25,7 +26,7 @@ class AttendanceRepository extends EloquentRepository implements AttendanceRepos
             ->get();
 
         foreach ($attendances as $key => $attendance) {
-            switch ($attendances->action_type) {
+            switch ($attendance->action_type) {
                 case Attendance::ACTION_LOGIN:
                     $attendances[$key]->color = Attendance::ACTION_LOGIN_COLOR;
                     $attendances[$key]->title = Attendance::ACTION_LOGIN_TITLE;
@@ -38,5 +39,13 @@ class AttendanceRepository extends EloquentRepository implements AttendanceRepos
         }
 
         return $attendances;
+    }
+
+    public function getAttendanceNow($userId, $userType)
+    {
+        return $this->_model->where(Attendance::USER_ID_FIELD, $userId)
+            ->where(Attendance::USER_TYPE_FIELD, $userType)
+            ->whereDate('created_at', Carbon::today())
+            ->first();
     }
 }

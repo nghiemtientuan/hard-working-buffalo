@@ -30,7 +30,7 @@ class CalendarController extends Controller
     {
         $student = Auth::guard('student')->user();
         $attendances = $this->attendanceRepository
-            ->getAttendanceInThisMonth($student->id, Attendance::TYPE_USER);
+            ->getAttendanceInThisMonth($student->id, Attendance::TYPE_STUDENT);
 
         return response()->json([
             'code' => config('constant.status_code.code_200'),
