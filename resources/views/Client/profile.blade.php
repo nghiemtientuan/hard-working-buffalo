@@ -21,7 +21,12 @@
                     </div>
 
                     <div class="media-body">
-                        <h1>{{ $user->username }} (<small class="display-block">{{ getFullName($user->firstname, $user->lastname) }}</small>)</h1>
+                        <h1>
+                            {{ $user->username }} (<small class="display-block">{{ getFullName($user->firstname, $user->lastname) }}</small>)
+                            @if ($user->id == Auth::guard('student')->user()->id)
+                                <a href="{{ route('client.profile.edit') }}"><i class="icon-pencil"></i></a>
+                            @endif
+                        </h1>
                         <a
                             href="
                                 @if ($user->id == Auth::guard('student')->user()->id)
