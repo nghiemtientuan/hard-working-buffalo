@@ -9,21 +9,24 @@ $.ajax({
         if (data.code === STATUS_CODE.code_200) {
             let currentdate = new Date();
             let events = [];
-            if (data.attendances && data.attendances.length > 0) {
-                data.attendances.forEach(attendance => {
+            if (data.data.attendances && data.data.attendances.length > 0) {
+                data.data.attendances.forEach(attendance => {
+                    let created_at = moment(new Date(attendance.created_at)).format('YYYY-MM-DD');
                     let event = {
                         title: attendance.title,
                         color: attendance.color,
-                        start: attendance.created_at,
+                        start: created_at,
                         rendering: 'background'
                     };
                     if (attendance.action_type === 1 || attendance.action_type === 2) {
                         event.rendering = 'background';
                     }
+                    console.log(events);
 
                     events.push(event);
                 });
             }
+            console.log(events);
 
             $('.fullcalendar-basic').fullCalendar({
                 header: {

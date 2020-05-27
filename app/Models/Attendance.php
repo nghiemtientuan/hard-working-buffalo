@@ -16,7 +16,7 @@ class Attendance extends Model
 
     const USER_ID_FIELD = 'user_id';
     const USER_TYPE_FIELD = 'user_type';
-    const ACTION_TYPE_FIELD = 'user_type';
+    const ACTION_TYPE_FIELD = 'action_type';
 
     const ACTION_LOGIN = 1;
     const ACTION_LOGIN_COLOR = '#AFFF7B';

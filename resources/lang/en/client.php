@@ -163,6 +163,8 @@ return [
         ],
         'calendar' => [
             'calendarTitle' => 'Calendar',
+            'test' => 'Test',
+            'login' => 'Login',
         ],
     ],
     'timeline' => [
