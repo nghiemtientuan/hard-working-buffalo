@@ -51,6 +51,8 @@ Route::group([
     Route::get('timeline', 'StudentController@timeline')->middleware('checkStudentRole')->name('timeline.index');
 
     Route::get('profile', 'StudentController@profile')->middleware('checkStudentRole')->name('profile.index');
+    Route::get('profile/edit', 'StudentController@editProfile')->name('profile.edit');
+    Route::post('profile/update', 'StudentController@updateProfile')->name('profile.update');
 
     Route::group(['prefix' => 'api', 'as' => 'api.'], function () {
         Route::get('questions/{questionId}/comments', 'TestController@getComments')->name('questions.getComments');

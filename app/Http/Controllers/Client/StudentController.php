@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Client;
 use App\Http\Requests\Client\ChangePasswordRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Client\SignInRequest;
+use App\Http\Requests\Client\UpdateStudentProfileRequest;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -92,9 +93,36 @@ class StudentController extends Controller
             $newStudent['password'] = bcrypt($newStudent['password']);
             $this->studentRepository->create($newStudent);
 
-            return redirect()->route('client.login')->with('success', trans('client.success.create_account'));
+            return redirect()->route('client.login')
+                ->with('success', trans('client.success.create_account'));
         }
 
         return redirect()->back()->withErrors([trans('client.validations.signin.password_re')]);
+    }
+
+    public function editProfile()
+    {
+        $userId = Auth::guard('student')->user()->id;
+        $user = $this->studentRepository->find($userId);
+
+        return view('Client.editProfile', compact('user'));
+    }
+
+    public function updateProfile(UpdateStudentProfileRequest $request)
+    {
+        $userData = $request->only([
+            'username',
+            'firstname',
+            'lastname',
+            'birthday',
+            'address',
+            'phone',
+            'description',
+        ]);
+        $userId = Auth::guard('student')->user()->id;
+        $this->studentRepository->update($userId, $userData);
+
+        return redirect()->route('client.profile.index')
+            ->with('success', trans('client.success.update_profile'));
     }
 }
