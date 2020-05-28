@@ -15,6 +15,9 @@ Route::get('login', 'Auth\LoginController@getLogin')->name('client.login');
 Route::post('login', 'Auth\LoginController@postLogin')->name('client.postLogin');
 Route::post('logout', 'Auth\LoginController@logout')->name('client.logout');
 
+Route::get('/redirect/{social}', 'Client\SocialAuthController@redirect')->name('client.socials.redirect');
+Route::get('/callback/{social}', 'Client\SocialAuthController@callback');
+
 Route::get('change_password', 'Client\StudentController@getChangePass')
     ->middleware(['checkStudentRole', 'loginAttendance'])
     ->name('client.changePass.show');

@@ -31,7 +31,7 @@
                                 @endif
                             "
                             class="btn btn-link color-black"
-                        >{{ trans('client.pages.profile.timeline') }}</a>
+                        >{{ trans('client.pages.timeline.profile') }}</a>
                     </div>
                 </div>
             </div>
@@ -49,7 +49,7 @@
 
                                         <div class="panel panel-flat timeline-content">
                                             <div class="panel-heading">
-                                                <h6 class="panel-title">{{ trans('client.timeline.testTitle') }}</h6>
+                                                <h6 class="panel-title">{{ trans('client.pages.timeline.test') }}</h6>
                                                 <div class="heading-elements">
                                                     <span class="heading-text"><i class="icon-history position-left text-success"></i> {{ $timeline->created_at }}</span>
                                                 </div>

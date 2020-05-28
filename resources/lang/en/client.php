@@ -118,6 +118,8 @@ return [
         ],
         'timeline' => [
             'timelineTitle' => 'Timeline',
+            'profile' => 'Profile',
+            'test' => 'Test',
         ],
         'profile' => [
             'profileTitle' => 'Profile',
