@@ -24,9 +24,14 @@
                                 <label for="username">{{ trans('client.pages.login.email') }}</label>
                                 <input name="email" type="email" id="email" class="form-control form-control-lg" required>
                             </div>
-                            <div class="col-md-12 form-group">
+                            <div class="col-md-12">
                                 <label for="password">{{ trans('client.pages.login.password') }}</label>
                                 <input name="password" type="password" id="password" class="form-control form-control-lg" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 form-group">
+                                <a href="{{ route('client.getSignin') }}">{{ trans('client.pages.login.not_have_an_account') }}</a>
                             </div>
                         </div>
                         <div class="row">
