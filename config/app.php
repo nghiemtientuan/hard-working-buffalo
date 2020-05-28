@@ -178,6 +178,7 @@ return [
         App\Providers\ComposerServiceProvider::class,
         Tightenco\Ziggy\ZiggyServiceProvider::class,
         Stevebauman\Location\LocationServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
     ],
 
     /*
@@ -229,6 +230,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Location' => Stevebauman\Location\Facades\Location::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
     ],
 
 ];

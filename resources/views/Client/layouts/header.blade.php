@@ -29,6 +29,12 @@
                     <a href="{{ route('client.getSignin') }}" class="small mr-3">
                         <span class="icon-user-plus"></span> {{ trans('client.header.signIn') }}
                     </a>
+                    <a href="{{ route('client.socials.redirect', \App\Models\SocialAccount::GOOGLE_SOCIAL) }}" class="small mr-3">
+                        <i class="fab fa-google"></i>
+                    </a>
+                    <a href="{{ route('client.socials.redirect', \App\Models\SocialAccount::FACEBOOK_SOCIAL) }}" class="small mr-3">
+                        <i class="fab fa-facebook"></i>
+                    </a>
                     <a href="{{ route('client.login') }}" class="small mr-3">
                         <span class="icon-unlock-alt"></span> {{ trans('client.header.login') }}
                     </a>

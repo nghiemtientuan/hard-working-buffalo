@@ -49,6 +49,7 @@ return [
             'loginBtn' => 'Login',
             'email' => 'Email',
             'password' => 'Password',
+            'not_have_an_account' => 'Do not have an account ?',
         ],
         'home' => [
             'buffalo' => 'Buffalo',
@@ -118,6 +119,8 @@ return [
         ],
         'timeline' => [
             'timelineTitle' => 'Timeline',
+            'profile' => 'Profile',
+            'test' => 'Test',
         ],
         'profile' => [
             'profileTitle' => 'Profile',
@@ -149,6 +152,7 @@ return [
             'password' => 'Password',
             'rePassword' => 'Reply Password',
             'submitBtn' => 'Submit',
+            'have_an_account' => 'Do you already have an account ?',
         ],
         'editProfile' => [
             'editProfileTitle' => 'Edit Profile',
