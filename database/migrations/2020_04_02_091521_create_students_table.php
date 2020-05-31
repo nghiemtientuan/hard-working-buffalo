@@ -26,6 +26,7 @@ class CreateStudentsTable extends Migration
             $table->integer('level_score')->nullable();
             $table->integer('coin')->default(0);
             $table->integer('active')->default(0);
+            $table->integer('target')->default(0);
             $table->text('description')->nullable();
             $table->string('email')->unique();
             $table->string('password')->nullable();

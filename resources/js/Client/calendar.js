@@ -7,7 +7,6 @@ $.ajax({
     },
     success: function (data) {
         if (data.code === STATUS_CODE.code_200) {
-            let currentdate = new Date();
             let events = [];
             if (data.data.attendances && data.data.attendances.length > 0) {
                 data.data.attendances.forEach(attendance => {
@@ -21,12 +20,10 @@ $.ajax({
                     if (attendance.action_type === 1 || attendance.action_type === 2) {
                         event.rendering = 'background';
                     }
-                    console.log(events);
 
                     events.push(event);
                 });
             }
-            console.log(events);
 
             $('.fullcalendar-basic').fullCalendar({
                 header: {
@@ -34,7 +31,7 @@ $.ajax({
                     center: 'title',
                     right: ''
                 },
-                defaultDate: currentdate.getFullYear() + '-' + (currentdate.getMonth() + 1) + '-' + currentdate.getDay(),
+                defaultDate: new Date(),
                 editable: true,
                 events: events
             });

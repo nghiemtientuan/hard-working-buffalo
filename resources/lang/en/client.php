@@ -15,6 +15,7 @@ return [
             'histories' => 'Histories',
             'calendar' => 'Calendar',
             'ranking' => 'Ranking',
+            'statistic' => 'Statistic',
             'blog' => 'Blog',
         ],
         'english' => 'English',
@@ -169,6 +170,12 @@ return [
             'calendarTitle' => 'Calendar',
             'test' => 'Test',
             'login' => 'Login',
+        ],
+        'statistic' => [
+            'statisticTitle' => 'Statistic',
+            '10_test_lastest' => '--10 test lastest--',
+            'score' => 'Score',
+            'target' => 'Target',
         ],
     ],
     'timeline' => [

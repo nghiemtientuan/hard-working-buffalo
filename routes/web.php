@@ -64,6 +64,10 @@ Route::group([
     Route::get('calendars', 'CalendarController@index')->name('calendars.index');
     Route::get('calendars/events', 'CalendarController@getEvent')->name('calendars.getEvent');
 
+    Route::get('statistic/index', 'StatisticController@index')->name('statistic.index');
+    Route::get('statistic/search', 'StatisticController@search')->name('statistic.search');
+    Route::get('statistic/target', 'StatisticController@target')->name('statistic.target');
+
     Route::group([
         'as' => 'payments.',
         'prefix' => 'payments',

@@ -4,7 +4,9 @@ namespace App\Repositories\Eloquents;
 
 use App\Models\History;
 use App\Models\Student;
+use App\Models\Test;
 use App\Repositories\Contracts\HistoryRepositoryInterface;
+use function Clue\StreamFilter\fun;
 
 class HistoryRepository extends EloquentRepository implements HistoryRepositoryInterface
 {
@@ -69,5 +71,29 @@ class HistoryRepository extends EloquentRepository implements HistoryRepositoryI
             ->orderBy('score', 'DESC');
 
         return $query->paginate(config('constant.limit.ranking'));
+    }
+
+    public function getUsedTest($studentId)
+    {
+        return Test::with('histories')
+            ->whereHas('histories', function ($query) use ($studentId) {
+                $query->where(History::STUDENT_ID_FIELD, $studentId);
+            })->has('histories')
+            ->get();
+    }
+
+    public function getStatisticTestByStudentId($studentId, $testId = null)
+    {
+        $query = $this->_model->with('test')
+            ->where(History::STUDENT_ID_FIELD, $studentId);
+        if ($testId) {
+            $query->where(History::TEST_ID_FIELD, $testId);
+        }
+
+        $statistic = $query->orderBy('created_at', 'DESC')
+            ->limit(config('constant.limit.testInStatistic'))
+            ->get();
+
+        return collect($statistic)->sortBy('created_at')->values();
     }
 }
