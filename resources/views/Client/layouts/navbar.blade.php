@@ -20,6 +20,9 @@
             <li class="{{ request()->is('calendars') ? 'active' : '' }}">
                 <a href="{{ route('client.calendars.index') }}" class="nav-link text-left pl-10 pr-10">{{ trans('client.navbar.list.calendar') }}</a>
             </li>
+            <li class="{{ request()->is('statistic') ? 'active' : '' }}">
+                <a href="{{ route('client.statistic.index') }}" class="nav-link text-left pl-10 pr-10">{{ trans('client.navbar.list.statistic') }}</a>
+            </li>
         @endif
         <li class="{{ request()->is('ranking') ? 'active' : '' }}">
             <a href="{{ route('client.ranking.index') }}" class="nav-link text-left pl-10 pr-10">{{ trans('client.navbar.list.ranking') }}</a>
