@@ -6,6 +6,13 @@ return [
         'url_logo' => '/images/common/logo.png',
         'url_cover' => '/images/common/cover.png',
         'url_vnPay' => '/images/common/vnpay.png',
+        'url_buffalo' => '/images/common/buffalo.png'
+    ],
+    'react' => [
+        1 => '/images/reacts/like.png',
+        2 => '/images/reacts/love.png',
+        3 => '/images/reacts/haha.png',
+        4 => '/images/reacts/wow.png',
     ],
     'pays' => [
         \App\Models\Payment::MOMO_KEY_PAY => 'MoMo',

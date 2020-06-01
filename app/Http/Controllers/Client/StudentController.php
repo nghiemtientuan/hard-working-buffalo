@@ -10,7 +10,9 @@ use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Repositories\Contracts\StudentRepositoryInterface as StudentRepository;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Exception;
 
 class StudentController extends Controller
 {
@@ -124,5 +126,36 @@ class StudentController extends Controller
 
         return redirect()->route('client.profile.index')
             ->with('success', trans('client.success.update_profile'));
+    }
+
+    public function getTarget()
+    {
+        $student = Auth::guard('student')->user();
+
+        return view('Client.target', compact('student'));
+    }
+
+    public function updateTarget(Request $request)
+    {
+        $student = Auth::guard('student')->user();
+
+        DB::beginTransaction();
+        try {
+            $this->studentRepository->update(
+                $student->id,
+                [
+                    Student::TARGET_FIELD => $request->target,
+                ]
+            );
+
+            DB::commit();
+
+            return redirect()->route('client.target.index')
+                ->with('success', trans('client.success.update_target'));
+        } catch (Exception $exception) {
+            DB::rollBack();
+
+            return redirect()->back()->withErrors(trans('client.errors.target.updateFalse'));
+        }
     }
 }

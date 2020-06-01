@@ -25,6 +25,7 @@ return [
         'timeline' => 'Timeline',
         'change_password' => 'Change Password',
         'payment' => 'Payment',
+        'target' => 'Target',
     ],
     'footer' => [
         'hard_working_buffalo' => 'Hard Working Buffalo',
@@ -44,6 +45,8 @@ return [
     'no_data' => 'No data',
     'pages' => [
         'edit' => 'Edit',
+        'close' => 'Close',
+        'save' => 'Save',
         'comments' => 'Comments',
         'login' => [
             'login' => 'Login',
@@ -177,6 +180,10 @@ return [
             'score' => 'Score',
             'target' => 'Target',
         ],
+        'target' => [
+            'targetTitle' => 'Target',
+            'your_target' => 'Your target'
+        ],
     ],
     'timeline' => [
         'testTitle' => 'Test',
@@ -243,11 +250,15 @@ return [
             'coinNumberInvalid' => 'Coin Number Invalid',
             'payment_error' => 'Payment Error',
         ],
+        'target' => [
+            'updateFalse' => 'Update Target error',
+        ],
     ],
     'success' => [
         'buy_success' => 'Buy success',
         'payment_sucess' => 'Payment success, :coins Coins',
         'create_account' => 'Create account success',
         'update_profile' => 'Update Profile success',
+        'update_target' => 'Update Target success',
     ],
 ];
