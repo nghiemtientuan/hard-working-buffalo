@@ -47,9 +47,10 @@
                                     <tr>
                                         <th width="10%"></th>
                                         <th width="10%"></th>
-                                        <th width="30%">{{ trans('client.pages.ranking.username') }}</th>
-                                        <th width="30%">{{ trans('client.pages.ranking.name_test') }}</th>
+                                        <th width="25%">{{ trans('client.pages.ranking.username') }}</th>
+                                        <th width="25%">{{ trans('client.pages.ranking.name_test') }}</th>
                                         <th width="20%">{{ trans('client.pages.ranking.score') }}</th>
+                                        <th width="10%"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -63,13 +64,31 @@
                                             </td>
                                             <td>{{ $ranking->student->username }}</td>
                                             <td>({{ $ranking->test->code }}) {{ $ranking->test->name }}</td>
-                                            <td>{{ $ranking->score }}</td>
+                                            <td>
+                                                {{ $ranking->score }}
+                                            </td>
+                                            <td class="reactions-location">
+                                                <button class="btn btn-light btnLikeHover"><em class="fa fa-thumbs-up"></em> {{ trans('client.pages.ranking.like') }}</button>
+                                                <div class="reactions-lists">
+                                                    <ol>
+                                                        @foreach (config('constant.reacts') as $keyReact => $reactUrl)
+                                                            <li>
+                                                                <div class="reaction-item d-flex flex-column align-items-center justify-content-center">
+                                                                    <span class="reaction-item--content reaction" data-reaction-id="{{ $keyReact }}" data-log-id="90285">
+                                                                        <img class="reaction-item--content--img" src="{{ $reactUrl }}">
+                                                                    </span>
+                                                                </div>
+                                                            </li>
+                                                        @endforeach
+                                                    </ol>
+                                                </div>
+                                            </td>
                                         </tr>
                                     @endforeach
 
                                     @if(!count($rankings))
                                         <tr>
-                                            <td colspan="6">{{ trans('client.no_data') }}</td>
+                                            <td colspan="7">{{ trans('client.no_data') }}</td>
                                         </tr>
                                     @endif
                                 </tbody>
@@ -84,4 +103,8 @@
     </div>
 
     <div class="site-section pb-0"></div>
+@endsection
+
+@section('script')
+    <script src="{{ asset('js/Client/ranking.js') }}"></script>
 @endsection

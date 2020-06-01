@@ -8,11 +8,11 @@ return [
         'url_vnPay' => '/images/common/vnpay.png',
         'url_buffalo' => '/images/common/buffalo.png'
     ],
-    'react' => [
-        1 => '/images/reacts/like.png',
-        2 => '/images/reacts/love.png',
-        3 => '/images/reacts/haha.png',
-        4 => '/images/reacts/wow.png',
+    'reacts' => [
+        1 => '/images/reacts/like.gif',
+        2 => '/images/reacts/love.gif',
+        3 => '/images/reacts/haha.gif',
+        4 => '/images/reacts/wow.gif',
     ],
     'pays' => [
         \App\Models\Payment::MOMO_KEY_PAY => 'MoMo',

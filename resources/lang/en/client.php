@@ -122,6 +122,7 @@ return [
             'score' => 'Score',
             'created_at' => 'Created at',
             'in_month' => 'In month',
+            'like' => 'Like',
         ],
         'timeline' => [
             'timelineTitle' => 'Timeline',
