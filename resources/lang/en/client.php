@@ -25,11 +25,14 @@ return [
         'timeline' => 'Timeline',
         'change_password' => 'Change Password',
         'payment' => 'Payment',
+        'target' => 'Target',
+        'feedback' => 'Feedback',
     ],
     'footer' => [
         'hard_working_buffalo' => 'Hard Working Buffalo',
         'categories' => 'Categories',
         'contact' => 'Contact',
+        'feedback' => 'Feedback',
         'help_center' => 'abc',
         'company' => 'Company',
         'page' => 'Page',
@@ -44,6 +47,8 @@ return [
     'no_data' => 'No data',
     'pages' => [
         'edit' => 'Edit',
+        'close' => 'Close',
+        'save' => 'Save',
         'comments' => 'Comments',
         'login' => [
             'login' => 'Login',
@@ -117,6 +122,7 @@ return [
             'score' => 'Score',
             'created_at' => 'Created at',
             'in_month' => 'In month',
+            'like' => 'Like',
         ],
         'timeline' => [
             'timelineTitle' => 'Timeline',
@@ -176,6 +182,10 @@ return [
             '10_test_lastest' => '--10 test lastest--',
             'score' => 'Score',
             'target' => 'Target',
+        ],
+        'target' => [
+            'targetTitle' => 'Target',
+            'your_target' => 'Your target'
         ],
     ],
     'timeline' => [
@@ -243,11 +253,15 @@ return [
             'coinNumberInvalid' => 'Coin Number Invalid',
             'payment_error' => 'Payment Error',
         ],
+        'target' => [
+            'updateFalse' => 'Update Target error',
+        ],
     ],
     'success' => [
         'buy_success' => 'Buy success',
         'payment_sucess' => 'Payment success, :coins Coins',
         'create_account' => 'Create account success',
         'update_profile' => 'Update Profile success',
+        'update_target' => 'Update Target success',
     ],
 ];

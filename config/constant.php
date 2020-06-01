@@ -6,6 +6,13 @@ return [
         'url_logo' => '/images/common/logo.png',
         'url_cover' => '/images/common/cover.png',
         'url_vnPay' => '/images/common/vnpay.png',
+        'url_buffalo' => '/images/common/buffalo.png'
+    ],
+    'reacts' => [
+        1 => '/images/reacts/like.gif',
+        2 => '/images/reacts/love.gif',
+        3 => '/images/reacts/haha.gif',
+        4 => '/images/reacts/wow.gif',
     ],
     'pays' => [
         \App\Models\Payment::MOMO_KEY_PAY => 'MoMo',
@@ -15,6 +22,7 @@ return [
         'link_facebook' => 'a',
         'link_youtube' => 'b',
         'link_twitter' => 'c',
+        'link_feedback' => 'https://forms.gle/7MzLuVVHFM74moQTA',
     ],
     'subject_mail' => [
         'createAccount' => 'Account create successfully',

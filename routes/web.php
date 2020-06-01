@@ -68,6 +68,9 @@ Route::group([
     Route::get('statistic/search', 'StatisticController@search')->name('statistic.search');
     Route::get('statistic/target', 'StatisticController@target')->name('statistic.target');
 
+    Route::get('target/index', 'StudentController@getTarget')->name('target.index');
+    Route::post('target/update', 'StudentController@updateTarget')->name('target.update');
+
     Route::group([
         'as' => 'payments.',
         'prefix' => 'payments',

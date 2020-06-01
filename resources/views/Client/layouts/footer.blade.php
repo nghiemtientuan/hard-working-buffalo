@@ -26,7 +26,8 @@
             <div class="col-lg-3">
                 <h3 class="footer-heading m-3"><span>{{ trans('client.footer.contact') }}</span></h3>
                 <ul class="list-unstyled">
-                        <li><a href="#">{{ trans('client.footer.help_center') }}</a></li>
+                    <li><a href="{{ config('constant.links.link_feedback') }}" target="_blank"> {{ trans('client.footer.feedback') }}</a></li>
+                    <li><a href="#">{{ trans('client.footer.help_center') }}</a></li>
                 </ul>
             </div>
         </div>

@@ -71,10 +71,12 @@
 
                         @if (Auth::guard('student')->check())
                             <ul class="dropdown-menu dropdown-menu-right p-2 mt-20 width-250">
-                                <li><a class="color-black" href="{{ route('client.profile.index') }}"><i class="icon-user"></i> {{ trans('client.navbar.my_profile') }}</a></li>
-                                <li><a class="color-black" href="{{ route('client.timeline.index') }}"><i class="icon-clock-o"></i> {{ trans('client.navbar.timeline') }}</a></li>
-                                <li><a class="color-black" href="{{ route('client.payments.index') }}"><i class="icon-payment"></i> {{ trans('client.navbar.payment') }}</a></li>
-                                <li><a class="color-black" href="{{ route('client.changePass.show') }}"><i class="icon-sync"></i>{{ trans('client.navbar.change_password') }}</a></li>
+                                <li><a class="color-black" href="{{ route('client.profile.index') }}"><em class="icon-user"></em> {{ trans('client.navbar.my_profile') }}</a></li>
+                                <li><a class="color-black" href="{{ route('client.timeline.index') }}"><em class="icon-clock-o"></em> {{ trans('client.navbar.timeline') }}</a></li>
+                                <li><a class="color-black" href="{{ route('client.target.index') }}"><em class="fas fa-crosshairs"></em> {{ trans('client.navbar.target') }}</a></li>
+                                <li><a class="color-black" href="{{ route('client.payments.index') }}"><em class="icon-payment"></em> {{ trans('client.navbar.payment') }}</a></li>
+                                <li><a class="color-black" href="{{ route('client.changePass.show') }}"><em class="icon-sync"></em>{{ trans('client.navbar.change_password') }}</a></li>
+                                <li><a class="color-black" href="{{ config('constant.links.link_feedback') }}" target="_blank"><em class="fas fa-comment-dots"></em></em> {{ trans('client.navbar.feedback') }}</a></li>
                             </ul>
                         @endif
                     </li>
