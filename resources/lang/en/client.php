@@ -26,11 +26,13 @@ return [
         'change_password' => 'Change Password',
         'payment' => 'Payment',
         'target' => 'Target',
+        'feedback' => 'Feedback',
     ],
     'footer' => [
         'hard_working_buffalo' => 'Hard Working Buffalo',
         'categories' => 'Categories',
         'contact' => 'Contact',
+        'feedback' => 'Feedback',
         'help_center' => 'abc',
         'company' => 'Company',
         'page' => 'Page',

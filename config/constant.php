@@ -22,6 +22,7 @@ return [
         'link_facebook' => 'a',
         'link_youtube' => 'b',
         'link_twitter' => 'c',
+        'link_feedback' => 'https://forms.gle/7MzLuVVHFM74moQTA',
     ],
     'subject_mail' => [
         'createAccount' => 'Account create successfully',

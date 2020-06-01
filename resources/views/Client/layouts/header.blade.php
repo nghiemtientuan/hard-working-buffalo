@@ -76,6 +76,7 @@
                                 <li><a class="color-black" href="{{ route('client.target.index') }}"><em class="fas fa-crosshairs"></em> {{ trans('client.navbar.target') }}</a></li>
                                 <li><a class="color-black" href="{{ route('client.payments.index') }}"><em class="icon-payment"></em> {{ trans('client.navbar.payment') }}</a></li>
                                 <li><a class="color-black" href="{{ route('client.changePass.show') }}"><em class="icon-sync"></em>{{ trans('client.navbar.change_password') }}</a></li>
+                                <li><a class="color-black" href="{{ config('constant.links.link_feedback') }}" target="_blank"><em class="fas fa-comment-dots"></em></em> {{ trans('client.navbar.feedback') }}</a></li>
                             </ul>
                         @endif
                     </li>
