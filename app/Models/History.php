@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 
 class History extends Model
 {
@@ -42,5 +43,10 @@ class History extends Model
     public function student()
     {
         return $this->belongsTo(Student::class);
+    }
+
+    public function reacts()
+    {
+        return $this->hasMany(ReactHistory::class, ReactHistory::HISTORY_ID_FIELD, 'id');
     }
 }

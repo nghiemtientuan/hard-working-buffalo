@@ -3,9 +3,11 @@
 namespace App\Repositories\Eloquents;
 
 use App\Models\History;
+use App\Models\ReactHistory;
 use App\Models\Student;
 use App\Models\Test;
 use App\Repositories\Contracts\HistoryRepositoryInterface;
+use Illuminate\Support\Facades\DB;
 use function Clue\StreamFilter\fun;
 
 class HistoryRepository extends EloquentRepository implements HistoryRepositoryInterface
@@ -56,21 +58,28 @@ class HistoryRepository extends EloquentRepository implements HistoryRepositoryI
 
     public function getRanking($filter)
     {
-        $query = $this->_model->with([
-            'student',
-            'student.file',
-            'test',
-        ])->whereMonth('created_at', now()->month);
+        $query = $this->_model->whereMonth('created_at', now()->month);
 
         if (array_key_exists('test', $filter) && $filter['test']) {
             $query->where(History::TEST_ID_FIELD, $filter['test']);
         }
 
-        $query->selectRaw('MAX(score) as score, student_id, test_id')
-            ->groupBy(['student_id', 'test_id'])
-            ->orderBy('score', 'DESC');
+        $query->selectRaw('MAX(score) as maxSore, student_id, test_id')
+            ->groupBy(['student_id', 'test_id']);
 
-        return $query->paginate(config('constant.limit.ranking'));
+        return $this->_model->with([
+            'student',
+            'student.file',
+            'test',
+            'reacts',
+        ])->join(DB::raw("({$query->toSql()}) AS sub"), function ($join) use ($query) {
+            $join->on('histories.score', '=', 'sub.maxSore')
+                ->on('histories.test_id', '=', 'sub.test_id')
+                ->on('histories.student_id', '=', 'sub.student_id')
+                ->addBinding($query->getBindings());
+        })->orderBy('score', 'DESC')
+            ->orderBy('duration')
+            ->paginate(config('constant.limit.ranking'));
     }
 
     public function getUsedTest($studentId)

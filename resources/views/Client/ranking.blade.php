@@ -47,10 +47,13 @@
                                     <tr>
                                         <th width="10%"></th>
                                         <th width="10%"></th>
-                                        <th width="25%">{{ trans('client.pages.ranking.username') }}</th>
+                                        <th width="20%">{{ trans('client.pages.ranking.username') }}</th>
                                         <th width="25%">{{ trans('client.pages.ranking.name_test') }}</th>
-                                        <th width="20%">{{ trans('client.pages.ranking.score') }}</th>
-                                        <th width="10%"></th>
+                                        <th width="10%">{{ trans('client.pages.ranking.duration') }}</th>
+                                        <th width="15%">{{ trans('client.pages.ranking.score') }}</th>
+                                        @if (Auth::check() || Auth::guard('student')->check())
+                                            <th width="10%"></th>
+                                        @endif
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -65,24 +68,57 @@
                                             <td>{{ $ranking->student->username }}</td>
                                             <td>({{ $ranking->test->code }}) {{ $ranking->test->name }}</td>
                                             <td>
-                                                {{ $ranking->score }}
+                                                {{ getHourMinuteSecond($ranking->duration) }}
                                             </td>
-                                            <td class="reactions-location">
-                                                <button class="btn btn-light btnLikeHover"><em class="fa fa-thumbs-up"></em> {{ trans('client.pages.ranking.like') }}</button>
-                                                <div class="reactions-lists">
-                                                    <ol>
-                                                        @foreach (config('constant.reacts') as $keyReact => $reactUrl)
-                                                            <li>
-                                                                <div class="reaction-item d-flex flex-column align-items-center justify-content-center">
-                                                                    <span class="reaction-item--content reaction" data-reaction-id="{{ $keyReact }}" data-log-id="90285">
-                                                                        <img class="reaction-item--content--img" src="{{ $reactUrl }}">
-                                                                    </span>
-                                                                </div>
-                                                            </li>
-                                                        @endforeach
-                                                    </ol>
+                                            <td>
+                                                {{ $ranking->score }}
+                                                <div id="clicked-icon-list-{{ $ranking->id }}" class="d-flex clicked-icon-list">
+                                                    @foreach (config('constant.reacts') as $keyReact => $reactUrl)
+                                                        @php $countReact = getCountReact($ranking->reacts, $keyReact) @endphp
+
+                                                        <div class="@if ($countReact) d-flex @else d-none @endif align-content-center clicked-icon-list-active clicked-icon-list-active-{{ $keyReact }}">
+                                                            <div class="d-flex clicked-icon-list__item--img">
+                                                                <img src="{{ $reactUrl }}">
+                                                            </div>
+                                                            <div class="d-flex align-items-center clicked-icon-list__item--number">{{ $countReact }}</div>
+                                                        </div>
+                                                    @endforeach
                                                 </div>
                                             </td>
+                                            @if (Auth::check() || Auth::guard('student')->check())
+                                                @php $selectedReact = getSelectedReact($ranking->reacts) @endphp
+                                                <td class="reactions-location">
+                                                    <button class="btn btn-light btnLikeHover btnLikeHover-{{ $ranking->id }} @if (checkUserReaction($ranking->reacts)) btnLikeClicked @endif">
+                                                        <span class="btnClickLike">
+                                                            @if ($selectedReact == 0)
+                                                                <em class="fa fa-thumbs-up"></em>
+                                                            @else
+                                                                <img class="btnClickLike--img" src="{{ config('constant.reacts')[$selectedReact] }}">
+                                                            @endif
+                                                        </span> {{ trans('client.pages.ranking.react') }}
+                                                        <div class="reactions-lists">
+                                                            <ol>
+                                                                @foreach (config('constant.reacts') as $keyReact => $reactUrl)
+                                                                    <li>
+                                                                        <div class="reaction-item reaction-item-{{ $keyReact }} d-flex flex-column align-items-center justify-content-center">
+                                                                            <span
+                                                                                class="reaction-item--content reaction"
+                                                                                data-reactionId="{{ $keyReact }}"
+                                                                                data-reactSelected="{{ $selectedReact }}"
+                                                                                data-historyId="{{ $ranking->id }}"
+                                                                            >
+                                                                                <img class="reaction-item--content--img" src="{{ $reactUrl }}">
+                                                                            </span>
+
+                                                                            <span class="dot-active mt-auto @if ($selectedReact != $keyReact) d-none @endif"></span>
+                                                                        </div>
+                                                                    </li>
+                                                                @endforeach
+                                                            </ol>
+                                                        </div>
+                                                    </button>
+                                                </td>
+                                            @endif
                                         </tr>
                                     @endforeach
 

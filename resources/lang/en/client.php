@@ -122,7 +122,8 @@ return [
             'score' => 'Score',
             'created_at' => 'Created at',
             'in_month' => 'In month',
-            'like' => 'Like',
+            'react' => 'React',
+            'duration' => 'Duration',
         ],
         'timeline' => [
             'timelineTitle' => 'Timeline',
@@ -256,6 +257,10 @@ return [
         'target' => [
             'updateFalse' => 'Update Target error',
         ],
+        'reaction' => [
+            'not_login' => 'User not login',
+            'wrong_format' => 'Wrong format',
+        ],
     ],
     'success' => [
         'buy_success' => 'Buy success',
@@ -263,5 +268,6 @@ return [
         'create_account' => 'Create account success',
         'update_profile' => 'Update Profile success',
         'update_target' => 'Update Target success',
+        'action_success' => 'Action success',
     ],
 ];
