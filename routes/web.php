@@ -50,6 +50,7 @@ Route::group([
     });
 
     Route::get('ranking', 'RankingController@index')->name('ranking.index');
+    Route::post('ranking/reaction', 'RankingController@reaction')->name('ranking.reaction');
 
     Route::get('timeline', 'StudentController@timeline')->middleware('checkStudentRole')->name('timeline.index');
 
