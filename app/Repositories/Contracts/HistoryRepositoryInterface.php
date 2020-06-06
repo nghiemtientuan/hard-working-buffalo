@@ -11,4 +11,8 @@ interface HistoryRepositoryInterface
     public function getUsedTest($studentId);
 
     public function getStatisticTestByStudentId($studentId, $testId = null);
+
+    public function getStudentTested($testId);
+
+    public function getHistoriesByTestUser($testId, $studentId);
 }

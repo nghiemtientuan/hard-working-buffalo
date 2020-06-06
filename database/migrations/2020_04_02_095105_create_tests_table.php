@@ -22,6 +22,8 @@ class CreateTestsTable extends Migration
             $table->string('name')->nullable();
             $table->string('code')->nullable();
             $table->text('guide')->nullable();
+            $table->string('day_show_answer')->nullable();
+            $table->integer('is_show_answer')->default(Test::IS_SHOW_ANSWER_FALSE);
             $table->integer('execute_time')->nullable();
             $table->integer('total_question')->nullable();
             $table->integer('is_formula_score')->default(0);

@@ -13,7 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        Commands\ShowAnswerTest::class,
     ];
 
     /**
@@ -24,8 +24,11 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $scheduleLogFilePath = storage_path('logs/schedule_logs.log');
+
+        $schedule->command(Commands\ShowAnswerTest::class)
+            ->dailyAt('00:00')
+            ->sendOutputTo($scheduleLogFilePath);
     }
 
     /**

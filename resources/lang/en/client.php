@@ -101,6 +101,7 @@ return [
             'reading' => 'Reading',
             'listening' => 'Listening',
             'duration' => 'Duration',
+            'block_answer' => 'The answers in this test is currently locked and will be unlocked on :day - 00:00',
         ],
         'histories' => [
             'historiesTitle' => 'Histories',

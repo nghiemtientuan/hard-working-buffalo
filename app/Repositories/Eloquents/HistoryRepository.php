@@ -3,12 +3,10 @@
 namespace App\Repositories\Eloquents;
 
 use App\Models\History;
-use App\Models\ReactHistory;
 use App\Models\Student;
 use App\Models\Test;
 use App\Repositories\Contracts\HistoryRepositoryInterface;
 use Illuminate\Support\Facades\DB;
-use function Clue\StreamFilter\fun;
 
 class HistoryRepository extends EloquentRepository implements HistoryRepositoryInterface
 {
@@ -104,5 +102,20 @@ class HistoryRepository extends EloquentRepository implements HistoryRepositoryI
             ->get();
 
         return collect($statistic)->sortBy('created_at')->values();
+    }
+
+    public function getStudentTested($testId)
+    {
+        return Student::with('histories')
+            ->whereHas('histories', function ($query) use ($testId) {
+                $query->where(History::TEST_ID_FIELD, $testId);
+            })->get();
+    }
+
+    public function getHistoriesByTestUser($testId, $studentId)
+    {
+        return $this->_model->where(History::TEST_ID_FIELD, $testId)
+            ->where(History::STUDENT_ID_FIELD, $studentId)
+            ->get();
     }
 }
