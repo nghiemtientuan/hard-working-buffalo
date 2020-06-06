@@ -27,4 +27,10 @@ class TestRepository extends EloquentRepository implements TestRepositoryInterfa
     {
         return $this->_model->orderBy('created_at', 'DESC')->limit(config('constant.limit.newTest'))->get();
     }
+
+    public function getTestNotShowAnswer()
+    {
+        return $this->_model->where(Test::IS_SHOW_ANSWER_FIELD, Test::IS_SHOW_ANSWER_FALSE)
+            ->get();
+    }
 }

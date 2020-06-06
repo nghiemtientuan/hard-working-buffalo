@@ -7,4 +7,6 @@ interface TestRepositoryInterface
     public function getTestFree();
 
     public function getNewTest();
+
+    public function getTestNotShowAnswer();
 }

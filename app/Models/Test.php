@@ -25,12 +25,17 @@ class Test extends Model
     const PUBLISH_FIELD = 'publish';
     const IS_RANDOM_FIELD = 'is_random';
     const IS_FORMULA_SCORE_FIELD = 'is_formula_score';
+    const DAY_SHOW_ANSWER_FIELD = 'day_show_answer';
+    const IS_SHOW_ANSWER_FIELD = 'is_show_answer';
 
     const PRICE_FREE_VALUE = 0;
     const IS_RANDOM_FALSE = 0;
     const IS_RANDOM_TRUE = 1;
     const IS_FORMULA_SCORE_TRUE = 1;
     const IS_FORMULA_SCORE_FALSE = 0;
+    const IS_SHOW_ANSWER_FALSE = 0;
+    const IS_SHOW_ANSWER_TRUE = 0;
+    const DATE_TIME_FORMAT = 'Y-m-d';
 
     protected $fillable = [
         Test::CREATED_USER_ID_FIELD,
@@ -47,6 +52,8 @@ class Test extends Model
         Test::PUBLISH_FIELD,
         Test::IS_RANDOM_FIELD,
         Test::IS_FORMULA_SCORE_FIELD,
+        Test::DAY_SHOW_ANSWER_FIELD,
+        Test::IS_SHOW_ANSWER_FIELD,
         'created_at',
         'updated_at',
         'deleted_at',
