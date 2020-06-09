@@ -173,4 +173,64 @@
     </div>
 
     <div class="site-section pb-0"></div>
+
+    @if (Session::has('showEvaluation') && Session::get('showEvaluation') == True)
+        <div id="testEvaluation" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="form-group text-center">
+                            <label class="font-weight-600 mt-20">{{ trans('client.pages.result.result_evaluation_congratulation') }}</label>
+                            <label class="font-weight-600">{{ trans('client.pages.result.result_evaluation_text') }}</label>
+                            <div class="form-group m-form__group divEmotions">
+                                <input type="hidden" id="value_evaluation" value="{{ config('constant.test_evaluation_icons.default_selected') }}">
+
+                                <ul class="list-inline">
+                                    @foreach(config('constant.test_evaluation_icons.src') as $value => $imageSrc)
+                                        <li class="list-inline-item radioEmotion mr-2">
+                                            <input type="radio" name="evaluation_value" id="emotion_{{ $value }}" value="{{ $value }}" class="input-hidden"
+                                                @if($value == config('constant.test_evaluation_icons.default_selected')){{ 'checked' }}@endif
+                                            />
+                                            <label id="emotion_{{ $value }}" for="emotion_{{ $value }}">
+                                                <img src="{{ asset($imageSrc) }}" width="50px"
+                                                     class="hoverEvaluation @if($value == config('constant.test_evaluation_icons.default_selected')){{ 'selectDefault' }}@endif"
+                                                     data-inputId="emotion_{{ $value }}"
+                                                     data-image="{{ asset($imageSrc) }}"
+                                                     data-imageChange="{{
+                                                        isset(config('constant.test_evaluation_icons.changeSrc')[$value])
+                                                        ? asset(config('constant.test_evaluation_icons.changeSrc')[$value])
+                                                        : asset($imageSrc) }}
+                                                     "
+                                                     alt=""
+                                                >
+                                            </label>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            <div>
+                                <textarea id="description" class="form-control" cols="30" rows="3"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button
+                                id="submitEvaluation"
+                                data-historyId="{{ $history->id }}"
+                                type="submit"
+                                class="btn btn-primary"
+                                data-dismiss="modal"
+                            >{{ trans('client.pages.evaluation') }}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+@endsection
+
+@section('script')
+    @if (Session::has('showEvaluation') && Session::get('showEvaluation') == True)
+        <script src="{{ asset('js/Client/result.js') }}"></script>
+    @endif
 @endsection

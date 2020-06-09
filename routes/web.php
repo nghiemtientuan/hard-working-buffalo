@@ -43,6 +43,8 @@ Route::group([
         Route::get('tests/{testId}', 'TestController@test')->name('tests.test');
         Route::post('tests/{testId}', 'TestController@result')->middleware('testedAttendance')->name('tests.result');
 
+        Route::post('tests/{historyId}/evaluation', 'TestController@evaluation')->name('tests.evaluation');
+
         Route::get('histories', 'HistoryController@index')->name('histories.index');
         Route::get('histories/{historyId}', 'HistoryController@show')
             ->middleware('checkOwnerHistory')

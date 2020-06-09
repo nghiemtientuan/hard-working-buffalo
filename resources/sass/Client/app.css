@@ -337,3 +337,21 @@
     border-radius: 50%;
     display: inline-block;
 }
+
+/*evaluation test*/
+.input-hidden {
+    display: none;
+}
+#testEvaluation .divEmotions {
+    height: 60px;
+}
+#testEvaluation .radioEmotion input[type=radio] {
+    transition: transform .2s;
+}
+#testEvaluation .radioEmotion input[type=radio]:checked + label>img {
+    transform: scale(1.2);
+}
+#testEvaluation .radioEmotion input[type=radio]:hover + label>img {
+    transform: scale(1.2);
+}
+/*end evaluation test*/

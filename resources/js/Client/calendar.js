@@ -38,8 +38,7 @@ $.ajax({
         }
         $('#loader').removeClass('show');
     },
-    error: function (data) {
-        console.log('error: ' + data);
+    error: function () {
         $('#loader').removeClass('show');
     }
 });

@@ -14,6 +14,23 @@ return [
         3 => '/images/reacts/haha.gif',
         4 => '/images/reacts/wow.gif',
     ],
+    'test_evaluation_icons' => [
+        'default_selected' => 3,
+        'src' => [
+            1 => '/images/emotions/point_1.png',
+            2 => '/images/emotions/point_2.png',
+            3 => '/images/emotions/point_3.png',
+            4 => '/images/emotions/point_4.png',
+            5 => '/images/emotions/point_5.png',
+        ],
+        'changeSrc' => [
+            1 => '/images/emotions/point_hover_1.png',
+            2 => '/images/emotions/point_hover_2.png',
+            3 => '/images/emotions/point_hover_3.png',
+            4 => '/images/emotions/point_hover_4.png',
+            5 => '/images/emotions/point_hover_5.png',
+        ],
+    ],
     'pays' => [
         \App\Models\Payment::MOMO_KEY_PAY => 'MoMo',
         \App\Models\Payment::VNPAY_KEY_PAY => 'VNPay',
