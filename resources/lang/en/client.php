@@ -49,6 +49,7 @@ return [
         'edit' => 'Edit',
         'close' => 'Close',
         'save' => 'Save',
+        'evaluation' => 'Evaluation',
         'comments' => 'Comments',
         'login' => [
             'login' => 'Login',
@@ -102,6 +103,8 @@ return [
             'listening' => 'Listening',
             'duration' => 'Duration',
             'block_answer' => 'The answers in this test is currently locked and will be unlocked on :day - 00:00',
+            'result_evaluation_congratulation' => 'Congratulations on completing this test.',
+            'result_evaluation_text' => 'Please tell us how your feel and the quality of this test.',
         ],
         'histories' => [
             'historiesTitle' => 'Histories',
@@ -261,6 +264,9 @@ return [
         'reaction' => [
             'not_login' => 'User not login',
             'wrong_format' => 'Wrong format',
+        ],
+        'result' => [
+            'not_permission' => 'You are not authorized',
         ],
     ],
     'success' => [

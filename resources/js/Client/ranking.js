@@ -42,10 +42,6 @@ $('.btnLikeHover .reaction').on('click', function () {
                     toastr.error(data.message, data.message);
                 }
                 $('#loader').removeClass('show');
-            },
-            error: function (data) {
-                console.log('error: ' + data);
-                $('#loader').removeClass('show');
             }
         });
     }

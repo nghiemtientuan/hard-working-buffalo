@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Client;
 
+use App\Models\EvaluationHistory;
 use App\Models\Student;
 use App\Models\StudentTest;
 use Illuminate\Http\Request;
 use App\Repositories\Contracts\TestRepositoryInterface as TestRepository;
 use App\Repositories\Contracts\QuestionRepositoryInterface as QuestionRepository;
 use App\Repositories\Contracts\StudentRepositoryInterface as StudentRepository;
+use App\Repositories\Contracts\EvaluationHistoryRepositoryInterface as EvaluationRepository;
+use App\Repositories\Contracts\HistoryRepositoryInterface as HistoryRepository;
 use App\Services\TestService;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -20,6 +23,8 @@ class TestController extends Controller
     protected $testService;
     protected $questionRepository;
     protected $studentRepository;
+    protected $evaluationRepository;
+    protected $historyRepository;
 
     /**
      * TestController constructor.
@@ -27,17 +32,23 @@ class TestController extends Controller
      * @param TestService $testService
      * @param QuestionRepository $questionRepository
      * @param StudentRepository $studentRepository
+     * @param EvaluationRepository $evaluationRepository
+     * @param HistoryRepository $historyRepository
      */
     public function __construct(
         TestRepository $testRepository,
         TestService $testService,
         QuestionRepository $questionRepository,
-        StudentRepository $studentRepository
+        StudentRepository $studentRepository,
+        EvaluationRepository $evaluationRepository,
+        HistoryRepository $historyRepository
     ) {
         $this->testRepository = $testRepository;
         $this->testService = $testService;
         $this->questionRepository = $questionRepository;
         $this->studentRepository = $studentRepository;
+        $this->evaluationRepository = $evaluationRepository;
+        $this->historyRepository = $historyRepository;
     }
 
     public function test($testId)
@@ -66,7 +77,8 @@ class TestController extends Controller
             }
             $historyId = $this->testService->getResultTestAnswer($studentId, $test, $request);
 
-            return redirect()->route('client.histories.show', $historyId);
+            return redirect()->route('client.histories.show', $historyId)
+                ->with('showEvaluation', true);
         }
 
         return redirect()->route('client.notFound');
@@ -142,6 +154,31 @@ class TestController extends Controller
         return response()->json([
             'code' => config('constant.status_code.code_404'),
             'message' => trans('client.errors.testsInCate.testNotFound'),
+        ]);
+    }
+
+    public function evaluation(Request $request, $historyId)
+    {
+        $history = $this->historyRepository->find($historyId);
+        if ($history && Auth::guard('student')->check()) {
+            $this->evaluationRepository->create([
+                EvaluationHistory::HISTORY_ID_FIELD => $historyId,
+                EvaluationHistory::STUDENT_ID_FIELD =>Auth::guard('student')->user()->id,
+                EvaluationHistory::VALUE_FIELD => $request->value,
+                EvaluationHistory::DESCRIPTION_FIELD => $request->description,
+            ]);
+
+            return response()->json([
+                'code' => config('constant.status_code.code_200'),
+                'data' => [
+                    'check' => True,
+                ],
+            ]);
+        }
+
+        return response()->json([
+            'code' => config('constant.status_code.code_403'),
+            'message' => trans('client.errors.result.not_permission'),
         ]);
     }
 }
