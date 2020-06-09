@@ -54,6 +54,7 @@ class HistoryController extends Controller
     public function show($historyId)
     {
         $history = $this->historyRepository->find($historyId)->load('test');
+        $history->rank = $this->historyRepository->getRankHistory($history);
         $parts = $this->testService->getHistory($history);
 
         return view('Client.result', compact('history', 'parts'));

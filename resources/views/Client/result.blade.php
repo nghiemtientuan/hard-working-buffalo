@@ -25,7 +25,7 @@
                             <table class="table table-bordered table-framed mb-5">
                                 <tbody>
                                     <tr>
-                                        <th rowspan="2"></th>
+                                        <th rowspan="2"><div class="w-30 m-auto font-size-65">{!! getRankingNumberOrder($history->rank) !!}</div></th>
                                         <th width="15%">{{ trans('client.pages.result.score') }}</th>
                                         <th width="15%">{{ trans('client.pages.result.reading') }}</th>
                                         <th width="15%">{{ trans('client.pages.result.listening') }}</th>
