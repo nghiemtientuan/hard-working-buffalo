@@ -90,5 +90,6 @@
 @endsection
 
 @section('script')
+    <script src="{{ asset('js/Client/chatBottom.js') }}"></script>
     <script src="{{ asset('js/Client/listTests.js') }}"></script>
 @endsection

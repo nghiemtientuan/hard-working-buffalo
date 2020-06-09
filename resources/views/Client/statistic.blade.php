@@ -33,5 +33,6 @@
 @section('script')
     <script src="{{ asset('bower_components/assets/Client/js/chartjs/Chart.min.js') }}"></script>
     <script src="{{ asset('bower_components/assets/Client/js/chartjs/chartjs-annotation.min.js') }}"></script>
+    <script src="{{ asset('js/Client/chatBottom.js') }}"></script>
     <script src="{{ asset('js/Client/statistic.js') }}"></script>
 @endsection

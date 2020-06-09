@@ -74,5 +74,6 @@
 @endsection
 
 @section('script')
+    <script src="{{ asset('js/Client/chatBottom.js') }}"></script>
     <script src="{{ asset('js/Client/payments.js') }}"></script>
 @endsection
