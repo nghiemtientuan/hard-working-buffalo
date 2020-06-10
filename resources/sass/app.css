@@ -108,3 +108,16 @@
 .font-weight-600 {
     font-weight: 600;
 }
+
+.w-30 {
+    width: 30%;
+}
+.font-size-65 {
+    font-size: 65px;
+}
+.ml-20 {
+    margin-left: 20px;
+}
+.width-70 {
+    width: 70px;
+}

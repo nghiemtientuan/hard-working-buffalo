@@ -53,3 +53,7 @@
 
     <div class="site-section pb-0"></div>
 @endsection
+
+@section('script')
+    <script src="{{ asset('js/Client/chatBottom.js') }}"></script>
+@endsection

@@ -8,6 +8,8 @@ interface HistoryRepositoryInterface
 
     public function getRanking($filter);
 
+    public function getRankHistory($history);
+
     public function getUsedTest($studentId);
 
     public function getStatisticTestByStudentId($studentId, $testId = null);

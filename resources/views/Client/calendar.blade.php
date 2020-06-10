@@ -35,5 +35,6 @@
 @section('script')
     <script src="{{ asset('bower_components/assets/Admin/js/plugins/ui/moment/moment.min.js') }}"></script>
     <script src="{{ asset('bower_components/assets/Admin/js/plugins/ui/fullcalendar/fullcalendar.min.js') }}"></script>
+    <script src="{{ asset('js/Client/chatBottom.js') }}"></script>
     <script src="{{ asset('js/Client/calendar.js') }}"></script>
 @endsection

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Client;
 
 use App\Models\EvaluationHistory;
+use App\Models\QuestionComment;
 use App\Models\Student;
 use App\Models\StudentTest;
 use Illuminate\Http\Request;
@@ -11,6 +12,7 @@ use App\Repositories\Contracts\QuestionRepositoryInterface as QuestionRepository
 use App\Repositories\Contracts\StudentRepositoryInterface as StudentRepository;
 use App\Repositories\Contracts\EvaluationHistoryRepositoryInterface as EvaluationRepository;
 use App\Repositories\Contracts\HistoryRepositoryInterface as HistoryRepository;
+use App\Repositories\Contracts\CommentQuestionRepositoryInterface as CommentQuestionRepository;
 use App\Services\TestService;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -25,6 +27,7 @@ class TestController extends Controller
     protected $studentRepository;
     protected $evaluationRepository;
     protected $historyRepository;
+    protected $commentRepository;
 
     /**
      * TestController constructor.
@@ -34,6 +37,7 @@ class TestController extends Controller
      * @param StudentRepository $studentRepository
      * @param EvaluationRepository $evaluationRepository
      * @param HistoryRepository $historyRepository
+     * @param CommentQuestionRepository $commentRepository
      */
     public function __construct(
         TestRepository $testRepository,
@@ -41,7 +45,8 @@ class TestController extends Controller
         QuestionRepository $questionRepository,
         StudentRepository $studentRepository,
         EvaluationRepository $evaluationRepository,
-        HistoryRepository $historyRepository
+        HistoryRepository $historyRepository,
+        CommentQuestionRepository $commentRepository
     ) {
         $this->testRepository = $testRepository;
         $this->testService = $testService;
@@ -49,6 +54,7 @@ class TestController extends Controller
         $this->studentRepository = $studentRepository;
         $this->evaluationRepository = $evaluationRepository;
         $this->historyRepository = $historyRepository;
+        $this->commentRepository = $commentRepository;
     }
 
     public function test($testId)
@@ -87,10 +93,78 @@ class TestController extends Controller
     public function getComments($questionId)
     {
         $comments = $this->questionRepository->getComments($questionId);
+        $question = $this->questionRepository->find($questionId);
 
         return response()->json([
             'code' => config('constant.status_code.code_200'),
-            'data' => $comments,
+            'data' => [
+                'comments' => $comments,
+                'question' => $question,
+            ],
+        ]);
+    }
+
+    public function deleteComment($commentId)
+    {
+        $comment = $this->commentRepository->find($commentId);
+        if ($comment && (Auth::guard('student')->check() || Auth::check())) {
+            if (
+                (Auth::check() && $comment->user_id == Auth::user()->id && $comment->type == QuestionComment::TYPE_USER)
+                || (Auth::guard('student')->check() && $comment->user_id == Auth::user()->id && $comment->type == QuestionComment::TYPE_STUDENT)
+            ) {
+                if ($this->commentRepository->delete($commentId)) {
+                    return response()->json([
+                        'code' => config('constant.status_code.code_200'),
+                        'data' => [
+                            'check' => true,
+                        ],
+                        'message' => trans('client.success.action_success'),
+                    ]);
+                }
+            }
+        }
+
+        return response()->json([
+            'code' => config('constant.status_code.code_403'),
+            'message' => trans('client.page.errors.result.not_permission'),
+        ]);
+    }
+
+    public function addComment(Request $request, $questionId)
+    {
+        $user = null;
+        $dataComment = [
+            QuestionComment::QUESTION_ID_FIELD => $questionId,
+            QuestionComment::CONTENT_FIELD => $request->input('description'),
+        ];
+        if (Auth::check() || Auth::guard('student')->check()) {
+            if (Auth::check()) {
+                $user = Auth::user();
+                $dataComment[QuestionComment::TYPE_FIELD] = QuestionComment::TYPE_USER;
+            } else {
+                $user = Auth::guard('student')->user();
+                $dataComment[QuestionComment::TYPE_FIELD] = QuestionComment::TYPE_STUDENT;
+            }
+            $dataComment[QuestionComment::USER_ID_FIELD] = $user->id;
+            $comment = $this->commentRepository->create($dataComment);
+            $comment->load([
+                'user',
+                'user.file',
+            ]);
+            $comment->user->avatar = userDefaultImage($comment->user->file);
+
+            return response()->json([
+                'code' => config('constant.status_code.code_200'),
+                'data' => [
+                    'comment' => $comment,
+                ],
+                'message' => trans('client.success.action_success'),
+            ]);
+        }
+
+        return response()->json([
+            'code' => config('constant.status_code.code_403'),
+            'message' => trans('client.page.errors.result.not_permission'),
         ]);
     }
 

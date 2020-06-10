@@ -55,6 +55,7 @@ return [
         'timelineProfile' => 10,
         'testInCate' => 20,
         'testInStatistic' => 10,
+        'comments' => 10
     ],
     'scoreTest' => [
         'total_formula' => 990,

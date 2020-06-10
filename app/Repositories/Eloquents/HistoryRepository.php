@@ -3,6 +3,7 @@
 namespace App\Repositories\Eloquents;
 
 use App\Models\History;
+use App\Models\Payment;
 use App\Models\Student;
 use App\Models\Test;
 use App\Repositories\Contracts\HistoryRepositoryInterface;
@@ -117,5 +118,22 @@ class HistoryRepository extends EloquentRepository implements HistoryRepositoryI
         return $this->_model->where(History::TEST_ID_FIELD, $testId)
             ->where(History::STUDENT_ID_FIELD, $studentId)
             ->get();
+    }
+
+    public function getRankHistory($history)
+    {
+        $rank = 1;
+        $testHistories = $this->_model->where(History::TEST_ID_FIELD, $history->test_id)
+            ->orderBy(History::SCORE_FIELD, 'DESC')
+            ->orderBy(History::DURATION_FIELD)
+            ->orderBy('created_at')
+            ->get();
+        foreach ($testHistories as $keyTestHistory => $testHistory) {
+            if ($testHistory->id == $history->id) {
+                $rank = $keyTestHistory + 1;
+            }
+        }
+
+        return $rank;
     }
 }

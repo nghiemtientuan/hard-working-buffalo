@@ -103,8 +103,14 @@ class QuestionRepository extends EloquentRepository implements QuestionRepositor
 
     public function getComments($questionId)
     {
-        return QuestionComment::where(QuestionComment::QUESTION_ID_FIELD, $questionId)
-            ->orderBy('created_at', 'DESC')
-            ->get();
+        $comments = QuestionComment::where(QuestionComment::QUESTION_ID_FIELD, $questionId)
+            ->orderBy('created_at')
+            ->paginate(config('constant.limit.comments'));
+
+        foreach ($comments as $keyComment => $comment) {
+            $comments[$keyComment]->user->avatar = userDefaultImage($comment->user->file);
+        }
+
+        return $comments;
     }
 }
