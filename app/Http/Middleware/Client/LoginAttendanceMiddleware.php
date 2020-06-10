@@ -44,7 +44,7 @@ class LoginAttendanceMiddleware
                 $this->attendanceRepository->create($dataAttendance);
             }
         } elseif (Auth::check()) {
-            $userId = Auth::guard('student')->user()->id;
+            $userId = Auth::user()->id;
             $checkInNow = $this->attendanceRepository->getAttendanceNow($userId, Attendance::TYPE_USER);
 
             if (!$checkInNow) {

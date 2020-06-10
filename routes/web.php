@@ -62,6 +62,10 @@ Route::group([
 
     Route::group(['prefix' => 'api', 'as' => 'api.'], function () {
         Route::get('questions/{questionId}/comments', 'TestController@getComments')->name('questions.getComments');
+
+        Route::post('questions/{questionId}/comments/add', 'TestController@addComment')->name('questions.addComment');
+
+        Route::delete('questions/comments/{commentId}', 'TestController@deleteComment')->name('questions.deleteComment');
     });
 
     Route::get('calendars', 'CalendarController@index')->name('calendars.index');

@@ -69,6 +69,20 @@
                                         @if (!count($question->answers) && count($question->childQuestions))
                                             <div class="form-group">
                                                 <div class="alert alert-success p-2">
+                                                    <div class="close d-flex">
+                                                        <a
+                                                            href="#"
+                                                            class="mr-5 showCommentsBtn"
+                                                            type="button"
+                                                            data-popup="tooltip"
+                                                            data-toggle="modal"
+                                                            data-target="#commentsList"
+                                                            data-questionId="{{ $question->id }}"
+                                                            title="{{ trans('client.pages.result.comments') }}"
+                                                        >
+                                                            <em class="fa fa-comment-alt"></em>
+                                                        </a>
+                                                    </div>
                                                     <label class="text-semibold">
                                                         {{ trans('client.pages.getTest.text_big_question') }}: ({{ $question->code }}) {{ $question->content }}
                                                     </label>
@@ -79,6 +93,20 @@
                                                         @php $indexQuestion++ @endphp
                                                         <div class="form-group col-lg-12">
                                                             <div class="alert alert-info p-2">
+                                                                <div class="close d-flex">
+                                                                    <a
+                                                                        href="#"
+                                                                        class="mr-5 showCommentsBtn"
+                                                                        type="button"
+                                                                        data-popup="tooltip"
+                                                                        data-toggle="modal"
+                                                                        data-target="#commentsList"
+                                                                        data-questionId="{{ $childQuestion->id }}"
+                                                                        title="{{ trans('client.pages.result.comments') }}"
+                                                                    >
+                                                                        <em class="fa fa-comment-alt"></em>
+                                                                    </a>
+                                                                </div>
                                                                 <label class="text-semibold">
                                                                     {{ trans('client.pages.getTest.text_question') }} {{ $indexQuestion }}: ({{ $childQuestion->code }}) {{ $childQuestion->content }}
                                                                 </label>
@@ -124,6 +152,20 @@
                                             @php $indexQuestion++ @endphp
                                             <div class="form-group">
                                                 <div class="alert alert-info p-2">
+                                                    <div class="close d-flex">
+                                                        <a
+                                                            href="#"
+                                                            class="mr-5 showCommentsBtn"
+                                                            type="button"
+                                                            data-popup="tooltip"
+                                                            data-toggle="modal"
+                                                            data-target="#commentsList"
+                                                            data-questionId="{{ $question->id }}"
+                                                            title="{{ trans('client.pages.result.comments') }}"
+                                                        >
+                                                            <em class="fa fa-comment-alt"></em>
+                                                        </a>
+                                                    </div>
                                                     <label class="text-semibold">
                                                         {{ trans('client.pages.getTest.text_question') }} {{ $indexQuestion }}: ({{ $question->code }}) {{ $question->content }}
                                                     </label>
@@ -174,7 +216,50 @@
 
     <div class="site-section pb-0"></div>
 
-    @if (Session::has('showEvaluation') && Session::get('showEvaluation') == True)
+    {{--  comments  --}}
+    <div id="commentsList" class="modal fade">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="alert alert-dark p-2">
+                        <label class="text-semibold">{{ trans('client.pages.result.direction') }}<span id="directionContent"></span></label>
+                    </div>
+                    <div id="commentsListDiv"></div>
+                    <div id="commentItemExample" class="commentItem d-none">
+                        <div class="col-2">
+                            <img src="#" class="commentItem-content-avatar rounded-circle width-70">
+                        </div>
+                        <div class="col-10">
+                            <div>
+                                <code class="commentItem-infoAdd-username"></code><br />
+                                <small class="commentItem-infoAdd-time"></small>
+                                <a href="#" class="commentItem-infoAdd-linkDelete" data-popup="tooltip" title="{{ trans('client.pages.result.delete') }}">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </div>
+                            <div>
+                                <div class="commentItem-content-content"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr />
+                    <div id="newCommentWrite" class="d-flex">
+                        <div class="col-10">
+                            <textarea id="newContentComment" class="form-control" cols="60" rows="3" maxlength="500"></textarea>
+                        </div>
+                        <div class="col-2">
+                            <button id="newContentSend" class="btn btn-primary">{{ trans('client.pages.result.send') }}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{--  end comments  --}}
+
+    {{--  evaluation  --}}
+    @if (Session::has('showEvaluation') && Session::get('showEvaluation') == true)
         <div id="testEvaluation" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -227,10 +312,12 @@
             </div>
         </div>
     @endif
+    {{--  end evaluation  --}}
 @endsection
 
 @section('script')
-    @if (Session::has('showEvaluation') && Session::get('showEvaluation') == True)
+    <script src="{{ asset('js/Client/commentResult.js') }}"></script>
+    @if (Session::has('showEvaluation') && Session::get('showEvaluation') == true)
         <script src="{{ asset('js/Client/result.js') }}"></script>
     @endif
 @endsection
