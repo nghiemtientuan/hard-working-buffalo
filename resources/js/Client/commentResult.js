@@ -1,6 +1,6 @@
 let _token = $('input[name="_token"]').val();
 
-$('.container .showCommentsBtn').on('click', function () {
+$('.showCommentsBtn').on('click', function () {
     let questionId = $(this).attr('data-questionId');
     $('#commentsList #commentsListDiv').html('');
     $('#commentsList #newCommentWrite #newContentSend').attr('data-questionId', questionId);
