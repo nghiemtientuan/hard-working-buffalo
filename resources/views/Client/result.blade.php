@@ -224,6 +224,9 @@
                     <div class="alert alert-dark p-2">
                         <label class="text-semibold">{{ trans('client.pages.result.direction') }}<span id="directionContent"></span></label>
                     </div>
+                    <div id="seeMore" class="text-center">
+                        <a href="#" class="btn btn-link">{{ trans('client.pages.result.see_more') }} (<span id="seeMoreTotal"></span>) <em class="fas fa-caret-up"></em></a>
+                    </div>
                     <div id="commentsListDiv"></div>
                     <div id="commentItemExample" class="commentItem d-none">
                         <div class="col-2">

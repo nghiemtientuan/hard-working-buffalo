@@ -94,12 +94,21 @@ class TestController extends Controller
     {
         $comments = $this->questionRepository->getComments($questionId);
         $question = $this->questionRepository->find($questionId);
+        if (Auth::check()) {
+            $user = Auth::user();
+        } else {
+            $user = Auth::guard('student')->user();
+        }
 
         return response()->json([
             'code' => config('constant.status_code.code_200'),
             'data' => [
                 'comments' => $comments,
                 'question' => $question,
+                'currentUser' => [
+                    'user_id' => $user->id,
+                    'role_id' => $user->role_id,
+                ],
             ],
         ]);
     }
@@ -110,23 +119,25 @@ class TestController extends Controller
         if ($comment && (Auth::guard('student')->check() || Auth::check())) {
             if (
                 (Auth::check() && $comment->user_id == Auth::user()->id && $comment->type == QuestionComment::TYPE_USER)
-                || (Auth::guard('student')->check() && $comment->user_id == Auth::user()->id && $comment->type == QuestionComment::TYPE_STUDENT)
+                || (Auth::guard('student')->check()
+                    && $comment->user_id == Auth::guard('student')->user()->id
+                    && $comment->type == QuestionComment::TYPE_STUDENT)
             ) {
-                if ($this->commentRepository->delete($commentId)) {
-                    return response()->json([
-                        'code' => config('constant.status_code.code_200'),
-                        'data' => [
-                            'check' => true,
-                        ],
-                        'message' => trans('client.success.action_success'),
-                    ]);
-                }
+                $this->commentRepository->delete($commentId);
+
+                return response()->json([
+                    'code' => config('constant.status_code.code_200'),
+                    'data' => [
+                        'check' => true,
+                    ],
+                    'message' => trans('client.success.action_success'),
+                ]);
             }
         }
 
         return response()->json([
             'code' => config('constant.status_code.code_403'),
-            'message' => trans('client.page.errors.result.not_permission'),
+            'message' => trans('client.errors.result.not_permission'),
         ]);
     }
 

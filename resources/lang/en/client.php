@@ -106,6 +106,7 @@ return [
             'direction' => 'Direction: ',
             'send' => 'Send',
             'delete' => 'Delete',
+            'see_more' => 'See More',
             'block_answer' => 'The answers in this test is currently locked and will be unlocked on :day - 00:00',
             'result_evaluation_congratulation' => 'Congratulations on completing this test.',
             'result_evaluation_text' => 'Please tell us how your feel and the quality of this test.',
