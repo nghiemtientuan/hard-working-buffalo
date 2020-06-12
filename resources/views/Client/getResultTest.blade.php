@@ -35,16 +35,18 @@
                                                 <a href="{{ route('admin.questions.edit', $question->id) }}" class="mr-5 btn btn-link" data-popup="tooltip" title="{{ trans('client.pages.edit') }}">
                                                     <em class="icon-pencil"></em>
                                                 </a>
-                                                <button
-                                                    class="btn btn-link p-0 b-none commentsBtn"
+                                                <a
+                                                    href="#"
+                                                    class="mr-5 showCommentsBtn"
+                                                    type="button"
                                                     data-popup="tooltip"
-                                                    title="{{ trans('client.pages.comments') }}"
-                                                    data-urlComments="{{ route('client.api.questions.getComments', $question->id) }}"
                                                     data-toggle="modal"
-                                                    data-target="#commentsModal"
+                                                    data-target="#commentsList"
+                                                    data-questionId="{{ $question->id }}"
+                                                    title="{{ trans('client.pages.result.comments') }}"
                                                 >
-                                                    <em class="icon-comment"></em>
-                                                </button>
+                                                    <em class="fa fa-comment-alt"></em>
+                                                </a>
                                             </div>
                                             <label class="text-semibold">
                                                 {{ trans('client.pages.getTest.text_big_question') }}: ({{ $question->code }}) {{ $question->content }}
@@ -60,16 +62,18 @@
                                                             <a href="{{ route('admin.questions.edit', $childQuestion->id) }}" class="mr-5 btn btn-link" data-popup="tooltip" title="{{ trans('client.pages.edit') }}">
                                                                 <em class="icon-pencil"></em>
                                                             </a>
-                                                            <button
-                                                                class="btn btn-link p-0 b-none commentsBtn"
+                                                            <a
+                                                                href="#"
+                                                                class="mr-5 showCommentsBtn"
+                                                                type="button"
                                                                 data-popup="tooltip"
-                                                                title="{{ trans('client.pages.comments') }}"
-                                                                data-urlComments="{{ route('client.api.questions.getComments', $childQuestion->id) }}"
                                                                 data-toggle="modal"
-                                                                data-target="#commentsModal"
+                                                                data-target="#commentsList"
+                                                                data-questionId="{{ $childQuestion->id }}"
+                                                                title="{{ trans('client.pages.result.comments') }}"
                                                             >
-                                                                <em class="icon-comment"></em>
-                                                            </button>
+                                                                <em class="fa fa-comment-alt"></em>
+                                                            </a>
                                                         </div>
                                                         <label class="text-semibold">
                                                             {{ trans('client.pages.getTest.text_question') }} {{ $indexQuestion }}: ({{ $childQuestion->code }}) {{ $childQuestion->content }}
@@ -119,16 +123,18 @@
                                                 <a href="{{ route('admin.questions.edit', $question->id) }}" class="mr-5 btn btn-link" data-popup="tooltip" title="{{ trans('client.pages.edit') }}">
                                                     <em class="icon-pencil"></em>
                                                 </a>
-                                                <button
-                                                    class="btn btn-link p-0 b-none commentsBtn"
+                                                <a
+                                                    href="#"
+                                                    class="mr-5 showCommentsBtn"
+                                                    type="button"
                                                     data-popup="tooltip"
-                                                    title="{{ trans('client.pages.comments') }}"
-                                                    data-urlComments="{{ route('client.api.questions.getComments', $question->id) }}"
                                                     data-toggle="modal"
-                                                    data-target="#commentsModal"
+                                                    data-target="#commentsList"
+                                                    data-questionId="{{ $question->id }}"
+                                                    title="{{ trans('client.pages.result.comments') }}"
                                                 >
-                                                    <em class="icon-comment"></em>
-                                                </button>
+                                                    <em class="fa fa-comment-alt"></em>
+                                                </a>
                                             </div>
                                             <label class="text-semibold">
                                                 {{ trans('client.pages.getTest.text_question') }} {{ $indexQuestion }}: ({{ $question->code }}) {{ $question->content }}
@@ -177,24 +183,11 @@
 
     <div class="site-section pb-0"></div>
 
-    <div id="commentsModal" class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header bg-success">
-                    <h5>{{ trans('client.pages.getTest.comments') }}</h5>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-
-                <div class="modal-body">
-                    <div class="alert alert-dark p-2">
-                        <label class="text-semibold">tgdr</label>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    {{--  comments  --}}
+    @include ('Client.layouts.commentHistory')
+    {{--  end comments  --}}
 @endsection
 
 @section('script')
-    <script src="{{ asset('js/Client/getResultTest.js') }}"></script>
+    <script src="{{ asset('js/Client/commentResult.js') }}"></script>
 @endsection
