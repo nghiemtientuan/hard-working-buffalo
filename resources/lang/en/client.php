@@ -24,6 +24,7 @@ return [
         'my_profile' => 'My profile',
         'timeline' => 'Timeline',
         'change_password' => 'Change Password',
+        'guideline' => 'Guideline',
         'payment' => 'Payment',
         'target' => 'Target',
         'feedback' => 'Feedback',
@@ -196,6 +197,69 @@ return [
         'target' => [
             'targetTitle' => 'Target',
             'your_target' => 'Your target'
+        ],
+        'guideline' => [
+            'guidelineTitle' => 'Guideline',
+            'previous' => 'Previous',
+            'next' => 'next',
+            'list' => [
+                'home' => [
+                    'title' => 'Home',
+                    'content' => 'Home content',
+                ],
+                'categories' => [
+                    'title' => 'Categories',
+                    'content' => 'Categories content',
+                ],
+                'test' => [
+                    'title' => 'Test',
+                    'content' => 'Test content',
+                ],
+                'history' => [
+                    'title' => 'History',
+                    'content' => 'History content',
+                ],
+                'calendar' => [
+                    'title' => 'Calendar',
+                    'content' => 'Calendar content',
+                ],
+                'statistic' => [
+                    'title' => 'Statistic',
+                    'content' => 'Statistic content',
+                ],
+                'ranking' => [
+                    'title' => 'Ranking',
+                    'content' => 'Ranking content',
+                ],
+                'menu' => [
+                    'title' => 'Menu',
+                    'content' => 'Menu content',
+                ],
+                'profile' => [
+                    'title' => 'Profile',
+                    'content' => 'Profile content',
+                ],
+                'timeline' => [
+                    'title' => 'Timeline',
+                    'content' => 'Timeline content',
+                ],
+                'target' => [
+                    'title' => 'Target',
+                    'content' => 'Target content',
+                ],
+                'payment' => [
+                    'title' => 'Payment',
+                    'content' => 'Payment content',
+                ],
+                'changePass' => [
+                    'title' => 'Change Password',
+                    'content' => 'Change Password content',
+                ],
+                'chatBottom' => [
+                    'title' => 'Chat',
+                    'content' => 'Chat content',
+                ],
+            ],
         ],
     ],
     'timeline' => [

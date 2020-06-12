@@ -354,4 +354,8 @@
 #testEvaluation .radioEmotion input[type=radio]:hover + label>img {
     transform: scale(1.2);
 }
-/*end evaluation test*/
+/* end evaluation test */
+
+.bg-grey {
+    background-color: grey;
+}

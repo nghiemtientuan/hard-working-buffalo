@@ -90,6 +90,8 @@ Route::group([
         Route::get('momo/success', 'PaymentController@getSuccessMomo')->name('momo.getSuccess');
     });
 
+    Route::get('guideline', 'GuidelineController@index')->name('guideline.index');
+
     Route::get('not_found', 'NotFoundController@index')->name('notFound');
 });
 

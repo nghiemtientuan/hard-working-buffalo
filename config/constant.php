@@ -72,4 +72,58 @@ return [
         'code_403' => 403,
         'code_404' => 404,
     ],
+    'guidelines' => [
+        'home' => [
+            '/images/guidelines/home1.png',
+            '/images/guidelines/home2.png',
+        ],
+        'categories' => [
+            '/images/guidelines/categories1.png',
+            '/images/guidelines/categories2.png',
+        ],
+        'test' => [
+            '/images/guidelines/test1.png',
+            '/images/guidelines/test2.png',
+            '/images/guidelines/test3.png',
+            '/images/guidelines/test4.png',
+            '/images/guidelines/test5.png',
+        ],
+        'history' => [
+            '/images/guidelines/history1.png',
+            '/images/guidelines/history2.png',
+            '/images/guidelines/history3.png',
+        ],
+        'calendar' => [
+            '/images/guidelines/calendar1.png',
+        ],
+        'statistic' => [
+            '/images/guidelines/statistic1.png',
+        ],
+        'ranking' => [
+            '/images/guidelines/ranking1.png',
+        ],
+        'menu' => [
+            '/images/guidelines/menu1.png',
+        ],
+        'profile' => [
+            '/images/guidelines/profile1.png',
+        ],
+        'timeline' => [
+            '/images/guidelines/timeline1.png',
+        ],
+        'target' => [
+            '/images/guidelines/target1.png',
+            '/images/guidelines/target2.png',
+        ],
+        'payment' => [
+            '/images/guidelines/payment1.png',
+        ],
+        'changePass' => [
+            '/images/guidelines/changepass1.png',
+        ],
+        'chatBottom' => [
+            '/images/guidelines/chatbottom1.png',
+            '/images/guidelines/chatbottom2.png',
+        ],
+    ],
 ];

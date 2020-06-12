@@ -47,7 +47,7 @@
     <div class="container">
         <div class="d-flex align-items-center">
             <div class="site-logo">
-                <a href="#" class="d-block">
+                <a href="{{ route('client.home') }}" class="d-block">
                     <img src="{{ asset(config('constant.default_images.url_logo')) }}" class="img-fluid">
                 </a>
             </div>
@@ -75,8 +75,9 @@
                                 <li><a class="color-black" href="{{ route('client.timeline.index') }}"><em class="icon-clock-o"></em> {{ trans('client.navbar.timeline') }}</a></li>
                                 <li><a class="color-black" href="{{ route('client.target.index') }}"><em class="fas fa-crosshairs"></em> {{ trans('client.navbar.target') }}</a></li>
                                 <li><a class="color-black" href="{{ route('client.payments.index') }}"><em class="icon-payment"></em> {{ trans('client.navbar.payment') }}</a></li>
-                                <li><a class="color-black" href="{{ route('client.changePass.show') }}"><em class="icon-sync"></em>{{ trans('client.navbar.change_password') }}</a></li>
-                                <li><a class="color-black" href="{{ config('constant.links.link_feedback') }}" target="_blank"><em class="fas fa-comment-dots"></em></em> {{ trans('client.navbar.feedback') }}</a></li>
+                                <li><a class="color-black" href="{{ route('client.changePass.show') }}"><em class="icon-sync"></em> {{ trans('client.navbar.change_password') }}</a></li>
+                                <li><a class="color-black" href="{{ route('client.guideline.index') }}"><em class="fas fa-book"></em> {{ trans('client.navbar.guideline') }}</a></li>
+                                <li><a class="color-black" href="{{ config('constant.links.link_feedback') }}" target="_blank"><em class="fas fa-comment-dots"></em> {{ trans('client.navbar.feedback') }}</a></li>
                             </ul>
                         @endif
                     </li>

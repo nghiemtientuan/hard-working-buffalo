@@ -118,23 +118,6 @@
             </div>
         </div>
     </div>
-
-    <div class="site-section ftco-subscribe-1 background-image-bg_1 p-2">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-7">
-                    <h2>{{ trans('client.pages.home.subscribe_to_us') }}</h2>
-                    <p>{{ trans('client.pages.home.below_subscribe') }}</p>
-                </div>
-                <div class="col-lg-5">
-                    <form action="" class="d-flex">
-                        <input type="text" class="rounded form-control mr-2 py-3" placeholder="{{ trans('client.pages.home.enter_mail') }}">
-                        <button class="btn btn-primary rounded py-3 px-4" type="submit">{{ trans('client.pages.home.send') }}</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
 @endsection
 
 @section('script')
