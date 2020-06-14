@@ -1,5 +1,23 @@
 let _token = $('input[name="_token"]').val();
 
+$(document).on({
+    mouseenter: function() {
+        $(this).find('.reactionsBlog-lists').css('display', 'block');
+    },
+    mouseleave: function(){
+        $(this).find('.reactionsBlog-lists').css('display', 'none');
+    }
+}, '.btnLikeHover');
+
+$(document).on({
+    mouseenter: function() {
+        $(this).find('.reactionsBlog-lists').css('display', 'block');
+    },
+    mouseleave: function(){
+        $(this).find('.reactionsBlog-lists').css('display', 'none');
+    }
+}, '.reactionsBlog-lists');
+
 $(document).on('click', '#btnSeeMoreBlogs', function () {
     let nextPage = $(this).attr('data-next_page_url');
 
@@ -184,4 +202,39 @@ $(document).on('click', '.removeCommentBtn', function (e) {
             }
         },
     });
+});
+
+$(document).on('click', '.btnLikeHover .reaction', function () {
+    let reactionId = $(this).attr('data-reactionId');
+    let blogId = $(this).attr('data-blogId');
+    let reactSelected = $(this).attr('data-reactSelected');
+
+    if (reactSelected !== reactionId) {
+        $.ajax({
+            type: 'POST',
+            url: route('client.blogs.reaction', blogId),
+            cache: false,
+            data: {_token, reactionId},
+            success: function (data) {
+                if (data.code == STATUS_CODE.code_200) {
+                    let blogElementId = '#blogItem_' + blogId;
+                    $(blogElementId + ' .btnLikeHover').addClass('btnLikeClicked');
+                    $(blogElementId + ' .btnClickLike').html('<img class="btnClickLike--img" src="' + data.data.clickedReactUrl + '">')
+
+                    $(blogElementId + ' .reactionsBlog-item .dot-active').removeClass('d-none').addClass('d-none');
+                    $(blogElementId + ' .reactionsBlog-item-' + reactionId + ' .dot-active').removeClass('d-none');
+                    $(blogElementId + ' .reactionsBlog-item--content').attr('data-reactSelected', reactionId);
+
+                    $(blogElementId + ' .clicked-icon-list-active').removeClass('d-flex').addClass('d-none');
+                    data.data.reacts.forEach((react) => {
+                        let clickedIconListActiveElement = '.clicked-icon-list-active-' + react.react_id;
+                        $(blogElementId + ' ' + clickedIconListActiveElement).removeClass('d-none').addClass('d-flex');
+                        $(blogElementId + ' ' + clickedIconListActiveElement + ' .clicked-icon-list__item--number').html(react.count);
+                    });
+                } else {
+                    toastr.error(data.message, data.message);
+                }
+            }
+        });
+    }
 });

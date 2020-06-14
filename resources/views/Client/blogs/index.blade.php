@@ -44,11 +44,13 @@
                         <div class="panel-reactionList d-flex justify-content-between">
                             <div class="clicked-icon-list panel-reactionList-list d-flex">
                                 @foreach (config('constant.reacts') as $keyReact => $reactUrl)
-                                    <div class="react-icon-{{ $keyReact }} d-flex align-content-center clicked-icon-list-active">
+                                    @php $countReact = getCountReact($blog->reacts, $keyReact) @endphp
+
+                                    <div class="react-icon-{{ $keyReact }} @if ($countReact) d-flex @else d-none @endif align-content-center clicked-icon-list-active clicked-icon-list-active-{{ $keyReact }}">
                                         <div class="d-flex clicked-icon-list__item--img">
                                             <img src="{{ $reactUrl }}">
                                         </div>
-                                        <div class="d-flex align-items-center clicked-icon-list__item--number">1</div>
+                                        <div class="d-flex align-items-center clicked-icon-list__item--number">{{ $countReact }}</div>
                                     </div>
                                 @endforeach
                             </div>
@@ -60,9 +62,37 @@
                         <hr />
 
                         <div class="list-btn d-flex text-center">
-                            <div class="col-6 p-0">
-                                <button class="btn btn-light w-100 btnClickLike">
-                                    <em class="fa fa-thumbs-up"></em> {{ trans('client.pages.blog.react') }}
+                            @php $selectedReact = getSelectedReact($blog->reacts) @endphp
+
+                            <div class="reactionsBlog-location col-6 p-0">
+                                <button class="btn btn-light w-100 btnLikeHover @if (checkUserReaction($blog->reacts)) btnLikeClicked @endif">
+                                    <span class="btnClickLike">
+                                        @if ($selectedReact == 0)
+                                            <em class="fa fa-thumbs-up"></em>
+                                        @else
+                                            <img class="btnClickLike--img" src="{{ config('constant.reacts')[$selectedReact] }}">
+                                        @endif
+                                    </span> {{ trans('client.pages.blog.react') }}
+                                    <div class="reactionsBlog-lists">
+                                        <ol>
+                                            @foreach (config('constant.reacts') as $keyReact => $reactUrl)
+                                                <li>
+                                                    <div class="reactionsBlog-item reactionsBlog-item-{{ $keyReact }} d-flex flex-column align-items-center justify-content-center">
+                                                        <span
+                                                            class="reactionsBlog-item--content reaction"
+                                                            data-reactionId="{{ $keyReact }}"
+                                                            data-reactSelected="{{ $selectedReact }}"
+                                                            data-blogId="{{ $blog->id }}"
+                                                        >
+                                                            <img class="reactionsBlog-item--content--img" src="{{ $reactUrl }}">
+                                                        </span>
+
+                                                        <span class="dot-active mt-auto @if ($selectedReact != $keyReact) d-none @endif"></span>
+                                                    </div>
+                                                </li>
+                                            @endforeach
+                                        </ol>
+                                    </div>
                                 </button>
                             </div>
                             <div class="col-6 p-0">
@@ -143,9 +173,29 @@
         <hr />
 
         <div class="list-btn d-flex text-center">
-            <div class="col-6 p-0">
-                <button class="btn btn-light w-100 btnClickLike">
-                    <em class="fa fa-thumbs-up"></em> {{ trans('client.pages.blog.react') }}
+            <div class="reactionsBlog-location col-6 p-0">
+                <button class="btn btn-light w-100 btnLikeHover btnClickLike">
+                    <span class="btnClickLike">
+                        <em class="fa fa-thumbs-up"></em>
+                    </span> {{ trans('client.pages.blog.react') }}
+                    <div class="reactionsBlog-lists">
+                        <ol>
+                            @foreach (config('constant.reacts') as $keyReact => $reactUrl)
+                                <li>
+                                    <div class="reactionsBlog-item reactionsBlog-item-{{ $keyReact }} d-flex flex-column align-items-center justify-content-center">
+                                        <span
+                                            class="reactionsBlog-item--content reaction"
+                                            data-reactionId="{{ $keyReact }}"
+                                        >
+                                            <img class="reactionsBlog-item--content--img" src="{{ $reactUrl }}">
+                                        </span>
+
+                                        <span class="dot-active mt-auto"></span>
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ol>
+                    </div>
                 </button>
             </div>
             <div class="col-6 p-0">
