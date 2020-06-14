@@ -20,6 +20,7 @@ class CreateBlogCommentsTable extends Migration
             $table->string('user_type')->nullable();
             $table->string('content')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

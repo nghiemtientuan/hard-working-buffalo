@@ -55,6 +55,7 @@ return [
         'comments' => 'Comments',
         'see_more' => 'See more',
         'send' => 'Send',
+        'delete' => 'Delete',
         'login' => [
             'login' => 'Login',
             'loginBtn' => 'Login',
@@ -326,6 +327,7 @@ return [
     ],
     'errors' => [
         'serverError' => 'Server Error',
+        'action_false' => 'Action error',
         'testsInCate' => [
             'testNotFound' => 'Test not found',
             'notEnoughCoins' => 'Not enough coins',

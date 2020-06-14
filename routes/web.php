@@ -97,6 +97,7 @@ Route::group([
         Route::get('/', 'BlogController@index')->name('index');
 
         Route::post('{blogId}/addComment', 'BlogController@addComment')->name('addComment');
+        Route::delete('deleteComment/{commentId}', 'BlogController@deleteComment')->name('deleteComment');
 
         Route::get('data', 'BlogController@dataBlog')->name('dataBlog');
         Route::get('{blogId}/dataComments', 'BlogController@dataComments')->name('dataComments');

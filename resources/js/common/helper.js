@@ -93,3 +93,8 @@ function userDefaultImage(file) {
         return '/images/common/profile.png';
     }
 }
+
+const USER_TYPE = {
+    user: 'App\\Models\\User',
+    student: 'App\\Models\\Student'
+}

@@ -54,7 +54,7 @@ $('.btnClickComment').on('click', function () {
             success: function (data) {
                 if (data.code == STATUS_CODE.code_200) {
                     $('#blogItem_' + blogId + ' .list-comments').html('');
-                    renderCommentAndNext(blogId, data.data.comments, false);
+                    renderCommentAndNext(blogId, data.data.comments, data.data.currentUser, false);
 
                     $('#blogItem_' + blogId + ' .add-comments').removeClass('d-none').addClass('d-flex');
                 }
@@ -63,7 +63,7 @@ $('.btnClickComment').on('click', function () {
     }
 });
 
-function renderCommentAndNext(blogId, comments, isAddFirst) {
+function renderCommentAndNext(blogId, comments, currentUser, isAddFirst) {
     if (comments.current_page == 1) {
         $('#blogItem_' + blogId + ' .btn-seemore-comment').attr('data-prev_page_url', '');
         $('#blogItem_' + blogId + ' .btn-seemore-comment').addClass('d-none');
@@ -71,11 +71,17 @@ function renderCommentAndNext(blogId, comments, isAddFirst) {
         $('#blogItem_' + blogId + ' .btn-seemore-comment').attr('data-prev_page_url', comments.prev_page_url);
         $('#blogItem_' + blogId + ' .btn-seemore-comment').removeClass('d-none');
     }
-    renderCommentList(comments.data, blogId, isAddFirst);
+    renderCommentList(currentUser, comments.data, blogId, isAddFirst);
 }
 
-function renderCommentList(comments, blogId, isAddFirst) {
-    let commentsElement = comments.map(comment => renderCommentItem(comment));
+function renderCommentList(currentUser, comments, blogId, isAddFirst) {
+    let commentsElement = comments.map(comment => {
+        if (currentUser.id == comment.user_id && currentUser.type == comment.user_type) {
+            return renderCommentItem(blogId, comment, true);
+        } else {
+            return renderCommentItem(blogId, comment, false);
+        }
+    });
 
     if (isAddFirst) {
         $('#blogItem_' + blogId + ' .list-comments').prepend(commentsElement);
@@ -84,12 +90,19 @@ function renderCommentList(comments, blogId, isAddFirst) {
     }
 }
 
-function renderCommentItem(comment) {
+function renderCommentItem(blogId, comment, isDelete) {
     let commentElement = $('#commentItemExample').clone();
     commentElement.removeClass('d-none').addClass('d-flex');
+    commentElement.attr('id', 'comment_' + comment.id);
     commentElement.find('.commentItem-avatar').attr('src', userDefaultImage(comment.user.file));
     commentElement.find('.commentItem-content-username').html(comment.user.username);
     commentElement.find('.commentItem-content-content').html(comment.content);
+    if (isDelete) {
+        commentElement.find('.removeCommentBtn').attr('data-commentId', comment.id);
+        commentElement.find('.removeCommentBtn').attr('data-blogId', blogId);
+    } else {
+        commentElement.find('.removeCommentBtn').remove();
+    }
 
     return commentElement;
 }
@@ -106,7 +119,7 @@ $('.seemore-comments .btn-seemore-comment').on('click', function (e) {
             cache: false,
             success: function (data) {
                 if (data.code == STATUS_CODE.code_200) {
-                    renderCommentAndNext(blogId, data.data.comments, true);
+                    renderCommentAndNext(blogId, data.data.comments, data.data.currentUser, true);
                 }
             },
         });
@@ -125,7 +138,7 @@ $('.add-comments-btn').on('click', function () {
             data: {_token, content},
             success: function (data) {
                 if (data.code == STATUS_CODE.code_200) {
-                    const newCommentElement = renderCommentItem(data.data.newComment);
+                    const newCommentElement = renderCommentItem(blogId, data.data.newComment, true);
                     $('#blogItem_' + blogId + ' .list-comments').append(newCommentElement);
 
                     $('#blogItem_' + blogId + ' .add-comments-content').val('');
@@ -133,4 +146,22 @@ $('.add-comments-btn').on('click', function () {
             },
         });
     }
+});
+
+$(document).on('click', '.removeCommentBtn', function (e) {
+    e.preventDefault();
+    let commentId = $(this).attr('data-commentId');
+    let blogId = $(this).attr('data-blogId');
+
+    $.ajax({
+        type: 'DELETE',
+        url: route('client.blogs.deleteComment', commentId),
+        cache: false,
+        data: {_token},
+        success: function (data) {
+            if (data.code == STATUS_CODE.code_200) {
+                $('#blogItem_' + blogId + ' #comment_' + commentId).remove();
+            }
+        },
+    });
 });

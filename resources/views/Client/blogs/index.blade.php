@@ -183,9 +183,7 @@
                 <a href="#" class="commentItem-content-username"></a>
                 <span class="commentItem-content-content"></span>
             </div>
-            <div class="childComments">
-
-            </div>
+            <a href="#" class="removeCommentBtn"><small>{{ trans('client.pages.delete') }}</small></a>
         </div>
     </div>
 

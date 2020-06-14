@@ -54,44 +54,72 @@ class BlogController extends Controller
             'code' => config('constant.status_code.code_200'),
             'data' => [
                 'comments' => $comments,
+                'currentUser' => getCurrentUser(),
             ],
         ]);
     }
 
     public function addComment(Request $request, $blogId)
     {
-        if (Auth::check()) {
-            $user = Auth::user();
-            $user_type = BlogComment::TYPE_USER;
-        } elseif (Auth::guard('student')->check()) {
-            $user = Auth::guard('student')->user();
-            $user_type = BlogComment::TYPE_STUDENT;
-        } else {
+        $user = getCurrentUser();
+        if ($user) {
+            $dataComment = [
+                BlogComment::USER_ID_FIELD => $user->id,
+                BlogComment::USER_TYPE_FIELD => $user->type,
+                BlogComment::BLOG_ID_FIELD => $blogId,
+                BlogComment::CONTENT_FIELD => $request->input('content'),
+            ];
+
+            $newComment = $this->blogCommentRepository->create($dataComment);
+            $newComment->load([
+                'user',
+                'user.file',
+            ]);
+
             return response()->json([
-                'code' => config('constant.status_code.code_400'),
-                'data' => [],
-                'message' => trans('client.errors.reaction.not_login'),
+                'code' => config('constant.status_code.code_200'),
+                'data' => [
+                    'newComment' => $newComment,
+                ],
             ]);
         }
 
-        $dataComment = [
-            BlogComment::USER_ID_FIELD => $user->id,
-            BlogComment::USER_TYPE_FIELD => $user_type,
-            BlogComment::BLOG_ID_FIELD => $blogId,
-            BlogComment::CONTENT_FIELD => $request->input('content'),
-        ];
-
-        $newComment = $this->blogCommentRepository->create($dataComment);
-        $newComment->load([
-            'user',
-            'user.file',
+        return response()->json([
+            'code' => config('constant.status_code.code_400'),
+            'data' => [],
+            'message' => trans('client.errors.reaction.not_login'),
         ]);
+    }
+
+    public function deleteComment($commentId)
+    {
+        $comment = $this->blogCommentRepository->find($commentId);
+        if ($comment) {
+            $user = getCurrentUser();
+            if ($user) {
+                if ($comment->user_id == $user->id && $comment->user_type == $user->type) {
+                    $this->blogCommentRepository->delete($commentId);
+
+                    return response()->json([
+                        'code' => config('constant.status_code.code_200'),
+                        'data' => [
+                            'check' => true,
+                        ],
+                    ]);
+                }
+            } else {
+                return response()->json([
+                    'code' => config('constant.status_code.code_400'),
+                    'data' => [],
+                    'message' => trans('client.errors.reaction.not_login'),
+                ]);
+            }
+        }
 
         return response()->json([
-            'code' => config('constant.status_code.code_200'),
-            'data' => [
-                'newComment' => $newComment,
-            ],
+            'code' => config('constant.status_code.code_400'),
+            'data' => [],
+            'message' => trans('client.errors.action_false'),
         ]);
     }
 }

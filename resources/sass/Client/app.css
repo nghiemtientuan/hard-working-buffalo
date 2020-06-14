@@ -368,12 +368,10 @@
     border-radius: 5px;
     padding: 20px;
 }
-#blogsList .list-comments .commentItem-content {
+#blogsList .list-comments .commentItem-content div {
     background-color: #f2f3f5;
     border-radius: 25px;
     box-sizing: border-box;
-    height: 50px;
-    line-height: 50px;
     padding-left: 10px;
     padding-right: 10px;
 }
