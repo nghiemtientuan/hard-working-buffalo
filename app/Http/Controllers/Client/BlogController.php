@@ -4,28 +4,34 @@ namespace App\Http\Controllers\Client;
 
 use App\Models\Blog;
 use App\Models\BlogComment;
+use App\Models\ReactBlog;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Contracts\BlogRepositoryInterface as BlogRepository;
 use App\Repositories\Contracts\BlogCommentRepositoryInterface as BlogCommentRepository;
+use App\Repositories\Contracts\ReactBlogRepositoryInterface as ReactBlogRepository;
 use Illuminate\Support\Facades\Auth;
 
 class BlogController extends Controller
 {
     protected $blogRepository;
     protected $blogCommentRepository;
+    protected $reactBlogRepository;
 
     /**
      * BlogController constructor.
      * @param BlogRepository $blogRepository
      * @param BlogCommentRepository $blogCommentRepository
+     * @param ReactBlogRepository $reactBlogRepository
      */
     public function __construct(
         BlogRepository $blogRepository,
-        BlogCommentRepository $blogCommentRepository
+        BlogCommentRepository $blogCommentRepository,
+        ReactBlogRepository $reactBlogRepository
     ) {
         $this->blogRepository = $blogRepository;
         $this->blogCommentRepository = $blogCommentRepository;
+        $this->reactBlogRepository = $reactBlogRepository;
     }
 
     public function index()
@@ -149,5 +155,50 @@ class BlogController extends Controller
             'data' => [],
             'message' => trans('client.errors.action_false'),
         ]);
+    }
+
+    public function reaction(Request $request, $blogId)
+    {
+        if (
+            $request->reactionId
+            && $request->reactionId > 0
+            && $request->reactionId < 5
+            && $blogId
+            && $this->blogRepository->find($blogId)
+        ) {
+            $data = [
+                ReactBlog::REACT_ID_FIELD => $request->reactionId,
+                ReactBlog::BLOG_ID_FIELD => $blogId,
+            ];
+            $user = getCurrentUser();
+            if ($user) {
+                $data[ReactBlog::USER_ID_FIELD] = $user->id;
+                $data[ReactBlog::USER_TYPE_FIELD] = $user->type;
+
+                $this->reactBlogRepository->updateOrCreate($data);
+                $dataResponse = $this->reactBlogRepository->getRankingByType($blogId);
+
+                return response()->json([
+                    'code' => config('constant.status_code.code_200'),
+                    'data' => [
+                        'reacts' => $dataResponse,
+                        'clickedReactUrl' => config('constant.reacts')[$request->reactionId],
+                    ],
+                    'message' => trans('client.success.action_success'),
+                ]);
+            }
+
+            return response()->json([
+                'code' => config('constant.status_code.code_400'),
+                'data' => [],
+                'message' => trans('client.errors.reaction.not_login'),
+            ]);
+        } else {
+            return response()->json([
+                'code' => config('constant.status_code.code_401'),
+                'data' => [],
+                'message' => trans('client.errors.reaction.wrong_format'),
+            ]);
+        }
     }
 }

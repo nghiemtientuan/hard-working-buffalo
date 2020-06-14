@@ -41,7 +41,6 @@ $('.btnLikeHover .reaction').on('click', function () {
                 } else {
                     toastr.error(data.message, data.message);
                 }
-                $('#loader').removeClass('show');
             }
         });
     }

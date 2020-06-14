@@ -29,6 +29,7 @@ class Blog extends Model
     ];
 
     protected $with = [
+        'reacts',
         'comments',
         'user',
     ];
@@ -36,6 +37,11 @@ class Blog extends Model
     public function comments()
     {
         return $this->hasMany(BlogComment::class, BlogComment::BLOG_ID_FIELD, 'id');
+    }
+
+    public function reacts()
+    {
+        return $this->hasMany(ReactBlog::class, ReactBlog::BLOG_ID_FIELD, 'id');
     }
 
     public function user()

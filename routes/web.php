@@ -97,6 +97,8 @@ Route::group([
         Route::get('/', 'BlogController@index')->name('index');
         Route::post('/', 'BlogController@store')->name('store');
 
+        Route::post('{blogId}/reaction', 'BlogController@reaction')->name('reaction');
+
         Route::post('{blogId}/addComment', 'BlogController@addComment')->name('addComment');
         Route::delete('deleteComment/{commentId}', 'BlogController@deleteComment')->name('deleteComment');
 
