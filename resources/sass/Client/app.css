@@ -359,3 +359,24 @@
 .bg-grey {
     background-color: grey;
 }
+
+/*blog*/
+.panel {
+    margin-top: 20px;
+    color: #333333;
+    border: 2px solid #CCCCCC;
+    border-radius: 5px;
+    padding: 20px;
+}
+#blogsList .list-comments .commentItem-content div {
+    background-color: #f2f3f5;
+    border-radius: 25px;
+    box-sizing: border-box;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+#blogsList .list-comments .commentItem-content .commentItem-content-username {
+    color: #385898;
+    font-weight: 700;
+}
+/*end blog*/

@@ -25,5 +25,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AnswerSeeder::class);
         $this->call(QuestionInPartSeed::class);
         $this->call(SettingSeeder::class);
+        $this->call(BlogSeeder::class);
+        $this->call(BlogCommentSeeder::class);
     }
 }

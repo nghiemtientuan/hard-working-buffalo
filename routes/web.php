@@ -90,6 +90,20 @@ Route::group([
         Route::get('momo/success', 'PaymentController@getSuccessMomo')->name('momo.getSuccess');
     });
 
+    Route::group([
+        'as' => 'blogs.',
+        'prefix' => 'blogs',
+    ], function () {
+        Route::get('/', 'BlogController@index')->name('index');
+        Route::post('/', 'BlogController@store')->name('store');
+
+        Route::post('{blogId}/addComment', 'BlogController@addComment')->name('addComment');
+        Route::delete('deleteComment/{commentId}', 'BlogController@deleteComment')->name('deleteComment');
+
+        Route::get('data', 'BlogController@dataBlog')->name('dataBlog');
+        Route::get('{blogId}/dataComments', 'BlogController@dataComments')->name('dataComments');
+    });
+
     Route::get('guideline', 'GuidelineController@index')->name('guideline.index');
 
     Route::get('not_found', 'NotFoundController@index')->name('notFound');

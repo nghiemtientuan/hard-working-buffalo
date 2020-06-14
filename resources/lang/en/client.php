@@ -51,7 +51,11 @@ return [
         'close' => 'Close',
         'save' => 'Save',
         'evaluation' => 'Evaluation',
+        'post' => 'Post',
         'comments' => 'Comments',
+        'see_more' => 'See more',
+        'send' => 'Send',
+        'delete' => 'Delete',
         'login' => [
             'login' => 'Login',
             'loginBtn' => 'Login',
@@ -198,6 +202,11 @@ return [
             'targetTitle' => 'Target',
             'your_target' => 'Your target'
         ],
+        'blog' => [
+            'blogTitle' => 'Blog',
+            'react' => 'React',
+            'comments' => 'Comments',
+        ],
         'guideline' => [
             'guidelineTitle' => 'Guideline',
             'previous' => 'Previous',
@@ -318,6 +327,7 @@ return [
     ],
     'errors' => [
         'serverError' => 'Server Error',
+        'action_false' => 'Action error',
         'testsInCate' => [
             'testNotFound' => 'Test not found',
             'notEnoughCoins' => 'Not enough coins',
