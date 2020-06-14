@@ -99,35 +99,4 @@ class Student extends Authenticatable
     {
         return $this->hasMany(History::class);
     }
-
-    public function questionComments()
-    {
-        return $this->morphMany(
-            QuestionComment::class,
-            'user',
-            QuestionComment::TYPE_FIELD,
-            QuestionComment::USER_ID_FIELD,
-            'id'
-        );
-    }
-
-    public function likeTests()
-    {
-        return $this->belongsToMany(
-            Test::class,
-            LikeTest::class,
-            'user_id',
-            'test_id'
-        )->wherePivot(LikeTest::TYPE_FIELD, LikeTest::TYPE_STUDENT);
-    }
-
-    public function likeHistories()
-    {
-        return $this->belongsToMany(
-            History::class,
-            ReactHistory::class,
-            'user_id',
-            'history_id'
-        )->wherePivot(ReactHistory::TYPE_FIELD, ReactHistory::TYPE_STUDENT);
-    }
 }

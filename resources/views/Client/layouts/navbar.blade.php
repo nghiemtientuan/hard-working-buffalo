@@ -27,8 +27,8 @@
         <li class="{{ request()->is('ranking') ? 'active' : '' }}">
             <a href="{{ route('client.ranking.index') }}" class="nav-link text-left pl-10 pr-10">{{ trans('client.navbar.list.ranking') }}</a>
         </li>
-        <li>
-            <a href="#" class="nav-link text-left pl-10 pr-10">{{ trans('client.navbar.list.blog') }}</a>
+        <li class="{{ request()->is('blog/*') ? 'active' : '' }}">
+            <a href="{{ route('client.blogs.index') }}" class="nav-link text-left pl-10 pr-10">{{ trans('client.navbar.list.blog') }}</a>
         </li>
     </ul>
 </nav>

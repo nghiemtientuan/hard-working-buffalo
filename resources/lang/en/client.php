@@ -51,7 +51,10 @@ return [
         'close' => 'Close',
         'save' => 'Save',
         'evaluation' => 'Evaluation',
+        'post' => 'Post',
         'comments' => 'Comments',
+        'see_more' => 'See more',
+        'send' => 'Send',
         'login' => [
             'login' => 'Login',
             'loginBtn' => 'Login',
@@ -197,6 +200,11 @@ return [
         'target' => [
             'targetTitle' => 'Target',
             'your_target' => 'Your target'
+        ],
+        'blog' => [
+            'blogTitle' => 'Blog',
+            'react' => 'React',
+            'comments' => 'Comments',
         ],
         'guideline' => [
             'guidelineTitle' => 'Guideline',

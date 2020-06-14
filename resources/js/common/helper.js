@@ -85,3 +85,11 @@ toastr.options.progressBar = true;
 function formatCurrency(number) {
     return number.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 }
+
+function userDefaultImage(file) {
+    if (file) {
+        return file.base_folder;
+    } else {
+        return '/images/common/profile.png';
+    }
+}
