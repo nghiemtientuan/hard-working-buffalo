@@ -11,7 +11,7 @@
                 <div class="panel">
                     <div class="panel-heading d-flex">
                         <div class="panel-heading-avatar col-1">
-                            <img src="{{ userDefaultImage(null) }}" class="rounded-circle w-50">
+                            <img src="{{ userDefaultImage(getCurrentUser()->file) }}" class="rounded-circle w-50">
                         </div>
 
                         <div class="panel-heading-content col-11 p-0">
@@ -20,7 +20,7 @@
                     </div>
 
                     <div class="mt-20">
-                        <button class="btn btn-primary w-100">{{ trans('client.pages.post') }}</button>
+                        <button id="btnSubmitNewPost" class="btn btn-primary w-100">{{ trans('client.pages.post') }}</button>
                     </div>
                 </div>
             </div>

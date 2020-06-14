@@ -95,6 +95,7 @@ Route::group([
         'prefix' => 'blogs',
     ], function () {
         Route::get('/', 'BlogController@index')->name('index');
+        Route::post('/', 'BlogController@store')->name('store');
 
         Route::post('{blogId}/addComment', 'BlogController@addComment')->name('addComment');
         Route::delete('deleteComment/{commentId}', 'BlogController@deleteComment')->name('deleteComment');

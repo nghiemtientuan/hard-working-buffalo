@@ -1,6 +1,6 @@
 let _token = $('input[name="_token"]').val();
 
-$('#btnSeeMoreBlogs').on('click', function () {
+$(document).on('click', '#btnSeeMoreBlogs', function () {
     let nextPage = $(this).attr('data-next_page_url');
 
     if (nextPage && typeof nextPage === 'string') {
@@ -23,6 +23,26 @@ $('#btnSeeMoreBlogs').on('click', function () {
     }
 });
 
+$('#blogAdd').on('click', '#btnSubmitNewPost', function () {
+    let content = $('#blogAdd #newBlogContent').val();
+
+    if (content) {
+        $.ajax({
+            type: 'POST',
+            url: route('client.blogs.store'),
+            cache: false,
+            data: {_token, content},
+            success: function (data) {
+                if (data.code == STATUS_CODE.code_200) {
+                    let blogElement = renderBlogItem(data.data.blog);
+                    $('#blogsList').prepend(blogElement)
+                    $('#blogAdd #newBlogContent').val('');
+                }
+            },
+        });
+    }
+});
+
 function renderBlogList(blogs) {
     let blogsElement = blogs.map(blog => renderBlogItem(blog));
 
@@ -41,7 +61,7 @@ function renderBlogItem(blog) {
     return blogElement;
 }
 
-$('.btnClickComment').on('click', function () {
+$(document).on('click', '.btnClickComment', function () {
     let countComments = parseInt($(this).attr('data-countComments'));
     let urlLastPageComment = $(this).attr('data-urlLastPageComment');
     let blogId = $(this).attr('data-blogId');
@@ -107,7 +127,7 @@ function renderCommentItem(blogId, comment, isDelete) {
     return commentElement;
 }
 
-$('.seemore-comments .btn-seemore-comment').on('click', function (e) {
+$('.seemore-comments').on('click', '.btn-seemore-comment', function (e) {
     e.preventDefault();
     let prev_page_url = $(this).attr('data-prev_page_url');
     let blogId = $(this).attr('data-blogId');
@@ -126,7 +146,7 @@ $('.seemore-comments .btn-seemore-comment').on('click', function (e) {
     }
 });
 
-$('.add-comments-btn').on('click', function () {
+$(document).on('click', '.add-comments-btn', function () {
     let blogId = $(this).attr('data-blogId');
     let content = $('#blogItem_' + blogId + ' .add-comments-content').val();
 

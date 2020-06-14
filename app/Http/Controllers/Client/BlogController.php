@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Client;
 
+use App\Models\Blog;
 use App\Models\BlogComment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -32,6 +33,33 @@ class BlogController extends Controller
         $blogs = $this->blogRepository->getBlogsPaginate();
 
         return view('Client.blogs.index', compact('blogs'));
+    }
+
+    public function store(Request $request)
+    {
+        $user = getCurrentUser();
+        if ($user) {
+            $dataBlog = [
+                Blog::USER_ID_FIELD => $user->id,
+                Blog::USER_TYPE_FIELD => $user->type,
+                Blog::CONTENT_FIELD => $request->input('content'),
+            ];
+
+            $blog = $this->blogRepository->create($dataBlog)->load([
+                'comments',
+                'comments.user',
+                'comments.user.file',
+                'user',
+                'user.file',
+            ]);
+
+            return response()->json([
+                'code' => config('constant.status_code.code_200'),
+                'data' => [
+                    'blog' => $blog,
+                ],
+            ]);
+        }
     }
 
     public function dataBlog()
