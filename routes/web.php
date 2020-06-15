@@ -97,12 +97,14 @@ Route::group([
         Route::get('/', 'BlogController@index')->name('index');
         Route::post('/', 'BlogController@store')->name('store');
 
+        Route::get('data', 'BlogController@dataBlog')->name('dataBlog');
+
+        Route::get('{blogId}', 'BlogController@show')->name('show');
+        Route::delete('{blogId}', 'BlogController@destroy')->name('destroy');
         Route::post('{blogId}/reaction', 'BlogController@reaction')->name('reaction');
 
         Route::post('{blogId}/addComment', 'BlogController@addComment')->name('addComment');
         Route::delete('deleteComment/{commentId}', 'BlogController@deleteComment')->name('deleteComment');
-
-        Route::get('data', 'BlogController@dataBlog')->name('dataBlog');
         Route::get('{blogId}/dataComments', 'BlogController@dataComments')->name('dataComments');
     });
 

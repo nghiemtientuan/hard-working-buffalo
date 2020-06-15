@@ -68,7 +68,7 @@ function randomString() {
     return Math.random().toString(36).substr(2, 10).toUpperCase();
 }
 
-let STATUS_CODE = {
+const STATUS_CODE = {
     'code_200': 200,
     'code_400': 400,
     'code_401': 401,
@@ -97,4 +97,13 @@ function userDefaultImage(file) {
 const USER_TYPE = {
     user: 'App\\Models\\User',
     student: 'App\\Models\\Student'
+}
+
+const CONFIG = {
+    'reacts': {
+        1: '/images/reacts/like.gif',
+        2: '/images/reacts/love.gif',
+        3: '/images/reacts/haha.gif',
+        4: '/images/reacts/wow.gif',
+    }
 }

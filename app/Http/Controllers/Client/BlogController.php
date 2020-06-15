@@ -37,8 +37,9 @@ class BlogController extends Controller
     public function index()
     {
         $blogs = $this->blogRepository->getBlogsPaginate();
+        $user = getCurrentUser();
 
-        return view('Client.blogs.index', compact('blogs'));
+        return view('Client.blogs.index', compact('blogs', 'user'));
     }
 
     public function store(Request $request)
@@ -55,6 +56,8 @@ class BlogController extends Controller
                 'comments',
                 'comments.user',
                 'comments.user.file',
+                'selectedReact',
+                'reacts',
                 'user',
                 'user.file',
             ]);
@@ -63,9 +66,47 @@ class BlogController extends Controller
                 'code' => config('constant.status_code.code_200'),
                 'data' => [
                     'blog' => $blog,
+                    'currentUser' => getCurrentUser(),
                 ],
             ]);
         }
+    }
+
+    public function show($blogId)
+    {
+        $blog = $this->blogRepository->find($blogId);
+
+        if ($blog) {
+            $user = getCurrentUser();
+
+            return view('Client.blogs.blogItem', compact('blog', 'user'));
+        }
+
+        return redirect()->route('client.notFound');
+    }
+
+    public function destroy($blogId)
+    {
+        $blog = $this->blogRepository->find($blogId);
+
+        if ($blog) {
+            $user = getCurrentUser();
+            if ($user && $blog->user_id == $user->id && $blog->user_type == $user->type) {
+                $this->blogRepository->delete($blogId);
+
+                return response()->json([
+                    'code' => config('constant.status_code.code_200'),
+                    'data' => [
+                        'check' => true,
+                    ],
+                ]);
+            }
+        }
+
+        return response()->json([
+            'code' => config('constant.status_code.code_400'),
+            'message' => trans('client.errors.action_false'),
+        ]);
     }
 
     public function dataBlog()
@@ -76,6 +117,7 @@ class BlogController extends Controller
             'code' => config('constant.status_code.code_200'),
             'data' => [
                 'blogs' => $blogs,
+                'currentUser' => getCurrentUser(),
             ],
         ]);
     }
