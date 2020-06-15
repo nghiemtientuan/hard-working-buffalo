@@ -58,6 +58,14 @@ return [
         'comments' => 10,
         'blog' => 10,
     ],
+    // 400px
+    'slides' => [
+        1 => '/images/slides/slide1.png',
+        2 => '/images/slides/slide2.png',
+        3 => '/images/slides/slide3.png',
+        4 => '/images/slides/slide4.png',
+        5 => '/images/slides/slide5.png',
+    ],
     'scoreTest' => [
         'total_formula' => 990,
         'total_not_formula' => 100,

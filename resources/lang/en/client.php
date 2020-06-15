@@ -43,8 +43,7 @@ return [
             'twitter' => 'Twitter',
         ],
     ],
-    'progress_bar' => [
-    ],
+    'progress_bar' => [],
     'no_data' => 'No data',
     'pages' => [
         'edit' => 'Edit',
@@ -56,6 +55,8 @@ return [
         'see_more' => 'See more',
         'send' => 'Send',
         'delete' => 'Delete',
+        'previous' => 'Previous',
+        'next' => 'next',
         'login' => [
             'login' => 'Login',
             'loginBtn' => 'Login',
@@ -282,7 +283,9 @@ return [
         'yes_submit' => 'Yes, Submit!',
         'are_you_ready' => 'Are you ready?',
         'you_will_buy_this' => 'You will buy this',
+        'you_will_delete_this' => 'You will delete this',
         'yes_ready' => 'Start',
+        'yes' => 'Yes',
     ],
     'validations' => [
         'changePassword' => [

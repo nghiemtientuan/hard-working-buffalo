@@ -61,8 +61,8 @@
                                 @endforeach
                             </div>
 
-                            <div class="panel-reactionList-totalComment">
-                                <span>{{ count($blog->comments) }}</span> {{ trans('client.pages.blog.comments') }}
+                            <div>
+                                <span class="panel-reactionList-totalComment">{{ count($blog->comments) }}</span> {{ trans('client.pages.blog.comments') }}
                             </div>
                         </div>
                         <hr />
@@ -136,13 +136,15 @@
                 @endforeach
             </div>
 
-            <div class="mt-20">
-                <button
-                    id="btnSeeMoreBlogs"
-                    class="btn btn-default w-100"
-                    data-next_page_url="{{ route('client.blogs.dataBlog', ['page' => 2]) }}"
-                >{{ trans('client.pages.see_more') }}</button>
-            </div>
+            @if ($blogs->currentPage() != $blogs->lastPage())
+                <div class="mt-20">
+                    <button
+                        id="btnSeeMoreBlogs"
+                        class="btn btn-default w-100"
+                        data-next_page_url="{{ route('client.blogs.dataBlog', ['page' => 2]) }}"
+                    >{{ trans('client.pages.see_more') }}</button>
+                </div>
+            @endif
         </div>
     </div>
 
