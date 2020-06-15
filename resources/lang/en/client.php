@@ -43,8 +43,7 @@ return [
             'twitter' => 'Twitter',
         ],
     ],
-    'progress_bar' => [
-    ],
+    'progress_bar' => [],
     'no_data' => 'No data',
     'pages' => [
         'edit' => 'Edit',
@@ -56,6 +55,8 @@ return [
         'see_more' => 'See more',
         'send' => 'Send',
         'delete' => 'Delete',
+        'previous' => 'Previous',
+        'next' => 'next',
         'login' => [
             'login' => 'Login',
             'loginBtn' => 'Login',
