@@ -61,8 +61,8 @@
                                 @endforeach
                             </div>
 
-                            <div class="panel-reactionList-totalComment">
-                                <span>{{ count($blog->comments) }}</span> {{ trans('client.pages.blog.comments') }}
+                            <div>
+                                <span class="panel-reactionList-totalComment">{{ count($blog->comments) }}</span> {{ trans('client.pages.blog.comments') }}
                             </div>
                         </div>
                         <hr />

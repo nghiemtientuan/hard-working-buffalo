@@ -139,7 +139,8 @@ class BlogController extends Controller
     public function addComment(Request $request, $blogId)
     {
         $user = getCurrentUser();
-        if ($user) {
+        $blog = $this->blogRepository->find($blogId);
+        if ($user && $blog) {
             $dataComment = [
                 BlogComment::USER_ID_FIELD => $user->id,
                 BlogComment::USER_TYPE_FIELD => $user->type,
@@ -157,6 +158,7 @@ class BlogController extends Controller
                 'code' => config('constant.status_code.code_200'),
                 'data' => [
                     'newComment' => $newComment,
+                    'blog' => $this->blogRepository->find($blogId),
                 ],
             ]);
         }
@@ -168,7 +170,7 @@ class BlogController extends Controller
         ]);
     }
 
-    public function deleteComment($commentId)
+    public function deleteComment(Request $request, $commentId)
     {
         $comment = $this->blogCommentRepository->find($commentId);
         if ($comment) {
@@ -181,6 +183,7 @@ class BlogController extends Controller
                         'code' => config('constant.status_code.code_200'),
                         'data' => [
                             'check' => true,
+                            'blog' => $this->blogRepository->find($request->blogId),
                         ],
                     ]);
                 }

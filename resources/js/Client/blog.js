@@ -240,6 +240,7 @@ $(document).on('click', '.add-comments-btn', function () {
                 if (data.code == STATUS_CODE.code_200) {
                     const newCommentElement = renderCommentItem(blogId, data.data.newComment, true);
                     $('#blogItem_' + blogId + ' .list-comments').append(newCommentElement);
+                    $('#blogItem_' + blogId + ' .panel-reactionList-totalComment').html(data.data.blog.comments.length);
 
                     $('#blogItem_' + blogId + ' .add-comments-content').val('');
                 }
@@ -266,10 +267,12 @@ $(document).on('click', '.removeCommentBtn', function (e) {
                 type: 'DELETE',
                 url: route('client.blogs.deleteComment', commentId),
                 cache: false,
-                data: {_token},
+                data: {_token, blogId},
                 success: function (data) {
                     if (data.code == STATUS_CODE.code_200) {
                         $('#blogItem_' + blogId + ' #comment_' + commentId).remove();
+
+                        $('#blogItem_' + blogId + ' .panel-reactionList-totalComment').html(data.data.blog.comments.length);
                     }
                 },
             });
