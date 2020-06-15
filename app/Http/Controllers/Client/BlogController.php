@@ -70,6 +70,17 @@ class BlogController extends Controller
         }
     }
 
+    public function show($blogId)
+    {
+        $blog = $this->blogRepository->find($blogId);
+
+        if ($blog) {
+            return view('Client.blogs.blogItem', compact('blog'));
+        }
+
+        return redirect()->route('client.notFound');
+    }
+
     public function dataBlog()
     {
         $blogs = $this->blogRepository->getBlogsPaginate();

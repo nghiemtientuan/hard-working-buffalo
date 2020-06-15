@@ -431,7 +431,7 @@
     padding-left: 10px;
     padding-right: 10px;
 }
-#blogsList .list-comments .commentItem-content .commentItem-content-username {
+.list-comments .commentItem-content .commentItem-content-username {
     color: #385898;
     font-weight: 700;
 }
