@@ -60,7 +60,7 @@
                         <a class="dropdown-toggle" data-toggle="dropdown">
                             @if (Auth::guard('student')->check())
                                 {{ Auth::guard('student')->user()->username }}
-                                (<span id="headerCoinNumber">{{ Auth::guard('student')->user()->coin }}</span> <i class="fa fa-gem"></i>)
+                                ( <span id="headerCoinNumber">{{ Auth::guard('student')->user()->coin }}</span> <i class="fa fa-gem"></i> )
                                 <img src="{{ userDefaultImage(Auth::guard('student')->user()->file) }}" class="rounded-circle w-50">
                                 <i class="caret"></i>
                             @else

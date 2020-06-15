@@ -252,17 +252,28 @@ $(document).on('click', '.removeCommentBtn', function (e) {
     e.preventDefault();
     let commentId = $(this).attr('data-commentId');
     let blogId = $(this).attr('data-blogId');
-
-    $.ajax({
-        type: 'DELETE',
-        url: route('client.blogs.deleteComment', commentId),
-        cache: false,
-        data: {_token},
-        success: function (data) {
-            if (data.code == STATUS_CODE.code_200) {
-                $('#blogItem_' + blogId + ' #comment_' + commentId).remove();
-            }
-        },
+    Swal.fire({
+        title: trans('client.actions.are_you_sure'),
+        text: trans('client.actions.you_will_delete_this'),
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: trans('backend.actions.yes')
+    }).then((result) => {
+        if (result.value) {
+            $.ajax({
+                type: 'DELETE',
+                url: route('client.blogs.deleteComment', commentId),
+                cache: false,
+                data: {_token},
+                success: function (data) {
+                    if (data.code == STATUS_CODE.code_200) {
+                        $('#blogItem_' + blogId + ' #comment_' + commentId).remove();
+                    }
+                },
+            });
+        }
     });
 });
 
@@ -301,18 +312,64 @@ $(document).on('click', '.btnLikeHover .reaction', function () {
     }
 });
 
-$(document).on('click', '.btnRemoveBlogDiv .btnRemoveBlog', function () {
+$(document).on('click', '.btnRemoveBlogDiv .btnRemoveBlog', function (e) {
+    e.preventDefault();
     let blogId = $(this).attr('data-blogId');
 
-    $.ajax({
-        type: 'DELETE',
-        url: route('client.blogs.destroy', blogId),
-        cache: false,
-        data: {_token},
-        success: function (data) {
-            if (data.code == STATUS_CODE.code_200 && data.data.check == true) {
-                $('#blogItem_' + blogId).remove()
-            }
+    Swal.fire({
+        title: trans('client.actions.are_you_sure'),
+        text: trans('client.actions.you_will_delete_this'),
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: trans('backend.actions.yes')
+    }).then((result) => {
+        if (result.value) {
+            $.ajax({
+                type: 'DELETE',
+                url: route('client.blogs.destroy', blogId),
+                cache: false,
+                data: {_token},
+                success: function (data) {
+                    if (data.code == STATUS_CODE.code_200 && data.data.check == true) {
+                        $('#blogItem_' + blogId).remove();
+                    }
+                }
+            });
+        }
+    });
+});
+
+$(document).on('click', '.btnRemoveBlogDiv .btnRemoveBlogSingle', function (e) {
+    e.preventDefault();
+    let blogId = $(this).attr('data-blogId');
+
+    Swal.fire({
+        title: trans('client.actions.are_you_sure'),
+        text: trans('client.actions.you_will_delete_this'),
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: trans('backend.actions.yes')
+    }).then((result) => {
+        if (result.value) {
+            $.ajax({
+                type: 'DELETE',
+                url: route('client.blogs.destroy', blogId),
+                cache: false,
+                data: {_token},
+                success: function (data) {
+                    if (data.code == STATUS_CODE.code_200 && data.data.check == true) {
+                        $('#blogItem_' + blogId).remove();
+                        toastr.success(data.message);
+                        setTimeout(() => {
+                            window.location.replace(route('client.blogs.index').template);
+                        }, 3000);
+                    }
+                }
+            });
         }
     });
 });

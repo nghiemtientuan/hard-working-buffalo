@@ -99,6 +99,7 @@ class BlogController extends Controller
                     'data' => [
                         'check' => true,
                     ],
+                    'message' => trans('client.success.action_success'),
                 ]);
             }
         }
