@@ -32,6 +32,7 @@ class Blog extends Model
         'reacts',
         'comments',
         'user',
+        'selectedReact',
     ];
 
     public function comments()
@@ -42,6 +43,14 @@ class Blog extends Model
     public function reacts()
     {
         return $this->hasMany(ReactBlog::class, ReactBlog::BLOG_ID_FIELD, 'id');
+    }
+
+    public function selectedReact()
+    {
+        $user = getCurrentUser();
+
+        return $this->reacts()->where(ReactBlog::USER_TYPE_FIELD, $user->type)
+            ->where(ReactBlog::USER_ID_FIELD, $user->id);
     }
 
     public function user()

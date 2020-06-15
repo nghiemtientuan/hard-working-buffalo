@@ -31,6 +31,8 @@ $(document).on('click', '#btnSeeMoreBlogs', function () {
                     if (data.data.blogs.current_page == data.data.blogs.last_page) {
                         $('#btnSeeMoreBlogs').addClass('d-none');
                         $('#btnSeeMoreBlogs').attr('data-next_page_url', '');
+                    } else {
+                        $('#btnSeeMoreBlogs').attr('data-next_page_url', data.data.blogs.next_page_url);
                     }
                     renderBlogList(data.data.blogs.data);
                 }
@@ -70,19 +72,70 @@ function renderBlogList(blogs) {
 function renderBlogItem(blog) {
     let blogElement = $('#blogItemExample').clone();
     blogElement.removeClass('d-none');
+    blogElement.attr('id', 'blogItem_' + blog.id);
     blogElement.find('.panel-heading-avatar-image').attr('src', userDefaultImage(blog.user.file));
     blogElement.find('.panel-heading-name-username').html(blog.user.username);
     blogElement.find('.panel-heading-name-time').html(blog.created_at);
     blogElement.find('.panel-body').html(blog.content);
     blogElement.find('.panel-reactionList-totalComment').html(blog.comments.length);
+    blogElement.find('.panel-reactionList-totalComment').html(blog.comments.length);
+    blogElement.find('.reaction').attr('data-blogId', blog.id);
+    blogElement.find('.btnClickComment').attr('data-blogId', blog.id);
+    blogElement.find('.btnClickComment').attr('data-countComments', blog.comments.length);
+    blogElement.find('.btnClickComment').attr(
+        'data-urlLastPageComment',
+        route('client.blogs.dataComments', {
+            "blogId": blog.id,
+            "page": Math.ceil(blog.comments.length/10)
+        })
+    );
+    blogElement.find('.btn-seemore-comment').attr('data-blogId', blog.id);
+    blogElement.find('.add-comments-btn').attr('data-blogId', blog.id);
+
+    let selectedReact = null;
+    if (blog.selected_react.length) {
+        selectedReact = blog.selected_react[0];
+    }
+    blogElement = renderReacts(blogElement, blog.id, blog.reacts, selectedReact);
 
     return blogElement;
+}
+
+function renderReacts(blogElement, blogId, reacts, selectedReact) {
+    blogElement.find('.dot-active').removeClass('d-none').addClass('d-none');
+    if (selectedReact) {
+        blogElement.find('.btnLikeHover').addClass('btnLikeClicked');
+        blogElement.find('.btnClickLike').html('<img class="btnClickLike--img" src="' + CONFIG.reacts[selectedReact.react_id] + '">');
+
+        blogElement.find('.reactionsBlog-item-' + selectedReact.react_id + ' .dot-active').removeClass('d-none');
+        blogElement.find('.reactionsBlog-item--content').attr('data-reactSelected', selectedReact.react_id);
+    }
+
+    blogElement.find('.clicked-icon-list-active').removeClass('d-flex').addClass('d-none');
+    reacts.forEach((react) => {
+        let clickedIconListActiveElement = '.clicked-icon-list-active-' + react.react_id;
+        let numberReact = getNumberReact(reacts, react.react_id);
+        blogElement.find(clickedIconListActiveElement).removeClass('d-none').addClass('d-flex');
+        blogElement.find(clickedIconListActiveElement + ' .clicked-icon-list__item--number').html(numberReact);
+    });
+
+    return blogElement;
+}
+
+function getNumberReact(reacts, react_id) {
+    let number = 0;
+    reacts.map(react => {
+        if (react.react_id === react_id) number++;
+    });
+
+    return number;
 }
 
 $(document).on('click', '.btnClickComment', function () {
     let countComments = parseInt($(this).attr('data-countComments'));
     let urlLastPageComment = $(this).attr('data-urlLastPageComment');
     let blogId = $(this).attr('data-blogId');
+    $('#blogItem_' + blogId + ' .add-comments').removeClass('d-none').addClass('d-flex');
 
     if (countComments) {
         $.ajax({
@@ -93,8 +146,6 @@ $(document).on('click', '.btnClickComment', function () {
                 if (data.code == STATUS_CODE.code_200) {
                     $('#blogItem_' + blogId + ' .list-comments').html('');
                     renderCommentAndNext(blogId, data.data.comments, data.data.currentUser, false);
-
-                    $('#blogItem_' + blogId + ' .add-comments').removeClass('d-none').addClass('d-flex');
                 }
             },
         });
@@ -145,7 +196,7 @@ function renderCommentItem(blogId, comment, isDelete) {
     return commentElement;
 }
 
-$('.seemore-comments').on('click', '.btn-seemore-comment', function (e) {
+$(document).on('click', '.btn-seemore-comment', function (e) {
     e.preventDefault();
     let prev_page_url = $(this).attr('data-prev_page_url');
     let blogId = $(this).attr('data-blogId');

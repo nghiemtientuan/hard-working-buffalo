@@ -157,7 +157,7 @@
         <div class="panel-reactionList d-flex justify-content-between">
             <div class="clicked-icon-list panel-reactionList-list d-flex">
                 @foreach (config('constant.reacts') as $keyReact => $reactUrl)
-                    <div class="react-icon-{{ $keyReact }} d-flex align-content-center clicked-icon-list-active">
+                    <div class="react-icon-{{ $keyReact }} d-flex align-content-center clicked-icon-list-active clicked-icon-list-active-{{ $keyReact }}">
                         <div class="d-flex clicked-icon-list__item--img">
                             <img src="{{ $reactUrl }}">
                         </div>
@@ -174,7 +174,7 @@
 
         <div class="list-btn d-flex text-center">
             <div class="reactionsBlog-location col-6 p-0">
-                <button class="btn btn-light w-100 btnLikeHover btnClickLike">
+                <button class="btn btn-light w-100 btnLikeHover">
                     <span class="btnClickLike">
                         <em class="fa fa-thumbs-up"></em>
                     </span> {{ trans('client.pages.blog.react') }}

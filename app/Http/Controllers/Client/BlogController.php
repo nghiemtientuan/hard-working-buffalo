@@ -55,6 +55,8 @@ class BlogController extends Controller
                 'comments',
                 'comments.user',
                 'comments.user.file',
+                'selectedReact',
+                'reacts',
                 'user',
                 'user.file',
             ]);

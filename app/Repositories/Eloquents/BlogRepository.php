@@ -19,6 +19,7 @@ class BlogRepository extends EloquentRepository implements BlogRepositoryInterfa
     public function getBlogsPaginate()
     {
         return $this->_model->orderBy('created_at', 'DESC')
+            ->orderBy('id', 'DESC')
             ->paginate(config('constant.limit.blog'));
     }
 }
