@@ -33,10 +33,16 @@
                                 <img src="{{ userDefaultImage($blog->user->file) }}" class="rounded-circle w-50 panel-heading-avatar-image">
                             </div>
 
-                            <div class="panel-heading-name col-11">
+                            <div class="panel-heading-name col-10">
                                 <p class="panel-heading-name-username m-0">{{ $blog->user->username }}</p>
                                 <small><code class="panel-heading-name-time">{{ $blog->created_at }}</code></small>
                             </div>
+
+                            @if ($user && $blog->user_id == $user->id && $blog->user_type == $user->type)
+                                <div class="panel-heading-dropdown btnRemoveBlogDiv col-1">
+                                    <a href="#" class="btn btn-link btnRemoveBlog" data-blogId="{{ $blog->id }}"><em class="fas fa-trash"></em></a>
+                                </div>
+                            @endif
                         </div>
 
                         <div class="panel-body">{{ $blog->content }}</div>
@@ -146,9 +152,13 @@
                 <img src="#" class="rounded-circle w-50 panel-heading-avatar-image">
             </div>
 
-            <div class="panel-heading-name col-11">
+            <div class="panel-heading-name col-10">
                 <p class="panel-heading-name-username m-0"></p>
                 <small><code class="panel-heading-name-time"></code></small>
+            </div>
+
+            <div class="panel-heading-dropdown btnRemoveBlogDiv col-1">
+                <a href="#" class="btn btn-link btnRemoveBlog" data-blogId=""><em class="fas fa-trash"></em></a>
             </div>
         </div>
 

@@ -34,7 +34,7 @@ $(document).on('click', '#btnSeeMoreBlogs', function () {
                     } else {
                         $('#btnSeeMoreBlogs').attr('data-next_page_url', data.data.blogs.next_page_url);
                     }
-                    renderBlogList(data.data.blogs.data);
+                    renderBlogList(data.data.blogs.data, data.data.currentUser);
                 }
             },
         });
@@ -54,7 +54,7 @@ $('#blogAdd').on('click', '#btnSubmitNewPost', function () {
             data: {_token, content},
             success: function (data) {
                 if (data.code == STATUS_CODE.code_200) {
-                    let blogElement = renderBlogItem(data.data.blog);
+                    let blogElement = renderBlogItem(data.data.blog, true);
                     $('#blogsList').prepend(blogElement)
                     $('#blogAdd #newBlogContent').val('');
                 }
@@ -63,13 +63,18 @@ $('#blogAdd').on('click', '#btnSubmitNewPost', function () {
     }
 });
 
-function renderBlogList(blogs) {
-    let blogsElement = blogs.map(blog => renderBlogItem(blog));
+function renderBlogList(blogs, currentUser) {
+    let blogsElement = blogs.map(blog => {
+        let isDelete = false;
+        if (currentUser && blog.user_id === currentUser.id && blog.user_type === currentUser.type) isDelete = true;
+
+        return renderBlogItem(blog, isDelete);
+    });
 
     $('#blogsList').append(blogsElement);
 }
 
-function renderBlogItem(blog) {
+function renderBlogItem(blog, isDelete) {
     let blogElement = $('#blogItemExample').clone();
     blogElement.removeClass('d-none');
     blogElement.attr('id', 'blogItem_' + blog.id);
@@ -91,6 +96,12 @@ function renderBlogItem(blog) {
     );
     blogElement.find('.btn-seemore-comment').attr('data-blogId', blog.id);
     blogElement.find('.add-comments-btn').attr('data-blogId', blog.id);
+
+    if (isDelete) {
+        blogElement.find('.btnRemoveBlog').attr('data-blogId', blog.id);
+    } else {
+        blogElement.find('.btnRemoveBlogDiv').remove();
+    }
 
     let selectedReact = null;
     if (blog.selected_react.length) {
@@ -288,4 +299,20 @@ $(document).on('click', '.btnLikeHover .reaction', function () {
             }
         });
     }
+});
+
+$(document).on('click', '.btnRemoveBlogDiv .btnRemoveBlog', function () {
+    let blogId = $(this).attr('data-blogId');
+
+    $.ajax({
+        type: 'DELETE',
+        url: route('client.blogs.destroy', blogId),
+        cache: false,
+        data: {_token},
+        success: function (data) {
+            if (data.code == STATUS_CODE.code_200 && data.data.check == true) {
+                $('#blogItem_' + blogId).remove()
+            }
+        }
+    });
 });
