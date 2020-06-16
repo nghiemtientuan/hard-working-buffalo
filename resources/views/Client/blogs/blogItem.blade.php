@@ -15,7 +15,7 @@
 
                     <div class="panel-heading-name col-10">
                         <p class="panel-heading-name-username m-0">{{ $blog->user->username }}</p>
-                        <small><code class="panel-heading-name-time">{{ $blog->created_at }}</code></small>
+                        <small><code class="panel-heading-name-time">{{ getDateFormat($blog->created_at, config('constant.format.dmY')) }}</code></small>
                     </div>
 
                     @if ($user && $blog->user_id == $user->id && $blog->user_type == $user->type)

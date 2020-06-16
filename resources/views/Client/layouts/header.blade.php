@@ -59,18 +59,16 @@
                     <li class="dropdown dropdown-user">
                         <a class="dropdown-toggle" data-toggle="dropdown">
                             @if (Auth::guard('student')->check())
-                                {{ Auth::guard('student')->user()->username }}
                                 ( <span id="headerCoinNumber">{{ Auth::guard('student')->user()->coin }}</span> <i class="fa fa-gem"></i> )
-                                <img src="{{ userDefaultImage(Auth::guard('student')->user()->file) }}" class="rounded-circle w-50">
-                                <i class="caret"></i>
-                            @else
-                                {{ Auth::user()->username }}
-                                <img src="{{ userDefaultImage(Auth::user()->file) }}" class="rounded-circle w-50">
                             @endif
+
+                            <img src="{{ userDefaultImage(getCurrentUser()->file) }}" class="rounded-circle w-50">
+                            <i class="caret"></i>
                         </a>
 
                         @if (Auth::guard('student')->check())
                             <ul class="dropdown-menu dropdown-menu-right p-2 mt-20 width-250">
+                                <li>{{ trans('client.header.signed_in') }}: <span class="weight-600">{{ getCurrentUser()->username }}</span></li>
                                 <li><a class="color-black" href="{{ route('client.profile.index') }}"><em class="icon-user"></em> {{ trans('client.navbar.my_profile') }}</a></li>
                                 <li><a class="color-black" href="{{ route('client.timeline.index') }}"><em class="icon-clock-o"></em> {{ trans('client.navbar.timeline') }}</a></li>
                                 <li><a class="color-black" href="{{ route('client.target.index') }}"><em class="fas fa-crosshairs"></em> {{ trans('client.navbar.target') }}</a></li>

@@ -44,11 +44,11 @@
                                 </div>
 
                                 <div class="col-lg-3 d-flex">
-                                    {{ trans('client.pages.histories.from') }}: <input name="from_date" value="{{ array_key_exists('score', $filter) ? $filter['from_date'] : null }}" type="date" class="form-control">
+                                    {{ trans('client.pages.histories.from') }}: <input name="from_date" value="{{ array_key_exists('score', $filter) ? $filter['from_date'] : null }}" type="date" class="form-control ml-3">
                                 </div>
 
                                 <div class="col-lg-3 d-flex">
-                                    {{ trans('client.pages.histories.to') }}: <input name="to_date" value="{{ array_key_exists('score', $filter) ? $filter['to_date'] : null }}" type="date" class="form-control">
+                                    {{ trans('client.pages.histories.to') }}: <input name="to_date" value="{{ array_key_exists('score', $filter) ? $filter['to_date'] : null }}" type="date" class="form-control ml-3">
                                 </div>
 
                                 <div class="col-lg-2">
@@ -56,9 +56,9 @@
                                     <a href="{{ route('client.histories.index') }}" class="btn btn-danger"><i class="icon-remove"></i></a>
                                 </div>
 
-                                <div class="col-lg-4 d-flex text-left mt-10">
-                                    <label class="col-lg-3 p-0">{{ trans('client.pages.histories.student_name') }}</label>
-                                    <div class="col-lg-9 p-0">
+                                <div class="col-lg-10 d-flex text-left mt-10">
+                                    <label class="col-lg-2 p-0">{{ trans('client.pages.histories.student_name') }}</label>
+                                    <div class="col-lg-10 p-0">
                                         <input
                                             name="student_name"
                                             type="text"

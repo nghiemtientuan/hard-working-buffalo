@@ -131,3 +131,11 @@
 .border-radius-50 {
     border-radius: 50%;
 }
+
+.weight-600 {
+    font-weight: 600;
+}
+
+.color-black {
+    color: #000;
+}

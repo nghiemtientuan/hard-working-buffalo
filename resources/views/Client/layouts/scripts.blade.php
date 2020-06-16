@@ -15,6 +15,7 @@
 <script src="{{ asset('bower_components/assets/Client/js/sweetalert.min.js') }}"></script>
 <script src="{{ asset('bower_components/assets/Client/js/main.js') }}"></script>
 <script src="{{ asset('bower_components/assets/Common/js/toastr/toastr.min.js') }}"></script>
+<script src="{{ asset('bower_components/assets/Admin/js/plugins/ui/moment/moment.min.js') }}"></script>
 
 <script type="text/javascript" src="{{ asset(mix('js/common/helper.js')) }}"></script>
 <script type='text/javascript'>

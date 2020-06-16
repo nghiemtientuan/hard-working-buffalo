@@ -1,4 +1,32 @@
-var previewZoomButtonClasses = {
+const CONFIG = {
+    'reacts': {
+        1: '/images/reacts/like.gif',
+        2: '/images/reacts/love.gif',
+        3: '/images/reacts/haha.gif',
+        4: '/images/reacts/wow.gif',
+    },
+    'urlDefault': {
+        'urlProfile': '/images/common/profile.png'
+    },
+    'format': {
+        'dmY': 'DD/MM/YYYY'
+    }
+}
+
+const STATUS_CODE = {
+    'code_200': 200,
+    'code_400': 400,
+    'code_401': 401,
+    'code_402': 402,
+    'code_404': 404
+}
+
+const USER_TYPE = {
+    user: 'App\\Models\\User',
+    student: 'App\\Models\\Student'
+}
+
+const previewZoomButtonClasses = {
     toggleheader: 'btn btn-default btn-icon btn-xs btn-header-toggle',
     fullscreen: 'btn btn-default btn-icon btn-xs',
     borderless: 'btn btn-default btn-icon btn-xs',
@@ -6,7 +34,7 @@ var previewZoomButtonClasses = {
 };
 
 // Icons inside zoom modal classes
-var previewZoomButtonIcons = {
+const previewZoomButtonIcons = {
     prev: '<i class="icon-arrow-left32"></i>',
     next: '<i class="icon-arrow-right32"></i>',
     toggleheader: '<i class="icon-menu-open"></i>',
@@ -16,7 +44,7 @@ var previewZoomButtonIcons = {
 };
 
 // File actions
-var fileActionSettings = {
+const fileActionSettings = {
     zoomClass: 'btn btn-link btn-xs btn-icon',
     zoomIcon: '<i class="icon-zoomin3"></i>',
     dragClass: 'btn btn-link btn-xs btn-icon',
@@ -68,14 +96,6 @@ function randomString() {
     return Math.random().toString(36).substr(2, 10).toUpperCase();
 }
 
-const STATUS_CODE = {
-    'code_200': 200,
-    'code_400': 400,
-    'code_401': 401,
-    'code_402': 402,
-    'code_404': 404
-}
-
 //toasts config
 toastr.options.closeButton = true;
 toastr.options.preventDuplicates = true;
@@ -90,20 +110,10 @@ function userDefaultImage(file) {
     if (file) {
         return file.base_folder;
     } else {
-        return '/images/common/profile.png';
+        return CONFIG.urlDefault.urlProfile;
     }
 }
 
-const USER_TYPE = {
-    user: 'App\\Models\\User',
-    student: 'App\\Models\\Student'
-}
-
-const CONFIG = {
-    'reacts': {
-        1: '/images/reacts/like.gif',
-        2: '/images/reacts/love.gif',
-        3: '/images/reacts/haha.gif',
-        4: '/images/reacts/wow.gif',
-    }
+function getDateFormat(time, format) {
+    return moment(new Date(time)).format(format);
 }
