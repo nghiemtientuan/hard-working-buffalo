@@ -18,7 +18,7 @@
                 <div class="col-lg-12">
                     <div class="feature-1 border">
                         <div class="icon-wrapper bg-primary">
-                            <span class="flaticon-mortarboard text-white"></span>
+                            <span class="flaticon-diploma text-white"></span>
                         </div>
                         <div class="feature-1-content">
                             <table class="table table-bordered table-framed">

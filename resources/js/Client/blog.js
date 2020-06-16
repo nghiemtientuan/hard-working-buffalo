@@ -80,7 +80,7 @@ function renderBlogItem(blog, isDelete) {
     blogElement.attr('id', 'blogItem_' + blog.id);
     blogElement.find('.panel-heading-avatar-image').attr('src', userDefaultImage(blog.user.file));
     blogElement.find('.panel-heading-name-username').html(blog.user.username);
-    blogElement.find('.panel-heading-name-time').html(blog.created_at);
+    blogElement.find('.panel-heading-name-time').html(getDateFormat(blog.created_at, CONFIG.format.dmY));
     blogElement.find('.panel-body').html(blog.content);
     blogElement.find('.panel-reactionList-totalComment').html(blog.comments.length);
     blogElement.find('.panel-reactionList-totalComment').html(blog.comments.length);

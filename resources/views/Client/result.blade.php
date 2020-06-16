@@ -53,7 +53,7 @@
                 <div class="col-lg-12">
                     <div class="feature-1 border">
                         <div class="icon-wrapper bg-primary">
-                            <span class="icon-book text-white"></span>
+                            <span class="flaticon-books-1 text-white"></span>
                         </div>
                         <div class="feature-1-content text-left pl-1 pr-1 pb-0">
                             @if ($history->test->is_show_answer == \App\Models\Test::IS_SHOW_ANSWER_FALSE)

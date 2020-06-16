@@ -66,6 +66,9 @@ return [
         4 => '/images/slides/slide4.png',
         5 => '/images/slides/slide5.png',
     ],
+    'format' => [
+        'dmY' => 'd/m/Y',
+    ],
     'scoreTest' => [
         'total_formula' => 990,
         'total_not_formula' => 100,

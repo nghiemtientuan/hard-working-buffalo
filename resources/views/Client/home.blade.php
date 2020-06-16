@@ -19,7 +19,7 @@
                     <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
                         <div class="feature-1 border">
                             <div class="icon-wrapper bg-primary">
-                                <span class="flaticon-mortarboard text-white"></span>
+                                <span class="flaticon-diploma text-white"></span>
                             </div>
                             <div class="feature-1-content">
                                 <h2>{{ $category->name }}</h2>
@@ -53,7 +53,9 @@
                             <div class="course-1-item">
                                 <figure class="thumnail">
                                     <div class="price">{{ trans('client.pages.home.free') }}</div>
-                                    <div class="category"><h3>{{ $test->created_at }}</h3></div>
+                                    <div class="category">
+                                        <h3>{{ getDateFormat($test->created_at, config('constant.format.dmY')) }}</h3>
+                                    </div>
                                 </figure>
                                 <div class="course-1-content pb-4">
                                     <h2>({{ $test->code }}) {{ $test->name }}</h2>
@@ -88,7 +90,9 @@
                                     @if ($test->price == 0)
                                         <div class="price">{{ trans('client.pages.home.free') }}</div>
                                     @endif
-                                    <div class="category"><h3>{{ $test->created_at }}</h3></div>
+                                    <div class="category">
+                                        <h3>{{ getDateFormat($test->created_at, config('constant.format.dmY')) }}</h3>
+                                    </div>
                                 </figure>
                                 <div class="course-1-content pb-4">
                                     <h2>({{ $test->code }}) {{ $test->name }}</h2>
