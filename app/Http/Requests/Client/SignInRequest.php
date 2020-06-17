@@ -23,6 +23,8 @@ class SignInRequest extends FormRequest
      */
     public function rules()
     {
+        session()->flash('email', $this->email);
+
         return [
             'email' => 'required|email|min:6|max:25|unique:students,email',
             'password' => 'required|min:6|max:25',

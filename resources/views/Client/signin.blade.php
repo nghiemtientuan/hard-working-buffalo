@@ -17,7 +17,7 @@
                         <div class="row">
                             <div class="col-md-12 form-group">
                                 <label for="username">{{ trans('client.pages.signin.email') }}</label>
-                                <input name="email" type="email" id="email" class="form-control form-control-lg" required>
+                                <input name="email" type="email" value="@if (session()->has('email')) {{ session()->get('email') }} @endif" id="email" class="form-control form-control-lg" required>
                             </div>
                             <div class="col-md-12 form-group">
                                 <label for="password">{{ trans('client.pages.signin.password') }}</label>

@@ -17,12 +17,15 @@
             <li class="{{ request()->is('histories') ? 'active' : '' }}">
                 <a href="{{ route('client.histories.index') }}" class="nav-link text-left pl-10 pr-10">{{ trans('client.navbar.list.histories') }}</a>
             </li>
-            <li class="{{ request()->is('calendars') ? 'active' : '' }}">
-                <a href="{{ route('client.calendars.index') }}" class="nav-link text-left pl-10 pr-10">{{ trans('client.navbar.list.calendar') }}</a>
-            </li>
-            <li class="{{ request()->is('statistic/*') ? 'active' : '' }}">
-                <a href="{{ route('client.statistic.index') }}" class="nav-link text-left pl-10 pr-10">{{ trans('client.navbar.list.statistic') }}</a>
-            </li>
+
+            @if (Auth::guard('student')->check())
+                <li class="{{ request()->is('calendars') ? 'active' : '' }}">
+                    <a href="{{ route('client.calendars.index') }}" class="nav-link text-left pl-10 pr-10">{{ trans('client.navbar.list.calendar') }}</a>
+                </li>
+                <li class="{{ request()->is('statistic/*') ? 'active' : '' }}">
+                    <a href="{{ route('client.statistic.index') }}" class="nav-link text-left pl-10 pr-10">{{ trans('client.navbar.list.statistic') }}</a>
+                </li>
+            @endif
         @endif
         <li class="{{ request()->is('ranking') ? 'active' : '' }}">
             <a href="{{ route('client.ranking.index') }}" class="nav-link text-left pl-10 pr-10">{{ trans('client.navbar.list.ranking') }}</a>
