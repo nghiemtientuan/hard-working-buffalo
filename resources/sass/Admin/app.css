@@ -1,0 +1,43 @@
+.category-image {
+    width: 200px;
+}
+
+.cate-image-maxHeight {
+    max-height: 35px !important;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+
+.user-image-list {
+    width: 90px;
+    border-radius: 50%;
+}
+
+.user-image-detail {
+    width: 200px;
+    border-radius: 50%;
+}
+
+.question-image-list {
+    width: 90px;
+}
+
+.navbar-header #logoNavbar{
+    height: 100%;
+}
+
+.thumbnail #image-profile {
+    width: 200px;
+}
+
+.image_question {
+    width: 100px;
+}
+
+.pl-40 {
+    padding-left: 40px;
+}
+
+.pr-10 {
+    padding-right: 10px;
+}
