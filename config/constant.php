@@ -68,6 +68,7 @@ return [
     ],
     'format' => [
         'dmY' => 'd/m/Y',
+        'hmdmY' => 'H:i d/m/Y',
     ],
     'scoreTest' => [
         'total_formula' => 990,

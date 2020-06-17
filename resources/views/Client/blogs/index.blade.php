@@ -7,23 +7,30 @@
 
     <div class="site-section pb-0 pt-30">
         <div class="container">
-            <div id="blogAdd">
-                <div class="panel">
-                    <div class="panel-heading d-flex">
-                        <div class="panel-heading-avatar col-1">
-                            <img src="{{ userDefaultImage(getCurrentUser()->file) }}" class="rounded-circle w-50">
+            @if ($user)
+                <div id="blogAdd">
+                    <div class="panel">
+                        <div class="panel-heading d-flex">
+                            <div class="panel-heading-avatar col-1">
+                                <img src="{{ userDefaultImage($user->file) }}" class="rounded-circle w-50">
+                            </div>
+
+                            <div class="panel-heading-content col-11 p-0">
+                                <textarea id="newBlogContent" cols="60" rows="4" class="form-control"></textarea>
+                            </div>
                         </div>
 
-                        <div class="panel-heading-content col-11 p-0">
-                            <textarea id="newBlogContent" cols="60" rows="4" class="form-control"></textarea>
+                        <div class="mt-20">
+                            <button id="btnSubmitNewPost" class="btn btn-primary w-100">{{ trans('client.pages.post') }}</button>
                         </div>
-                    </div>
-
-                    <div class="mt-20">
-                        <button id="btnSubmitNewPost" class="btn btn-primary w-100">{{ trans('client.pages.post') }}</button>
                     </div>
                 </div>
-            </div>
+            @else
+                <div class="panel text-center">
+                    <div>{{ trans('client.pages.blog.pls_login') }}</div>
+                    <a href="{{ route('client.login') }}" class="btn btn-link">{{ trans('client.pages.blog.login') }}</a>
+                </div>
+            @endif
 
             <div id="blogsList">
                 @foreach ($blogs as $blog)
@@ -81,26 +88,29 @@
                                             <img class="btnClickLike--img" src="{{ config('constant.reacts')[$selectedReact] }}">
                                         @endif
                                     </span> {{ trans('client.pages.blog.react') }}
-                                    <div class="reactionsBlog-lists">
-                                        <ol>
-                                            @foreach (config('constant.reacts') as $keyReact => $reactUrl)
-                                                <li>
-                                                    <div class="reactionsBlog-item reactionsBlog-item-{{ $keyReact }} d-flex flex-column align-items-center justify-content-center">
-                                                        <span
-                                                            class="reactionsBlog-item--content reaction"
-                                                            data-reactionId="{{ $keyReact }}"
-                                                            data-reactSelected="{{ $selectedReact }}"
-                                                            data-blogId="{{ $blog->id }}"
-                                                        >
-                                                            <img class="reactionsBlog-item--content--img" src="{{ $reactUrl }}">
-                                                        </span>
 
-                                                        <span class="dot-active mt-auto @if ($selectedReact != $keyReact) d-none @endif"></span>
-                                                    </div>
-                                                </li>
-                                            @endforeach
-                                        </ol>
-                                    </div>
+                                    @if ($user)
+                                        <div class="reactionsBlog-lists">
+                                            <ol>
+                                                @foreach (config('constant.reacts') as $keyReact => $reactUrl)
+                                                    <li>
+                                                        <div class="reactionsBlog-item reactionsBlog-item-{{ $keyReact }} d-flex flex-column align-items-center justify-content-center">
+                                                            <span
+                                                                class="reactionsBlog-item--content reaction"
+                                                                data-reactionId="{{ $keyReact }}"
+                                                                data-reactSelected="{{ $selectedReact }}"
+                                                                data-blogId="{{ $blog->id }}"
+                                                            >
+                                                                <img class="reactionsBlog-item--content--img" src="{{ $reactUrl }}">
+                                                            </span>
+
+                                                            <span class="dot-active mt-auto @if ($selectedReact != $keyReact) d-none @endif"></span>
+                                                        </div>
+                                                    </li>
+                                                @endforeach
+                                            </ol>
+                                        </div>
+                                    @endif
                                 </button>
                             </div>
                             <div class="col-6 p-0">
@@ -125,15 +135,17 @@
 
                         <div class="list-comments"></div>
 
-                        <div class="add-comments d-none">
-                            <div class="col-10 p-0 mr-5 mt-10">
-                                <textarea class="form-control add-comments-content" cols="30" rows="3"></textarea>
-                            </div>
+                        @if ($user)
+                            <div class="add-comments d-none">
+                                <div class="col-10 p-0 mr-5 mt-10">
+                                    <textarea class="form-control add-comments-content" cols="30" rows="3"></textarea>
+                                </div>
 
-                            <div class="col-2 p-0 mt-10">
-                                <button class="btn btn-primary w-100 add-comments-btn" data-blogId="{{ $blog->id }}">{{ trans('client.pages.send') }}</button>
+                                <div class="col-2 p-0 mt-10">
+                                    <button class="btn btn-primary w-100 add-comments-btn" data-blogId="{{ $blog->id }}">{{ trans('client.pages.send') }}</button>
+                                </div>
                             </div>
-                        </div>
+                        @endif
                     </div>
                 @endforeach
             </div>
@@ -192,24 +204,27 @@
                     <span class="btnClickLike">
                         <em class="fa fa-thumbs-up"></em>
                     </span> {{ trans('client.pages.blog.react') }}
-                    <div class="reactionsBlog-lists">
-                        <ol>
-                            @foreach (config('constant.reacts') as $keyReact => $reactUrl)
-                                <li>
-                                    <div class="reactionsBlog-item reactionsBlog-item-{{ $keyReact }} d-flex flex-column align-items-center justify-content-center">
-                                        <span
-                                            class="reactionsBlog-item--content reaction"
-                                            data-reactionId="{{ $keyReact }}"
-                                        >
-                                            <img class="reactionsBlog-item--content--img" src="{{ $reactUrl }}">
-                                        </span>
 
-                                        <span class="dot-active mt-auto"></span>
-                                    </div>
-                                </li>
-                            @endforeach
-                        </ol>
-                    </div>
+                    @if ($user)
+                        <div class="reactionsBlog-lists">
+                            <ol>
+                                @foreach (config('constant.reacts') as $keyReact => $reactUrl)
+                                    <li>
+                                        <div class="reactionsBlog-item reactionsBlog-item-{{ $keyReact }} d-flex flex-column align-items-center justify-content-center">
+                                            <span
+                                                class="reactionsBlog-item--content reaction"
+                                                data-reactionId="{{ $keyReact }}"
+                                            >
+                                                <img class="reactionsBlog-item--content--img" src="{{ $reactUrl }}">
+                                            </span>
+
+                                            <span class="dot-active mt-auto"></span>
+                                        </div>
+                                    </li>
+                                @endforeach
+                            </ol>
+                        </div>
+                    @endif
                 </button>
             </div>
             <div class="col-6 p-0">
@@ -226,15 +241,17 @@
 
         <div class="list-comments"></div>
 
-        <div class="add-comments d-none">
-            <div class="col-10 p-0 mr-5 mt-10">
-                <textarea class="form-control add-comments-content" cols="30" rows="3"></textarea>
-            </div>
+        @if ($user)
+            <div class="add-comments d-none">
+                <div class="col-10 p-0 mr-5 mt-10">
+                    <textarea class="form-control add-comments-content" cols="30" rows="3"></textarea>
+                </div>
 
-            <div class="col-2 p-0 mt-10">
-                <button class="btn btn-primary w-100 add-comments-btn" data-blogId="">{{ trans('client.pages.send') }}</button>
+                <div class="col-2 p-0 mt-10">
+                    <button class="btn btn-primary w-100 add-comments-btn" data-blogId="">{{ trans('client.pages.send') }}</button>
+                </div>
             </div>
-        </div>
+        @endif
     </div>
 
     <div id="commentItemExample" class="d-none mt-10">

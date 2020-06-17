@@ -26,6 +26,7 @@ $(document).on('click', '#btnSeeMoreBlogs', function () {
             type: 'GET',
             url: nextPage,
             cache: false,
+            data: {_token},
             success: function (data) {
                 if (data.code == STATUS_CODE.code_200) {
                     if (data.data.blogs.current_page == data.data.blogs.last_page) {
@@ -153,6 +154,7 @@ $(document).on('click', '.btnClickComment', function () {
             type: 'GET',
             url: urlLastPageComment,
             cache: false,
+            data: {_token},
             success: function (data) {
                 if (data.code == STATUS_CODE.code_200) {
                     $('#blogItem_' + blogId + ' .list-comments').html('');
@@ -176,7 +178,7 @@ function renderCommentAndNext(blogId, comments, currentUser, isAddFirst) {
 
 function renderCommentList(currentUser, comments, blogId, isAddFirst) {
     let commentsElement = comments.map(comment => {
-        if (currentUser.id == comment.user_id && currentUser.type == comment.user_type) {
+        if (currentUser && currentUser.id == comment.user_id && currentUser.type == comment.user_type) {
             return renderCommentItem(blogId, comment, true);
         } else {
             return renderCommentItem(blogId, comment, false);
@@ -217,6 +219,7 @@ $(document).on('click', '.btn-seemore-comment', function (e) {
             type: 'GET',
             url: prev_page_url,
             cache: false,
+            data: {_token},
             success: function (data) {
                 if (data.code == STATUS_CODE.code_200) {
                     renderCommentAndNext(blogId, data.data.comments, data.data.currentUser, true);

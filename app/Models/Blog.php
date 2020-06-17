@@ -49,8 +49,8 @@ class Blog extends Model
     {
         $user = getCurrentUser();
 
-        return $this->reacts()->where(ReactBlog::USER_TYPE_FIELD, $user->type)
-            ->where(ReactBlog::USER_ID_FIELD, $user->id);
+        return $this->reacts()->where(ReactBlog::USER_TYPE_FIELD, $user ? $user->type : null)
+            ->where(ReactBlog::USER_ID_FIELD, $user ? $user->id : null);
     }
 
     public function user()
