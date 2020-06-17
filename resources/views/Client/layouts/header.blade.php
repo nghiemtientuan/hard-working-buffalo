@@ -66,18 +66,18 @@
                             <i class="caret"></i>
                         </a>
 
-                        @if (Auth::guard('student')->check())
-                            <ul class="dropdown-menu dropdown-menu-right p-2 mt-20 width-250">
-                                <li>{{ trans('client.header.signed_in') }}: <span class="weight-600">{{ getCurrentUser()->username }}</span></li>
+                        <ul class="dropdown-menu dropdown-menu-right p-2 mt-20 width-250">
+                            <li>{{ trans('client.header.signed_in') }}: <span class="weight-600">{{ getCurrentUser()->username }}</span></li>
+                            @if (Auth::guard('student')->check())
                                 <li><a class="color-black" href="{{ route('client.profile.index') }}"><em class="icon-user"></em> {{ trans('client.navbar.my_profile') }}</a></li>
                                 <li><a class="color-black" href="{{ route('client.timeline.index') }}"><em class="icon-clock-o"></em> {{ trans('client.navbar.timeline') }}</a></li>
                                 <li><a class="color-black" href="{{ route('client.target.index') }}"><em class="fas fa-crosshairs"></em> {{ trans('client.navbar.target') }}</a></li>
                                 <li><a class="color-black" href="{{ route('client.payments.index') }}"><em class="icon-payment"></em> {{ trans('client.navbar.payment') }}</a></li>
-                                <li><a class="color-black" href="{{ route('client.changePass.show') }}"><em class="icon-sync"></em> {{ trans('client.navbar.change_password') }}</a></li>
-                                <li><a class="color-black" href="{{ route('client.guideline.index') }}"><em class="fas fa-book"></em> {{ trans('client.navbar.guideline') }}</a></li>
-                                <li><a class="color-black" href="{{ config('constant.links.link_feedback') }}" target="_blank"><em class="fas fa-comment-dots"></em> {{ trans('client.navbar.feedback') }}</a></li>
-                            </ul>
-                        @endif
+                            @endif
+                            <li><a class="color-black" href="{{ route('client.changePass.show') }}"><em class="icon-sync"></em> {{ trans('client.navbar.change_password') }}</a></li>
+                            <li><a class="color-black" href="{{ route('client.guideline.index') }}"><em class="fas fa-book"></em> {{ trans('client.navbar.guideline') }}</a></li>
+                            <li><a class="color-black" href="{{ config('constant.links.link_feedback') }}" target="_blank"><em class="fas fa-comment-dots"></em> {{ trans('client.navbar.feedback') }}</a></li>
+                        </ul>
                     </li>
                 @endif
             </ul>
