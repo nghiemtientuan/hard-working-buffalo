@@ -87,7 +87,7 @@
                                             <td><a href="{{ route('client.histories.show', $history->id) }}">{{ $history->test->name }}</a></td>
                                             <td><a href="{{ route('client.histories.show', $history->id) }}">0</a></td>
                                             <td><a href="{{ route('client.histories.show', $history->id) }}">{{ $history->score }}</a></td>
-                                            <td><a href="{{ route('client.histories.show', $history->id) }}">{{ $history->created_at }}</a></td>
+                                            <td>{{ getDateFormat($history->created_at, config('constant.format.hmdmY')) }}</td>
                                         </tr>
                                     @endforeach
 

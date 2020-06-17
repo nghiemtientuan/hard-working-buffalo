@@ -75,6 +75,7 @@ return [
             'about_our_website' => 'About Our Website',
             'right_about_our_website' => 'Buffalo là một nơi cho phép mọi người có thể rèn luyện kĩ năng của mình, cùng nhau thảo luận các vấn đề liên quan đến tiếng Anh. Chúng tôi luôn đồng hành cùng mục tiêu của các bạn, luôn lắng nghe và tạo ra các sản phẩm đem lại giá trị tốt đẹp cho cộng đồng. Cùng nhau chúng ta sẽ đạt được mục tiêu của mỗi người.',
             'new_test' => 'New test',
+            'detail_test' => 'Detail',
             'subscribe_to_us' => 'Subscribe to us',
             'below_subscribe' => 'Buffalo',
             'enter_mail' => 'Enter mail',
@@ -208,6 +209,8 @@ return [
             'blogTitle' => 'Blog',
             'react' => 'React',
             'comments' => 'Comments',
+            'pls_login' => 'Please login to see more post, create post, comment and react.',
+            'login' => 'Login',
         ],
         'guideline' => [
             'guidelineTitle' => 'Guideline',

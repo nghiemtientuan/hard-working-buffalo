@@ -38,56 +38,78 @@ Route::group([
     Route::get('categories/{categoryId}', 'CategoryController@show')->name('categories.show');
 
     Route::group(['middleware' => ['checkClientAdminLogin']], function () {
-        Route::post('tests/buy', 'TestController@buy')->name('tests.buy');
+        Route::group(['prefix' => 'tests', 'as' => 'tests.'], function () {
+            Route::post('buy', 'TestController@buy')->name('buy');
 
-        Route::get('tests/{testId}', 'TestController@test')->name('tests.test');
-        Route::post('tests/{testId}', 'TestController@result')->middleware('testedAttendance')->name('tests.result');
+            Route::group(['prefix' => '{testId}'], function () {
+                Route::get('/', 'TestController@test')->name('test');
+                Route::post('/', 'TestController@result')->middleware('testedAttendance')->name('result');
+            });
 
-        Route::post('tests/{historyId}/evaluation', 'TestController@evaluation')->name('tests.evaluation');
+            Route::post('{historyId}/evaluation', 'TestController@evaluation')->name('evaluation');
+        });
 
-        Route::get('histories', 'HistoryController@index')->name('histories.index');
-        Route::get('histories/{historyId}', 'HistoryController@show')
-            ->middleware('checkOwnerHistory')
-            ->name('histories.show');
+        Route::group(['prefix' => 'histories'], function () {
+            Route::get('/', 'HistoryController@index')->name('histories.index');
+            Route::get('{historyId}', 'HistoryController@show')
+                ->middleware('checkOwnerHistory')
+                ->name('histories.show');
+        });
+
+        Route::get('timeline', 'StudentController@timeline')->middleware('checkStudentRole')->name('timeline.index');
+
+        Route::group(['prefix' => 'profile', 'as' => 'profile.'], function () {
+            Route::get('/', 'StudentController@profile')->middleware('checkStudentRole')->name('index');
+            Route::get('edit', 'StudentController@editProfile')->name('edit');
+            Route::post('update', 'StudentController@updateProfile')->name('update');
+        });
+
+        Route::group(['prefix' => 'api', 'as' => 'api.'], function () {
+            Route::group(['prefix' => 'questions', 'as' => 'questions.'], function () {
+                Route::get('{questionId}/comments', 'TestController@getComments')->name('getComments');
+
+                Route::post('{questionId}/comments/add', 'TestController@addComment')->name('addComment');
+
+                Route::delete('comments/{commentId}', 'TestController@deleteComment')->name('deleteComment');
+            });
+        });
+
+        Route::group(['prefix' => 'calendars', 'as' => 'calendars.'], function () {
+            Route::get('/', 'CalendarController@index')->name('index');
+            Route::get('events', 'CalendarController@getEvent')->name('getEvent');
+        });
+
+        Route::group(['prefix' => 'statistic', 'as' => 'statistic.'], function () {
+            Route::get('index', 'StatisticController@index')->name('index');
+            Route::get('search', 'StatisticController@search')->name('search');
+            Route::get('target', 'StatisticController@target')->name('target');
+        });
+
+        Route::group(['prefix' => 'target', 'as' => 'target.'], function () {
+            Route::get('index', 'StudentController@getTarget')->name('index');
+            Route::post('update', 'StudentController@updateTarget')->name('update');
+        });
+
+        Route::group([
+            'as' => 'payments.',
+            'prefix' => 'payments',
+        ], function () {
+            Route::get('/', 'PaymentController@index')->name('index');
+
+            Route::get('exchange', 'PaymentController@exchange')->name('exchange');
+            Route::post('exchange', 'PaymentController@postExchange')->name('postExchange');
+
+            Route::get('momo/success', 'PaymentController@getSuccessMomo')->name('momo.getSuccess');
+        });
+
+        Route::get('guideline', 'GuidelineController@index')->name('guideline.index');
     });
 
-    Route::get('ranking', 'RankingController@index')->name('ranking.index');
-    Route::post('ranking/reaction', 'RankingController@reaction')->name('ranking.reaction');
-
-    Route::get('timeline', 'StudentController@timeline')->middleware('checkStudentRole')->name('timeline.index');
-
-    Route::get('profile', 'StudentController@profile')->middleware('checkStudentRole')->name('profile.index');
-    Route::get('profile/edit', 'StudentController@editProfile')->name('profile.edit');
-    Route::post('profile/update', 'StudentController@updateProfile')->name('profile.update');
-
-    Route::group(['prefix' => 'api', 'as' => 'api.'], function () {
-        Route::get('questions/{questionId}/comments', 'TestController@getComments')->name('questions.getComments');
-
-        Route::post('questions/{questionId}/comments/add', 'TestController@addComment')->name('questions.addComment');
-
-        Route::delete('questions/comments/{commentId}', 'TestController@deleteComment')->name('questions.deleteComment');
-    });
-
-    Route::get('calendars', 'CalendarController@index')->name('calendars.index');
-    Route::get('calendars/events', 'CalendarController@getEvent')->name('calendars.getEvent');
-
-    Route::get('statistic/index', 'StatisticController@index')->name('statistic.index');
-    Route::get('statistic/search', 'StatisticController@search')->name('statistic.search');
-    Route::get('statistic/target', 'StatisticController@target')->name('statistic.target');
-
-    Route::get('target/index', 'StudentController@getTarget')->name('target.index');
-    Route::post('target/update', 'StudentController@updateTarget')->name('target.update');
-
-    Route::group([
-        'as' => 'payments.',
-        'prefix' => 'payments',
-    ], function () {
-        Route::get('/', 'PaymentController@index')->name('index');
-
-        Route::get('exchange', 'PaymentController@exchange')->name('exchange');
-        Route::post('exchange', 'PaymentController@postExchange')->name('postExchange');
-
-        Route::get('momo/success', 'PaymentController@getSuccessMomo')->name('momo.getSuccess');
+    Route::group(['prefix' => 'ranking', 'as' => 'ranking.'], function () {
+        Route::get('ranking', 'RankingController@index')->name('index');
+        Route::post('ranking/reaction', 'RankingController@reaction')
+            ->middleware('checkClientAdminLogin')
+            ->name('reaction');
     });
 
     Route::group([
@@ -95,20 +117,23 @@ Route::group([
         'prefix' => 'blogs',
     ], function () {
         Route::get('/', 'BlogController@index')->name('index');
-        Route::post('/', 'BlogController@store')->name('store');
+        Route::post('/', 'BlogController@store')->middleware('checkClientAdminLogin')->name('store');
 
         Route::get('data', 'BlogController@dataBlog')->name('dataBlog');
 
-        Route::get('{blogId}', 'BlogController@show')->name('show');
-        Route::delete('{blogId}', 'BlogController@destroy')->name('destroy');
-        Route::post('{blogId}/reaction', 'BlogController@reaction')->name('reaction');
+        Route::group(['prefix' => '{blogId}'], function () {
+            Route::get('/', 'BlogController@show')->name('show');
+            Route::get('dataComments', 'BlogController@dataComments')->name('dataComments');
 
-        Route::post('{blogId}/addComment', 'BlogController@addComment')->name('addComment');
-        Route::delete('deleteComment/{commentId}', 'BlogController@deleteComment')->name('deleteComment');
-        Route::get('{blogId}/dataComments', 'BlogController@dataComments')->name('dataComments');
+            Route::group(['middleware' => 'checkClientAdminLogin'], function () {
+                Route::delete('/', 'BlogController@destroy')->name('destroy');
+                Route::post('reaction', 'BlogController@reaction')->name('reaction');
+
+                Route::post('addComment', 'BlogController@addComment')->name('addComment');
+                Route::delete('{commentId}', 'BlogController@deleteComment')->name('deleteComment');
+            });
+        });
     });
-
-    Route::get('guideline', 'GuidelineController@index')->name('guideline.index');
 
     Route::get('not_found', 'NotFoundController@index')->name('notFound');
 });
