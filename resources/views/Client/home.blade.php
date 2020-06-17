@@ -59,8 +59,14 @@
                                 </figure>
                                 <div class="course-1-content pb-4">
                                     <h2>({{ $test->code }}) {{ $test->name }}</h2>
-                                    <p><a href="#"
-                                          class="btn btn-primary rounded-0 px-4">{{ trans('client.pages.home.test_now') }}</a>
+                                    <p>
+                                        <a
+                                            href="{{ route('client.categories.show', [
+                                                'categoryId' => $test->category->id,
+                                                'testId' => $test->id,
+                                            ]) }}"
+                                            class="btn btn-primary rounded-0 px-4"
+                                        >{{ trans('client.pages.home.test_now') }}</a>
                                     </p>
                                 </div>
                             </div>
@@ -96,8 +102,14 @@
                                 </figure>
                                 <div class="course-1-content pb-4">
                                     <h2>({{ $test->code }}) {{ $test->name }}</h2>
-                                    <p><a href="#"
-                                          class="btn btn-primary rounded-0 px-4">{{ trans('client.pages.home.test_now') }}</a>
+                                    <p>
+                                        <a
+                                            href="{{ route('client.categories.show', [
+                                                'categoryId' => $test->category->id,
+                                                'testId' => $test->id,
+                                            ]) }}"
+                                            class="btn btn-primary rounded-0 px-4"
+                                        >{{ trans('client.pages.home.detail_test') }}</a>
                                     </p>
                                 </div>
                             </div>

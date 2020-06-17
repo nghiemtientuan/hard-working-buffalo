@@ -20,7 +20,7 @@ class CategoryController extends Controller
         $this->categoryRepository = $categoryRepository;
     }
 
-    public function show($categoryId)
+    public function show(Request $request, $categoryId)
     {
         $category = $this->categoryRepository->find($categoryId);
         if ($category) {
@@ -29,7 +29,7 @@ class CategoryController extends Controller
                 if (Auth::guard('student')->check()) {
                     $studentId = Auth::guard('student')->user()->id;
                 }
-                $tests = $this->categoryRepository->getTestsInCateByStudent($categoryId, $studentId);
+                $tests = $this->categoryRepository->getTestsInCateByStudent($categoryId, $studentId, $request->testId);
 
                 return view('Client.listTests', compact('category', 'tests'));
             } else {
