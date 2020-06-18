@@ -106,8 +106,8 @@ Route::group([
     });
 
     Route::group(['prefix' => 'ranking', 'as' => 'ranking.'], function () {
-        Route::get('ranking', 'RankingController@index')->name('index');
-        Route::post('ranking/reaction', 'RankingController@reaction')
+        Route::get('/', 'RankingController@index')->name('index');
+        Route::post('reaction', 'RankingController@reaction')
             ->middleware('checkClientAdminLogin')
             ->name('reaction');
     });

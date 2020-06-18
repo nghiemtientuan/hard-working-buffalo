@@ -88,6 +88,7 @@ return [
             'free' => 'Free',
             'new' => 'New',
             'buy' => 'Buy',
+            'login' => 'Login',
         ],
         'tests' => [
             'buffalo_tests' => 'Buffalo tests in ',

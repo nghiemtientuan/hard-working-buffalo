@@ -4,6 +4,40 @@ let timeIntervalGlobal;
 let duration = localStorage.getItem('duration_test_' + testId) || 0;
 let time_in_minutes = execute_time - duration / 60;
 let userAnswerSaveArrays = JSON.parse(localStorage.getItem('userAnswer_' + testId)) || [];
+
+//disable copy text content
+let clearTrans = null;
+document.oncontextmenu = document.body.oncontextmenu = function() { return false; }
+
+document.onselectstart= function() {
+    if (clearTrans) {
+        clearInterval(clearTrans);
+    }
+    let count = 0;
+
+    clearTrans = setInterval(function () {
+        $('#eJOY__extension_root').remove();
+        $('#gtx-trans').remove();
+        $('.ddict_btn').remove();
+        $('.ddict_div').remove();
+
+        count++;
+        if (count >= 400) {
+            clearInterval(clearTrans);
+        }
+    }, 10);
+};
+
+document.onkeydown = disableSelectCopy;
+
+function disableSelectCopy(e) {
+    var pressedKey = String.fromCharCode(e.keyCode).toLowerCase();
+    if (e.ctrlKey && (pressedKey == "c" || pressedKey == "x" || pressedKey == "v" || pressedKey == "a")) {
+        return false;
+    }
+}
+
+//save answer user
 userAnswerSaveArrays.map(userAnswer => {
     $('input[name=' + userAnswer.name + '][value=' + userAnswer.value + ']').attr('checked', 'checked');
     $(userAnswer.hightlightQuestionId).addClass('bgc-Dddddd');
