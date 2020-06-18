@@ -31,6 +31,12 @@ class FileSeeder extends Seeder
                 File::TYPE_FIELD => File::TYPE_CATEGORY,
             ],
         ];
+        foreach (config('constant.profile_students') as $itemUrl) {
+            File::create([
+                File::BASE_FOLDER_FIELD => $itemUrl,
+                File::TYPE_FIELD => File::TYPE_STUDENT,
+            ]);
+        }
         foreach ($data as $item) {
             File::create($item);
         }
