@@ -47,6 +47,6 @@ class Category extends Model
 
     public function tests()
     {
-        return $this->hasMany(Test::class, 'id', Test::CATEGORY_ID_FIELD);
+        return $this->hasMany(Test::class, Test::CATEGORY_ID_FIELD, 'id');
     }
 }

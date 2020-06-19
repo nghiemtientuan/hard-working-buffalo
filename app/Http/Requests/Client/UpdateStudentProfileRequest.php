@@ -31,6 +31,7 @@ class UpdateStudentProfileRequest extends FormRequest
             'address' => 'required|min:1|max:50',
             'phone' => 'required|min:10|max:10',
             'description' => 'required|min:1|max:200',
+            'file_id' => 'required|numeric|min:1|max:46',
         ];
     }
 
@@ -61,6 +62,10 @@ class UpdateStudentProfileRequest extends FormRequest
             'description.required' => trans('client.validations.editProfile.description_require'),
             'description.min' => trans('client.validations.editProfile.description_min', ['min' => 1]),
             'description.max' => trans('client.validations.editProfile.description_max', ['max' => 200]),
+            'file_id.required' => trans('client.validations.editProfile.file_error'),
+            'file_id.numeric' => trans('client.validations.editProfile.file_error'),
+            'file_id.min' => trans('client.validations.editProfile.file_error'),
+            'file_id.max' => trans('client.validations.editProfile.file_error'),
         ];
     }
 }

@@ -41,7 +41,7 @@ Route::group([
         Route::group(['prefix' => 'tests', 'as' => 'tests.'], function () {
             Route::post('buy', 'TestController@buy')->name('buy');
 
-            Route::group(['prefix' => '{testId}'], function () {
+            Route::group(['prefix' => '{testId}', 'middleware' => ['checkStudentBuyTest']], function () {
                 Route::get('/', 'TestController@test')->name('test');
                 Route::post('/', 'TestController@result')->middleware('testedAttendance')->name('result');
             });
@@ -58,8 +58,8 @@ Route::group([
 
         Route::get('timeline', 'StudentController@timeline')->middleware('checkStudentRole')->name('timeline.index');
 
-        Route::group(['prefix' => 'profile', 'as' => 'profile.'], function () {
-            Route::get('/', 'StudentController@profile')->middleware('checkStudentRole')->name('index');
+        Route::group(['prefix' => 'profile', 'as' => 'profile.', 'middleware' => 'checkStudentRole'], function () {
+            Route::get('/', 'StudentController@profile')->name('index');
             Route::get('edit', 'StudentController@editProfile')->name('edit');
             Route::post('update', 'StudentController@updateProfile')->name('update');
         });
@@ -74,18 +74,18 @@ Route::group([
             });
         });
 
-        Route::group(['prefix' => 'calendars', 'as' => 'calendars.'], function () {
+        Route::group(['prefix' => 'calendars', 'as' => 'calendars.', 'middleware' => 'checkStudentRole'], function () {
             Route::get('/', 'CalendarController@index')->name('index');
             Route::get('events', 'CalendarController@getEvent')->name('getEvent');
         });
 
-        Route::group(['prefix' => 'statistic', 'as' => 'statistic.'], function () {
+        Route::group(['prefix' => 'statistic', 'as' => 'statistic.', 'middleware' => 'checkStudentRole'], function () {
             Route::get('index', 'StatisticController@index')->name('index');
             Route::get('search', 'StatisticController@search')->name('search');
             Route::get('target', 'StatisticController@target')->name('target');
         });
 
-        Route::group(['prefix' => 'target', 'as' => 'target.'], function () {
+        Route::group(['prefix' => 'target', 'as' => 'target.', 'middleware' => 'checkStudentRole'], function () {
             Route::get('index', 'StudentController@getTarget')->name('index');
             Route::post('update', 'StudentController@updateTarget')->name('update');
         });
@@ -93,6 +93,7 @@ Route::group([
         Route::group([
             'as' => 'payments.',
             'prefix' => 'payments',
+            'middleware' => 'checkStudentRole',
         ], function () {
             Route::get('/', 'PaymentController@index')->name('index');
 
