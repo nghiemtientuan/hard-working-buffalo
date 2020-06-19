@@ -82,7 +82,7 @@ return [
             'send' => 'Send',
         ],
         'categories' => [
-            'buffalo_categories' => 'Buffalo Categories in ',
+            'buffalo_categories' => 'Categories in',
             'categories' => 'Categories',
             'name' => 'Name',
             'free' => 'Free',
@@ -91,7 +91,7 @@ return [
             'login' => 'Login',
         ],
         'tests' => [
-            'buffalo_tests' => 'Buffalo tests in ',
+            'buffalo_tests' => 'Tests in ',
             'test_code' => 'Test code',
             'name_test' => 'Name',
             'execute_time' => 'Execute time',

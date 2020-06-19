@@ -41,7 +41,7 @@ Route::group([
         Route::group(['prefix' => 'tests', 'as' => 'tests.'], function () {
             Route::post('buy', 'TestController@buy')->name('buy');
 
-            Route::group(['prefix' => '{testId}'], function () {
+            Route::group(['prefix' => '{testId}', 'middleware' => ['checkStudentBuyTest']], function () {
                 Route::get('/', 'TestController@test')->name('test');
                 Route::post('/', 'TestController@result')->middleware('testedAttendance')->name('result');
             });
