@@ -120,6 +120,7 @@ class StudentController extends Controller
             'address',
             'phone',
             'description',
+            'file_id',
         ]);
         $userId = Auth::guard('student')->user()->id;
         $this->studentRepository->update($userId, $userData);

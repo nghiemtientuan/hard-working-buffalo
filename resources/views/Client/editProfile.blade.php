@@ -7,13 +7,31 @@
 
     <div class="site-section pb-0 pt-30">
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-7">
-                    <form action="{{ route('client.profile.update') }}" method="POST">
-                        @csrf
+            <form action="{{ route('client.profile.update') }}" method="POST">
+                @csrf
 
-                        @include ('Client.layouts.errorOrSuccess')
-
+                @include ('Client.layouts.errorOrSuccess')
+                <div class="row justify-content-center">
+                    <div class="col-md-12 form-group">
+                        <div>
+                            <label>{{ trans('client.pages.editProfile.profile') }}</label>
+                        </div>
+                        <ul class="list-inline text-center">
+                            @foreach(config('constant.profile_students') as $value => $imageSrc)
+                                <li class="list-inline-item mr-2">
+                                    <div class="icheck-material-red">
+                                        <input type="radio" name="file_id" id="imgage_profile_{{ $value }}" value="{{ $value }}"
+                                           @if ($user->file_id == $value) checked @endif required
+                                        />
+                                        <label id="imgage_profile_label_{{ $value }}" for="imgage_profile_{{ $value }}">
+                                            <img src="{{ asset($imageSrc) }}" width="50px" alt="" >
+                                        </label>
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    <div class="col-md-7">
                         <div class="row">
                             <div class="col-md-12 form-group">
                                 <label for="username">{{ trans('client.pages.editProfile.username') }}</label>
@@ -56,9 +74,9 @@
                                 <input type="submit" value="{{ trans('client.pages.editProfile.updateBtn') }}" class="btn btn-primary btn-lg px-5">
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 

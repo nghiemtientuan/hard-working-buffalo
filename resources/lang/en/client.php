@@ -190,6 +190,7 @@ return [
             'phone' => 'Phone',
             'description' => 'Description',
             'updateBtn' => 'Update',
+            'profile' => 'Profile',
         ],
         'calendar' => [
             'calendarTitle' => 'Calendar',
@@ -331,6 +332,7 @@ return [
             'description_require' => 'Description is require',
             'description_min' => 'Description is min :min characters',
             'description_max' => 'Description is max :max characters',
+            'file_error' => 'File profile error',
         ],
     ],
     'errors' => [
