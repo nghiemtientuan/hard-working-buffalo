@@ -277,6 +277,10 @@ return [
                 ],
             ],
         ],
+        'notFound' => [
+            'notFoundTitle' => 'Not found',
+            'notFoundContent' => '404 - Not found',
+        ],
     ],
     'timeline' => [
         'testTitle' => 'Test',

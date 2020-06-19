@@ -44,7 +44,7 @@
                         <div class="form-group">
                             <label class="control-labelp-0">{{ trans('client.pages.target.your_target') }}:</label>
                             <div>
-                                <input type="number" name="target" min="0" max="990" class="form-control" />
+                                <input type="number" name="target" value="{{ $student->target }}" min="0" max="990" class="form-control" />
                             </div>
                         </div>
 
