@@ -62,12 +62,16 @@
                                             </td>
                                             <td>{{ $test->execute_time }}'</td>
                                             <td>
-                                                @if ($test->price > \App\Models\Test::PRICE_FREE_VALUE && count($test->students) == 0)
-                                                    <button class="btn btn-primary buyTestBtn" type="button" data-testId="{{ $test->id }}">
-                                                        {{ trans('client.pages.categories.buy') }}
-                                                        {{ $test->price }}
-                                                        <i class="fa fa-gem"></i>
-                                                    </button>
+                                                @if (getCurrentUser())
+                                                    @if ($test->price > \App\Models\Test::PRICE_FREE_VALUE && count($test->students) == 0)
+                                                        <button class="btn btn-primary buyTestBtn" type="button" data-testId="{{ $test->id }}">
+                                                            {{ trans('client.pages.categories.buy') }}
+                                                            {{ $test->price }}
+                                                            <i class="fa fa-gem"></i>
+                                                        </button>
+                                                    @endif
+                                                @else
+                                                    <a btn="btn btn-link" href="{{ route('client.login') }}">{{ trans('client.pages.categories.login') }}</a>
                                                 @endif
                                             </td>
                                         </tr>

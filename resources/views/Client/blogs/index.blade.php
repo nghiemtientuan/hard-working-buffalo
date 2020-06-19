@@ -6,159 +6,164 @@
     <div class="site-section pb-0"></div>
 
     <div class="site-section pb-0 pt-30">
-        <div class="container">
-            @if ($user)
-                <div id="blogAdd">
-                    <div class="panel">
-                        <div class="panel-heading d-flex">
-                            <div class="panel-heading-avatar col-1">
-                                <img src="{{ userDefaultImage($user->file) }}" class="rounded-circle w-50">
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8">
+                @if ($user)
+                    <div id="blogAdd">
+                        <div class="panel">
+                            <div class="panel-heading d-flex">
+                                <div class="panel-heading-avatar col-1">
+                                    <img src="{{ userDefaultImage($user->file) }}" class="rounded-circle w-50">
+                                </div>
+
+                                <div class="panel-heading-content col-11 p-0">
+                                    <textarea id="newBlogContent" cols="60" rows="4" class="form-control"></textarea>
+                                </div>
                             </div>
 
-                            <div class="panel-heading-content col-11 p-0">
-                                <textarea id="newBlogContent" cols="60" rows="4" class="form-control"></textarea>
+                            <div class="mt-20">
+                                <button id="btnSubmitNewPost" class="btn btn-primary w-100">{{ trans('client.pages.post') }}</button>
                             </div>
-                        </div>
-
-                        <div class="mt-20">
-                            <button id="btnSubmitNewPost" class="btn btn-primary w-100">{{ trans('client.pages.post') }}</button>
                         </div>
                     </div>
-                </div>
-            @else
-                <div class="panel text-center">
-                    <div>{{ trans('client.pages.blog.pls_login') }}</div>
-                    <a href="{{ route('client.login') }}" class="btn btn-link">{{ trans('client.pages.blog.login') }}</a>
-                </div>
-            @endif
+                @else
+                    <div class="panel text-center">
+                        <div>{{ trans('client.pages.blog.pls_login') }}</div>
+                        <a href="{{ route('client.login') }}" class="btn btn-link">{{ trans('client.pages.blog.login') }}</a>
+                    </div>
+                @endif
 
-            <div id="blogsList">
-                @foreach ($blogs as $blog)
-                    <div id="blogItem_{{ $blog->id }}" class="blogItem panel">
-                        <div class="panel-heading d-flex">
-                            <div class="panel-heading-avatar col-1">
-                                <img src="{{ userDefaultImage($blog->user->file) }}" class="rounded-circle w-50 panel-heading-avatar-image">
+                <div id="blogsList">
+                    @foreach ($blogs as $blog)
+                        <div id="blogItem_{{ $blog->id }}" class="blogItem panel">
+                            <div class="panel-heading d-flex">
+                                <div class="panel-heading-avatar col-1">
+                                    <img src="{{ userDefaultImage($blog->user->file) }}" class="rounded-circle w-50 panel-heading-avatar-image">
+                                </div>
+
+                                <div class="panel-heading-name col-10">
+                                    <p class="panel-heading-name-username m-0">{{ $blog->user->username }}</p>
+                                    <small>
+                                        <code class="panel-heading-name-time">{{ getDateFormat($blog->created_at, config('constant.format.dmY')) }}</code>
+                                    </small>
+                                </div>
+
+                                @if ($user && $blog->user_id == $user->id && $blog->user_type == $user->type)
+                                    <div class="panel-heading-dropdown btnRemoveBlogDiv col-1">
+                                        <a href="#" class="btn btn-link btnRemoveBlog" data-blogId="{{ $blog->id }}"><em class="fas fa-trash"></em></a>
+                                    </div>
+                                @endif
                             </div>
 
-                            <div class="panel-heading-name col-10">
-                                <p class="panel-heading-name-username m-0">{{ $blog->user->username }}</p>
-                                <small>
-                                    <code class="panel-heading-name-time">{{ getDateFormat($blog->created_at, config('constant.format.dmY')) }}</code>
-                                </small>
+                            <div class="panel-body">{{ $blog->content }}</div>
+
+                            <div class="panel-reactionList d-flex justify-content-between">
+                                <div class="clicked-icon-list panel-reactionList-list d-flex">
+                                    @foreach (config('constant.reacts') as $keyReact => $reactUrl)
+                                        @php $countReact = getCountReact($blog->reacts, $keyReact) @endphp
+
+                                        <div class="react-icon-{{ $keyReact }} @if ($countReact) d-flex @else d-none @endif align-content-center clicked-icon-list-active clicked-icon-list-active-{{ $keyReact }}">
+                                            <div class="d-flex clicked-icon-list__item--img">
+                                                <img src="{{ $reactUrl }}">
+                                            </div>
+                                            <div class="d-flex align-items-center clicked-icon-list__item--number">{{ $countReact }}</div>
+                                        </div>
+                                    @endforeach
+                                </div>
+
+                                <div>
+                                    <span class="panel-reactionList-totalComment">{{ count($blog->comments) }}</span> {{ trans('client.pages.blog.comments') }}
+                                </div>
+                            </div>
+                            <hr />
+
+                            <div class="list-btn d-flex text-center">
+                                @php $selectedReact = getSelectedReact($blog->reacts) @endphp
+
+                                <div class="reactionsBlog-location col-6 p-0">
+                                    <button class="btn btn-light w-100 btnLikeHover @if (checkUserReaction($blog->reacts)) btnLikeClicked @endif">
+                                        <span class="btnClickLike">
+                                            @if ($selectedReact == 0)
+                                                <em class="fa fa-thumbs-up"></em>
+                                            @else
+                                                <img class="btnClickLike--img" src="{{ config('constant.reacts')[$selectedReact] }}">
+                                            @endif
+                                        </span> {{ trans('client.pages.blog.react') }}
+
+                                        @if ($user)
+                                            <div class="reactionsBlog-lists">
+                                                <ol>
+                                                    @foreach (config('constant.reacts') as $keyReact => $reactUrl)
+                                                        <li>
+                                                            <div class="reactionsBlog-item reactionsBlog-item-{{ $keyReact }} d-flex flex-column align-items-center justify-content-center">
+                                                                <span
+                                                                    class="reactionsBlog-item--content reaction"
+                                                                    data-reactionId="{{ $keyReact }}"
+                                                                    data-reactSelected="{{ $selectedReact }}"
+                                                                    data-blogId="{{ $blog->id }}"
+                                                                >
+                                                                    <img class="reactionsBlog-item--content--img" src="{{ $reactUrl }}">
+                                                                </span>
+
+                                                                <span class="dot-active mt-auto @if ($selectedReact != $keyReact) d-none @endif"></span>
+                                                            </div>
+                                                        </li>
+                                                    @endforeach
+                                                </ol>
+                                            </div>
+                                        @endif
+                                    </button>
+                                </div>
+                                <div class="col-6 p-0">
+                                    <button
+                                        class="btn btn-light w-100 btnClickComment"
+                                        data-countComments="{{ count($blog->comments) }}"
+                                        data-urlLastPageComment="{{ route('client.blogs.dataComments', [
+                                            'blogId' => $blog->id,
+                                            'page' => (ceil(count($blog->comments)/config('constant.limit.comments')))
+                                        ]) }}"
+                                        data-blogId="{{ $blog->id }}"
+                                    >
+                                        <em class="fa fa-comment-alt"></em> {{ trans('client.pages.blog.comments') }}
+                                    </button>
+                                </div>
+                            </div>
+                            <hr />
+
+                            <div class="seemore-comments">
+                                <a href="#" class="btn btn-link d-none btn-seemore-comment" data-blogId="{{ $blog->id }}">{{ trans('client.pages.see_more') }}</a>
                             </div>
 
-                            @if ($user && $blog->user_id == $user->id && $blog->user_type == $user->type)
-                                <div class="panel-heading-dropdown btnRemoveBlogDiv col-1">
-                                    <a href="#" class="btn btn-link btnRemoveBlog" data-blogId="{{ $blog->id }}"><em class="fas fa-trash"></em></a>
+                            <div class="list-comments"></div>
+
+                            @if ($user)
+                                <div class="add-comments d-none">
+                                    <div class="col-10 p-0 mr-5 mt-10">
+                                        <textarea class="form-control add-comments-content" cols="30" rows="3"></textarea>
+                                    </div>
+
+                                    <div class="col-2 p-0 mt-10">
+                                        <button class="btn btn-primary w-100 add-comments-btn" data-blogId="{{ $blog->id }}">{{ trans('client.pages.send') }}</button>
+                                    </div>
                                 </div>
                             @endif
                         </div>
-
-                        <div class="panel-body">{{ $blog->content }}</div>
-
-                        <div class="panel-reactionList d-flex justify-content-between">
-                            <div class="clicked-icon-list panel-reactionList-list d-flex">
-                                @foreach (config('constant.reacts') as $keyReact => $reactUrl)
-                                    @php $countReact = getCountReact($blog->reacts, $keyReact) @endphp
-
-                                    <div class="react-icon-{{ $keyReact }} @if ($countReact) d-flex @else d-none @endif align-content-center clicked-icon-list-active clicked-icon-list-active-{{ $keyReact }}">
-                                        <div class="d-flex clicked-icon-list__item--img">
-                                            <img src="{{ $reactUrl }}">
-                                        </div>
-                                        <div class="d-flex align-items-center clicked-icon-list__item--number">{{ $countReact }}</div>
-                                    </div>
-                                @endforeach
-                            </div>
-
-                            <div>
-                                <span class="panel-reactionList-totalComment">{{ count($blog->comments) }}</span> {{ trans('client.pages.blog.comments') }}
-                            </div>
-                        </div>
-                        <hr />
-
-                        <div class="list-btn d-flex text-center">
-                            @php $selectedReact = getSelectedReact($blog->reacts) @endphp
-
-                            <div class="reactionsBlog-location col-6 p-0">
-                                <button class="btn btn-light w-100 btnLikeHover @if (checkUserReaction($blog->reacts)) btnLikeClicked @endif">
-                                    <span class="btnClickLike">
-                                        @if ($selectedReact == 0)
-                                            <em class="fa fa-thumbs-up"></em>
-                                        @else
-                                            <img class="btnClickLike--img" src="{{ config('constant.reacts')[$selectedReact] }}">
-                                        @endif
-                                    </span> {{ trans('client.pages.blog.react') }}
-
-                                    @if ($user)
-                                        <div class="reactionsBlog-lists">
-                                            <ol>
-                                                @foreach (config('constant.reacts') as $keyReact => $reactUrl)
-                                                    <li>
-                                                        <div class="reactionsBlog-item reactionsBlog-item-{{ $keyReact }} d-flex flex-column align-items-center justify-content-center">
-                                                            <span
-                                                                class="reactionsBlog-item--content reaction"
-                                                                data-reactionId="{{ $keyReact }}"
-                                                                data-reactSelected="{{ $selectedReact }}"
-                                                                data-blogId="{{ $blog->id }}"
-                                                            >
-                                                                <img class="reactionsBlog-item--content--img" src="{{ $reactUrl }}">
-                                                            </span>
-
-                                                            <span class="dot-active mt-auto @if ($selectedReact != $keyReact) d-none @endif"></span>
-                                                        </div>
-                                                    </li>
-                                                @endforeach
-                                            </ol>
-                                        </div>
-                                    @endif
-                                </button>
-                            </div>
-                            <div class="col-6 p-0">
-                                <button
-                                    class="btn btn-light w-100 btnClickComment"
-                                    data-countComments="{{ count($blog->comments) }}"
-                                    data-urlLastPageComment="{{ route('client.blogs.dataComments', [
-                                        'blogId' => $blog->id,
-                                        'page' => (ceil(count($blog->comments)/config('constant.limit.comments')))
-                                    ]) }}"
-                                    data-blogId="{{ $blog->id }}"
-                                >
-                                    <em class="fa fa-comment-alt"></em> {{ trans('client.pages.blog.comments') }}
-                                </button>
-                            </div>
-                        </div>
-                        <hr />
-
-                        <div class="seemore-comments">
-                            <a href="#" class="btn btn-link d-none btn-seemore-comment" data-blogId="{{ $blog->id }}">{{ trans('client.pages.see_more') }}</a>
-                        </div>
-
-                        <div class="list-comments"></div>
-
-                        @if ($user)
-                            <div class="add-comments d-none">
-                                <div class="col-10 p-0 mr-5 mt-10">
-                                    <textarea class="form-control add-comments-content" cols="30" rows="3"></textarea>
-                                </div>
-
-                                <div class="col-2 p-0 mt-10">
-                                    <button class="btn btn-primary w-100 add-comments-btn" data-blogId="{{ $blog->id }}">{{ trans('client.pages.send') }}</button>
-                                </div>
-                            </div>
-                        @endif
-                    </div>
-                @endforeach
-            </div>
-
-            @if ($blogs->currentPage() != $blogs->lastPage())
-                <div class="mt-20">
-                    <button
-                        id="btnSeeMoreBlogs"
-                        class="btn btn-default w-100"
-                        data-next_page_url="{{ route('client.blogs.dataBlog', ['page' => 2]) }}"
-                    >{{ trans('client.pages.see_more') }}</button>
+                    @endforeach
                 </div>
-            @endif
+
+                @if ($blogs->currentPage() != $blogs->lastPage())
+                    <div class="mt-20">
+                        <button
+                            id="btnSeeMoreBlogs"
+                            class="btn btn-default w-100"
+                            data-next_page_url="{{ route('client.blogs.dataBlog', ['page' => 2]) }}"
+                        >{{ trans('client.pages.see_more') }}</button>
+                    </div>
+                @endif
+
+            </div>
+            <div class="col-2"></div>
         </div>
     </div>
 
