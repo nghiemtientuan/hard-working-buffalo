@@ -31,7 +31,7 @@ class UpdateStudentProfileRequest extends FormRequest
             'address' => 'required|min:1|max:50',
             'phone' => 'required|min:10|max:10',
             'description' => 'required|min:1|max:200',
-            'file_id' => 'required|numeric|min:1|max:42',
+            'file_id' => 'required|numeric|min:1|max:46',
         ];
     }
 

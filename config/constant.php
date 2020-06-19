@@ -51,6 +51,10 @@ return [
         40 => '/images/students/profile29.png',
         41 => '/images/students/profile30.png',
         42 => '/images/students/profile31.png',
+        43 => '/images/students/profile32.gif',
+        44 => '/images/students/profile33.gif',
+        45 => '/images/students/profile34.gif',
+        46 => '/images/students/profile35.gif',
     ],
     'reacts' => [
         1 => '/images/reacts/like.gif',
