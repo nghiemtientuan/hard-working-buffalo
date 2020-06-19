@@ -28,9 +28,12 @@ class CheckOwnerHistory
      */
     public function handle($request, Closure $next)
     {
-        $history = $this->historyRepository->find($request->historyId)->load('student');
-        if ($history && (Auth::check() || (Auth::guard('student')->check() && $history->student))) {
-            return $next($request);
+        $history = $this->historyRepository->find($request->historyId);
+        if ($history) {
+            if (Auth::check() || (Auth::guard('student')->check()
+                    && $history->user_id == Auth::guard('student')->user()->id)) {
+                return $next($request);
+            }
         }
 
         return redirect()->route('client.notFound');

@@ -82,15 +82,16 @@ return [
             'send' => 'Send',
         ],
         'categories' => [
-            'buffalo_categories' => 'Buffalo Categories in ',
+            'buffalo_categories' => 'Categories in',
             'categories' => 'Categories',
             'name' => 'Name',
             'free' => 'Free',
             'new' => 'New',
             'buy' => 'Buy',
+            'login' => 'Login',
         ],
         'tests' => [
-            'buffalo_tests' => 'Buffalo tests in ',
+            'buffalo_tests' => 'Tests in ',
             'test_code' => 'Test code',
             'name_test' => 'Name',
             'execute_time' => 'Execute time',
@@ -189,6 +190,7 @@ return [
             'phone' => 'Phone',
             'description' => 'Description',
             'updateBtn' => 'Update',
+            'profile' => 'Profile',
         ],
         'calendar' => [
             'calendarTitle' => 'Calendar',
@@ -275,6 +277,10 @@ return [
                 ],
             ],
         ],
+        'notFound' => [
+            'notFoundTitle' => 'Not found',
+            'notFoundContent' => '404 - Not found',
+        ],
     ],
     'timeline' => [
         'testTitle' => 'Test',
@@ -330,6 +336,7 @@ return [
             'description_require' => 'Description is require',
             'description_min' => 'Description is min :min characters',
             'description_max' => 'Description is max :max characters',
+            'file_error' => 'File profile error',
         ],
     ],
     'errors' => [
