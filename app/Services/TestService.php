@@ -33,17 +33,17 @@ class TestService
         $this->historyRepository = $historyRepository;
     }
 
-    public function getAnswerQuestionPartInTest($testId)
+    public function getAnswerQuestionPartInTest($testId, $seedRandom = null)
     {
-        return $this->questionRepository->getAnswerQuestionPartInTest($testId);
+        return $this->questionRepository->getAnswerQuestionPartInTest($testId, $seedRandom);
     }
 
-    public function getResultTestAnswer($studentId, $test, $request)
+    public function getResultTestAnswer($studentId, $test, $request, $seedTest)
     {
         $userAnswer = [];
         $readingNumber = 0;
         $listeningNumber = 0;
-        $parts = $this->getAnswerQuestionPartInTest($test->id);
+        $parts = $this->getAnswerQuestionPartInTest($test->id, $seedTest);
 
         foreach ($parts as $part) {
             foreach ($part->questions as $question) {
@@ -83,6 +83,7 @@ class TestService
             History::READING_NUMBER_FIELD => $readingNumber,
             History::DURATION_FIELD => $request->duration,
             History::LISTENING_NUMBER_FIELD => $listeningNumber,
+            History::RANDOM_SEED_FIELD => $seedTest,
             History::SCORE_FIELD => getFormulaScore(
                 $readingNumber,
                 $listeningNumber,
@@ -123,9 +124,9 @@ class TestService
         return 0;
     }
 
-    public function getHistory($history)
+    public function getHistory($history, $seed)
     {
-        $parts = $this->getAnswerQuestionPartInTest($history->test_id);
+        $parts = $this->getAnswerQuestionPartInTest($history->test_id, $seed);
 
         foreach ($parts as $keyPart => $part) {
             foreach ($part->questions as $keyQuestion => $question) {
