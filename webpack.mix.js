@@ -40,18 +40,7 @@ mix.styles([
     'public/bower_components/assets/Admin/js/pages/extra_trees.js',
     'resources/js/Admin/app.js',
 ], 'public/js/admin.js')
-.copy('resources/js/Admin/list_category.js', 'public/js/Admin/list_category.js')
-.copy('resources/js/Admin/list_student.js', 'public/js/Admin/list_student.js')
-.copy('resources/js/Admin/list_user.js', 'public/js/Admin/list_user.js')
-.copy('resources/js/Admin/list_question.js', 'public/js/Admin/list_question.js')
-.copy('resources/js/Admin/list_test.js', 'public/js/Admin/list_test.js')
-.copy('resources/js/Admin/list_format.js', 'public/js/Admin/list_format.js')
-.copy('resources/js/Admin/list_question_comment.js', 'public/js/Admin/list_question_comment.js')
-.copy('resources/js/Admin/profile.js', 'public/js/Admin/profile.js')
-.copy('resources/js/Admin/editQuestion.js', 'public/js/Admin/editQuestion.js')
-.copy('resources/js/Admin/addQuestion.js', 'public/js/Admin/addQuestion.js')
-.copy('resources/js/Admin/list_question_in_test.js', 'public/js/Admin/list_question_in_test.js')
-.copy('resources/js/Admin/editFormat.js', 'public/js/Admin/editFormat.js')
+.copy('resources/js/Admin', 'public/js/Admin')
 .copy('resources/js/common/helper.js', 'public/js/common/helper.js')
 .options({
     processCssUrls: false

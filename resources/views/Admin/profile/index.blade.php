@@ -151,5 +151,5 @@
 @endsection
 
 @section('script')
-    <script src="{{ asset(mix('js/Admin/profile.js')) }}"></script>
+    <script src="{{ asset('js/Admin/profile.js') }}"></script>
 @endsection

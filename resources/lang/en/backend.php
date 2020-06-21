@@ -116,6 +116,11 @@ return [
             'publish' => 'Publish',
             'created_at' => 'Created at',
         ],
+        'importQuestions' => [
+            'title' => 'Import File',
+            'import' => 'Import',
+            'file' => 'File',
+        ],
         'question' => [
             'list_questions' => 'List questions',
             'edit_question' => 'Edit question',

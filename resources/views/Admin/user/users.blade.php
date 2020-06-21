@@ -206,5 +206,5 @@
 @endsection
 
 @section('script')
-    <script src="{{ asset(mix('js/Admin/list_user.js')) }}"></script>
+    <script src="{{ asset('js/Admin/list_user.js') }}"></script>
 @endsection
