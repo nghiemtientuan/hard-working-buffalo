@@ -29,7 +29,7 @@
                 <div class="form-group">
                     <div class="text-right">
                         <a href="{{ route('admin.questions.create', $test->id) }}" class="btn btn-primary mr-5">{{ trans('backend.pages.questionInTest.create_question') }}</a>
-                        <a href="#" class="btn btn-success">{{ trans('backend.pages.questionInTest.import_question') }}</a>
+                        <a href="{{ route('admin.tests.questions.getImport', $test->id) }}" class="btn btn-success">{{ trans('backend.pages.questionInTest.import_question') }}</a>
                     </div>
                 </div>
                 <hr />
@@ -140,5 +140,5 @@
 @endsection
 
 @section('script')
-    <script src="{{ asset(mix('js/Admin/list_question_in_test.js')) }}"></script>
+    <script src="{{ asset('js/Admin/list_question_in_test.js') }}"></script>
 @endsection

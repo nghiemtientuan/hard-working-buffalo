@@ -257,5 +257,5 @@
 @section('script')
     <script type="text/javascript" src="{{ asset('bower_components/assets/Admin/js/plugins/forms/styling/switchery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bower_components/assets/Admin/js/pages/form_checkboxes_radios.js') }}"></script>
-    <script src="{{ asset(mix('js/Admin/addQuestion.js')) }}"></script>
+    <script src="{{ asset('js/Admin/addQuestion.js') }}"></script>
 @endsection

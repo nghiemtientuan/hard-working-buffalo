@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Contracts\StudentRepositoryInterface as StudentRepository;
 use App\Repositories\Contracts\StudentLevelRepositoryInterface as LevelRepository;
-use App\Repositories\Contracts\StudentTypeRepositoryInterface as TypeRepository;
 use Illuminate\Support\Facades\DB;
 use Yajra\Datatables\Datatables;
 
@@ -16,22 +15,18 @@ class StudentController extends Controller
 {
     protected $studentRepository;
     protected $levelRepository;
-    protected $typeRepository;
 
     /**
      * CategoryController constructor.
      * @param StudentRepository $studentRepository
      * @param LevelRepository $levelRepository
-     * @param TypeRepository $typeRepository
      */
     public function __construct(
         StudentRepository $studentRepository,
-        LevelRepository $levelRepository,
-        TypeRepository $typeRepository
+        LevelRepository $levelRepository
     ) {
         $this->studentRepository = $studentRepository;
         $this->levelRepository = $levelRepository;
-        $this->typeRepository = $typeRepository;
     }
 
     /**
@@ -41,10 +36,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $levels = $this->levelRepository->getAll();
-        $types = $this->typeRepository->getAll();
-
-        return view('Admin.user.students', compact('levels', 'types'));
+        return view('Admin.user.students');
     }
 
     public function getData()
@@ -57,9 +49,6 @@ class StudentController extends Controller
             })
             ->editColumn('level', function ($student) {
                 return $student->studentLevel->name;
-            })
-            ->editColumn('type', function ($student) {
-                return $student->studentType->name;
             })
             ->addColumn('action', function ($student) {
                 return view('Admin.user.actionStudent', compact('student'));

@@ -318,6 +318,6 @@
 @endsection
 
 @section('script')
-    <script src="{{ asset(mix('js/Admin/list_category.js')) }}"></script>
+    <script src="{{ asset('js/Admin/list_category.js') }}"></script>
 @endsection
 

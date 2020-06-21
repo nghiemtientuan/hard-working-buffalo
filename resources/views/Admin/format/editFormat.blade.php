@@ -247,5 +247,5 @@
 @endsection
 
 @section('script')
-    <script src="{{ asset(mix('js/Admin/editFormat.js')) }}"></script>
+    <script src="{{ asset('js/Admin/editFormat.js') }}"></script>
 @endsection

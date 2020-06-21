@@ -274,7 +274,7 @@
 @endsection
 
 @section('script')
-    <script src="{{ asset(mix('js/Admin/list_test.js')) }}"></script>
+    <script src="{{ asset('js/Admin/list_test.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bower_components/assets/Admin/js/plugins/forms/styling/switchery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bower_components/assets/Admin/js/pages/form_checkboxes_radios.js') }}"></script>
 @endsection

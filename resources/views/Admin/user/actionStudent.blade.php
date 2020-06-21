@@ -14,9 +14,8 @@
             data-address="{{ $student->address }}"
             data-phone="{{ $student->phone }}"
             data-level="{{ $student->studentLevel->name }}"
-            data-type="{{ $student->studentType->name }}"
-            data-diamond="{{ $student->diamond }}"
-            data-active="{{ $student->active }}"
+            data-coin="{{ $student->coin }}"
+            data-active="{{ $student->active ? trans('backend.pages.active') : trans('backend.pages.not_active') }}"
             data-description="{{ $student->description }}"
             title="{{ trans('backend.pages.show') }}"
         >

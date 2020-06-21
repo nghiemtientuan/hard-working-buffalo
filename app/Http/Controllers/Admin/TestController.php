@@ -173,11 +173,26 @@ class TestController extends Controller
         return redirect()->route('admin.tests.index');
     }
 
-    public function getQuestions($test_id)
+    public function getQuestions($testId)
     {
-        $test = $this->testRepository->find($test_id);
-        $parts = $this->questionRepository->getQuestionsByFormatTestId($test_id);
+        $test = $this->testRepository->find($testId);
+        $parts = $this->questionRepository->getQuestionsByFormatTestId($testId);
 
         return view('Admin.test.questions', compact('test', 'parts'));
+    }
+
+    public function getImport($testId)
+    {
+        $test = $this->testRepository->find($testId);
+        if ($test) {
+            return view('Admin.test.importQuestions', compact('test'));
+        }
+
+        return redirect()->route('admin.notFound');
+    }
+
+    public function portImport(Request $request, $testId)
+    {
+
     }
 }

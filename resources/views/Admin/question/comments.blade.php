@@ -31,5 +31,5 @@
 @endsection
 
 @section('script')
-    <script src="{{ asset(mix('js/Admin/list_question_comment.js')) }}"></script>
+    <script src="{{ asset('js/Admin/list_question_comment.js') }}"></script>
 @endsection

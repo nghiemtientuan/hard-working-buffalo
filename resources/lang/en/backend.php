@@ -45,6 +45,8 @@ return [
         'show' => 'Show',
         'enterHere' => 'Enter here',
         'actions' => 'Actions',
+        'active' => 'Active',
+        'not_active' => 'Not Active',
         'categories' => [
             'list_categories' => 'List categories',
             'name' => 'Name',
@@ -73,7 +75,7 @@ return [
             'level' => 'Level',
             'type' => 'Type',
             'account_type' => 'Type',
-            'diamond' => 'Diamond',
+            'coin' => 'Coin',
             'active' => 'Active',
             'description' => 'Description',
         ],
@@ -113,6 +115,11 @@ return [
             'level' => 'Level',
             'publish' => 'Publish',
             'created_at' => 'Created at',
+        ],
+        'importQuestions' => [
+            'title' => 'Import File',
+            'import' => 'Import',
+            'file' => 'File',
         ],
         'question' => [
             'list_questions' => 'List questions',

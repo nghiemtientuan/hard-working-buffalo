@@ -22,7 +22,10 @@ Route::group([
     ], function () {
         Route::get('getData', 'TestController@getData')->name('getData');
 
-        Route::get('{test_id}/questions', 'TestController@getQuestions')->name('questions.index');
+        Route::get('{testId}/importQuestions', 'TestController@getImport')->name('questions.getImport');
+        Route::post('{testId}/importQuestions', 'TestController@postImport')->name('questions.postImport');
+
+        Route::get('{testId}/questions', 'TestController@getQuestions')->name('questions.index');
     });
     Route::resource('tests', 'TestController')->except('create', 'show', 'edit');
 
@@ -51,4 +54,6 @@ Route::group([
 
     Route::get('profile', 'ProfileController@index')->name('profile');
     Route::put('profile', 'ProfileController@update')->name('profile.update');
+
+    Route::get('not_found', 'NotFoundController@index')->name('notFound');
 });

@@ -460,5 +460,5 @@
 @endsection
 
 @section('script')
-    <script src="{{ asset(mix('js/Admin/editQuestion.js')) }}"></script>
+    <script src="{{ asset('js/Admin/editQuestion.js') }}"></script>
 @endsection
