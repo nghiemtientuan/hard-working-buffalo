@@ -8,7 +8,6 @@ $(function () {
             { data: 'username', name: 'username' },
             { data: 'birthday', name: 'birthday' },
             { data: 'level', name: 'level' },
-            { data: 'type', name: 'type' },
             { data: 'action', name: 'action' },
         ]
     });
@@ -96,7 +95,7 @@ $(document).ready(function () {
         $('#showStudent #phone').html($(this).attr('data-phone'));
         $('#showStudent #level').html($(this).attr('data-level'));
         $('#showStudent #type').html($(this).attr('data-type'));
-        $('#showStudent #diamond').html($(this).attr('data-diamond'));
+        $('#showStudent #coin').html($(this).attr('data-coin'));
         $('#showStudent #active').html($(this).attr('data-active'));
         $('#showStudent #description').html($(this).attr('data-description'));
     });

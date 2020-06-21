@@ -45,6 +45,8 @@ return [
         'show' => 'Show',
         'enterHere' => 'Enter here',
         'actions' => 'Actions',
+        'active' => 'Active',
+        'not_active' => 'Not Active',
         'categories' => [
             'list_categories' => 'List categories',
             'name' => 'Name',
@@ -73,7 +75,7 @@ return [
             'level' => 'Level',
             'type' => 'Type',
             'account_type' => 'Type',
-            'diamond' => 'Diamond',
+            'coin' => 'Coin',
             'active' => 'Active',
             'description' => 'Description',
         ],

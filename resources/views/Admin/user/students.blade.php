@@ -28,11 +28,10 @@
             <table class="table table-bordered" id="list_student_table">
                 <thead>
                 <tr>
-                    <th>{{ trans('backend.pages.students.image') }}</th>
+                    <th width="10%">{{ trans('backend.pages.students.image') }}</th>
                     <th>{{ trans('backend.pages.students.username') }}</th>
                     <th>{{ trans('backend.pages.students.birthday') }}</th>
                     <th>{{ trans('backend.pages.students.level') }}</th>
-                    <th>{{ trans('backend.pages.students.account_type') }}</th>
                     <th>{{ trans('backend.pages.actions') }}</th>
                 </tr>
                 </thead>
@@ -82,12 +81,8 @@
                         <div class="col-lg-9"><label id="level"></label></div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-lg-3">{{ trans('backend.pages.students.account_type') }}:</label>
-                        <div class="col-lg-9"><label id="type"></label></div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-lg-3">{{ trans('backend.pages.students.diamond') }}:</label>
-                        <div class="col-lg-9"><label id="diamond"></label></div>
+                        <label class="control-label col-lg-3">{{ trans('backend.pages.students.coin') }}:</label>
+                        <div class="col-lg-9"><label id="coin"></label></div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-lg-3">{{ trans('backend.pages.students.active') }}:</label>
@@ -189,26 +184,6 @@
                             <label class="control-label col-lg-3">{{ trans('backend.pages.students.phone') }}</label>
                             <div class="col-lg-9">
                                 <input name="phone" type="text" class="form-control">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-lg-3">{{ trans('backend.pages.students.level') }}</label>
-                            <div class="col-lg-9">
-                                <select name="level_id" class="form-control">
-                                    @foreach ($levels as $level)
-                                        <option value="{{ $level->id }}">{{ $level->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-lg-3">{{ trans('backend.pages.students.type') }}</label>
-                            <div class="col-lg-9">
-                                <select name="type_id" class="form-control">
-                                    @foreach ($types as $type)
-                                        <option value="{{ $type->id }}">{{ $type->name }}</option>
-                                    @endforeach
-                                </select>
                             </div>
                         </div>
                     </div>

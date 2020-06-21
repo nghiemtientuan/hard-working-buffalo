@@ -41,7 +41,6 @@ class AppServiceProvider extends ServiceProvider
             'QuestionInPartRepositoryInterface' => 'QuestionInPartRepository',
             'RoleRepositoryInterface' => 'RoleRepository',
             'StudentLevelRepositoryInterface' => 'StudentLevelRepository',
-            'StudentTypeRepositoryInterface' => 'StudentTypeRepository',
             'HistoryRepositoryInterface' => 'HistoryRepository',
             'SettingRepositoryInterface' => 'SettingRepository',
             'PaymentRepositoryInterface' => 'PaymentRepository',
