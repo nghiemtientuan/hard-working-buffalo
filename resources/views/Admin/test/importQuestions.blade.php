@@ -22,7 +22,7 @@
                         <label class="control-label col-lg-1">{{ trans('backend.pages.importQuestions.file') }}</label>
                         <div class="col-lg-4 mb-20">
                             <input id="fileImportQuestion" type="file" class="file-input" data-show-caption="false" data-show-upload="false"
-                                data-browse-class="btn btn-primary btn-sm" data-remove-class="btn btn-default btn-sm" accept=".xlsx,.xls,.csv">
+                                data-browse-class="btn btn-primary btn-sm" data-remove-class="btn btn-default btn-sm" accept=".xlsx,.xls,.csv,.obs">
                         </div>
                     </div>
 
@@ -51,5 +51,6 @@
 @endsection
 
 @section('script')
+    <script src="{{ asset('bower_components/assets/Admin/js/sheetjs/xlsx.full.min.js') }}"></script>
     <script src="{{ asset('js/Admin/list_questions_import.js') }}"></script>
 @endsection
