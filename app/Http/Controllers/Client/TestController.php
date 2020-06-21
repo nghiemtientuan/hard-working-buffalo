@@ -61,11 +61,19 @@ class TestController extends Controller
     {
         $test = $this->testRepository->find($testId)->load('category');
         if ($test) {
-            $parts = $this->testService->getAnswerQuestionPartInTest($testId);
-
             if (Auth::check()) {
+                $parts = $this->testService->getAnswerQuestionPartInTest($testId);
+
                 return view('Client.getResultTest', compact('test', 'parts'));
             } else {
+                if (session()->has('seedTest_' . $test->id)) {
+                    $seedTest = session()->get('seedTest_' . $test->id);
+                } else {
+                    $seedTest = rand(1, 100000);
+                    session()->put('seedTest_' . $test->id, $seedTest);
+                }
+                $parts = $this->testService->getAnswerQuestionPartInTest($testId, $seedTest);
+
                 return view('Client.getTest', compact('test', 'parts'));
             }
         }
@@ -76,12 +84,15 @@ class TestController extends Controller
     public function result(Request $request, $testId)
     {
         $test = $this->testRepository->find($testId);
-        if ($test) {
+        if ($test && session()->has('seedTest_' . $test->id)) {
             $studentId = null;
+            $seedTest = session()->get('seedTest_' . $test->id);
+            session()->forget('seedTest_' . $test->id);
+
             if (Auth::guard('student')->check()) {
                 $studentId = Auth::guard('student')->user()->id;
             }
-            $historyId = $this->testService->getResultTestAnswer($studentId, $test, $request);
+            $historyId = $this->testService->getResultTestAnswer($studentId, $test, $request, $seedTest);
 
             return redirect()->route('client.histories.show', $historyId)
                 ->with('showEvaluation', true);
