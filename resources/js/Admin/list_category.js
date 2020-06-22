@@ -12,10 +12,12 @@ $(document).ready(function () {
             name: {
                 required: true,
                 minlength: 5,
+                maxlength: 1000,
             },
             guide: {
                 required: true,
                 minlength: 5,
+                maxlength: 1000,
             },
         }
     };
@@ -25,6 +27,7 @@ $(document).ready(function () {
             name: {
                 required: true,
                 minlength: 5,
+                maxlength: 1000,
             },
         },
     };
@@ -71,6 +74,11 @@ $(document).ready(function () {
         if (parentId != 'parent') {
             $('#addChildCate #parentId').val(parentId);
         }
+    });
+
+    $('a[data-target="#addChildCate"]').on('click', function() {
+        let parentId = $(this).attr('data-parentId');
+        $('#addChildCate #parentId').val(parentId);
     });
 
     $('table a[data-target="#editChildCate"]').on('click', function () {

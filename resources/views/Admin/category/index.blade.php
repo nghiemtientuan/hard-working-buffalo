@@ -63,17 +63,25 @@
     @foreach($treeCates as $category)
         <div class="panel panel-flat">
             <div class="panel-heading">
-                <h5 class="panel-title"><img class="cate-image-maxHeight" src="{{ $category->file->base_folder }}" />{{ $category->name }}
+                <h5 class="panel-title d-flex"><img class="cate-image-maxHeight" src="@if ($category->file){{ $category->file->base_folder }}@endif" />{{ $category->name }}
                     <a
                         class="btn btn-link"
                         data-popup="tooltip"
                         data-toggle="modal"
                         data-target="#editParentCate"
                         data-name="{{ $category->name }}"
-                        data-urlFile="{{ $category->file->base_folder }}"
+                        data-urlFile="@if ($category->file){{ $category->file->base_folder }}@endif"
                         data-urlUpdate="{{ route('admin.categories.update', $category->id) }}"
                         title="{{ trans('backend.pages.edit') }}"
                     ><em class="icon-pencil7"></em></a>
+                    <a
+                        class="btn btn-link"
+                        data-popup="tooltip"
+                        data-toggle="modal"
+                        data-target="#addChildCate"
+                        data-parentId="{{ $category->id }}"
+                        title="{{ trans('backend.pages.add') }}"
+                    ><em class="icon-add"></em></a>
                     <form method="POST" action="{{ route('admin.categories.destroy', $category->id) }}">
                         @method('DELETE')
                         @csrf
@@ -95,27 +103,28 @@
                 <table class="table table-bordered table-framed">
                     <thead>
                         <tr>
-                            <th>#</th>
+                            <th class="text-center">#</th>
                             <th>{{ trans('backend.pages.categories.name') }}</th>
                             <th>{{ trans('backend.pages.categories.guide') }}</th>
                             <th>{{ trans('backend.pages.categories.number_of_tests') }}</th>
                             <th>{{ trans('backend.pages.categories.last_edit') }}</th>
-                            <th>{{ trans('backend.pages.categories.actions') }}</th>
+                            <th class="text-center">{{ trans('backend.pages.categories.actions') }}</th>
                         </tr>
                     </thead>
                     <tbody>
                     @if(count($category->childCates) > 0)
                         @foreach($category->childCates as $key => $childCategory)
                             <tr>
-                                <td>{{ $key + 1 }}</td>
+                                <td width="8%" class="text-center">{{ $key + 1 }}</td>
                                 <td>{{ $childCategory->name }}</td>
                                 <td>{{ $childCategory->guide }}</td>
-                                <td>{{ count($childCategory->tests) }}</td>
-                                <td>{{ $childCategory->updated_at }}</td>
-                                <td>
-                                    <ul class="icons-list">
+                                <td width="8%" class="text-center">{{ count($childCategory->tests) }}</td>
+                                <td width="15%">{{ getDateFormat($childCategory->updated_at, config('constant.format.hmdmY')) }}</td>
+                                <td width="10%" class="text-center">
+                                    <ul class="icons-list d-flex">
                                         <li>
                                             <a
+                                                class="btn btn-link"
                                                 data-popup="tooltip"
                                                 data-toggle="modal"
                                                 data-target="#editChildCate"

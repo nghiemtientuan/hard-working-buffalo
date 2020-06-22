@@ -237,6 +237,6 @@ return [
         'you_will_delete_this' => 'You will delete this!',
         'yes' => 'Yes',
         'success' => 'Action success',
-        'error' => 'Error',
+        'error' => 'Action error',
     ],
 ];

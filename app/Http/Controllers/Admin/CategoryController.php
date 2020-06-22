@@ -86,7 +86,7 @@ class CategoryController extends Controller
             DB::commit();
 
             return redirect()->route('admin.categories.index')
-                ->with('sucess', trans('backend.actions.success'));
+                ->with('success', trans('backend.actions.success'));
         } catch (\Exception $exception) {
             DB::rollBack();
 
@@ -171,16 +171,19 @@ class CategoryController extends Controller
     {
         $category = $this->categoryRepository->find($id);
         if ($category) {
-            $checkDelete = $this->categoryRepository->deleteCates($id);
+            DB::beginTransaction();
+            try {
+                $this->categoryRepository->deleteCates($id);
+                DB::commit();
 
-            if ($checkDelete) {
                 return redirect()->route('admin.categories.index')
-                    ->with('sucess', trans('backend.actions.success'));
+                    ->with('success', trans('backend.actions.success'));
+            } catch (\Exception $exception) {
+                DB::rollBack();
             }
-
-            return redirect()->route('admin.categories.index');
         }
 
-        return redirect()->route('admin.categories.index');
+        return redirect()->route('admin.categories.index')
+            ->withErrors(trans('backend.actions.error'));
     }
 }
