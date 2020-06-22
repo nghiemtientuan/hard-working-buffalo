@@ -14,7 +14,7 @@
             data-address="{{ $user->address }}"
             data-phone="{{ $user->phone }}"
             data-role="{{ $user->role->name }}"
-            data-active="{{ $user->active }}"
+            data-active="{{ $user->active ? trans('backend.pages.active') : trans('backend.pages.not_active') }}"
             data-description="{{ $user->description }}"
             title="{{ trans('backend.pages.show') }}"
         >
