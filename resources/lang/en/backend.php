@@ -47,6 +47,8 @@ return [
         'actions' => 'Actions',
         'active' => 'Active',
         'not_active' => 'Not Active',
+        'show' => 'Show',
+        'hide' => 'Hide',
         'categories' => [
             'list_categories' => 'List categories',
             'name' => 'Name',
@@ -107,6 +109,7 @@ return [
             'format' => 'Format',
             'name' => 'Name',
             'code' => 'Code',
+            'coin' => 'Coin',
             'random_code' => 'Random',
             'guide' => 'Guide',
             'execute_time' => 'Execute time',

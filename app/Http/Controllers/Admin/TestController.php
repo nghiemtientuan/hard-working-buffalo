@@ -50,6 +50,9 @@ class TestController extends Controller
         $tests = $this->testRepository->getAll();
 
         return Datatables::of($tests)
+            ->editColumn('publish', function ($test) {
+                return $test->publish ? trans('backend.pages.show'): trans('backend.pages.hide');
+            })
             ->addColumn('action', function ($test) {
                 return view('Admin.test.actionListTest', compact('test'));
             })
@@ -81,7 +84,6 @@ class TestController extends Controller
             'execute_time',
             'price',
             'score',
-            'level',
             'total_question',
             'type',
             'guide',
@@ -130,7 +132,6 @@ class TestController extends Controller
             'execute_time',
             'price',
             'score',
-            'level',
             'total_question',
             'type',
             'guide',
