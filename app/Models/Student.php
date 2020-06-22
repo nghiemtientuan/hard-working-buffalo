@@ -35,6 +35,7 @@ class Student extends Authenticatable
     const LASTNAME_DEFAULT = 'lastname';
     const LEVEL_ID_DEFAULT = 1;
     const LEVEL_SCORE_DEFAULT = 0;
+    const COIN_DEFAULT_NEW_STUDENT = 20;
 
     protected $fillable = [
         Student::FILE_ID_FIELD,

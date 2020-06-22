@@ -46,22 +46,18 @@ $(document).ready(function () {
                 email: true,
             },
             firstname: {
-                required: true,
                 minlength: 2,
                 maxlength: 20,
             },
             lastname: {
-                required: true,
                 minlength: 2,
                 maxlength: 20,
             },
             address: {
-                required: true,
                 minlength: 2,
                 maxlength: 20,
             },
             phone: {
-                required: true,
                 minlength: 10,
                 maxlength: 10,
             },

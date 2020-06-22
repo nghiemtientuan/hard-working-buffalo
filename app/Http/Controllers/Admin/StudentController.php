@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Jobs\SendMailCreateAccount;
+use App\Models\Setting;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Contracts\StudentRepositoryInterface as StudentRepository;
 use App\Repositories\Contracts\StudentLevelRepositoryInterface as LevelRepository;
+use App\Repositories\Contracts\SettingRepositoryInterface as SettingRepository;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Yajra\Datatables\Datatables;
@@ -16,16 +18,20 @@ class StudentController extends Controller
 {
     protected $studentRepository;
     protected $levelRepository;
+    protected $settingRepository;
 
     /**
      * CategoryController constructor.
+     * @param SettingRepository $settingRepository
      * @param StudentRepository $studentRepository
      * @param LevelRepository $levelRepository
      */
     public function __construct(
+        SettingRepository $settingRepository,
         StudentRepository $studentRepository,
         LevelRepository $levelRepository
     ) {
+        $this->settingRepository = $settingRepository;
         $this->studentRepository = $studentRepository;
         $this->levelRepository = $levelRepository;
     }
@@ -76,6 +82,7 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
+        $this->settingRepository->getAttribute(Setting::DEFAULT_COIN_NEW_STUDENT_KEY);
         $data = $request->only([
             'email',
             'firstname',
@@ -83,6 +90,8 @@ class StudentController extends Controller
             'address',
             'phone',
         ]);
+        $data[Student::COIN_FIELD] = $this->settingRepository
+            ->getAttribute(Setting::DEFAULT_COIN_NEW_STUDENT_KEY);
         $password = Str::random(config('constant.password.length_random_password'));
         $data['password'] = bcrypt($password);
         $this->studentRepository->create($data);

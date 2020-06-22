@@ -19,6 +19,8 @@ class Setting extends Model
     const COST_COIN_MIN = 1;
     const COST_COIN_DEFAULT = 1000;
 
+    const DEFAULT_COIN_NEW_STUDENT_KEY = 'COIN_DEFAULT_NEW_STUDENT';
+
     protected $fillable = [
         Setting::KEY_FIELD,
         Setting::VALUE_FIELD,

@@ -27,14 +27,14 @@
 
             <table class="table table-bordered" id="list_student_table">
                 <thead>
-                <tr>
-                    <th width="10%">{{ trans('backend.pages.students.image') }}</th>
-                    <th>{{ trans('backend.pages.students.username') }}</th>
-                    <th>{{ trans('backend.pages.students.birthday') }}</th>
-                    <th>{{ trans('backend.pages.students.coins') }}</th>
-                    <th>{{ trans('backend.pages.students.level') }}</th>
-                    <th>{{ trans('backend.pages.actions') }}</th>
-                </tr>
+                    <tr>
+                        <th width="10%">{{ trans('backend.pages.students.image') }}</th>
+                        <th>{{ trans('backend.pages.students.username') }}</th>
+                        <th>{{ trans('backend.pages.students.birthday') }}</th>
+                        <th>{{ trans('backend.pages.students.coins') }}</th>
+                        <th>{{ trans('backend.pages.students.level') }}</th>
+                        <th>{{ trans('backend.pages.actions') }}</th>
+                    </tr>
                 </thead>
             </table>
         </div>
@@ -159,7 +159,7 @@
                     @csrf
                     <div class="modal-header bg-info">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h5 class="modal-title">{{ trans('backend.pages.user.edit_user') }}</h5>
+                        <h5 class="modal-title">{{ trans('backend.pages.students.add_student') }}</h5>
                     </div>
 
                     <div class="modal-body">

@@ -62,6 +62,7 @@ return [
         'students' => [
             'list_students' => 'List students',
             'edit_student' => 'Edit student',
+            'add_student' => 'Add student',
             'info' => 'Info',
             'image' => 'Image',
             'username' => 'Username',
