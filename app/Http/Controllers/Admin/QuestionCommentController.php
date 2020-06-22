@@ -31,6 +31,9 @@ class QuestionCommentController extends Controller
             ->addColumn('question_code', function ($comment) {
                 return $comment->question->code;
             })
+            ->addColumn('created_at', function ($comment) {
+                return getDateFormat($comment->created_at, config('constant.format.hmdmY'));
+            })
             ->addColumn('action', function ($comment) {
                 return view('Admin.question.actionComment', compact('comment'));
             })

@@ -7,8 +7,8 @@ $(function () {
             { data: 'code', name: 'code' },
             { data: 'name', name: 'name' },
             { data: 'execute_time', name: 'execute_time' },
+            { data: 'price', name: 'price' },
             { data: 'score', name: 'score' },
-            { data: 'level', name: 'level' },
             { data: 'publish', name: 'publish' },
             { data: 'action', name: 'action' },
         ]
@@ -46,10 +46,6 @@ $(document).ready(function () {
                 min: 1,
                 max: 100,
             },
-            level: {
-                min: 1,
-                max: 10,
-            },
             guide: {
                 minlength: 2,
                 maxlength: 500
@@ -62,7 +58,7 @@ $(document).ready(function () {
 
     $('#editTest form').on(
         'keyup',
-        'input[name=name], input[name=execute_time], input[name=total_question], input[name=price], input[name=score], input[name=level], input[name=publish], textarea[name=guide]',
+        'input[name=name], input[name=execute_time], input[name=total_question], input[name=price], input[name=score], input[name=publish], textarea[name=guide]',
         function () {
             validateDisabled($('#editTest form'), $('#editTest button[type="submit"]'));
         }
@@ -70,7 +66,7 @@ $(document).ready(function () {
 
     $('#addTest form').on(
         'keyup',
-        'input[name=name], input[name=execute_time], input[name=total_question], input[name=price], input[name=score], input[name=level], input[name=publish], textarea[name=guide]',
+        'input[name=name], input[name=execute_time], input[name=total_question], input[name=price], input[name=score], input[name=publish], textarea[name=guide]',
         function () {
             validateDisabled($('#addTest form'), $('#addTest button[type="submit"]'));
         }
@@ -87,7 +83,6 @@ $(document).ready(function () {
         $('#showTest #number_questions').html($(this).attr('data-number_questions'));
         $('#showTest #price').html($(this).attr('data-price'));
         $('#showTest #score').html($(this).attr('data-score'));
-        $('#showTest #level').html($(this).attr('data-level'));
         $('#showTest #publish').html($(this).attr('data-publish'));
     });
 
@@ -103,7 +98,6 @@ $(document).ready(function () {
         $('#editTest input[name=total_question]').val($(this).attr('data-total_question'));
         $('#editTest input[name=price]').val($(this).attr('data-price'));
         $('#editTest input[name=score]').val($(this).attr('data-score'));
-        $('#editTest input[name=level]').val($(this).attr('data-level'));
         if ($(this).attr('data-publish') == 1) {
             if (!$('#editTest input[name=publish]').is(':checked')) {
                 $('#editTest input[name=publish]').click();

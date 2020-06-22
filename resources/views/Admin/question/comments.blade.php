@@ -18,11 +18,11 @@
             <table class="table table-bordered" id="list_question_comment_table">
                 <thead>
                     <tr>
-                        <th>{{ trans('backend.pages.questionComment.user_name') }}</th>
-                        <th>{{ trans('backend.pages.questionComment.question_code') }}</th>
-                        <th>{{ trans('backend.pages.questionComment.content') }}</th>
-                        <th>{{ trans('backend.pages.questionComment.created_at') }}</th>
-                        <th>{{ trans('backend.pages.actions') }}</th>
+                        <th width="25%">{{ trans('backend.pages.questionComment.user_name') }}</th>
+                        <th width="25%">{{ trans('backend.pages.questionComment.question_code') }}</th>
+                        <th width="32%">{{ trans('backend.pages.questionComment.content') }}</th>
+                        <th width="10%">{{ trans('backend.pages.questionComment.created_at') }}</th>
+                        <th width="8%">{{ trans('backend.pages.actions') }}</th>
                     </tr>
                 </thead>
             </table>

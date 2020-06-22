@@ -28,13 +28,13 @@
             <table class="table table-bordered" id="list_test_table">
                 <thead>
                     <tr>
-                        <th>{{ trans('backend.pages.test.code') }}</th>
+                        <th width="15%">{{ trans('backend.pages.test.code') }}</th>
                         <th>{{ trans('backend.pages.test.name') }}</th>
-                        <th>{{ trans('backend.pages.test.execute_time') }}</th>
-                        <th>{{ trans('backend.pages.test.score') }}</th>
-                        <th>{{ trans('backend.pages.test.level') }}</th>
-                        <th>{{ trans('backend.pages.test.publish') }}</th>
-                        <th>{{ trans('backend.pages.actions') }}</th>
+                        <th width="8%">{{ trans('backend.pages.test.execute_time') }}</th>
+                        <th width="8%">{{ trans('backend.pages.test.coin') }}</th>
+                        <th width="8%">{{ trans('backend.pages.test.score') }}</th>
+                        <th width="8%">{{ trans('backend.pages.test.publish') }}</th>
+                        <th width="20%">{{ trans('backend.pages.actions') }}</th>
                     </tr>
                 </thead>
             </table>
@@ -46,48 +46,44 @@
             <div class="modal-content">
                 <div class="modal-header bg-info">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h5 class="modal-title">{{ trans('backend.pages.students.info') }}</h5>
+                    <h5 class="modal-title">{{ trans('backend.pages.test.info') }}</h5>
                 </div>
 
                 <div class="modal-body">
                     <div class="form-group">
-                        <label class="control-label col-lg-3">{{ trans('backend.pages.students.username') }}:</label>
+                        <label class="control-label col-lg-3">{{ trans('backend.pages.test.name') }}:</label>
                         <div class="col-lg-9"><label id="name"></label></div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-lg-3">{{ trans('backend.pages.students.email') }}:</label>
+                        <label class="control-label col-lg-3">{{ trans('backend.pages.test.code') }}:</label>
                         <div class="col-lg-9"><label id="code"></label></div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-lg-3">{{ trans('backend.pages.students.fullname') }}:</label>
+                        <label class="control-label col-lg-3">{{ trans('backend.pages.test.author') }}:</label>
                         <div class="col-lg-9"><label id="author"></label></div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-lg-3">{{ trans('backend.pages.students.fullname') }}:</label>
+                        <label class="control-label col-lg-3">{{ trans('backend.pages.test.execute_time') }}:</label>
                         <div class="col-lg-9"><label id="execute_time"></label></div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-lg-3">{{ trans('backend.pages.students.birthday') }}:</label>
+                        <label class="control-label col-lg-3">{{ trans('backend.pages.test.total_question') }}:</label>
                         <div class="col-lg-9"><label id="total_question"></label></div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-lg-3">{{ trans('backend.pages.students.address') }}:</label>
+                        <label class="control-label col-lg-3">{{ trans('backend.pages.test.number_questions') }}:</label>
                         <div class="col-lg-9"><label id="number_questions"></label></div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-lg-3">{{ trans('backend.pages.students.phone') }}:</label>
+                        <label class="control-label col-lg-3">{{ trans('backend.pages.test.price') }}:</label>
                         <div class="col-lg-9"><label id="price"></label></div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-lg-3">{{ trans('backend.pages.students.level') }}:</label>
+                        <label class="control-label col-lg-3">{{ trans('backend.pages.test.score') }}:</label>
                         <div class="col-lg-9"><label id="score"></label></div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-lg-3">{{ trans('backend.pages.students.account_type') }}:</label>
-                        <div class="col-lg-9"><label id="level"></label></div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-lg-3">{{ trans('backend.pages.students.diamond') }}:</label>
+                        <label class="control-label col-lg-3">{{ trans('backend.pages.test.publish') }}:</label>
                         <div class="col-lg-9"><label id="publish"></label></div>
                     </div>
                     <div class="form-group"><label class="control-label col-lg-12" id="guide"></label></div>
@@ -134,12 +130,6 @@
                             <label class="control-label col-lg-3">{{ trans('backend.pages.test.score') }}<span class="text-danger">*</span></label>
                             <div class="col-lg-9">
                                 <input name="score" type="number" class="form-control">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-lg-3">{{ trans('backend.pages.test.level') }}</label>
-                            <div class="col-lg-9">
-                                <input name="level" type="number" class="form-control">
                             </div>
                         </div>
                         <div class="form-group">
@@ -224,12 +214,6 @@
                             <label class="control-label col-lg-3">{{ trans('backend.pages.test.score') }}<span class="text-danger">*</span></label>
                             <div class="col-lg-9">
                                 <input name="score" type="number" min="0" max="100" class="form-control"/>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-lg-3">{{ trans('backend.pages.test.level') }}</label>
-                            <div class="col-lg-9">
-                                <input name="level" type="number" min="0" max="10" class="form-control" />
                             </div>
                         </div>
                         <div class="form-group">

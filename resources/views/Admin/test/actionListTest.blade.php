@@ -16,8 +16,7 @@
             data-number_questions="{{ $test->total_question }}"
             data-price="{{ $test->price }}"
             data-score="{{ $test->score }}"
-            data-level="{{ $test->level }}"
-            data-publish="{{ $test->publish }}"
+            data-publish="{{ $test->publish ? trans('backend.pages.show'): trans('backend.pages.hide') }}"
             title="{{ trans('backend.pages.show') }}"
         >
             <em class="icon-eye"></em>
@@ -48,7 +47,6 @@
             data-total_question="{{ $test->total_question }}"
             data-price="{{ $test->price }}"
             data-score="{{ $test->score }}"
-            data-level="{{ $test->level }}"
             data-publish="{{ $test->publish }}"
             title="{{ trans('backend.pages.edit') }}"
         >
