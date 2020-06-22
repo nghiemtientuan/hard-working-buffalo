@@ -53,39 +53,39 @@
                         <img class="user-image-detail" src="" alt="">
                     </div>
 
-                    <div class="form-group">
+                    <div class="row">
                         <label class="control-label col-lg-3">{{ trans('backend.pages.user.username') }}:</label>
                         <div class="col-lg-9"><label id="username"></label></div>
                     </div>
-                    <div class="form-group">
+                    <div class="row">
                         <label class="control-label col-lg-3">{{ trans('backend.pages.user.email') }}:</label>
                         <div class="col-lg-9"><label id="email"></label></div>
                     </div>
-                    <div class="form-group">
+                    <div class="row">
                         <label class="control-label col-lg-3">{{ trans('backend.pages.user.fullname') }}:</label>
                         <div class="col-lg-9"><label id="fullname"></label></div>
                     </div>
-                    <div class="form-group">
+                    <div class="row">
                         <label class="control-label col-lg-3">{{ trans('backend.pages.user.birthday') }}:</label>
                         <div class="col-lg-9"><label id="birthday"></label></div>
                     </div>
-                    <div class="form-group">
+                    <div class="row">
                         <label class="control-label col-lg-3">{{ trans('backend.pages.user.address') }}:</label>
                         <div class="col-lg-9"><label id="address"></label></div>
                     </div>
-                    <div class="form-group">
+                    <div class="row">
                         <label class="control-label col-lg-3">{{ trans('backend.pages.user.phone') }}:</label>
                         <div class="col-lg-9"><label id="phone"></label></div>
                     </div>
-                    <div class="form-group">
+                    <div class="row">
                         <label class="control-label col-lg-3">{{ trans('backend.pages.user.role') }}:</label>
                         <div class="col-lg-9"><label id="role"></label></div>
                     </div>
-                    <div class="form-group">
+                    <div class="row">
                         <label class="control-label col-lg-3">{{ trans('backend.pages.user.active') }}:</label>
-                        <div class="col-lg-9"><label id="active"></label></div>
+                        <div class="col-lg-9"><label id="active" class="label label-default"></label></div>
                     </div>
-                    <div class="form-group"><label class="control-label col-lg-12" id="description"></label></div>
+                    <div class="row"><label class="control-label col-lg-12" id="description"></label></div>
                 </div>
 
                 <div class="modal-footer">

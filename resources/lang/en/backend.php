@@ -62,6 +62,7 @@ return [
         'students' => [
             'list_students' => 'List students',
             'edit_student' => 'Edit student',
+            'add_student' => 'Add student',
             'info' => 'Info',
             'image' => 'Image',
             'username' => 'Username',
@@ -73,6 +74,7 @@ return [
             'address' => 'Adress',
             'phone' => 'Phone',
             'level' => 'Level',
+            'coins' => 'Coins',
             'type' => 'Type',
             'account_type' => 'Type',
             'coin' => 'Coin',
@@ -236,6 +238,6 @@ return [
         'you_will_delete_this' => 'You will delete this!',
         'yes' => 'Yes',
         'success' => 'Action success',
-        'error' => 'Error',
+        'error' => 'Action error',
     ],
 ];

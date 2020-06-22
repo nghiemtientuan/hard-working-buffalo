@@ -27,25 +27,15 @@ class CategoryRepository extends EloquentRepository implements CategoryRepositor
 
     public function deleteCates($id)
     {
-        DB::beginTransaction();
-        try {
-            $category = $this->find($id);
-            if (count($category->childCates)) {
-                $this->_model->whereIn('id', $category->childCates->pluck('id'))->delete();
-            }
-
-            if ($category->file_id) {
-                File::deleteWithFile($category->file_id);
-            }
-            $this->delete($id);
-            DB::commit();
-
-            return true;
-        } catch (\Exception $exception) {
-            DB::rollBack();
+        $category = $this->find($id);
+        if (count($category->childCates)) {
+            $this->_model->whereIn('id', $category->childCates->pluck('id'))->delete();
         }
 
-        return false;
+        if ($category->file_id) {
+            File::deleteWithFile($category->file_id);
+        }
+        $this->delete($id);
     }
 
     public function getParentCates()

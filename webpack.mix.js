@@ -42,6 +42,7 @@ mix.styles([
 ], 'public/js/admin.js')
 .copy('resources/js/Admin', 'public/js/Admin')
 .copy('resources/js/common/helper.js', 'public/js/common/helper.js')
+.copy('resources/js/common/layouts.js', 'public/js/common/layouts.js')
 .options({
     processCssUrls: false
 }).version();

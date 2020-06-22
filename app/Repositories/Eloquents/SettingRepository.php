@@ -39,4 +39,19 @@ class SettingRepository extends EloquentRepository implements SettingRepositoryI
 
         return $settingsArray;
     }
+
+    public function getAttribute($attribute)
+    {
+        $settingsObject = $this->_model->select(Setting::KEY_FIELD, Setting::VALUE_FIELD)
+            ->where(Setting::KEY_FIELD, $attribute)
+            ->get();
+
+        $settingsArray = $this->parseArraySetting($settingsObject);
+
+        if (!isset($settingsArray[$attribute])) {
+            $settingsArray[Setting::COST_COIN_KEY] = null;
+        }
+
+        return $settingsArray[$attribute];
+    }
 }
