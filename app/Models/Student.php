@@ -33,6 +33,8 @@ class Student extends Authenticatable
     const ACTIVE_FALSE = 0;
     const FIRSTNAME_DEFAULT = 'firstname';
     const LASTNAME_DEFAULT = 'lastname';
+    const LEVEL_ID_DEFAULT = 1;
+    const LEVEL_SCORE_DEFAULT = 0;
 
     protected $fillable = [
         Student::FILE_ID_FIELD,

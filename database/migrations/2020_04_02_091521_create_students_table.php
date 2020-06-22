@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Student;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -22,8 +23,8 @@ class CreateStudentsTable extends Migration
             $table->string('birthday')->nullable();
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
-            $table->integer('level_id')->nullable();
-            $table->integer('level_score')->nullable();
+            $table->integer('level_id')->default(Student::LEVEL_ID_DEFAULT);
+            $table->integer('level_score')->default(Student::LEVEL_SCORE_DEFAULT);
             $table->integer('coin')->default(0);
             $table->integer('active')->default(0);
             $table->integer('target')->default(0);

@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Repositories\Contracts\StudentRepositoryInterface as StudentRepository;
 use App\Repositories\Contracts\StudentLevelRepositoryInterface as LevelRepository;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Yajra\Datatables\Datatables;
 
 class StudentController extends Controller
@@ -81,12 +82,9 @@ class StudentController extends Controller
             'lastname',
             'address',
             'phone',
-            'level_id',
-            'type_id',
         ]);
-        $password = str_random(config('constant.password.length_random_password'));
+        $password = Str::random(config('constant.password.length_random_password'));
         $data['password'] = bcrypt($password);
-        $data[Student::STUDENT_TYPE_ID_FIELD] = $data['type_id'];
         $this->studentRepository->create($data);
 
         $this->dispatch(new SendMailCreateAccount($data, $password));
@@ -131,6 +129,7 @@ class StudentController extends Controller
             'lastname',
             'address',
             'phone',
+            'coin',
         ]);
         $student = $this->studentRepository->find($id);
         if ($student) {

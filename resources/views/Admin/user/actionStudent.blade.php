@@ -34,6 +34,7 @@
             data-lastname="{{ $student->lastname }}"
             data-address="{{ $student->address }}"
             data-phone="{{ $student->phone }}"
+            data-coin="{{ $student->coin }}"
             title="{{ trans('backend.pages.edit') }}"
         >
             <em class="icon-pencil7"></em>

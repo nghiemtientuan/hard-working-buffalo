@@ -73,6 +73,7 @@ return [
             'address' => 'Adress',
             'phone' => 'Phone',
             'level' => 'Level',
+            'coins' => 'Coins',
             'type' => 'Type',
             'account_type' => 'Type',
             'coin' => 'Coin',

@@ -7,6 +7,7 @@ $(function () {
             { data: 'image', name: 'image' },
             { data: 'username', name: 'username' },
             { data: 'birthday', name: 'birthday' },
+            { data: 'coin', name: 'coin' },
             { data: 'level', name: 'level' },
             { data: 'action', name: 'action' },
         ]
@@ -45,21 +46,29 @@ $(document).ready(function () {
                 email: true,
             },
             firstname: {
+                required: true,
                 minlength: 2,
                 maxlength: 20,
             },
             lastname: {
+                required: true,
                 minlength: 2,
                 maxlength: 20,
             },
             address: {
+                required: true,
                 minlength: 2,
                 maxlength: 20,
             },
             phone: {
+                required: true,
                 minlength: 10,
                 maxlength: 10,
             },
+            coin: {
+                min: 0,
+                max: 10000000,
+            }
         }
     };
 
@@ -107,6 +116,7 @@ $(document).ready(function () {
         $('#editStudent input[name=lastname]').val($(this).attr('data-lastname'));
         $('#editStudent input[name=address]').val($(this).attr('data-address'));
         $('#editStudent input[name=phone]').val($(this).attr('data-phone'));
+        $('#editStudent input[name=coin]').val($(this).attr('data-coin'));
     });
 
     $('#list_student_table').on('click', '.deleteStudentBtn', function (e) {

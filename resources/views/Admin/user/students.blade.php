@@ -31,6 +31,7 @@
                     <th width="10%">{{ trans('backend.pages.students.image') }}</th>
                     <th>{{ trans('backend.pages.students.username') }}</th>
                     <th>{{ trans('backend.pages.students.birthday') }}</th>
+                    <th>{{ trans('backend.pages.students.coins') }}</th>
                     <th>{{ trans('backend.pages.students.level') }}</th>
                     <th>{{ trans('backend.pages.actions') }}</th>
                 </tr>
@@ -132,6 +133,12 @@
                             <label class="control-label col-lg-3">{{ trans('backend.pages.students.phone') }}<span class="text-danger">*</span></label>
                             <div class="col-lg-9">
                                 <input name="phone" type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-lg-3">{{ trans('backend.pages.students.coin') }}<span class="text-danger">*</span></label>
+                            <div class="col-lg-9">
+                                <input name="coin" type="number" class="form-control" min="0" max="10000000">
                             </div>
                         </div>
                     </div>
