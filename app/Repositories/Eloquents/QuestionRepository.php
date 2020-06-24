@@ -24,18 +24,17 @@ class QuestionRepository extends EloquentRepository implements QuestionRepositor
     public function getQuestionsByFormatTestId($testId)
     {
         $test = Test::find($testId)->load([
-            'format',
-            'format.parts',
-            'format.parts.questions' => function ($query) use ($testId) {
+            'parts',
+            'parts.questions' => function ($query) use ($testId) {
                 $query->where(Question::TEST_ID_FIELD, $testId)->where(Question::PARENT_ID_FIELD, null);
             },
-            'format.parts.questions.childQuestions',
+            'parts.questions.childQuestions',
         ]);
         $parts = [];
         $partIds = [];
-        if ($test->format && count($test->format->parts)) {
-            $partIds = $test->format->parts->pluck('id');
-            $parts = $test->format->parts;
+        if (count($test->parts)) {
+            $partIds = $test->parts->pluck('id');
+            $parts = $test->parts;
         }
 
         $freePart = new Part([Part::NAME_FIELD => Part::FREE_NAME_VALUE]);
@@ -59,31 +58,30 @@ class QuestionRepository extends EloquentRepository implements QuestionRepositor
     public function getAnswerQuestionPartInTest($testId, $seedRandom = null)
     {
         $test = Test::find($testId)->load([
-            'format',
-            'format.parts',
-            'format.parts.questions' => function ($query) use ($testId, $seedRandom) {
+            'parts',
+            'parts.questions' => function ($query) use ($testId, $seedRandom) {
                 $query->where(Question::TEST_ID_FIELD, $testId)->where(Question::PARENT_ID_FIELD, null);
                 if ($seedRandom) {
                     $query->inRandomOrder($seedRandom);
                 }
             },
-            'format.parts.questions.file',
-            'format.parts.questions.answers' => function ($query) use ($seedRandom) {
+            'parts.questions.file',
+            'parts.questions.answers' => function ($query) use ($seedRandom) {
                 if ($seedRandom) {
                     $query->inRandomOrder($seedRandom);
                 }
             },
-            'format.parts.questions.childQuestions',
-            'format.parts.questions.childQuestions.answers' => function ($query) use ($seedRandom) {
+            'parts.questions.childQuestions',
+            'parts.questions.childQuestions.answers' => function ($query) use ($seedRandom) {
                 if ($seedRandom) {
                     $query->inRandomOrder($seedRandom);
                 }
             },
-            'format.parts.questions.childQuestions.file',
+            'parts.questions.childQuestions.file',
         ]);
         $parts = [];
-        if ($test->format && $test->format->parts && count($test->format->parts)) {
-            return $test->format->parts;
+        if ($test->parts && count($test->parts)) {
+            return $test->parts;
         } else {
             $freePart = new Part([Part::NAME_FIELD => Part::FREE_NAME_VALUE]);
 

@@ -18,7 +18,6 @@ class TestSeeder extends Seeder
             [
                 Test::CREATED_USER_ID_FIELD => 2,
                 Test::CATEGORY_ID_FIELD => 4,
-                Test::FORMAT_ID_FIELD => 1,
                 Test::NAME_FIELD => 'test 1',
                 Test::CODE_FIELD => 'VVGB155',
                 Test::GUIDE_FIELD => 'huong dan',
@@ -32,7 +31,6 @@ class TestSeeder extends Seeder
             [
                 Test::CREATED_USER_ID_FIELD => 2,
                 Test::CATEGORY_ID_FIELD => 4,
-                Test::FORMAT_ID_FIELD => 2,
                 Test::NAME_FIELD => 'test 2',
                 Test::CODE_FIELD => 'VFCSC1312',
                 Test::GUIDE_FIELD => 'huong dan',
@@ -46,7 +44,6 @@ class TestSeeder extends Seeder
             [
                 Test::CREATED_USER_ID_FIELD => 2,
                 Test::CATEGORY_ID_FIELD => 4,
-                Test::FORMAT_ID_FIELD => 3,
                 Test::NAME_FIELD => 'test 3',
                 Test::CODE_FIELD => 'VDEGF3234',
                 Test::GUIDE_FIELD => 'huong dan',

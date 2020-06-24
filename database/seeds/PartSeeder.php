@@ -18,47 +18,47 @@ class PartSeeder extends Seeder
             [
                 Part::NAME_FIELD => 'Part 1',
                 Part::DESCRIPTION_FIELD => 'Part 1',
-                Part::FORMAT_ID_FIELD => 1,
+                Part::TEST_ID_FIELD => 1,
             ],
             [
                 Part::NAME_FIELD => 'Part 2',
                 Part::DESCRIPTION_FIELD => 'Part 2',
-                Part::FORMAT_ID_FIELD => 1,
+                Part::TEST_ID_FIELD => 1,
             ],
             [
                 Part::NAME_FIELD => 'Part 3',
                 Part::DESCRIPTION_FIELD => 'Part 3',
-                Part::FORMAT_ID_FIELD => 1,
+                Part::TEST_ID_FIELD => 1,
             ],
             [
                 Part::NAME_FIELD => 'Part 4',
                 Part::DESCRIPTION_FIELD => 'Part 4',
-                Part::FORMAT_ID_FIELD => 1,
+                Part::TEST_ID_FIELD => 1,
             ],
             [
                 Part::NAME_FIELD => 'Part 5',
                 Part::DESCRIPTION_FIELD => 'Part 5',
-                Part::FORMAT_ID_FIELD => 1,
+                Part::TEST_ID_FIELD => 1,
             ],
             [
                 Part::NAME_FIELD => 'Part 6',
                 Part::DESCRIPTION_FIELD => 'Part 6',
-                Part::FORMAT_ID_FIELD => 1,
+                Part::TEST_ID_FIELD => 1,
             ],
             [
                 Part::NAME_FIELD => 'Part 7',
                 Part::DESCRIPTION_FIELD => 'Part 7',
-                Part::FORMAT_ID_FIELD => 1,
+                Part::TEST_ID_FIELD => 1,
             ],
             [
                 Part::NAME_FIELD => 'Custom 1',
                 Part::DESCRIPTION_FIELD => 'Custom 1',
-                Part::FORMAT_ID_FIELD => 2,
+                Part::TEST_ID_FIELD => 2,
             ],
             [
                 Part::NAME_FIELD => 'Custom 2',
                 Part::DESCRIPTION_FIELD => 'Custom 2',
-                Part::FORMAT_ID_FIELD => 2,
+                Part::TEST_ID_FIELD => 2,
             ],
         ];
         foreach ($data as $item) {

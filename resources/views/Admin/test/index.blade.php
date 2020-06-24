@@ -139,17 +139,6 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-lg-3">{{ trans('backend.pages.test.format') }}</label>
-                            <div class="col-lg-9">
-                                <select name="format_id" class="form-control">
-                                    <option value="{{ \App\Models\Format::VALUE_NONE_FORMAT }}" selected>{{ \App\Models\Format::NAME_NONE_OPTION }}</option>
-                                    @foreach ($formats as $format)
-                                        <option value="{{ $format->id }}">{{ $format->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
                             <label class="control-label col-lg-3">{{ trans('backend.pages.test.publish') }}</label>
                             <label class="col-lg-9">
                                 <input type="checkbox" name="publish" class="switchery">
@@ -220,17 +209,6 @@
                             <label class="control-label col-lg-3">{{ trans('backend.pages.test.total_question') }}<span class="text-danger">*</span></label>
                             <div class="col-lg-9">
                                 <input name="total_question" type="number" min="1" max="200" class="form-control" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-lg-3">{{ trans('backend.pages.test.format') }}</label>
-                            <div class="col-lg-9">
-                                <select name="format_id" class="form-control">
-                                    <option value="{{ \App\Models\Format::VALUE_NONE_FORMAT }}" selected>{{ \App\Models\Format::NAME_NONE_OPTION }}</option>
-                                    @foreach ($formats as $format)
-                                        <option value="{{ $format->id }}">{{ $format->name }}</option>
-                                    @endforeach
-                                </select>
                             </div>
                         </div>
                         <div class="form-group">

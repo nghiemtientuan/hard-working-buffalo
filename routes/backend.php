@@ -42,16 +42,6 @@ Route::group([
     });
     Route::resource('questions', 'QuestionController')->except('create', 'store', 'show');
 
-    Route::group([
-        'prefix' => 'formats',
-        'as' => 'formats.',
-    ], function () {
-        Route::get('getData', 'FormatController@getData')->name('getData');
-
-        Route::put('{formatId}/updateFormat', 'FormatController@updateFormat')->name('updateFormat');
-    });
-    Route::resource('formats', 'FormatController')->except('create');
-
     Route::get('profile', 'ProfileController@index')->name('profile');
     Route::put('profile', 'ProfileController@update')->name('profile.update');
 

@@ -13,30 +13,25 @@ class Part extends Model
 
     const NAME_FIELD = 'name';
     const DESCRIPTION_FIELD = 'description';
-    const FORMAT_ID_FIELD = 'format_id';
+    const TEST_ID_FIELD = 'test_id';
 
     const FREE_NAME_VALUE = 'free-part';
 
     protected $fillable = [
         Part::NAME_FIELD,
         Part::DESCRIPTION_FIELD,
-        Part::FORMAT_ID_FIELD,
+        Part::TEST_ID_FIELD,
         'created_at',
         'updated_at',
     ];
-
-    public function format()
-    {
-        return $this->belongsToMany(Format::class);
-    }
 
     public function questions()
     {
         return $this->hasMany(Question::class);
     }
 
-    public function questionFormats()
+    public function test()
     {
-        return $this->hasMany(QuestionInPart::class);
+        return $this->belongsTo(Test::class, Part::TEST_ID_FIELD, 'id');
     }
 }
