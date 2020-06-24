@@ -8,6 +8,9 @@ return [
         'url_vnPay' => '/images/common/vnpay.png',
         'url_buffalo' => '/images/common/buffalo.png'
     ],
+    'files' => [
+        'format_test' => '/storage/common/format_test.xlsx',
+    ],
     'profile_students' => [
         1 => '/images/students/mouse.png',
         2 => '/images/students/buffalo.png',

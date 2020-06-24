@@ -123,7 +123,10 @@ return [
         'importQuestions' => [
             'title' => 'Import File',
             'import' => 'Import',
-            'file' => 'File',
+            'file_import' => 'File import',
+            'file_template' => 'Download file template',
+            'name' => 'Name',
+            'id' => 'Id',
         ],
         'question' => [
             'list_questions' => 'List questions',

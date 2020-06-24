@@ -175,7 +175,7 @@ class TestController extends Controller
 
     public function getImport($testId)
     {
-        $test = $this->testRepository->find($testId);
+        $test = $this->testRepository->find($testId)->load('parts');
         if ($test) {
             return view('Admin.test.importQuestions', compact('test'));
         }
@@ -185,6 +185,6 @@ class TestController extends Controller
 
     public function portImport(Request $request, $testId)
     {
-
+        dd($request->all());
     }
 }
