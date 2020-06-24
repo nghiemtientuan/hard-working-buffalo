@@ -61,10 +61,6 @@
                         <a href="{{ route('admin.questions.comments.index') }}"><i class="icon-droplet2"></i> <span>{{ trans('backend.sidebar.list.question_comments') }}</span></a>
                     </li>
 
-                    <li class="{{ request()->is('admin/formats') ? 'active' : '' }}">
-                        <a href="{{ route('admin.formats.index') }}"><i class="icon-droplet2"></i> <span>{{ trans('backend.sidebar.list.formats') }}</span></a>
-                    </li>
-
                     <li class="{{ request()->is('admin/backups') ? 'active' : '' }}">
                         <a href="#"><i class="icon-droplet2"></i> <span>{{ trans('backend.sidebar.list.backups') }}</span></a>
                     </li>

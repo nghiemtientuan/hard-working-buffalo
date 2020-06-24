@@ -74,7 +74,6 @@ $(document).ready(function () {
 
     $('#list_test_table').on('click', '.showTestBtn', function () {
         $('#showTest #author').html($(this).attr('data-author'));
-        $('#showTest #format').html($(this).attr('data-format'));
         $('#showTest #name').html($(this).attr('data-name'));
         $('#showTest #code').html($(this).attr('data-code'));
         $('#showTest #guide').html($(this).attr('data-guide'));
@@ -107,7 +106,6 @@ $(document).ready(function () {
                 $('#editTest input[name=publish]').click();
             }
         }
-        $('#editTest select[name=format_id]').val($(this).attr('data-formatId'));
         $('#editTest textarea[name=guide]').val($(this).attr('data-guide'));
     });
 

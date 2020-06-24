@@ -6,7 +6,6 @@ use App\Models\Test;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Contracts\TestRepositoryInterface as TestRepository;
-use App\Repositories\Contracts\FormatRepositoryInterface as FormatRepository;
 use App\Repositories\Contracts\QuestionRepositoryInterface as QuestionRepository;
 use Illuminate\Support\Facades\DB;
 use Yajra\Datatables\Datatables;
@@ -15,22 +14,18 @@ class TestController extends Controller
 {
     protected $testRepository;
     protected $questionRepository;
-    protected $formatRepository;
 
     /**
      * TestController constructor.
      * @param TestRepository $testRepository
      * @param QuestionRepository $questionRepository
-     * @param FormatRepository $formatRepository
      */
     public function __construct(
         TestRepository $testRepository,
-        QuestionRepository $questionRepository,
-        FormatRepository $formatRepository
+        QuestionRepository $questionRepository
     ) {
         $this->testRepository = $testRepository;
         $this->questionRepository = $questionRepository;
-        $this->formatRepository = $formatRepository;
     }
 
     /**
@@ -40,9 +35,7 @@ class TestController extends Controller
      */
     public function index()
     {
-        $formats = $this->formatRepository->getAll();
-
-        return view('Admin.test.index', compact('formats'));
+        return view('Admin.test.index');
     }
 
     public function getData()
@@ -87,7 +80,6 @@ class TestController extends Controller
             'total_question',
             'type',
             'guide',
-            'format_id',
         ]);
         $data[Test::PUBLISH_FIELD] = $request->has('publish');
         $data[Test::CREATED_USER_ID_FIELD] = auth()->user()->id;
@@ -135,7 +127,6 @@ class TestController extends Controller
             'total_question',
             'type',
             'guide',
-            'format_id',
         ]);
         $data[Test::PUBLISH_FIELD] = $request->has('publish');
         $test = $this->testRepository->find($id);

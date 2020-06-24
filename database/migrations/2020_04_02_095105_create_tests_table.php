@@ -18,7 +18,6 @@ class CreateTestsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('category_id')->nullable();
             $table->integer('created_user_id')->nullable();
-            $table->integer('format_id')->nullable();
             $table->string('name')->nullable();
             $table->string('code')->nullable();
             $table->text('guide')->nullable();

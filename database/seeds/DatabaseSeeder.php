@@ -20,10 +20,8 @@ class DatabaseSeeder extends Seeder
         $this->call(TestSeeder::class);
         $this->call(QuestionSeed::class);
         $this->call(QuestionCommentSeed::class);
-        $this->call(FormatSeeder::class);
         $this->call(PartSeeder::class);
         $this->call(AnswerSeeder::class);
-        $this->call(QuestionInPartSeed::class);
         $this->call(SettingSeeder::class);
         $this->call(BlogSeeder::class);
         $this->call(BlogCommentSeeder::class);
