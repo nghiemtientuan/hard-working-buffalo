@@ -183,7 +183,7 @@ class TestController extends Controller
         return redirect()->route('admin.notFound');
     }
 
-    public function portImport(Request $request, $testId)
+    public function postImport(Request $request, $testId)
     {
         dd($request->all());
     }

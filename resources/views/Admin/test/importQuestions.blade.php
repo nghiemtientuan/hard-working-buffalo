@@ -65,7 +65,7 @@
                         <div class="form-group mb-20">
                             <label class="control-label col-lg-1">{{ trans('backend.pages.addQuestion.code') }}</label>
                             <div class="col-lg-9">
-                                <input name="code" type="text" class="form-control inputCode" required>
+                                <input type="text" class="form-control inputCode" disabled required>
                             </div>
                             <div class="col-lg-2">
                                 <button class="btn btn-success randomCode">{{ trans('backend.pages.addQuestion.random_code') }}</button>
@@ -75,16 +75,24 @@
                         <div class="form-group">
                             <label class="control-label col-lg-1">{{ trans('backend.pages.addQuestion.suggest') }}</label>
                             <div class="col-lg-11">
-                                <input name="suggest" type="text" class="form-control inputSuggest">
+                                <input type="text" class="form-control inputSuggest">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label col-lg-1">{{ trans('backend.pages.addQuestion.content') }}</label>
                             <div class="col-lg-11">
-                                <input name="content" type="text" class="form-control inputContent">
+                                <input type="text" class="form-control inputContent">
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-lg-1">{{ trans('backend.pages.editQuestion.question_type') }}</label>
+                            <label class="control-label col-lg-11 questionTypeLabel"></label>
+                        </div>
+
+                        <input type="hidden" class="inputType">
+                        <input type="hidden" class="inputPartId">
 
                         <div class="row">
                             <div class="col-md-6">
@@ -92,12 +100,18 @@
                                     <div class="col-md-12 mt-20">
                                         <div class="col-md-1">
                                             <div class="icheck-material-red pl-10">
-                                                <input type="radio" name="correct_answer" value="{{ $i }}"/>
-                                                <label></label>
+                                                <input
+                                                    class="answerRadio_{{ $i }}"
+                                                    type="radio"
+                                                    value="{{ $i }}"
+                                                    disabled
+                                                    required
+                                                />
+                                                <label class="answerLabel_{{ $i }}"></label>
                                             </div>
                                         </div>
                                         <div class="col-md-11">
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control inputAnswer_{{ $i }}">
                                         </div>
                                     </div>
 
@@ -137,6 +151,14 @@
                                     </div>
                                 </div>
 
+                                <div class="form-group">
+                                    <label class="control-label col-lg-1">{{ trans('backend.pages.editQuestion.question_type') }}</label>
+                                    <label class="control-label col-lg-11 questionTypeLabel"></label>
+                                </div>
+
+                                <input type="hidden" class="inputType">
+                                <input type="hidden" class="inputPartId">
+
                                 <div class="row answers">
                                     <div class="col-md-6">
                                         @for($i = 1; $i <= 4; $i++)
@@ -144,18 +166,17 @@
                                                 <div class="col-md-1">
                                                     <div class="icheck-material-red pl-10">
                                                         <input
-                                                            class="answer_radio answer_{{ $i }}"
+                                                            class="answerRadio_{{ $i }}"
                                                             type="radio"
                                                             value="{{ $i }}"
-                                                            data-answerIndex="{{ $i }}"
-                                                            required
                                                             disabled
+                                                            required
                                                         />
-                                                        <label></label>
+                                                        <label class="answerLabel_{{ $i }}"></label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-11">
-                                                    <input type="text" class="form-control">
+                                                    <input type="text" class="form-control inputAnswer_{{ $i }}">
                                                 </div>
                                             </div>
 
@@ -174,7 +195,7 @@
                         <div class="form-group">
                             <label class="control-label col-lg-1">{{ trans('backend.pages.addQuestion.code') }}</label>
                             <div class="col-lg-9">
-                                <input name="code" type="text" class="form-control inputCode" required>
+                                <input type="text" class="form-control inputCode" disabled required>
                             </div>
                             <div class="col-lg-2">
                                 <button class="btn btn-success randomCode">{{ trans('backend.pages.addQuestion.random_code') }}</button>
@@ -184,16 +205,24 @@
                         <div class="form-group">
                             <label class="control-label col-lg-1">{{ trans('backend.pages.addQuestion.suggest') }}</label>
                             <div class="col-lg-11">
-                                <input name="suggest" type="text" class="form-control inputSuggest">
+                                <input type="text" class="form-control inputSuggest">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label col-lg-1">{{ trans('backend.pages.addQuestion.content') }}</label>
                             <div class="col-lg-11">
-                                <input name="content" type="text" class="form-control inputContent">
+                                <input type="text" class="form-control inputContent">
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-lg-1">{{ trans('backend.pages.editQuestion.question_type') }}</label>
+                            <label class="control-label col-lg-11 questionTypeLabel"></label>
+                        </div>
+
+                        <input type="hidden" class="inputType">
+                        <input type="hidden" class="inputPartId">
                     </div>
                 </fieldset>
 
