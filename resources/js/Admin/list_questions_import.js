@@ -88,6 +88,7 @@ function renderBigQuestion(question, keyBigQuestion) {
     let questionElement = $('#bigQuestionExample').clone();
     const type = getTypeQuestion(question[3]);
     questionElement.attr('id', questionId + keyBigQuestion);
+    questionElement.find('.randomCode').attr('data-questionElementId', questionId + keyBigQuestion);
     questionElement.removeClass('d-none');
     questionElement.find('.inputCode').val(question[2]);
     questionElement.find('.inputCode').removeAttr('disabled');
@@ -112,6 +113,7 @@ function renderQuestion(question, keyQuestion, keyBigQuestion = null) {
         //render child question
         questionElement = $('#childQuestionExample').clone();
         questionElement.attr('id', questionChildId + keyBigQuestion + '_' + keyQuestion);
+        questionElement.find('.randomCode').attr('data-questionElementId', questionChildId + keyBigQuestion + '_' + keyQuestion);
         questionElement.find('.inputCode').attr('name', questionName + '[' + keyBigQuestion + '][' + childQuestionName + '][' + keyQuestion + '][code]');
         questionElement.find('.inputSuggest').attr('name', questionName + '[' + keyBigQuestion + '][' + childQuestionName + '][' + keyQuestion + '][suggest]');
         questionElement.find('.inputContent').attr('name', questionName + '[' + keyBigQuestion + '][' + childQuestionName + '][' + keyQuestion + '][content]');
@@ -121,6 +123,7 @@ function renderQuestion(question, keyQuestion, keyBigQuestion = null) {
         //render question
         questionElement = $('#questionExample').clone();
         questionElement.attr('id', questionId + keyQuestion);
+        questionElement.find('.randomCode').attr('data-questionElementId', questionId + keyQuestion);
         questionElement.find('.inputCode').attr('name', questionName + '[' + keyQuestion + '][code]');
         questionElement.find('.inputSuggest').attr('name', questionName + '[' + keyQuestion + '][suggest]');
         questionElement.find('.inputContent').attr('name', questionName + '[' + keyQuestion + '][content]');
@@ -182,3 +185,10 @@ function renderAnswer(rows, currentIndex, questionElement, keyQuestion, keyBigQu
         indexAnswer++;
     }
 }
+
+$(document).on('click', '.randomCode', function (e) {
+    e.preventDefault();
+    let questionElementId = $(this).attr('data-questionElementId');
+
+    $('#' + questionElementId + ' .inputCode').val(randomString());
+});
