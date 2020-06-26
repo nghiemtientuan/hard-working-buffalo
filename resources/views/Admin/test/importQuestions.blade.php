@@ -18,6 +18,8 @@
                 <fieldset class="content-group">
                     <legend class="text-bold">{{ $test->name }}</legend>
 
+                    @include('Admin.layouts.errorOrSuccess')
+
                     <div class="row">
                         <div class="col-lg-5">
                             <table class="table table-bordered" id="list_part">

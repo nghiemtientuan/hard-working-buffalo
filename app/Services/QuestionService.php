@@ -8,6 +8,7 @@ use App\Models\Question;
 use App\Repositories\Contracts\FileRepositoryInterface as FileRepository;
 use App\Repositories\Contracts\QuestionRepositoryInterface as QuestionRepository;
 use App\Repositories\Contracts\AnswerRepositoryInterface as AnswerRepository;
+use Mockery\Exception;
 
 class QuestionService
 {
@@ -34,6 +35,7 @@ class QuestionService
     public function addSingleQuestion($data, $test_id, $parentKind=false)
     {
         $data[Question::TEST_ID_FIELD] = $test_id;
+        $data[Question::CODE_FIELD] = randomCode($data['code']);
         $data = $this->addQuestionFileWithType(null, File::TEST_FOLDER . '/' . $test_id, $data);
 
         $singleQuestion = $this->questionRepository->create($data);
@@ -168,5 +170,52 @@ class QuestionService
             $this->fileRepository->deleteWithFile($answer->file_id);
         }
         $answer->delete();
+    }
+
+    public function addSingleQuestionImport($test, $questionData, $bigQuestionId = null)
+    {
+        $question = [
+            Question::CODE_FIELD => randomCode($questionData['code']),
+            Question::SUGGEST_FIELD => $questionData['suggest'],
+            Question::TYPE_FIELD => $questionData['type'],
+            Question::CONTENT_FIELD => $questionData['content'],
+            Question::TEST_ID_FIELD => $test->id,
+        ];
+        if ($bigQuestionId) {
+            $question[Question::PARENT_ID_FIELD] = $bigQuestionId;
+        } else {
+            $partsInTest = $test->parts->pluck('id')->toArray();
+            if (in_array($questionData['partId'], $partsInTest)) {
+                $question[Question::PART_ID_FIELD] = $questionData['partId'];
+            } else {
+                throw new Exception(trans('backend.validations.importQuestion.part_not_part_test'));
+            }
+        }
+
+        $question = $this->questionRepository->create($question);
+
+        if (array_key_exists('answers', $questionData) && count($questionData['answers'])) {
+            foreach ($questionData['answers'] as $answerContentData) {
+                $this->addSingleAnswerImport($answerContentData, $question->id);
+            }
+        }
+
+        if (array_key_exists('childQuestions', $questionData) && count($questionData['childQuestions'])) {
+            foreach ($questionData['childQuestions'] as $childQuestionData) {
+                $this->addSingleQuestionImport($test, $childQuestionData, $question->id);
+            }
+        }
+    }
+
+    public function addSingleAnswerImport($answerContentData, $questionId)
+    {
+        if ($answerContentData) {
+            $answer = [
+                Answer::QUESTION_ID_FIELD => $questionId,
+                Answer::CONTENT_FIELD => $answerContentData,
+            ];
+
+            $this->answerRepository->create($answer);
+        }
     }
 }
