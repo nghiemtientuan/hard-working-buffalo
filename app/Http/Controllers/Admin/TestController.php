@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Contracts\TestRepositoryInterface as TestRepository;
 use App\Repositories\Contracts\QuestionRepositoryInterface as QuestionRepository;
+use App\Services\QuestionService;
 use Illuminate\Support\Facades\DB;
 use Yajra\Datatables\Datatables;
 
@@ -14,18 +15,22 @@ class TestController extends Controller
 {
     protected $testRepository;
     protected $questionRepository;
+    protected $questionService;
 
     /**
      * TestController constructor.
      * @param TestRepository $testRepository
      * @param QuestionRepository $questionRepository
+     * @param QuestionService $questionService
      */
     public function __construct(
         TestRepository $testRepository,
-        QuestionRepository $questionRepository
+        QuestionRepository $questionRepository,
+        QuestionService $questionService
     ) {
         $this->testRepository = $testRepository;
         $this->questionRepository = $questionRepository;
+        $this->questionService = $questionService;
     }
 
     /**
@@ -137,11 +142,11 @@ class TestController extends Controller
                 DB::commit();
 
                 return redirect()->route('admin.tests.index')
-                    ->with('sucess', trans('backend.actions.success'));
+                    ->with('success', trans('backend.actions.success'));
             } catch (\Exception $exception) {
                 DB::rollBack();
 
-                return redirect()->route('admin.tests.index')->with('error', $exception->getMessage());
+                return redirect()->back()->with('error', $exception->getMessage());
             }
         }
 
@@ -159,7 +164,7 @@ class TestController extends Controller
         $test = $this->testRepository->find($id);
         if ($test && $this->testRepository->delete($id)) {
             return redirect()->route('admin.tests.index')
-                ->with('sucess', trans('backend.actions.success'));
+                ->with('success', trans('backend.actions.success'));
         }
 
         return redirect()->route('admin.tests.index');
@@ -185,6 +190,27 @@ class TestController extends Controller
 
     public function postImport(Request $request, $testId)
     {
-        dd($request->all());
+        $test = $this->testRepository->find($testId)->load('parts');
+        if ($test) {
+            DB::beginTransaction();
+            try {
+                if ($request->questions) {
+                    foreach ($request->questions as $question) {
+                        $this->questionService->addSingleQuestionImport($test, $question);
+                    }
+                }
+
+                DB::commit();
+
+                return redirect()->route('admin.tests.questions.index', $test->id)
+                    ->with('success', trans('backend.actions.success'));
+            } catch (\Exception $exception) {
+                DB::rollBack();
+
+                return redirect()->back()->withErrors($exception->getMessage());
+            }
+        }
+
+        return redirect()->route('admin.notFound');
     }
 }

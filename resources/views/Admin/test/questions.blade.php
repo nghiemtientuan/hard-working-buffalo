@@ -57,12 +57,12 @@
                                     @switch($question->type)
                                         @case(\App\Models\Question::IMAGE_TYPE)
                                             <br />
-                                            <img class="image_question" src="{{ $question->file->base_folder }}" alt="">
+                                            @if ($question->file)<img class="image_question" src="{{ $question->file->base_folder }}" alt="">@endif
                                             @break
                                         @case(\App\Models\Question::AUDIO_ONE_TYPE)
                                         @case(\App\Models\Question::AUDIO_MANY_TYPE)
                                             <br />
-                                            <audio src="{{ $question->file->base_folder }}" controls></audio>
+                                            @if ($question->file)<audio src="{{ $question->file->base_folder }}" controls></audio>@endif
                                             @break
                                     @endswitch
                                 </div>
@@ -88,12 +88,12 @@
                                                 @switch($childQuestion->type)
                                                     @case(\App\Models\Question::IMAGE_TYPE)
                                                         <br />
-                                                        <img class="image_question" src="{{ $childQuestion->file->base_folder }}" alt="">
+                                                        @if ($childQuestion->file)<img class="image_question" src="{{ $childQuestion->file->base_folder }}" alt="">@endif
                                                         @break
                                                     @case(\App\Models\Question::AUDIO_ONE_TYPE)
                                                     @case(\App\Models\Question::AUDIO_MANY_TYPE)
                                                         <br />
-                                                        <audio src="{{ $childQuestion->file->base_folder }}" controls></audio>
+                                                        @if ($childQuestion->file)<audio src="{{ $childQuestion->file->base_folder }}" controls></audio>@endif
                                                         @break
                                                 @endswitch
                                             </div>
@@ -121,12 +121,12 @@
                                     @switch($question->type)
                                         @case(\App\Models\Question::IMAGE_TYPE)
                                             <br />
-                                            <img class="image_question" src="{{ $question->file->base_folder }}" alt="">
+                                            @if ($question->file)<img class="image_question" src="{{ $question->file->base_folder }}" alt="">@endif
                                             @break
                                         @case(\App\Models\Question::AUDIO_ONE_TYPE)
                                         @case(\App\Models\Question::AUDIO_MANY_TYPE)
                                             <br />
-                                            <audio src="{{ $question->file->base_folder }}" controls></audio>
+                                            @if ($question->file)<audio src="{{ $question->file->base_folder }}" controls></audio>@endif
                                             @break
                                     @endswitch
                                 </div>

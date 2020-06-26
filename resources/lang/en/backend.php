@@ -219,4 +219,9 @@ return [
         'success' => 'Action success',
         'error' => 'Action error',
     ],
+    'validations' => [
+        'importQuestion' => [
+            'part_not_part_test' => 'Part not exists',
+        ],
+    ],
 ];

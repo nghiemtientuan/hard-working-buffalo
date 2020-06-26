@@ -57,11 +57,15 @@ class QuestionController extends Controller
                 $content = $question->content;
                 switch ($question->type) {
                     case Question::IMAGE_TYPE:
-                        $content .= '<img class="question-image-list" src="' . $question->file->base_folder . '">';
+                        if ($question->file) {
+                            $content .= '<img class="question-image-list" src="' . $question->file->base_folder . '">';
+                        }
                         break;
                     case Question::AUDIO_ONE_TYPE:
                     case Question::AUDIO_MANY_TYPE:
-                        $content .= '<audio src="' . $question->file->base_folder . '">';
+                        if ($question->file) {
+                            $content .= '<audio src="' . $question->file->base_folder . '">';
+                        }
                         break;
                     default: break;
                 }

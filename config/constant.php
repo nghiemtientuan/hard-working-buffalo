@@ -136,6 +136,9 @@ return [
         'code_403' => 403,
         'code_404' => 404,
     ],
+    'question' => [
+        'random_code_length' => 10,
+    ],
     'guidelines' => [
         'home' => [
             '/images/guidelines/home1.png',
